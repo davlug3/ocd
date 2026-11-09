@@ -1,0 +1,288 @@
+{
+  "schema_version": 1,
+  "updated": "2026-11-09",
+  "policy": "Project-local registry for v0.1. Only status=verified may be cited as settled evidence per audio-engineering-skill policy; unverified entries are tracked explicitly.",
+  "sources": [
+    {
+      "id": "S001",
+      "tier": 3,
+      "title": "Explicit Wave Digital Model of the Fulltone OCD Pedal Based on Canonical Piecewise-Linear Functions",
+      "authors": [
+        "R. Giampiccolo",
+        "et al."
+      ],
+      "year": 2026,
+      "venue": "DAFx26",
+      "doi": null,
+      "url": "https://dafx.de/paper-archive/2026/papers/DAFx26_paper_24.pdf",
+      "accessed": "2026-11-09",
+      "status": "verified",
+      "access": "open",
+      "topics": [
+        "ocd",
+        "topology",
+        "clipping",
+        "mosfet",
+        "modeling"
+      ],
+      "note": "Peer-reviewed topology reference (OCD v2 model). Use for cross-check; not a component-value BOM for v1.4."
+    },
+    {
+      "id": "S002",
+      "tier": 3,
+      "title": "Circuit Analysis: Fulltone's OCD",
+      "authors": [
+        "Analog Is Not Dead"
+      ],
+      "year": 1900,
+      "venue": "Analog Is Not Dead",
+      "doi": null,
+      "url": "https://www.analogisnotdead.com/article34/circuit-analysis-fulltone-s-ocd",
+      "accessed": "2026-11-09",
+      "status": "verified",
+      "access": "open",
+      "topics": [
+        "ocd",
+        "topology",
+        "vref",
+        "clipping"
+      ],
+      "note": "Practitioner analysis; verify key values against locked schematic/datasheets. Publication year unknown; accessed 2026-11-09."
+    },
+    {
+      "id": "S003",
+      "tier": 3,
+      "title": "OCD overdrive clone (my very first pedal)",
+      "authors": [
+        "zadvitsky.com"
+      ],
+      "year": 1900,
+      "venue": "zadvitsky.com",
+      "doi": null,
+      "url": "http://zadvitsky.com/index.php/projects/pedals/ocd-overdrive-diy.html",
+      "accessed": "2026-11-09",
+      "status": "verified",
+      "access": "open",
+      "topics": [
+        "ocd",
+        "diy",
+        "schematic-walkthrough"
+      ],
+      "note": "Practitioner walkthrough; revision-dependent values. Publication year unknown; accessed 2026-11-09."
+    },
+    {
+      "id": "S004",
+      "tier": 3,
+      "title": "Fulltone OCD \u2014 All the 9 Versions",
+      "authors": [
+        "Alberto Dess\u00ec"
+      ],
+      "year": 1900,
+      "venue": "albertodessi.it",
+      "doi": null,
+      "url": "https://www.albertodessi.it/recensioni-sui-pedali/fulltone/fulltone-ocd-all-versions",
+      "accessed": "2026-11-09",
+      "status": "verified",
+      "access": "open",
+      "topics": [
+        "ocd",
+        "revisions"
+      ],
+      "note": "Secondary compilation; verify critical claims. Publication year unknown; accessed 2026-11-09."
+    },
+    {
+      "id": "S005",
+      "tier": 3,
+      "title": "MOSFET body diode (measured curve discussion)",
+      "authors": [
+        "Chuck D. Bones / PedalPCB forum"
+      ],
+      "year": 1900,
+      "venue": "PedalPCB forum",
+      "doi": null,
+      "url": "https://forum.pedalpcb.com/threads/mosfet-body-diode.9047/",
+      "accessed": "2026-11-09",
+      "status": "verified",
+      "access": "open",
+      "topics": [
+        "mosfet",
+        "body-diode",
+        "clipping"
+      ],
+      "note": "Community measurement discussion; context-dependent. Publication year unknown; accessed 2026-11-09."
+    },
+    {
+      "id": "S006",
+      "tier": 3,
+      "title": "Tube vs. Solid State: clipping/harmonics nuance",
+      "authors": [
+        "tonestack.net"
+      ],
+      "year": 1900,
+      "venue": "tonestack.net",
+      "doi": null,
+      "url": "https://www.tonestack.net/articles/guitar-amps/tube-vs-solid-state.html",
+      "accessed": "2026-11-09",
+      "status": "verified",
+      "access": "open",
+      "topics": [
+        "clipping",
+        "harmonics",
+        "intermodulation"
+      ],
+      "note": "Use careful language for complex musical signals. Publication year unknown; accessed 2026-11-09."
+    },
+    {
+      "id": "S007",
+      "tier": 1,
+      "title": "TL082/TL08xx FET-Input Operational Amplifiers datasheet (linked) and product page",
+      "authors": [
+        "Texas Instruments"
+      ],
+      "year": 2025,
+      "venue": "Texas Instruments",
+      "doi": null,
+      "url": "https://www.ti.com/lit/gpn/TL082",
+      "accessed": "2026-11-09",
+      "status": "verified",
+      "access": "open",
+      "topics": [
+        "op-amp",
+        "supply",
+        "swing",
+        "common-mode"
+      ],
+      "note": "SLOS081O Rev O linked; product page opened. Exact 5V suitability limits must be read from datasheet tables before final electrical decisions."
+    },
+    {
+      "id": "S008",
+      "tier": 1,
+      "title": "2N7000/2N7002/NDS7002A N-Channel Enhancement Mode Field Effect Transistor",
+      "authors": [
+        "onsemi"
+      ],
+      "year": 2025,
+      "venue": "onsemi",
+      "doi": null,
+      "url": "https://www.onsemi.com/download/data-sheet/pdf/nds7002a-d.pdf",
+      "accessed": "2026-11-09",
+      "status": "verified",
+      "access": "open",
+      "topics": [
+        "mosfet",
+        "2n7000",
+        "body-diode",
+        "pinout"
+      ],
+      "note": "PDF located; pinout/ratings must be extracted before PCB/sim pin mapping."
+    },
+    {
+      "id": "S009",
+      "tier": 3,
+      "title": "User intake v0.1",
+      "authors": [
+        "Project user"
+      ],
+      "year": 2026,
+      "venue": "local project",
+      "doi": null,
+      "url": "local:conversation/2026-11-09",
+      "accessed": "2026-11-09",
+      "status": "verified",
+      "access": "open",
+      "topics": [
+        "requirements",
+        "scope"
+      ],
+      "note": "Project-local requirement source (5\u201318V, true bypass, unbranded v0.1). Project-local record."
+    },
+    {
+      "id": "S010",
+      "tier": 3,
+      "title": "Close Enough Sub For Germanium Diodes (1N34A alternatives discussion)",
+      "authors": [
+        "PedalPCB forum"
+      ],
+      "year": 1900,
+      "venue": "PedalPCB forum",
+      "doi": null,
+      "url": "https://forum.pedalpcb.com/threads/close-enough-sub-for-germanium-diodes.20292/",
+      "accessed": "2026-11-09",
+      "status": "verified",
+      "access": "open",
+      "topics": [
+        "1n34a",
+        "substitute",
+        "schottky",
+        "clipping"
+      ],
+      "note": "Practitioner discussion; BAT41/Schottky sometimes used but Vf/leakage/sound differ from Ge. Publication year unknown; accessed 2026-11-09."
+    },
+    {
+      "id": "S011",
+      "tier": 3,
+      "title": "Germanium diodes vs Schottky diodes for audio distortion",
+      "authors": [
+        "Rezzonics"
+      ],
+      "year": 2014,
+      "venue": "rezzonics.blogspot.com",
+      "doi": null,
+      "url": "http://rezzonics.blogspot.com/2014/01/germanium-diodes-vs-schottky-diodes-for.html",
+      "accessed": "2026-11-09",
+      "status": "verified",
+      "access": "open",
+      "topics": [
+        "germanium",
+        "schottky",
+        "distortion",
+        "clipping"
+      ],
+      "note": "Comparative discussion; not a controlled measurement standard."
+    },
+    {
+      "id": "S012",
+      "tier": 3,
+      "title": "A Brief Hobbyist Primer on Clipping Diodes",
+      "authors": [
+        "Guitar Pedal X"
+      ],
+      "year": 1900,
+      "venue": "guitarpedalx.com",
+      "doi": null,
+      "url": "https://www.guitarpedalx.com/news/news/a-brief-hobbyist-primer-on-clipping-diodes",
+      "accessed": "2026-11-09",
+      "status": "verified",
+      "access": "open",
+      "topics": [
+        "clipping-diodes",
+        "ge",
+        "schottky",
+        "mosfet"
+      ],
+      "note": "Practitioner reference; verify specific Vf claims against datasheets/measurements. Publication year unknown; accessed 2026-11-09."
+    },
+    {
+      "id": "S013",
+      "tier": 3,
+      "title": "TOC (OCD) build docs v2.1 (PCB Guitar Mania)",
+      "authors": [
+        "PCB Guitar Mania"
+      ],
+      "year": 2022,
+      "venue": "PCB Guitar Mania",
+      "doi": null,
+      "url": "https://pcbguitarmania.com/wp-content/uploads/2018/02/TOC-2v1-Building-Docs.pdf",
+      "accessed": "2026-11-09",
+      "status": "verified",
+      "access": "open",
+      "topics": [
+        "ocd",
+        "bom",
+        "versions",
+        "pcb-mania"
+      ],
+      "note": "Third-party multi-version PCB/build doc provided by user (local copy sha256 4f2291f030b35c06...). Includes buffers (Q3/Q4/SW2/SW3) not in v0.1 default. Schematic page is image; pin-level netlist not fully extracted. Used as authorized reference for merge."
+    }
+  ]
+}

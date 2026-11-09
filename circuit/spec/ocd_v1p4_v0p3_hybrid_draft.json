@@ -1,0 +1,658 @@
+{
+  "schema_version": "1.0",
+  "name": "ocd_v1p4_v0p3_hybrid_draft",
+  "description": "OCD-style overdrive v0.1 (unbranded), v1.4-style hybrid draft (S002+S003 cross-checked with S001/S013). 8-18V DC. TRUE BYPASS external. SIMULATION-ONLY/UNVERIFIED: provisional values, clipping wiring TBD/conflict, APPROX models. DC-op debug pass applied (bias/Vref stiffness/clipping DC-safe placeholders) - still provisional, do not fabricate.",
+  "topology": "ocd_style_overdrive_hybrid_v1p4",
+  "ground": "GND",
+  "supplies": [
+    {
+      "name": "VCC",
+      "voltage": 9.0,
+      "source": "8-18V DC center-negative (C022)"
+    }
+  ],
+  "parameters": {
+    "supply_range_v": [
+      8,
+      18
+    ],
+    "vref_ratio": 0.5,
+    "drive_mid_gain1_approx": 236,
+    "gain2_approx": 4.9
+  },
+  "input": {
+    "net": "IN_SIG",
+    "type": "ac",
+    "amplitude": 0.05,
+    "frequency": 1000,
+    "source": "handoff nominal test condition"
+  },
+  "output": {
+    "net": "VOUT",
+    "load": 100000
+  },
+  "design": {
+    "requirements": [
+      {
+        "id": "A1",
+        "text": "Operate 8-18V DC center-negative (no damage/oscillation; functional audio at 8/9/18V into 100k, conditions TBD)",
+        "acceptance": "Bench/sim sweep 8/9/18V, 1kHz, 100k; D002 TL082 validation required",
+        "source": "S009/C022"
+      },
+      {
+        "id": "A2",
+        "text": "True bypass (external to effect core)",
+        "acceptance": "Dry signal when off; 3PDT wiring verified separately",
+        "source": "S009/C022"
+      },
+      {
+        "id": "A3",
+        "text": "Asymmetric OCD-style clipping character to Vref with tone/HP-LP voicing",
+        "acceptance": "Qualitative + sim waveform/spectrum under stated conditions; not a verified Fulltone clone claim",
+        "source": "S001/S002/C003"
+      },
+      {
+        "id": "A4",
+        "text": "Vref bias tracks Vcc/2",
+        "acceptance": "Within TBD tolerance across 8-18V",
+        "source": "S002/C008"
+      }
+    ],
+    "architecture": {
+      "summary": "Vref-biased TL082 2-stage gain, provisional asymmetric MOSFET/diode clipping referenced to Vref, simplified tone/volume placeholders, 100k load. True bypass external.",
+      "blocks": [
+        "input",
+        "vref",
+        "gain1_drive",
+        "clip_vref_provisional",
+        "gain2",
+        "tone_volume_placeholder",
+        "output"
+      ],
+      "interfaces": [
+        "IN_SIG AC",
+        "VOUT into 100k",
+        "VCC 8-18V",
+        "GND"
+      ],
+      "budgets": {
+        "supply": "8-18V DC",
+        "load": "100k",
+        "gain1_mid_approx": "~236x (Drive 50%, S003-based)",
+        "gain2": "~4.9x placeholder"
+      },
+      "test_points": [
+        "VREF",
+        "G1_OUT",
+        "CLIP_NODE",
+        "G2_OUT",
+        "VOUT"
+      ]
+    },
+    "decisions": [
+      {
+        "id": "D001",
+        "decision": "v1.4-style hybrid working reference, not verified Fulltone netlist",
+        "alternatives": [
+          "verified single schematic (blocked)",
+          "v2-only"
+        ],
+        "rationale": "user lock C022; sources conflict/incomplete",
+        "sources": [
+          "S002 opened 2026-11-09",
+          "S003 opened 2026-11-09",
+          "S001/S013 cross-check"
+        ]
+      },
+      {
+        "id": "D002",
+        "decision": "Validate TL082 at 8-18V; TL082.301 simulation-only",
+        "alternatives": [
+          "TL082H",
+          "OPA2197"
+        ],
+        "rationale": "min supply 7V and directional sim favorable (C023/C024); not closed",
+        "sources": [
+          "S007 TI TL082 page opened 2026-11-09",
+          "circuit/models/TL082.301",
+          "C024"
+        ]
+      },
+      {
+        "id": "D003",
+        "decision": "Most-available/versatile clipping; default BAT46 in this draft, options noted",
+        "alternatives": [
+          "1N34A default",
+          "1N4148"
+        ],
+        "rationale": "user lock C022; Ge variability C009",
+        "sources": [
+          "S009/C022",
+          "S010-S012 context"
+        ]
+      },
+      {
+        "id": "D_CLIP_WIRE",
+        "decision": "PROVISIONAL clipping wiring follows S002 text topology assumption; M1/M2/D_ASYM orientation is TBD/conflict",
+        "alternatives": [
+          "S002 2026 comment alternate wiring",
+          "hold for traceable schematic"
+        ],
+        "rationale": "user selected provisional S002 text; exact node orientation not verified",
+        "sources": [
+          "S002 opened 2026-11-09",
+          "S002 page comment 2026-05-20 (conflict noted)"
+        ]
+      },
+      {
+        "id": "D_VALUES",
+        "decision": "Hybrid labeled: S003 explicit gain values + placeholders for simulatable completeness",
+        "alternatives": [
+          "S003 partial only (incomplete sim)",
+          "S001 v2 baseline labeled non-v1.4"
+        ],
+        "rationale": "user selected hybrid labeled/propose table confirmed",
+        "sources": [
+          "S003 opened 2026-11-09",
+          "S001 context labeled non-v1.4"
+        ]
+      },
+      {
+        "id": "D_DC_DEBUG",
+        "decision": "DC-op debug fix: stiffer Vref (10k/10k), IN_A biased to Vref, CLIP/ASYM nodes DC-referenced to Vref, HF cap to Vref; provisional",
+        "alternatives": [
+          "leave broken bias",
+          "buffer Vref (not added)"
+        ],
+        "rationale": "generated ngspice .op showed Vref pulled to ~2.23V and wrong input bias due to loading/provisional wiring",
+        "sources": [
+          "local ngspice .op debug 2026-11-09"
+        ]
+      }
+    ],
+    "risks": [
+      {
+        "id": "K1",
+        "risk": "TL082 CM/swing/headroom at 8V condition-dependent",
+        "severity": "high",
+        "mitigation": "SLOS081O + full-topology SPICE/bench at 8/9/18V (D002 open)",
+        "verification": "A1/C024 follow-up"
+      },
+      {
+        "id": "K2",
+        "risk": "Clipping wiring/orientation wrong (S002 comment conflict)",
+        "severity": "high",
+        "mitigation": "Mark PROVISIONAL; verify against traceable schematic before fabrication; do not trust sim tone",
+        "verification": "schematic trace + bench"
+      },
+      {
+        "id": "K3",
+        "risk": "Many values are placeholders (tone/HP-LP/G2/coupling/caps)",
+        "severity": "high",
+        "mitigation": "Label TBD/proposed; replace with traceable values",
+        "verification": "source review"
+      },
+      {
+        "id": "K4",
+        "risk": "APPROX discrete models unverified",
+        "severity": "high",
+        "mitigation": "Simulation-only; obtain manufacturer models for verification",
+        "verification": "model provenance"
+      },
+      {
+        "id": "K5",
+        "risk": "Ge/diode/MOSFET behavior varies; asymmetry/tone not guaranteed",
+        "severity": "medium",
+        "mitigation": "D003 options, selection/measurement",
+        "verification": "A3 sim/listening"
+      },
+      {
+        "id": "K6",
+        "risk": "DC debug fixes are provisional and may not match real OCD bias topology",
+        "severity": "medium",
+        "mitigation": "verify bias/coupling against traceable schematic; sim/bench",
+        "verification": "op/DC sweep"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Circuit Analysis: Fulltone's OCD",
+        "publisher": "Analog Is Not Dead",
+        "url": "https://www.analogisnotdead.com/article34/circuit-analysis-fulltone-s-ocd",
+        "revision": "n/a",
+        "accessed": "2026-11-09",
+        "id": "S002"
+      },
+      {
+        "title": "OCD overdrive clone (my very first pedal)",
+        "publisher": "zadvitsky.com",
+        "url": "http://zadvitsky.com/index.php/projects/pedals/ocd-overdrive-diy.html",
+        "revision": "n/a",
+        "accessed": "2026-11-09",
+        "id": "S003"
+      },
+      {
+        "title": "TL082 product/datasheet (SLOS081O)",
+        "publisher": "Texas Instruments",
+        "url": "https://www.ti.com/product/TL082",
+        "revision": "SLOS081O Rev O",
+        "accessed": "2026-11-09",
+        "id": "S007"
+      },
+      {
+        "title": "Explicit WDF Model of Fulltone OCD (OCD v2 context)",
+        "publisher": "DAFx26",
+        "url": "https://dafx.de/paper-archive/2026/papers/DAFx26_paper_24.pdf",
+        "revision": "2026",
+        "accessed": "2026-11-09",
+        "id": "S001"
+      },
+      {
+        "title": "User reconciliation lock",
+        "publisher": "local",
+        "url": "local:conversation/2026-11-09",
+        "revision": "n/a",
+        "accessed": "2026-11-09",
+        "id": "S009"
+      }
+    ]
+  },
+  "components": [
+    {
+      "ref": "V1",
+      "type": "V",
+      "value": 0,
+      "pins": {
+        "1": "VCC",
+        "2": "GND"
+      },
+      "dc": 9.0,
+      "notes": "Nominal 9V; design range 8-18V (C022)"
+    },
+    {
+      "ref": "V_IN",
+      "type": "V",
+      "value": 0,
+      "pins": {
+        "1": "IN_SIG",
+        "2": "GND"
+      },
+      "dc": 0,
+      "ac": 1.0,
+      "waveform": {
+        "type": "sin",
+        "params": [
+          0,
+          0.05,
+          1000
+        ]
+      },
+      "notes": "Test input; SIN for tran (AC mag may need manual netlist tweak if AC sim required)"
+    },
+    {
+      "ref": "R_V1",
+      "type": "R",
+      "value": 10000,
+      "pins": {
+        "1": "VCC",
+        "2": "VREF"
+      },
+      "notes": "Vref divider stiffened for draft (10k/10k=5k Thevenin); value proposed"
+    },
+    {
+      "ref": "R_V2",
+      "type": "R",
+      "value": 10000,
+      "pins": {
+        "1": "VREF",
+        "2": "GND"
+      },
+      "notes": "Vref divider stiffened for draft"
+    },
+    {
+      "ref": "C_VREF",
+      "type": "C",
+      "value": 1e-05,
+      "pins": {
+        "1": "VREF",
+        "2": "GND"
+      },
+      "notes": "Vref filter proposed"
+    },
+    {
+      "ref": "C_IN",
+      "type": "C",
+      "value": 2.2e-08,
+      "pins": {
+        "1": "IN_SIG",
+        "2": "IN_A"
+      },
+      "notes": "Input coupling provisional (S003 role)"
+    },
+    {
+      "ref": "R_IN_BIAS",
+      "type": "R",
+      "value": 1000000,
+      "pins": {
+        "1": "IN_A",
+        "2": "VREF"
+      },
+      "notes": "Bias non-inv input to Vref (provisional single-supply bias); R_INREF-to-GND removed in DC debug"
+    },
+    {
+      "ref": "U1A",
+      "type": "OPAMP",
+      "model": "TL082",
+      "pins": {
+        "IN+": "IN_A",
+        "IN-": "G1_FB",
+        "V+": "VCC",
+        "V-": "GND",
+        "OUT": "G1_OUT"
+      },
+      "notes": "Gain 1, TL082 candidate (D002/C024)"
+    },
+    {
+      "ref": "R_G1",
+      "type": "R",
+      "value": 2200,
+      "pins": {
+        "1": "G1_FB",
+        "2": "VREF"
+      },
+      "notes": "S003 gain formula: Rg=2.2k (refdes mapping provisional)"
+    },
+    {
+      "ref": "R_G1F",
+      "type": "R",
+      "value": 18000,
+      "pins": {
+        "1": "G1_FB",
+        "2": "DRV_W"
+      },
+      "notes": "S003 gain formula: fixed 18k (provisional mapping)"
+    },
+    {
+      "ref": "R_DRV_MID",
+      "type": "R",
+      "value": 500000,
+      "pins": {
+        "1": "DRV_W",
+        "2": "G1_OUT"
+      },
+      "notes": "Drive pot modeled at 50% (1M pot => 500k); variable in real circuit. S003 uses 1M in max gain."
+    },
+    {
+      "ref": "C_G1HF",
+      "type": "C",
+      "value": 2.2e-10,
+      "pins": {
+        "1": "G1_OUT",
+        "2": "G1_FB"
+      },
+      "notes": "HF stability cap proposed (S002 C6 role)"
+    },
+    {
+      "ref": "R_CLIP",
+      "type": "R",
+      "value": 10000,
+      "pins": {
+        "1": "G1_OUT",
+        "2": "CLIP_NODE"
+      },
+      "notes": "Series into clipping (S002 R9 role); value TBD"
+    },
+    {
+      "ref": "C_CLIP_HF",
+      "type": "C",
+      "value": 1e-07,
+      "pins": {
+        "1": "CLIP_NODE",
+        "2": "VREF"
+      },
+      "notes": "HF placeholder referenced to VREF (DC debug); placement/value TBD"
+    },
+    {
+      "ref": "R_CLIP_BIAS",
+      "type": "R",
+      "value": 100000,
+      "pins": {
+        "1": "CLIP_NODE",
+        "2": "VREF"
+      },
+      "notes": "DC debug: bias clip node to VREF (provisional)"
+    },
+    {
+      "ref": "Q1",
+      "type": "NMOS",
+      "model": "APPROX_2N7000",
+      "pins": {
+        "D": "CLIP_NODE",
+        "G": "CLIP_NODE",
+        "S": "VREF"
+      },
+      "notes": "PROVISIONAL WIRING (S002 text assumed; S002 comment conflict). D-G tied as diode-like element; uses APPROX subckt body diode path. VERIFY orientation."
+    },
+    {
+      "ref": "Q2",
+      "type": "NMOS",
+      "model": "APPROX_2N7000",
+      "pins": {
+        "D": "VREF",
+        "G": "VREF",
+        "S": "ASYM_NODE"
+      },
+      "notes": "PROVISIONAL WIRING (conflict). VERIFY orientation."
+    },
+    {
+      "ref": "D_ASYM",
+      "type": "D",
+      "model": "APPROX_BAT46",
+      "pins": {
+        "A": "ASYM_NODE",
+        "K": "CLIP_NODE"
+      },
+      "notes": "PROVISIONAL asymmetry element (D003 default BAT46; Ge/1N4148 options). VERIFY orientation/polarity with chosen wiring."
+    },
+    {
+      "ref": "R_ASYM",
+      "type": "R",
+      "value": 1000000,
+      "pins": {
+        "1": "ASYM_NODE",
+        "2": "VREF"
+      },
+      "notes": "DC debug: reference asym node to VREF, avoid float (provisional)"
+    },
+    {
+      "ref": "U1B",
+      "type": "OPAMP",
+      "model": "TL082",
+      "pins": {
+        "IN+": "CLIP_NODE",
+        "IN-": "G2_FB",
+        "V+": "VCC",
+        "V-": "GND",
+        "OUT": "G2_OUT"
+      },
+      "notes": "Gain 2 recovery placeholder; direct connection from clip node is simplified/provisional"
+    },
+    {
+      "ref": "R_G2",
+      "type": "R",
+      "value": 10000,
+      "pins": {
+        "1": "G2_FB",
+        "2": "VREF"
+      },
+      "notes": "Gain 2 placeholder"
+    },
+    {
+      "ref": "R_G2F",
+      "type": "R",
+      "value": 39000,
+      "pins": {
+        "1": "G2_FB",
+        "2": "G2_OUT"
+      },
+      "notes": "Gain 2 ~4.9x placeholder (TBD)"
+    },
+    {
+      "ref": "R_TONE",
+      "type": "R",
+      "value": 10000,
+      "pins": {
+        "1": "G2_OUT",
+        "2": "TONE_NODE"
+      },
+      "notes": "Simplified tone placeholder (HP/LP omitted/TBD)"
+    },
+    {
+      "ref": "C_TONE",
+      "type": "C",
+      "value": 4.7e-08,
+      "pins": {
+        "1": "TONE_NODE",
+        "2": "GND"
+      },
+      "notes": "Simplified tone placeholder"
+    },
+    {
+      "ref": "C_OUT",
+      "type": "C",
+      "value": 1e-06,
+      "pins": {
+        "1": "TONE_NODE",
+        "2": "VOL_TOP"
+      },
+      "notes": "Output coupling placeholder"
+    },
+    {
+      "ref": "R_VOL",
+      "type": "R",
+      "value": 50000,
+      "pins": {
+        "1": "VOL_TOP",
+        "2": "VOUT"
+      },
+      "notes": "Volume modeled at 50% (100k pot placeholder)"
+    },
+    {
+      "ref": "R_VOLG",
+      "type": "R",
+      "value": 50000,
+      "pins": {
+        "1": "VOUT",
+        "2": "GND"
+      },
+      "notes": "Volume lower leg placeholder"
+    },
+    {
+      "ref": "R_LOAD",
+      "type": "R",
+      "value": 100000,
+      "pins": {
+        "1": "VOUT",
+        "2": "GND"
+      },
+      "notes": "Handoff load condition"
+    }
+  ],
+  "analyses": [
+    {
+      "type": "op"
+    },
+    {
+      "type": "dc",
+      "source": "V1",
+      "start": 8,
+      "stop": 18,
+      "step": 1
+    },
+    {
+      "type": "tran",
+      "stop": 0.02,
+      "step": 1e-05
+    },
+    {
+      "type": "ac",
+      "start": 20,
+      "stop": 20000,
+      "points": 100
+    }
+  ],
+  "deliverables": [
+    "spice",
+    "ltspice_asc",
+    "kicad_net",
+    "kicad_sch",
+    "bom",
+    "report"
+  ],
+  "assumptions": [
+    "UNVERIFIED hybrid draft - not a Fulltone/OCD clone netlist",
+    "Clipping wiring is PROVISIONAL (S002 text assumed); S002 2026 comment reports alternate M1/M2 wiring - VERIFY before fabrication",
+    "Values are hybrid labeled: S003 explicit gain formula parts + placeholders for completeness",
+    "Drive/Tone/Volume modeled as fixed mid positions for simulation",
+    "HP/LP switch omitted/simplified in this draft",
+    "True bypass is external to SPICE core",
+    "Models: TL082.301 (TI SLOJ070, +/-15V characterized, extrapolative at 8-18V single supply) + APPROX_2N7000/APPROX_BAT46 (unverified) - SIMULATION ONLY",
+    "8-18V DC supply range (C022); D002 not closed",
+    "DC-op debug pass: Vref 10k/10k, IN_A biased to Vref, CLIP_NODE/ASYM_NODE DC-referenced to Vref, C_CLIP_HF to VREF. Provisional fixes, not verified topology."
+  ],
+  "models": {
+    "TL082": {
+      "file": "../models/TL082.301",
+      "subckt_pins": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "vendor": "Texas Instruments",
+      "part": "TL082 (macromodel)",
+      "source": "TI SLOJ070 / https://www.ti.com/lit/zip/sloj070 (accessed 2026-11-09)",
+      "sha256": "adad2e131f728610963e0797670ea34d2857c0b26b3f49c6ce356a3213d89011"
+    },
+    "APPROX_2N7000": {
+      "file": "../models/APPROX_2N7000.lib",
+      "subckt_pins": [
+        "D",
+        "G",
+        "S"
+      ],
+      "vendor": "project approximation",
+      "part": "2N7000 (APPROX, exploration only)",
+      "source": "local APPROX file; NOT manufacturer model; see circuit/models/PROVENANCE.md"
+    },
+    "APPROX_BAT46": {
+      "file": "../models/APPROX_BAT46.lib",
+      "vendor": "project approximation",
+      "part": "BAT46-class (APPROX, exploration only)",
+      "source": "local APPROX file; NOT manufacturer model; D003 default option"
+    },
+    "APPROX_1N34A": {
+      "file": "../models/APPROX_1N34A.lib",
+      "vendor": "project approximation",
+      "part": "1N34A Ge (APPROX, exploration only)",
+      "source": "local APPROX file; NOT manufacturer model; C009 variability"
+    }
+  },
+  "notes": [
+    "PROVISIONAL CLIPPING: Q1/Q2/D_ASYM wiring is an assumption for simulation structure, not verified against S002 image or other schematics. S002 comment conflict unresolved.",
+    "HP/LP network omitted/simplified. Gain2/tone values placeholders.",
+    "Generated outputs are structural/simulation drafts with explicit warnings."
+  ],
+  "environment": {
+    "ta_c": 25,
+    "tj_max_c": 125
+  },
+  "verification": {
+    "tolerance_percent": 10
+  },
+  "notes_extra": [
+    "PCB not designed in this pass; run pcb-design-skill with verified netlist/pin maps/footprints when ready.",
+    "DC Vref/A1 checks should be done via .op/tran inspection or bench; circuit-design-skill metric types used here are limited to supported measures."
+  ]
+}

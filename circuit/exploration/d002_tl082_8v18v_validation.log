@@ -1,0 +1,634 @@
+
+Note: No compatibility mode selected!
+
+
+Circuit: * d002 tl082 8v/9v/18v single-supply feasibility validation (exploration, corrected)
+
+D002_TL082_8V18V_VALIDATION_CORRECTED model=TI_TL082.301_SLOJ070_S007 model_limited=1 sim_only=1 gain=10.09 load=100k DCcoupled
+Reset re-loads circuit * d002 tl082 8v/9v/18v single-supply feasibility validation (exploration, corrected)
+
+Circuit: * d002 tl082 8v/9v/18v single-supply feasibility validation (exploration, corrected)
+
+Reducing trtol to 1 for xspice 'A' devices
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+Using SPARSE 1.3 as Direct Linear Solver
+
+No. of Data Rows : 1
+===RESULT VCC=8 VINPK=0.05===
+v(vcc) = 8.000000e+00
+v(vref) = 4.000246e+00
+v(out) = 4.000357e+00
+Reducing trtol to 1 for xspice 'A' devices
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+Using SPARSE 1.3 as Direct Linear Solver
+
+Initial Transient Solution
+--------------------------
+
+Node                                   Voltage
+----                                   -------
+vcc                                          8
+vref                                   4.00025
+in                                     4.00025
+fb                                     4.00026
+out                                    4.00036
+xu1.11                                 0.34544
+xu1.12                                0.345453
+xu1.6                             -1.75612e-06
+xu1.7                                  4.00636
+xu1.53                                     5.8
+xu1.54                                     2.2
+xu1.90                               0.0400086
+xu1.91                                      25
+xu1.92                                     -25
+xu1.99                                       4
+xu1.10                                 3.60166
+xu1.9                                        0
+xu1.8                                  4.00636
+h.xu1.hlim#branch                 -8.00171e-14
+v.xu1.vlim#branch                  4.00086e-05
+v.xu1.vln#branch                  -2.50408e-11
+v.xu1.vlp#branch                  -2.49608e-11
+v.xu1.ve#branch                    1.80116e-12
+v.xu1.vc#branch                    1.80044e-12
+v.xu1.vb#branch                   -1.75612e-11
+vin#branch                        -3.40479e-11
+vcc#branch                         -0.00396808
+a$poly$e.xu1.egnd#branch_1_0      -4.03968e-05
+
+
+No. of Data Rows : 1210
+vmax                =  4.505158e+00 at=  2.248031e-03
+vmin                =  3.496269e+00 at=  1.174803e-02
+inmax               =  4.050597e+00 at=  2.248031e-03
+inmin               =  3.950609e+00 at=  1.174803e-02
+vmax = 4.505158e+00
+vmin = 3.496269e+00
+inmax = 4.050597e+00
+inmin = 3.950609e+00
+Reset re-loads circuit * d002 tl082 8v/9v/18v single-supply feasibility validation (exploration, corrected)
+
+Circuit: * d002 tl082 8v/9v/18v single-supply feasibility validation (exploration, corrected)
+
+Reducing trtol to 1 for xspice 'A' devices
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+Using SPARSE 1.3 as Direct Linear Solver
+
+No. of Data Rows : 1
+===RESULT VCC=8 VINPK=0.15===
+v(vcc) = 8.000000e+00
+v(vref) = 4.000246e+00
+v(out) = 4.000357e+00
+Reducing trtol to 1 for xspice 'A' devices
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+Using SPARSE 1.3 as Direct Linear Solver
+
+Initial Transient Solution
+--------------------------
+
+Node                                   Voltage
+----                                   -------
+vcc                                          8
+vref                                   4.00025
+in                                     4.00025
+fb                                     4.00026
+out                                    4.00036
+xu1.11                                 0.34544
+xu1.12                                0.345453
+xu1.6                             -1.75612e-06
+xu1.7                                  4.00636
+xu1.53                                     5.8
+xu1.54                                     2.2
+xu1.90                               0.0400086
+xu1.91                                      25
+xu1.92                                     -25
+xu1.99                                       4
+xu1.10                                 3.60166
+xu1.9                                        0
+xu1.8                                  4.00636
+h.xu1.hlim#branch                 -8.00171e-14
+v.xu1.vlim#branch                  4.00086e-05
+v.xu1.vln#branch                  -2.50408e-11
+v.xu1.vlp#branch                  -2.49608e-11
+v.xu1.ve#branch                    1.80116e-12
+v.xu1.vc#branch                    1.80044e-12
+v.xu1.vb#branch                   -1.75612e-11
+vin#branch                        -3.40479e-11
+vcc#branch                         -0.00396808
+a$poly$e.xu1.egnd#branch_1_0      -4.03968e-05
+
+
+No. of Data Rows : 1211
+vmax                =  5.514469e+00 at=  2.246548e-03
+vmin                =  2.488384e+00 at=  1.174655e-02
+inmax               =  4.151264e+00 at=  2.246548e-03
+inmin               =  3.851367e+00 at=  1.174655e-02
+vmax = 5.514469e+00
+vmin = 2.488384e+00
+inmax = 4.151264e+00
+inmin = 3.851367e+00
+Reset re-loads circuit * d002 tl082 8v/9v/18v single-supply feasibility validation (exploration, corrected)
+
+Circuit: * d002 tl082 8v/9v/18v single-supply feasibility validation (exploration, corrected)
+
+Reducing trtol to 1 for xspice 'A' devices
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+Using SPARSE 1.3 as Direct Linear Solver
+
+No. of Data Rows : 1
+===RESULT VCC=8 VINPK=0.25===
+v(vcc) = 8.000000e+00
+v(vref) = 4.000246e+00
+v(out) = 4.000357e+00
+Reducing trtol to 1 for xspice 'A' devices
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+Using SPARSE 1.3 as Direct Linear Solver
+
+Initial Transient Solution
+--------------------------
+
+Node                                   Voltage
+----                                   -------
+vcc                                          8
+vref                                   4.00025
+in                                     4.00025
+fb                                     4.00026
+out                                    4.00036
+xu1.11                                 0.34544
+xu1.12                                0.345453
+xu1.6                             -1.75612e-06
+xu1.7                                  4.00636
+xu1.53                                     5.8
+xu1.54                                     2.2
+xu1.90                               0.0400086
+xu1.91                                      25
+xu1.92                                     -25
+xu1.99                                       4
+xu1.10                                 3.60166
+xu1.9                                        0
+xu1.8                                  4.00636
+h.xu1.hlim#branch                 -8.00171e-14
+v.xu1.vlim#branch                  4.00086e-05
+v.xu1.vln#branch                  -2.50408e-11
+v.xu1.vlp#branch                  -2.49608e-11
+v.xu1.ve#branch                    1.80116e-12
+v.xu1.vc#branch                    1.80044e-12
+v.xu1.vb#branch                   -1.75612e-11
+vin#branch                        -3.40479e-11
+vcc#branch                         -0.00396808
+a$poly$e.xu1.egnd#branch_1_0      -4.03968e-05
+
+
+No. of Data Rows : 1338
+vmax                =  6.380058e+00 at=  3.250686e-03
+vmin                =  1.620563e+00 at=  4.752179e-03
+inmax               =  4.252010e+00 at=  3.250686e-03
+inmin               =  3.751983e+00 at=  1.075274e-02
+vmax = 6.380058e+00
+vmin = 1.620563e+00
+inmax = 4.252010e+00
+inmin = 3.751983e+00
+Reset re-loads circuit * d002 tl082 8v/9v/18v single-supply feasibility validation (exploration, corrected)
+
+Circuit: * d002 tl082 8v/9v/18v single-supply feasibility validation (exploration, corrected)
+
+Reducing trtol to 1 for xspice 'A' devices
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+Using SPARSE 1.3 as Direct Linear Solver
+
+No. of Data Rows : 1
+===RESULT VCC=9 VINPK=0.05===
+v(vcc) = 9.000000e+00
+v(vref) = 4.500246e+00
+v(out) = 4.500357e+00
+Reducing trtol to 1 for xspice 'A' devices
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+Using SPARSE 1.3 as Direct Linear Solver
+
+Initial Transient Solution
+--------------------------
+
+Node                                   Voltage
+----                                   -------
+vcc                                          9
+vref                                   4.50025
+in                                     4.50025
+fb                                     4.50026
+out                                    4.50036
+xu1.11                                 0.34544
+xu1.12                                0.345453
+xu1.6                             -1.96923e-06
+xu1.7                                  4.50711
+xu1.53                                     6.8
+xu1.54                                     2.2
+xu1.90                               0.0450086
+xu1.91                                      25
+xu1.92                                     -25
+xu1.99                                     4.5
+xu1.10                                 4.10166
+xu1.9                                        0
+xu1.8                                  4.50711
+h.xu1.hlim#branch                 -9.00171e-14
+v.xu1.vlim#branch                  4.50086e-05
+v.xu1.vln#branch                  -2.50458e-11
+v.xu1.vlp#branch                  -2.49558e-11
+v.xu1.ve#branch                    2.30116e-12
+v.xu1.vc#branch                    2.30044e-12
+v.xu1.vb#branch                   -1.96923e-11
+vin#branch                        -3.45479e-11
+vcc#branch                         -0.00443972
+a$poly$e.xu1.egnd#branch_1_0      -4.53968e-05
+
+
+No. of Data Rows : 1210
+vmax                =  5.005158e+00 at=  2.248031e-03
+vmin                =  3.996269e+00 at=  1.174803e-02
+inmax               =  4.550597e+00 at=  2.248031e-03
+inmin               =  4.450608e+00 at=  1.174803e-02
+vmax = 5.005158e+00
+vmin = 3.996269e+00
+inmax = 4.550597e+00
+inmin = 4.450608e+00
+Reset re-loads circuit * d002 tl082 8v/9v/18v single-supply feasibility validation (exploration, corrected)
+
+Circuit: * d002 tl082 8v/9v/18v single-supply feasibility validation (exploration, corrected)
+
+Reducing trtol to 1 for xspice 'A' devices
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+Using SPARSE 1.3 as Direct Linear Solver
+
+No. of Data Rows : 1
+===RESULT VCC=9 VINPK=0.15===
+v(vcc) = 9.000000e+00
+v(vref) = 4.500246e+00
+v(out) = 4.500357e+00
+Reducing trtol to 1 for xspice 'A' devices
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+Using SPARSE 1.3 as Direct Linear Solver
+
+Initial Transient Solution
+--------------------------
+
+Node                                   Voltage
+----                                   -------
+vcc                                          9
+vref                                   4.50025
+in                                     4.50025
+fb                                     4.50026
+out                                    4.50036
+xu1.11                                 0.34544
+xu1.12                                0.345453
+xu1.6                             -1.96923e-06
+xu1.7                                  4.50711
+xu1.53                                     6.8
+xu1.54                                     2.2
+xu1.90                               0.0450086
+xu1.91                                      25
+xu1.92                                     -25
+xu1.99                                     4.5
+xu1.10                                 4.10166
+xu1.9                                        0
+xu1.8                                  4.50711
+h.xu1.hlim#branch                 -9.00171e-14
+v.xu1.vlim#branch                  4.50086e-05
+v.xu1.vln#branch                  -2.50458e-11
+v.xu1.vlp#branch                  -2.49558e-11
+v.xu1.ve#branch                    2.30116e-12
+v.xu1.vc#branch                    2.30044e-12
+v.xu1.vb#branch                   -1.96923e-11
+vin#branch                        -3.45479e-11
+vcc#branch                         -0.00443972
+a$poly$e.xu1.egnd#branch_1_0      -4.53968e-05
+
+
+No. of Data Rows : 1211
+vmax                =  6.014468e+00 at=  2.246548e-03
+vmin                =  2.988384e+00 at=  1.174655e-02
+inmax               =  4.651264e+00 at=  2.246548e-03
+inmin               =  4.351367e+00 at=  1.174655e-02
+vmax = 6.014468e+00
+vmin = 2.988384e+00
+inmax = 4.651264e+00
+inmin = 4.351367e+00
+Reset re-loads circuit * d002 tl082 8v/9v/18v single-supply feasibility validation (exploration, corrected)
+
+Circuit: * d002 tl082 8v/9v/18v single-supply feasibility validation (exploration, corrected)
+
+Reducing trtol to 1 for xspice 'A' devices
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+Using SPARSE 1.3 as Direct Linear Solver
+
+No. of Data Rows : 1
+===RESULT VCC=9 VINPK=0.25===
+v(vcc) = 9.000000e+00
+v(vref) = 4.500246e+00
+v(out) = 4.500357e+00
+Reducing trtol to 1 for xspice 'A' devices
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+Using SPARSE 1.3 as Direct Linear Solver
+
+Initial Transient Solution
+--------------------------
+
+Node                                   Voltage
+----                                   -------
+vcc                                          9
+vref                                   4.50025
+in                                     4.50025
+fb                                     4.50026
+out                                    4.50036
+xu1.11                                 0.34544
+xu1.12                                0.345453
+xu1.6                             -1.96923e-06
+xu1.7                                  4.50711
+xu1.53                                     6.8
+xu1.54                                     2.2
+xu1.90                               0.0450086
+xu1.91                                      25
+xu1.92                                     -25
+xu1.99                                     4.5
+xu1.10                                 4.10166
+xu1.9                                        0
+xu1.8                                  4.50711
+h.xu1.hlim#branch                 -9.00171e-14
+v.xu1.vlim#branch                  4.50086e-05
+v.xu1.vln#branch                  -2.50458e-11
+v.xu1.vlp#branch                  -2.49558e-11
+v.xu1.ve#branch                    2.30116e-12
+v.xu1.vc#branch                    2.30044e-12
+v.xu1.vb#branch                   -1.96923e-11
+vin#branch                        -3.45479e-11
+vcc#branch                         -0.00443972
+a$poly$e.xu1.egnd#branch_1_0      -4.53968e-05
+
+
+No. of Data Rows : 1212
+vmax                =  7.024359e+00 at=  2.248019e-03
+vmin                =  1.979918e+00 at=  1.174802e-02
+inmax               =  4.751999e+00 at=  2.248019e-03
+inmin               =  4.252059e+00 at=  1.174802e-02
+vmax = 7.024359e+00
+vmin = 1.979918e+00
+inmax = 4.751999e+00
+inmin = 4.252059e+00
+Reset re-loads circuit * d002 tl082 8v/9v/18v single-supply feasibility validation (exploration, corrected)
+
+Circuit: * d002 tl082 8v/9v/18v single-supply feasibility validation (exploration, corrected)
+
+Reducing trtol to 1 for xspice 'A' devices
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+Using SPARSE 1.3 as Direct Linear Solver
+
+No. of Data Rows : 1
+===RESULT VCC=18 VINPK=0.05===
+v(vcc) = 1.800000e+01
+v(vref) = 9.000245e+00
+v(out) = 9.000355e+00
+Reducing trtol to 1 for xspice 'A' devices
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+Using SPARSE 1.3 as Direct Linear Solver
+
+Initial Transient Solution
+--------------------------
+
+Node                                   Voltage
+----                                   -------
+vcc                                         18
+vref                                   9.00024
+in                                     9.00024
+fb                                     9.00026
+out                                    9.00035
+xu1.11                                 0.34544
+xu1.12                                0.345453
+xu1.6                             -3.88728e-06
+xu1.7                                  9.01386
+xu1.53                                    15.8
+xu1.54                                     2.2
+xu1.90                               0.0900085
+xu1.91                                      25
+xu1.92                                     -25
+xu1.99                                       9
+xu1.10                                 8.60166
+xu1.9                                        0
+xu1.8                                  9.01386
+h.xu1.hlim#branch                 -1.80017e-13
+v.xu1.vlim#branch                  9.00085e-05
+v.xu1.vln#branch                  -2.50908e-11
+v.xu1.vlp#branch                  -2.49108e-11
+v.xu1.ve#branch                    6.80115e-12
+v.xu1.vc#branch                    6.80045e-12
+v.xu1.vb#branch                   -3.88728e-11
+vin#branch                        -3.90479e-11
+vcc#branch                         -0.00868444
+a$poly$e.xu1.egnd#branch_1_0      -9.03968e-05
+
+
+No. of Data Rows : 1210
+vmax                =  9.505156e+00 at=  2.248031e-03
+vmin                =  8.496266e+00 at=  1.174803e-02
+inmax               =  9.050595e+00 at=  2.248031e-03
+inmin               =  8.950607e+00 at=  1.174803e-02
+vmax = 9.505156e+00
+vmin = 8.496266e+00
+inmax = 9.050595e+00
+inmin = 8.950607e+00
+Reset re-loads circuit * d002 tl082 8v/9v/18v single-supply feasibility validation (exploration, corrected)
+
+Circuit: * d002 tl082 8v/9v/18v single-supply feasibility validation (exploration, corrected)
+
+Reducing trtol to 1 for xspice 'A' devices
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+Using SPARSE 1.3 as Direct Linear Solver
+
+No. of Data Rows : 1
+===RESULT VCC=18 VINPK=0.15===
+v(vcc) = 1.800000e+01
+v(vref) = 9.000245e+00
+v(out) = 9.000355e+00
+Reducing trtol to 1 for xspice 'A' devices
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+Using SPARSE 1.3 as Direct Linear Solver
+
+Initial Transient Solution
+--------------------------
+
+Node                                   Voltage
+----                                   -------
+vcc                                         18
+vref                                   9.00024
+in                                     9.00024
+fb                                     9.00026
+out                                    9.00035
+xu1.11                                 0.34544
+xu1.12                                0.345453
+xu1.6                             -3.88728e-06
+xu1.7                                  9.01386
+xu1.53                                    15.8
+xu1.54                                     2.2
+xu1.90                               0.0900085
+xu1.91                                      25
+xu1.92                                     -25
+xu1.99                                       9
+xu1.10                                 8.60166
+xu1.9                                        0
+xu1.8                                  9.01386
+h.xu1.hlim#branch                 -1.80017e-13
+v.xu1.vlim#branch                  9.00085e-05
+v.xu1.vln#branch                  -2.50908e-11
+v.xu1.vlp#branch                  -2.49108e-11
+v.xu1.ve#branch                    6.80115e-12
+v.xu1.vc#branch                    6.80045e-12
+v.xu1.vb#branch                   -3.88728e-11
+vin#branch                        -3.90479e-11
+vcc#branch                         -0.00868444
+a$poly$e.xu1.egnd#branch_1_0      -9.03968e-05
+
+
+No. of Data Rows : 1211
+vmax                =  1.051447e+01 at=  2.246548e-03
+vmin                =  7.488382e+00 at=  1.174655e-02
+inmax               =  9.151263e+00 at=  2.246548e-03
+inmin               =  8.851366e+00 at=  1.174655e-02
+vmax = 1.051447e+01
+vmin = 7.488382e+00
+inmax = 9.151263e+00
+inmin = 8.851366e+00
+Reset re-loads circuit * d002 tl082 8v/9v/18v single-supply feasibility validation (exploration, corrected)
+
+Circuit: * d002 tl082 8v/9v/18v single-supply feasibility validation (exploration, corrected)
+
+Reducing trtol to 1 for xspice 'A' devices
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+Using SPARSE 1.3 as Direct Linear Solver
+
+No. of Data Rows : 1
+===RESULT VCC=18 VINPK=0.25===
+v(vcc) = 1.800000e+01
+v(vref) = 9.000245e+00
+v(out) = 9.000355e+00
+Reducing trtol to 1 for xspice 'A' devices
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+Using SPARSE 1.3 as Direct Linear Solver
+
+Initial Transient Solution
+--------------------------
+
+Node                                   Voltage
+----                                   -------
+vcc                                         18
+vref                                   9.00024
+in                                     9.00024
+fb                                     9.00026
+out                                    9.00035
+xu1.11                                 0.34544
+xu1.12                                0.345453
+xu1.6                             -3.88728e-06
+xu1.7                                  9.01386
+xu1.53                                    15.8
+xu1.54                                     2.2
+xu1.90                               0.0900085
+xu1.91                                      25
+xu1.92                                     -25
+xu1.99                                       9
+xu1.10                                 8.60166
+xu1.9                                        0
+xu1.8                                  9.01386
+h.xu1.hlim#branch                 -1.80017e-13
+v.xu1.vlim#branch                  9.00085e-05
+v.xu1.vln#branch                  -2.50908e-11
+v.xu1.vlp#branch                  -2.49108e-11
+v.xu1.ve#branch                    6.80115e-12
+v.xu1.vc#branch                    6.80045e-12
+v.xu1.vb#branch                   -3.88728e-11
+vin#branch                        -3.90479e-11
+vcc#branch                         -0.00868444
+a$poly$e.xu1.egnd#branch_1_0      -9.03968e-05
+
+
+No. of Data Rows : 1212
+vmax                =  1.152436e+01 at=  2.248019e-03
+vmin                =  6.479916e+00 at=  1.174802e-02
+inmax               =  9.251998e+00 at=  2.248019e-03
+inmin               =  8.752057e+00 at=  1.174802e-02
+vmax = 1.152436e+01
+vmin = 6.479916e+00
+inmax = 9.251998e+00
+inmin = 8.752057e+00
+===RESULT HIGHGAIN VCC=8 Rf=100k VINPK=0.01 gain~46.5x===
+Reset re-loads circuit * d002 tl082 8v/9v/18v single-supply feasibility validation (exploration, corrected)
+
+Circuit: * d002 tl082 8v/9v/18v single-supply feasibility validation (exploration, corrected)
+
+Reducing trtol to 1 for xspice 'A' devices
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+Using SPARSE 1.3 as Direct Linear Solver
+
+No. of Data Rows : 1
+v(vcc) = 8.000000e+00
+v(vref) = 4.000246e+00
+v(out) = 4.000357e+00
+Reducing trtol to 1 for xspice 'A' devices
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+Using SPARSE 1.3 as Direct Linear Solver
+
+Initial Transient Solution
+--------------------------
+
+Node                                   Voltage
+----                                   -------
+vcc                                          8
+vref                                   4.00025
+in                                     4.00025
+fb                                     4.00026
+out                                    4.00036
+xu1.11                                 0.34544
+xu1.12                                0.345453
+xu1.6                             -1.75612e-06
+xu1.7                                  4.00636
+xu1.53                                     5.8
+xu1.54                                     2.2
+xu1.90                               0.0400086
+xu1.91                                      25
+xu1.92                                     -25
+xu1.99                                       4
+xu1.10                                 3.60166
+xu1.9                                        0
+xu1.8                                  4.00636
+h.xu1.hlim#branch                 -8.00171e-14
+v.xu1.vlim#branch                  4.00086e-05
+v.xu1.vln#branch                  -2.50408e-11
+v.xu1.vlp#branch                  -2.49608e-11
+v.xu1.ve#branch                    1.80116e-12
+v.xu1.vc#branch                    1.80044e-12
+v.xu1.vb#branch                   -1.75612e-11
+vin#branch                        -3.40479e-11
+vcc#branch                         -0.00396808
+a$poly$e.xu1.egnd#branch_1_0      -4.03968e-05
+
+
+No. of Data Rows : 1209
+vmax                =  4.101326e+00 at=  2.249146e-03
+vmin                =  3.899530e+00 at=  1.174915e-02
+vmax = 4.101326e+00
+vmin = 3.899530e+00
+ngspice-45.2 done

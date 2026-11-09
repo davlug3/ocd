@@ -1,0 +1,57 @@
+* D002 TL082 8V/9V/18V single-supply feasibility validation (EXPLORATION, corrected)
+* Status: simulation only, model-limited. Not proof of full OCD pedal behavior or bench performance.
+* Provenance: TI TL082.301 macromodel from SLOJ070 (S007, circuit/models/TL082.301, see PROVENANCE.md).
+* Model header states characterization at +/-15V; 8-18V single-supply use is extrapolative/model-limited.
+* Subckt TL082: 1=non-inv, 2=inv, 3=V+, 4=V-, 5=out.
+* Topology: Vref=Vcc/2 divider, DC-coupled non-inverting gain ~10.09x (Rf=20k, Rg=2.2k to Vref), Rload=100k, 27C.
+* Note: prior d002_v2/deck iterations had scripting/topology bugs (unity-gain wiring, AC-coupling issue) producing misleading results; corrected here. Dual-supply +/-15V sanity check gave ~+/-504mV for 50mVpk in (expected).
+
+.param VCCVAL=9 VINPK=50m
+VCC vcc 0 DC {VCCVAL}
+R1 vcc vref 100k
+R2 vref 0 100k
+Cref vref 0 10u
+Vin in vref DC 0 SIN(0 {VINPK} 1k)
+Rg fb vref 2.2k
+Rf fb out 20k
+XU1 in fb vcc 0 out TL082
+Rload out 0 100k
+
+.include ../models/TL082.301
+
+.control
+set noaskquit
+echo "D002_TL082_8V18V_VALIDATION_CORRECTED model=TI_TL082.301_SLOJ070_S007 model_limited=1 sim_only=1 gain=10.09 load=100k DCcoupled"
+
+foreach vv 8 9 18
+  alterparam VCCVAL=$vv
+  foreach vinpk 0.05 0.15 0.25
+    alterparam VINPK=$vinpk
+    reset
+    op
+    echo "===RESULT VCC=$vv VINPK=$vinpk==="
+    print v(vcc) v(vref) v(out)
+    tran 10u 12m
+    meas tran vmax MAX v(out) from=2m to=12m
+    meas tran vmin MIN v(out) from=2m to=12m
+    meas tran inmax MAX v(in) from=2m to=12m
+    meas tran inmin MIN v(in) from=2m to=12m
+    print vmax vmin inmax inmin
+  end
+end
+
+echo "===RESULT HIGHGAIN VCC=8 Rf=100k VINPK=0.01 gain~46.5x==="
+alterparam VCCVAL=8
+alterparam VINPK=0.01
+alter Rf = 100k
+reset
+op
+print v(vcc) v(vref) v(out)
+tran 10u 12m
+meas tran vmax MAX v(out) from=2m to=12m
+meas tran vmin MIN v(out) from=2m to=12m
+print vmax vmin
+
+quit
+.endc
+.end

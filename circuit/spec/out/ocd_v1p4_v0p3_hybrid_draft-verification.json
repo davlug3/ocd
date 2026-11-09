@@ -1,0 +1,176 @@
+{
+  "ok": true,
+  "name": "ocd_v1p4_v0p3_hybrid_draft",
+  "generated": "2026-11-09",
+  "summary": "7 passed, 3 skipped, 0 failed",
+  "checks": [
+    {
+      "name": "spec",
+      "ok": true,
+      "detail": "valid spec with 28 components, 0 warning(s)",
+      "evidence": {
+        "stats": {
+          "components": 28,
+          "nets": 15,
+          "sources": 2,
+          "semiconductors": 3,
+          "pcb": false
+        }
+      }
+    },
+    {
+      "name": "models",
+      "ok": true,
+      "detail": "vendor models supplied",
+      "evidence": {
+        "status": "vendor models supplied",
+        "devices": [
+          {
+            "ref": "U1A",
+            "model": "TL082",
+            "kind": "vendor"
+          },
+          {
+            "ref": "Q1",
+            "model": "APPROX_2N7000",
+            "kind": "vendor"
+          },
+          {
+            "ref": "Q2",
+            "model": "APPROX_2N7000",
+            "kind": "vendor"
+          },
+          {
+            "ref": "D_ASYM",
+            "model": "APPROX_BAT46",
+            "kind": "vendor"
+          },
+          {
+            "ref": "U1B",
+            "model": "TL082",
+            "kind": "vendor"
+          }
+        ]
+      }
+    },
+    {
+      "name": "design",
+      "ok": true,
+      "detail": "4 requirements, 6 decisions, 6 risks, 5 sources",
+      "evidence": {
+        "requirements": 4,
+        "decisions": 6,
+        "risks": 6,
+        "sources": 5
+      }
+    },
+    {
+      "name": "spice_netlist",
+      "ok": true,
+      "detail": "28 devices, node lists match the spec",
+      "evidence": {
+        "devices": 28
+      }
+    },
+    {
+      "name": "ltspice_asc",
+      "ok": true,
+      "detail": "28 symbols; every pin has a matching net flag",
+      "evidence": {
+        "symbols": 28,
+        "flags": 64
+      }
+    },
+    {
+      "name": "kicad_netlist",
+      "ok": true,
+      "detail": "15 nets match the spec exactly",
+      "evidence": {
+        "nets": 15
+      }
+    },
+    {
+      "name": "kicad_schematic",
+      "ok": null,
+      "detail": "kiutils is not installed; schematic geometry not parsed (set PYTHONPATH to a kiutils checkout)",
+      "evidence": null
+    },
+    {
+      "name": "pcb_handoff",
+      "ok": null,
+      "detail": "not generated (add \"pcb\" to deliverables)",
+      "evidence": null
+    },
+    {
+      "name": "mna_linear",
+      "ok": null,
+      "detail": "circuit contains nonlinear element(s) Q1, Q2, D_ASYM; MNA only solves linear circuits",
+      "evidence": null
+    },
+    {
+      "name": "ngspice",
+      "ok": true,
+      "detail": "ngspice ran 4 analysis plot(s): AC Analysis, DC transfer characteristic, Operating Point, Transient Analysis; V(vcc)=9, V(in_sig)=0, V(vref)=4.49719, V(in_a)=4.49715, V(xu1a.11)=0.345445, V(xu1a.12)=0.345458, V(xu1a.6)=1.184e-06, V(xu1a.7)=4.49165, V(g1_out)=4.49166, V(xu1a.53)=6.8, V(xu1a.54)=2.2, V(xu1a.90)=-6.46255e-05, V(xu1a.91)=25, V(xu1a.92)=-25, V(xu1a.99)=4.5, V(xu1a.10)=4.09857, V(g1_fb)=4.49716, V(xu1a.9)=0, V(xu1a.8)=4.49165, V(drv_w)=4.49697, V(clip_node)=4.4922, V(asym_node)=4.49327, V(xu1b.11)=0.345454, V(xu1b.12)=0.345467, V(xu1b.6)=3.87331e-06, V(xu1b.7)=4.47272, V(g2_out)=4.4728, V(xu1b.53)=6.8, V(xu1b.54)=2.2, V(xu1b.90)=-0.000497758, V(xu1b.91)=25, V(xu1b.92)=-25, V(xu1b.99)=4.5, V(xu1b.10)=4.09363, V(g2_fb)=4.49221, V(xu1b.9)=0, V(xu1b.8)=4.47272, V(tone_node)=4.4728, V(vol_top)=0, V(vout)=0",
+      "evidence": {
+        "returncode": 0,
+        "stderr": "",
+        "stdout": "******\n** ngspice-45.2 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Fri Sep 12 11:58:13 UTC 2025\n******\n\nBatch mode\n\nSimulation output goes to rawfile: /tmp/tmp9zmnke3k/ngspice.raw\nComments and warnings go to log-file: /tmp/tmp9zmnke3k/ngspice.log\n\n",
+        "log": "                4.49719\nin_a                                   4.49715\nxu1a.11                               0.345445\nxu1a.12                               0.345458\nxu1a.6                               1.184e-06\nxu1a.7                                 4.49165\ng1_out                                 4.49166\nxu1a.53                                    6.8\nxu1a.54                                    2.2\nxu1a.90                           -6.46255e-05\nxu1a.91                                     25\nxu1a.92                                    -25\nxu1a.99                                    4.5\nxu1a.10                                4.09857\ng1_fb                                  4.49716\nxu1a.9                                       0\nxu1a.8                                 4.49165\ndrv_w                                  4.49697\nclip_node                               4.4922\nasym_node                              4.49327\nxu1b.11                               0.345454\nxu1b.12                               0.345467\nxu1b.6                             3.87331e-06\nxu1b.7                                 4.47272\ng2_out                                  4.4728\nxu1b.53                                    6.8\nxu1b.54                                    2.2\nxu1b.90                           -0.000497758\nxu1b.91                                     25\nxu1b.92                                    -25\nxu1b.99                                    4.5\nxu1b.10                                4.09363\ng2_fb                                  4.49221\nxu1b.9                                       0\nxu1b.8                                 4.47272\ntone_node                               4.4728\nvol_top                                      0\nvout                                         0\nh.xu1b.hlim#branch                 9.95517e-16\nv.xu1b.vlim#branch                -4.97758e-07\nh.xu1a.hlim#branch                 1.29251e-16\nv.xu1a.vlim#branch                -6.46255e-08\nv.xu1b.vln#branch                 -2.50003e-11\nv.xu1b.vlp#branch                 -2.50013e-11\nv.xu1b.ve#branch                    2.2736e-12\nv.xu1b.vc#branch                     2.328e-12\nv.xu1b.vb#branch                   3.87331e-11\nv.xu1a.vln#branch                 -2.50007e-11\nv.xu1a.vlp#branch                 -2.50009e-11\nv.xu1a.ve#branch                   2.29246e-12\nv.xu1a.vc#branch                   2.30914e-12\nv.xu1a.vb#branch                     1.184e-11\nv_in#branch                                  0\nv1#branch                          -0.00923972\na$poly$e.xu1b.egnd#branch_1_0      1.01684e-07\na$poly$e.xu1a.egnd#branch_1_0     -3.26627e-07\n\n\nNo. of Data Rows : 2919\n\nTotal analysis time (seconds) = 0.0980185\n\nTotal elapsed time (seconds) = 0.100 \n\nTotal DRAM available = 24032.066 MB.\nDRAM currently available = 4160.934 MB.\nMaximum ngspice program size =   22.309 MB.\nCurrent ngspice program size =   13.730 MB.\n\nShared ngspice pages =   11.688 MB.\nText (code) pages =    6.406 MB.\nStack = 0 bytes.\nLibrary pages =    2.109 MB.\n\n",
+        "plots": [
+          "AC Analysis",
+          "DC transfer characteristic",
+          "Operating Point",
+          "Transient Analysis"
+        ],
+        "node_voltages_V": {
+          "vcc": 9.0,
+          "in_sig": 0.0,
+          "vref": 4.497187390374343,
+          "in_a": 4.497152845616759,
+          "xu1a.11": 0.3454454893682968,
+          "xu1a.12": 0.3454582241057351,
+          "xu1a.6": 1.183995133047233e-06,
+          "xu1a.7": 4.491648497842887,
+          "g1_out": 4.491658191667844,
+          "xu1a.53": 6.8,
+          "xu1a.54": 2.2,
+          "xu1a.90": -6.462549971790953e-05,
+          "xu1a.91": 25.0,
+          "xu1a.92": -25.0,
+          "xu1a.99": 4.5,
+          "xu1a.10": 4.09857483826643,
+          "g1_fb": 4.497163930927207,
+          "xu1a.9": 0.0,
+          "xu1a.8": 4.491648497842887,
+          "drv_w": 4.496972611802364,
+          "clip_node": 4.49219815809548,
+          "asym_node": 4.493266912527144,
+          "xu1b.11": 0.345453888515542,
+          "xu1b.12": 0.3454668747757395,
+          "xu1b.6": 3.873310612689806e-06,
+          "xu1b.7": 4.47272222568093,
+          "g2_out": 4.472796889430557,
+          "xu1b.53": 6.8,
+          "xu1b.54": 2.2,
+          "xu1b.90": -0.0004977583308463473,
+          "xu1b.91": 25.0,
+          "xu1b.92": -25.0,
+          "xu1b.99": 4.5,
+          "xu1b.10": 4.093627680866552,
+          "g2_fb": 4.492209462211718,
+          "xu1b.9": 0.0,
+          "xu1b.8": 4.47272222568093,
+          "tone_node": 4.472796889430557,
+          "vol_top": 0.0,
+          "vout": 0.0
+        }
+      }
+    }
+  ],
+  "warnings": [],
+  "simulation_status": "vendor models supplied",
+  "provenance": {
+    "backend": "local",
+    "required_stages": []
+  }
+}

@@ -1,0 +1,37 @@
+* D002 TL082 5V/9V/18V single-supply feasibility exploration (v0.1)
+* UNVERIFIED EXPLORATION ONLY. Model: TI TL082.301 (SLOJ070/S007). TL082.301 header notes +/-15V context.
+* Subckt: 1=noninv 2=inv 3=V+ 4=V- 5=out. Vref=VCC/2, non-inverting gain ~46.5 around Vref.
+VCC vcc 0 DC 9
+R1 vcc vref 100k
+R2 vref 0 100k
+Cref vref 0 10u
+Vin src 0 DC 0 SIN(0 50m 1k) AC 1
+Cin src in 1u
+Rinbias in vref 1M
+Rg in fb 2.2k
+Rf fb out 100k
+XU1 in fb vcc 0 out TL082
+Rload out 0 100k
+.include ../models/TL082.301
+.control
+set noaskquit
+foreach vval 5 9 18
+  alter VCC dc=$vval
+  op
+  print v(vcc) v(vref) v(in) v(fb) v(out)
+  tran 10u 10m
+  meas tran vmax MAX v(out)
+  meas tran vmin MIN v(out)
+  meas tran vrefdc AVG v(vref) from=2m to=10m
+  let swing = vmax-vmin
+  print $vval v(vref) vmax vmin swing
+end
+* larger swing test at 5V
+alter VCC dc=5
+alter @Vin[sin] = [ 0 100m 1k ]
+tran 10u 10m
+meas tran vmax5 MAX v(out)
+meas tran vmin5 MIN v(out)
+print vmax5 vmin5
+.endc
+.end

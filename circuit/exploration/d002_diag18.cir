@@ -1,0 +1,18 @@
+VCC vcc 0 DC 18
+R1 vcc vref 100k
+R2 vref 0 100k
+Cref vref 0 10u
+Vin in vref DC 0 SIN(0 10m 1k)
+Rg in fb 2.2k
+Rf fb out 100k
+XU1 in fb vcc 0 out TL082
+Rload out 0 100k
+.include ../models/TL082.301
+.tran 10u 5m
+.control
+run
+meas tran vmax MAX v(out)
+meas tran vmin MIN v(out)
+print vmax vmin v(vref)
+.endc
+.end

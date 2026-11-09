@@ -1,0 +1,290 @@
+Note: Starting dynamic gmin stepping
+Note: Dynamic gmin stepping completed
+
+Note: No compatibility mode selected!
+
+
+Circuit: * ocd_v1p4_v0p3_hybrid_draft: ocd-style overdrive v0.1 (unbranded), v1.4-style hybrid draft (s002+s003 cross-checked with s001/s013). 8-18v dc. true bypass external. simulation-only/unverified: provisional values, clipping wiring tbd/conflict, approx models. dc-op debug pass applied (bias/vref stiffness/clipping dc-safe placeholders) - still provisional, do not fabricate.
+
+DRAFT_HEADROOM_8V9V18V sim_only=1 provisional=1 APPROX_models=1
+Reducing trtol to 1 for xspice 'A' devices
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+Using SPARSE 1.3 as Direct Linear Solver
+
+Initial Transient Solution
+--------------------------
+
+Node                                   Voltage
+----                                   -------
+vcc                                          8
+in_sig                                       0
+vref                                   3.99725
+in_a                                   3.99721
+xu1a.11                               0.345445
+xu1a.12                               0.345458
+xu1a.6                             1.15884e-06
+xu1a.7                                 3.99183
+g1_out                                 3.99184
+xu1a.53                                    5.8
+xu1a.54                                    2.2
+xu1a.90                           -6.32531e-05
+xu1a.91                                     25
+xu1a.92                                    -25
+xu1a.99                                      4
+xu1a.10                                3.59864
+g1_fb                                  3.99722
+xu1a.9                                       0
+xu1a.8                                 3.99183
+drv_w                                  3.99704
+clip_node                              3.99236
+asym_node                              3.99341
+xu1b.11                               0.345454
+xu1b.12                               0.345467
+xu1b.6                             3.79091e-06
+xu1b.7                                  3.9733
+g2_out                                 3.97338
+xu1b.53                                    5.8
+xu1b.54                                    2.2
+xu1b.90                           -0.000487168
+xu1b.91                                     25
+xu1b.92                                    -25
+xu1b.99                                      4
+xu1b.10                                3.59379
+g2_fb                                  3.99238
+xu1b.9                                       0
+xu1b.8                                  3.9733
+tone_node                              3.97338
+vol_top                                      0
+vout                                         0
+h.xu1b.hlim#branch                 9.74337e-16
+v.xu1b.vlim#branch                -4.87168e-07
+h.xu1a.hlim#branch                 1.26506e-16
+v.xu1a.vlim#branch                -6.32531e-08
+v.xu1b.vln#branch                 -2.50003e-11
+v.xu1b.vlp#branch                 -2.50013e-11
+v.xu1b.ve#branch                   1.77418e-12
+v.xu1b.vc#branch                   1.82742e-12
+v.xu1b.vb#branch                   3.79091e-11
+v.xu1a.vln#branch                 -2.50007e-11
+v.xu1a.vlp#branch                 -2.50009e-11
+v.xu1a.ve#branch                   1.79264e-12
+v.xu1a.vc#branch                   1.80896e-12
+v.xu1a.vb#branch                   1.15884e-11
+v_in#branch                                  0
+v1#branch                          -0.00825644
+a$poly$e.xu1b.egnd#branch_1_0      9.12552e-08
+a$poly$e.xu1a.egnd#branch_1_0     -3.27941e-07
+
+Note: Starting dynamic gmin stepping
+Note: Dynamic gmin stepping completed
+
+No. of Data Rows : 4287
+vrefm               =  4.003020e+00 at=  1.054619e-02
+vrefn               =  3.992305e+00 at=  2.104767e-02
+g1m                 =  6.407182e+00 at=  2.423808e-02
+g1n                 =  1.592687e+00 at=  1.074066e-02
+clm                 =  4.557071e+00 at=  2.553366e-02
+cln                 =  3.538039e+00 at=  1.001988e-02
+g2m                 =  6.417620e+00 at=  2.753800e-02
+g2n                 =  1.765868e+00 at=  1.001988e-02
+vom                 =  3.521549e-01 at=  1.169882e-02
+von                 =  -2.202639e-01 at=  2.918621e-02
+===VCC=8===
+vrefm = 4.003020e+00
+vrefn = 3.992305e+00
+g1m = 6.407182e+00
+g1n = 1.592687e+00
+clm = 4.557071e+00
+cln = 3.538039e+00
+g2m = 6.417620e+00
+g2n = 1.765868e+00
+vom = 3.521549e-01
+von = -2.20264e-01
+Reducing trtol to 1 for xspice 'A' devices
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+Using SPARSE 1.3 as Direct Linear Solver
+
+Initial Transient Solution
+--------------------------
+
+Node                                   Voltage
+----                                   -------
+vcc                                          9
+in_sig                                       0
+vref                                   4.49719
+in_a                                   4.49715
+xu1a.11                               0.345445
+xu1a.12                               0.345458
+xu1a.6                               1.184e-06
+xu1a.7                                 4.49165
+g1_out                                 4.49166
+xu1a.53                                    6.8
+xu1a.54                                    2.2
+xu1a.90                           -6.46255e-05
+xu1a.91                                     25
+xu1a.92                                    -25
+xu1a.99                                    4.5
+xu1a.10                                4.09857
+g1_fb                                  4.49716
+xu1a.9                                       0
+xu1a.8                                 4.49165
+drv_w                                  4.49697
+clip_node                               4.4922
+asym_node                              4.49327
+xu1b.11                               0.345454
+xu1b.12                               0.345467
+xu1b.6                             3.87331e-06
+xu1b.7                                 4.47272
+g2_out                                  4.4728
+xu1b.53                                    6.8
+xu1b.54                                    2.2
+xu1b.90                           -0.000497758
+xu1b.91                                     25
+xu1b.92                                    -25
+xu1b.99                                    4.5
+xu1b.10                                4.09363
+g2_fb                                  4.49221
+xu1b.9                                       0
+xu1b.8                                 4.47272
+tone_node                               4.4728
+vol_top                                      0
+vout                                         0
+h.xu1b.hlim#branch                 9.95517e-16
+v.xu1b.vlim#branch                -4.97758e-07
+h.xu1a.hlim#branch                 1.29251e-16
+v.xu1a.vlim#branch                -6.46255e-08
+v.xu1b.vln#branch                 -2.50003e-11
+v.xu1b.vlp#branch                 -2.50013e-11
+v.xu1b.ve#branch                    2.2736e-12
+v.xu1b.vc#branch                     2.328e-12
+v.xu1b.vb#branch                   3.87331e-11
+v.xu1a.vln#branch                 -2.50007e-11
+v.xu1a.vlp#branch                 -2.50009e-11
+v.xu1a.ve#branch                   2.29246e-12
+v.xu1a.vc#branch                   2.30914e-12
+v.xu1a.vb#branch                     1.184e-11
+v_in#branch                                  0
+v1#branch                          -0.00923972
+a$poly$e.xu1b.egnd#branch_1_0      1.01684e-07
+a$poly$e.xu1a.egnd#branch_1_0     -3.26627e-07
+
+Note: Starting dynamic gmin stepping
+Note: Dynamic gmin stepping completed
+
+No. of Data Rows : 4362
+vrefm               =  4.503764e+00 at=  1.054449e-02
+vrefn               =  4.491018e+00 at=  2.905067e-02
+g1m                 =  7.406117e+00 at=  2.123506e-02
+g1n                 =  1.593925e+00 at=  1.073830e-02
+clm                 =  5.203218e+00 at=  1.853635e-02
+cln                 =  4.008220e+00 at=  1.000771e-02
+g2m                 =  7.430706e+00 at=  1.853635e-02
+g2n                 =  2.123413e+00 at=  1.000771e-02
+vom                 =  4.803195e-01 at=  1.069830e-02
+von                 =  -2.066041e-01 at=  2.918695e-02
+===VCC=9===
+vrefm = 4.503764e+00
+vrefn = 4.491018e+00
+g1m = 7.406117e+00
+g1n = 1.593925e+00
+clm = 5.203218e+00
+cln = 4.008220e+00
+g2m = 7.430706e+00
+g2n = 2.123413e+00
+vom = 4.803195e-01
+von = -2.06604e-01
+Reducing trtol to 1 for xspice 'A' devices
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+Using SPARSE 1.3 as Direct Linear Solver
+
+Initial Transient Solution
+--------------------------
+
+Node                                   Voltage
+----                                   -------
+vcc                                         18
+in_sig                                       0
+vref                                   8.99665
+in_a                                   8.99661
+xu1a.11                               0.345446
+xu1a.12                               0.345459
+xu1a.6                             1.41035e-06
+xu1a.7                                 8.99005
+g1_out                                 8.99006
+xu1a.53                                   15.8
+xu1a.54                                    2.2
+xu1a.90                           -7.69773e-05
+xu1a.91                                     25
+xu1a.92                                    -25
+xu1a.99                                      9
+xu1a.10                                8.59803
+g1_fb                                  8.99662
+xu1a.9                                       0
+xu1a.8                                 8.99005
+drv_w                                  8.99639
+clip_node                              8.99071
+asym_node                              8.99198
+xu1b.11                               0.345456
+xu1b.12                               0.345469
+xu1b.6                             4.61494e-06
+xu1b.7                                  8.9675
+g2_out                                 8.96759
+xu1b.53                                   15.8
+xu1b.54                                    2.2
+xu1b.90                           -0.000593068
+xu1b.91                                     25
+xu1b.92                                    -25
+xu1b.99                                      9
+xu1b.10                                8.59214
+g2_fb                                  8.99072
+xu1b.9                                       0
+xu1b.8                                  8.9675
+tone_node                              8.96759
+vol_top                                      0
+vout                                         0
+h.xu1b.hlim#branch                 1.18614e-15
+v.xu1b.vlim#branch                -5.93068e-07
+h.xu1a.hlim#branch                 1.53955e-16
+v.xu1a.vlim#branch                -7.69773e-08
+v.xu1b.vln#branch                 -2.50002e-11
+v.xu1b.vlp#branch                 -2.50014e-11
+v.xu1b.ve#branch                   6.76839e-12
+v.xu1b.vc#branch                   6.83321e-12
+v.xu1b.vb#branch                   4.61494e-11
+v.xu1a.vln#branch                 -2.50007e-11
+v.xu1a.vlp#branch                 -2.50009e-11
+v.xu1a.ve#branch                   6.79086e-12
+v.xu1a.vc#branch                   6.81074e-12
+v.xu1a.vb#branch                   1.41035e-11
+v_in#branch                                  0
+v1#branch                           -0.0180892
+a$poly$e.xu1b.egnd#branch_1_0      1.95542e-07
+a$poly$e.xu1a.egnd#branch_1_0     -3.14804e-07
+
+ Reference value :  1.74201e-02
+No. of Data Rows : 4685
+vrefm               =  9.010073e+00 at=  1.054969e-02
+vrefn               =  8.982218e+00 at=  2.905789e-02
+g1m                 =  1.639369e+01 at=  1.221159e-02
+g1n                 =  1.607071e+00 at=  2.471232e-02
+clm                 =  1.086242e+01 at=  1.252484e-02
+cln                 =  8.437785e+00 at=  2.892867e-02
+g2m                 =  1.646019e+01 at=  1.052969e-02
+g2n                 =  6.297214e+00 at=  2.892867e-02
+vom                 =  1.574821e+00 at=  1.070852e-02
+von                 =  5.668327e-03 at=  2.919455e-02
+===VCC=18===
+vrefm = 9.010073e+00
+vrefn = 8.982218e+00
+g1m = 1.639369e+01
+g1n = 1.607071e+00
+clm = 1.086242e+01
+cln = 8.437785e+00
+g2m = 1.646019e+01
+g2n = 6.297214e+00
+vom = 1.574821e+00
+von = 5.668327e-03
+ngspice-45.2 done

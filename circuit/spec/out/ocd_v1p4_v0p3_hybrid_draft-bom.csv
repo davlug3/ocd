@@ -1,0 +1,29 @@
+References,Qty,Type,Value,Footprint,Notes
+C_CLIP_HF,1,Capacitor,100n,,HF placeholder referenced to VREF (DC debug); placement/value TBD
+C_G1HF,1,Capacitor,220p,,HF stability cap proposed (S002 C6 role)
+C_IN,1,Capacitor,22n,,Input coupling provisional (S003 role)
+C_OUT,1,Capacitor,1u,,Output coupling placeholder
+C_TONE,1,Capacitor,47n,,Simplified tone placeholder
+C_VREF,1,Capacitor,10u,,Vref filter proposed
+D_ASYM,1,Diode,APPROX_BAT46,,PROVISIONAL asymmetry element (D003 default BAT46; Ge/1N4148 options). VERIFY orientation/polarity with chosen wiring.
+Q1,1,N-MOSFET,APPROX_2N7000,,PROVISIONAL WIRING (S002 text assumed; S002 comment conflict). D-G tied as diode-like element; uses APPROX subckt body diode path. VERIFY orientation.
+Q2,1,N-MOSFET,APPROX_2N7000,,PROVISIONAL WIRING (conflict). VERIFY orientation.
+R_ASYM,1,Resistor,1Meg,,"DC debug: reference asym node to VREF, avoid float (provisional)"
+R_CLIP,1,Resistor,10k,,Series into clipping (S002 R9 role); value TBD
+R_CLIP_BIAS,1,Resistor,100k,,DC debug: bias clip node to VREF (provisional)
+R_DRV_MID,1,Resistor,500k,,Drive pot modeled at 50% (1M pot => 500k); variable in real circuit. S003 uses 1M in max gain.
+R_G1,1,Resistor,2.2k,,S003 gain formula: Rg=2.2k (refdes mapping provisional)
+R_G1F,1,Resistor,18k,,S003 gain formula: fixed 18k (provisional mapping)
+R_G2,1,Resistor,10k,,Gain 2 placeholder
+R_G2F,1,Resistor,39k,,Gain 2 ~4.9x placeholder (TBD)
+R_IN_BIAS,1,Resistor,1Meg,,Bias non-inv input to Vref (provisional single-supply bias); R_INREF-to-GND removed in DC debug
+R_LOAD,1,Resistor,100k,,Handoff load condition
+R_TONE,1,Resistor,10k,,Simplified tone placeholder (HP/LP omitted/TBD)
+R_V1,1,Resistor,10k,,Vref divider stiffened for draft (10k/10k=5k Thevenin); value proposed
+R_V2,1,Resistor,10k,,Vref divider stiffened for draft
+R_VOL,1,Resistor,50k,,Volume modeled at 50% (100k pot placeholder)
+R_VOLG,1,Resistor,50k,,Volume lower leg placeholder
+U1A,1,Op-amp,TL082,,"Gain 1, TL082 candidate (D002/C024)"
+U1B,1,Op-amp,TL082,,Gain 2 recovery placeholder; direct connection from clip node is simplified/provisional
+V1,1,Voltage source,9 V,,Nominal 9V; design range 8-18V (C022)
+V_IN,1,Voltage source,SIN source,,Test input; SIN for tran (AC mag may need manual netlist tweak if AC sim required)

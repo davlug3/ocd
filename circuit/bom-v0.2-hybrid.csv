@@ -1,0 +1,22 @@
+ref,block,value,part,package_suggestion,qty,status,source,notes
+J1,power,2.1mm DC barrel,DC jack center-negative,panel,1,proposed,C002,5-18V DC; center negative
+D_PWR,power,1N5817 / 1N400x,reverse polarity diode,DO-41/SMA,1,proposed,S013/practice,S013 uses D2 1N5817 in that board context; verify polarity/current for 5-18V.
+C_PWR1,power,220u/25V,electrolytic bulk,radial,1,proposed,S013,S013 C11/C12 220u 25V; use >=25V for 18V headroom.
+C_PWR2,power,100nF,decoupling,0805/radial,1,proposed,S013/practice,S013 has 100n values (C5/C9 etc.); verify power filter node.
+R_V1,vref,10k (TBD),Vref divider upper,0805/1/4W,1,proposed,S001/S002,DAFx26 R1 10k; S002 states divider forms Vcc/2 but refdes differ. Verify.
+R_V2,vref,10k-100k (TBD),Vref divider lower,0805/1/4W,1,proposed,S001/S002,Must yield Vcc/2; S002 R4/R7 concept. Verify exact ratio/filter.
+C_VREF,vref,10u/25V+,Vref filter,radial,1,proposed,S002,S002 C5 in their naming; DAFx26 has Vb 4.5V modeled.
+U1,audio,TL082 (validate 5V),dual JFET op-amp,DIP-8/SOIC-8,1,confirmed-part/D002-risk,"S001,S002,S013,S007",Validate 5V (A1). Verify pinout SLOS081O. TL082H differs.
+Q1,clip,2N7000,N-MOSFET (body diode path),TO-92/SOT-23,1,confirmed-part/pinout-unverified,"S001,S002,S013,S008",Verify pinout/orientation per manufacturer/package.
+Q2,clip,2N7000,N-MOSFET (body diode path),TO-92/SOT-23,1,confirmed-part/pinout-unverified,"S001,S002,S013,S008",
+D_CLIP,clip,BAT46 (default) / 1N34A opt / 1N4148 opt,"asymmetric element, versatile pads",SOD-123/DO-35/pads,1,D003-default,"D003,S013,C015",S013 V4 shows D1* 1N34a option; v0.2 default remains BAT46-class for availability (C015). Provide selectable pads. No identical-tone claim.
+RV_DRIVE,control,1M A (proposed),Drive pot,16/9mm,1,proposed,S013/C018,"S013 V3/V4 use A1M; fits ""more drive range"" merge. Taper/feel verify."
+RV_TONE,control,10k B (proposed),Tone pot,16/9mm,1,proposed,S013,S013 V3/V4 use B10K. Verify against S002 X4 10k description.
+RV_VOL,control,100k A/B (TBD),Volume pot,16/9mm,1,proposed,S013,S013 varies (A100k–A500k/B500k); choose common taper by listening/test.
+SW_HP,control,SPDT,HP/LP voicing,toggle,1,proposed,"S002,S013",Core feature; wiring TBD from schematic.
+SW_BYP,bypass,3PDT,true bypass,stomp,1,proposed,"C002,S013",No buffer by default.
+J_IN,io,"1/4"" TS mono",input jack,panel,1,proposed,C002,
+J_OUT,io,"1/4"" TS mono",output jack,panel,1,proposed,C002,
+R_*,audio,see DAFx26 baseline / TBD,passive network,0805/1/4W,0,TBD,S001/S013/S002,Complete core R/C values require extracted/verified schematic netlist. DAFx26 Table 1 (C020) is exploration baseline only.
+C_*,audio,see DAFx26 baseline / TBD,passive network,film/C0G/radial,0,TBD,S001/S013/S002,
+"Q3,Q4,SW2,SW3,buf parts",buffer,excluded from default,PCB Mania buffer option,-,0,excluded-default,"S013,C018",2N5088/2N5457 buffers optional; not in v0.1/v0.2 default.

@@ -1,0 +1,629 @@
+{
+  "schema_version": "1.0",
+  "name": "ocd_textsch_s002_9v_v0p1_draft",
+  "description": "OCD-style overdrive draft from user-provided text schematic + node connections reported from schematic image (S002-based: https://www.analogisnotdead.com/article34/circuit-analysis-fulltone-s-ocd, accessed 2026-11-09). 9V ONLY. UNVERIFIED: op-amp feedback/pin wiring assumed Vref-biased single-supply; M1/M2/D1 types unknown (APPROX sim-only); X2/X5 pot wiring modeled at 50%; Switch1/R14/R15/C11/X4 omitted/simplified. Not a verified Fulltone netlist. Do not fabricate.",
+  "topology": "ocd_textsch_s002_9v",
+  "ground": "GND",
+  "supplies": [
+    {
+      "name": "VCC",
+      "voltage": 9.0,
+      "source": "9V only per user (2026-11-09); S002 text states 9V battery/9V DC and up to 18V - user chose 9V only"
+    }
+  ],
+  "parameters": {
+    "supply_v": 9,
+    "vref_nominal": 4.5
+  },
+  "input": {
+    "net": "IN",
+    "type": "ac",
+    "amplitude": 0.05,
+    "frequency": 1000,
+    "source": "nominal test"
+  },
+  "output": {
+    "net": "OUT",
+    "load": 100000
+  },
+  "design": {
+    "requirements": [
+      {
+        "id": "R1",
+        "text": "9V DC operation with Vref ~4.5V",
+        "acceptance": "op/bench TBD",
+        "source": "user text + S002"
+      },
+      {
+        "id": "R2",
+        "text": "Two TL082 gain stages + MOSFET/diode nonlinear stage (user-reported connections)",
+        "acceptance": "sim/bench TBD",
+        "source": "user-provided 2026-11-09"
+      },
+      {
+        "id": "R3",
+        "text": "Adjustable gain and volume (simplified in sim)",
+        "acceptance": "pots TBD",
+        "source": "user text"
+      }
+    ],
+    "architecture": {
+      "summary": "Vref-biased single-supply 9V: input bias -> X1 gain -> R9/R10/R12/C7/M1/M2/D1 clip network -> X3 gain/filter -> simplified output volume. Switch1/X4 omitted.",
+      "blocks": [
+        "power_ref",
+        "input_bias",
+        "x1_gain",
+        "clip_network",
+        "x3_gain",
+        "output_simplified"
+      ],
+      "interfaces": [
+        "IN",
+        "OUT 100k",
+        "VCC 9V",
+        "GND"
+      ],
+      "budgets": {
+        "vref": "~4.5V"
+      },
+      "test_points": [
+        "VREF",
+        "X1_OUT",
+        "CLIP_A",
+        "CLIP_B",
+        "X3_OUT",
+        "OUT"
+      ]
+    },
+    "decisions": [
+      {
+        "id": "D_V1",
+        "decision": "9V only",
+        "alternatives": [
+          "8-18V (prior C022)"
+        ],
+        "rationale": "user selected 1=yes 9V only 2026-11-09",
+        "sources": [
+          "user 2026-11-09"
+        ]
+      },
+      {
+        "id": "D_CLIP_V1",
+        "decision": "Implement user-reported M1/M2/D1/R9/R10/R12/C7 connections from schematic image (S002-based)",
+        "alternatives": [
+          "prior provisional draft wiring"
+        ],
+        "rationale": "user provided explicit node table 2026-11-09",
+        "sources": [
+          "user-reported from schematic image, 2026-11-09",
+          "S002 https://www.analogisnotdead.com/article34/circuit-analysis-fulltone-s-ocd accessed 2026-11-09"
+        ]
+      },
+      {
+        "id": "D_POTS",
+        "decision": "X2 gain pot 1M per S002 retrieved text (mapping to X2 assumed); X5 volume 100k placeholder (not found in retrieved S002 text); X4/Switch1 omitted for sim",
+        "alternatives": [
+          "ask user for exact pot values/wiring"
+        ],
+        "rationale": "user asked to find likely values from academic/available sources; S002 states 'gain pot (1M)' and '10k pot X4'; volume not explicit in retrieval",
+        "sources": [
+          "S002 accessed 2026-11-09 (curl extract)",
+          "placeholder for X5"
+        ]
+      },
+      {
+        "id": "D_DEV",
+        "decision": "TL082.301 sim-only; M1/M2 APPROX_2N7000, D1 APPROX_BAT46 placeholders (user: D1 any of those)",
+        "alternatives": [
+          "APPROX_1N34A",
+          "sourced models"
+        ],
+        "rationale": "exact parts unknown; simulation-only",
+        "sources": [
+          "TI SLOJ070 TL082.301",
+          "local APPROX models"
+        ]
+      },
+      {
+        "id": "D_BIAS_FIX",
+        "decision": "Provisional: R2 to VREF (was GND per text) to fix DC bias in sim; D1=APPROX_1N4148 (user-selected placeholder) per 2026-11-09",
+        "alternatives": [
+          "keep R2 to GND and revise feedback topology",
+          "verify S002 image"
+        ],
+        "rationale": "OP showed IN_B~3V/X1_OUT saturated low with R2-GND + R6-VREF ratio; single-supply bias fix applied for simulatable OP",
+        "sources": [
+          "ngspice OP debug 2026-11-09",
+          "user selection 2026-11-09"
+        ]
+      }
+    ],
+    "risks": [
+      {
+        "id": "K1",
+        "risk": "Op-amp feedback and input pin wiring assumed (text functional, not pin-net explicit)",
+        "severity": "high",
+        "mitigation": "verify against actual S002 schematic",
+        "verification": "schematic compare + sim"
+      },
+      {
+        "id": "K2",
+        "risk": "M1/M2/D1 types/pinouts unknown; APPROX models unverified",
+        "severity": "high",
+        "mitigation": "identify parts from schematic/BOM",
+        "verification": "datasheets + sourced models"
+      },
+      {
+        "id": "K3",
+        "risk": "X2/X5 values/wiring/placement uncertain; X5 is placeholder",
+        "severity": "medium",
+        "mitigation": "confirm from S002 schematic image/BOM",
+        "verification": "source check"
+      },
+      {
+        "id": "K4",
+        "risk": "Switch1/R14/R15/C11/X4 omitted; output/tone not representative",
+        "severity": "high",
+        "mitigation": "add after confirming topology",
+        "verification": "schematic compare"
+      },
+      {
+        "id": "K5",
+        "risk": "User-reported node extraction from image; no image in repo",
+        "severity": "high",
+        "mitigation": "record provenance; verify against S002",
+        "verification": "manual check"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Circuit Analysis: Fulltone's OCD",
+        "publisher": "Analog Is Not Dead",
+        "url": "https://www.analogisnotdead.com/article34/circuit-analysis-fulltone-s-ocd",
+        "revision": "n/a",
+        "accessed": "2026-11-09",
+        "id": "S002"
+      },
+      {
+        "title": "User-provided text schematic + node connections",
+        "publisher": "local conversation",
+        "url": "local:conversation/2026-11-09",
+        "revision": "n/a",
+        "accessed": "2026-11-09",
+        "id": "U1"
+      }
+    ]
+  },
+  "components": [
+    {
+      "ref": "V1",
+      "type": "V",
+      "pins": {
+        "1": "VCC",
+        "2": "GND"
+      },
+      "dc": 9.0,
+      "notes": "9V only (D_V1)"
+    },
+    {
+      "ref": "V_IN",
+      "type": "V",
+      "pins": {
+        "1": "IN",
+        "2": "GND"
+      },
+      "dc": 0,
+      "ac": 1.0,
+      "waveform": {
+        "type": "sin",
+        "params": [
+          0,
+          0.05,
+          1000
+        ]
+      }
+    },
+    {
+      "ref": "R1",
+      "type": "R",
+      "value": 100,
+      "pins": {
+        "1": "VCC",
+        "2": "VCC_F"
+      },
+      "notes": "supply feed/filter node"
+    },
+    {
+      "ref": "C2",
+      "type": "C",
+      "value": 1e-05,
+      "pins": {
+        "1": "VCC_F",
+        "2": "GND"
+      }
+    },
+    {
+      "ref": "C3",
+      "type": "C",
+      "value": 1e-07,
+      "pins": {
+        "1": "VCC_F",
+        "2": "GND"
+      }
+    },
+    {
+      "ref": "R4",
+      "type": "R",
+      "value": 10000,
+      "pins": {
+        "1": "VCC_F",
+        "2": "VREF"
+      }
+    },
+    {
+      "ref": "R7",
+      "type": "R",
+      "value": 10000,
+      "pins": {
+        "1": "VREF",
+        "2": "GND"
+      }
+    },
+    {
+      "ref": "C5",
+      "type": "C",
+      "value": 1e-05,
+      "pins": {
+        "1": "VREF",
+        "2": "GND"
+      }
+    },
+    {
+      "ref": "C1",
+      "type": "C",
+      "value": 2.2e-08,
+      "pins": {
+        "1": "IN",
+        "2": "IN_B"
+      },
+      "notes": "input coupling"
+    },
+    {
+      "ref": "R2",
+      "type": "R",
+      "value": 1000000,
+      "pins": {
+        "1": "IN_B",
+        "2": "VREF"
+      },
+      "notes": "PROVISIONAL BIAS FIX (2026-11-09): changed from GND to VREF to bias IN_B near Vref in single-supply sim; S002 text states R2 to ground (unverified mapping) - verify against schematic"
+    },
+    {
+      "ref": "R6",
+      "type": "R",
+      "value": 470000,
+      "pins": {
+        "1": "IN_B",
+        "2": "VREF"
+      },
+      "notes": "bias to Vref"
+    },
+    {
+      "ref": "R3",
+      "type": "R",
+      "value": 10000,
+      "pins": {
+        "1": "IN_B",
+        "2": "X1_P"
+      },
+      "notes": "limits current to X1+"
+    },
+    {
+      "ref": "X1A",
+      "type": "OPAMP",
+      "model": "TL082",
+      "pins": {
+        "IN+": "X1_P",
+        "IN-": "X1_FB",
+        "V+": "VCC_F",
+        "V-": "GND",
+        "OUT": "X1_OUT"
+      },
+      "notes": "TL082 section 1; wiring assumed"
+    },
+    {
+      "ref": "R5",
+      "type": "R",
+      "value": 2200,
+      "pins": {
+        "1": "X1_FB",
+        "2": "VREF"
+      },
+      "notes": "gain ref to Vref assumed"
+    },
+    {
+      "ref": "R8",
+      "type": "R",
+      "value": 18000,
+      "pins": {
+        "1": "X1_FB",
+        "2": "X2_W"
+      },
+      "notes": "gain network; placement assumed"
+    },
+    {
+      "ref": "R_X2POT",
+      "type": "R",
+      "value": 500000,
+      "pins": {
+        "1": "X2_W",
+        "2": "X1_OUT"
+      },
+      "notes": "Drive/gain pot modeled 50% of 1M (S002 gain pot 1M; mapping/wiring assumed)"
+    },
+    {
+      "ref": "C4",
+      "type": "C",
+      "value": 1e-07,
+      "pins": {
+        "1": "X1_FB",
+        "2": "VREF"
+      },
+      "notes": "LF response; assumed placement"
+    },
+    {
+      "ref": "C6",
+      "type": "C",
+      "value": 2.2e-10,
+      "pins": {
+        "1": "X1_OUT",
+        "2": "X1_FB"
+      },
+      "notes": "HF/stability; assumed"
+    },
+    {
+      "ref": "R9",
+      "type": "R",
+      "value": 10000,
+      "pins": {
+        "1": "X1_OUT",
+        "2": "CLIP_A"
+      },
+      "notes": "user-reported"
+    },
+    {
+      "ref": "C7",
+      "type": "C",
+      "value": 1e-08,
+      "pins": {
+        "1": "VREF",
+        "2": "CLIP_A"
+      },
+      "notes": "user-reported VREF-CLIP_A"
+    },
+    {
+      "ref": "R10",
+      "type": "R",
+      "value": 10000,
+      "pins": {
+        "1": "CLIP_A",
+        "2": "CLIP_B"
+      },
+      "notes": "user-reported"
+    },
+    {
+      "ref": "R12",
+      "type": "R",
+      "value": 220000,
+      "pins": {
+        "1": "VREF",
+        "2": "CLIP_B"
+      },
+      "notes": "user-reported bias to CLIP_B"
+    },
+    {
+      "ref": "M1",
+      "type": "NMOS",
+      "model": "APPROX_2N7000",
+      "pins": {
+        "D": "VREF",
+        "G": "VREF",
+        "S": "CLIP_A"
+      },
+      "notes": "user-reported from schematic image; exact part unknown; APPROX sim-only"
+    },
+    {
+      "ref": "M2",
+      "type": "NMOS",
+      "model": "APPROX_2N7000",
+      "pins": {
+        "D": "VREF",
+        "G": "M2_D1_NODE",
+        "S": "M2_D1_NODE"
+      },
+      "notes": "user-reported; exact part unknown"
+    },
+    {
+      "ref": "D1",
+      "type": "D",
+      "model": "APPROX_1N4148",
+      "pins": {
+        "A": "CLIP_A",
+        "K": "M2_D1_NODE"
+      },
+      "notes": "user-reported polarity A=CLIP_A K=M2_D1_NODE; exact type unknown (user selected 1N4148 Si APPROX placeholder); APPROX sim-only"
+    },
+    {
+      "ref": "X3A",
+      "type": "OPAMP",
+      "model": "TL082",
+      "pins": {
+        "IN+": "CLIP_B",
+        "IN-": "X3_FB",
+        "V+": "VCC_F",
+        "V-": "GND",
+        "OUT": "X3_OUT"
+      },
+      "notes": "non-inv input CLIP_B per user node table; wiring assumed"
+    },
+    {
+      "ref": "R11",
+      "type": "R",
+      "value": 39000,
+      "pins": {
+        "1": "X3_FB",
+        "2": "VREF"
+      },
+      "notes": "assumed gain ref"
+    },
+    {
+      "ref": "R13",
+      "type": "R",
+      "value": 150000,
+      "pins": {
+        "1": "X3_FB",
+        "2": "X3_OUT"
+      },
+      "notes": "feedback; assumed placement"
+    },
+    {
+      "ref": "C8",
+      "type": "C",
+      "value": 1e-07,
+      "pins": {
+        "1": "X3_FB",
+        "2": "VREF"
+      },
+      "notes": "LF; assumed"
+    },
+    {
+      "ref": "C9",
+      "type": "C",
+      "value": 2.2e-10,
+      "pins": {
+        "1": "X3_OUT",
+        "2": "X3_FB"
+      },
+      "notes": "HF; assumed"
+    },
+    {
+      "ref": "C10",
+      "type": "C",
+      "value": 1e-05,
+      "pins": {
+        "1": "X3_OUT",
+        "2": "OUT_A"
+      },
+      "notes": "output coupling"
+    },
+    {
+      "ref": "R_VOL5A",
+      "type": "R",
+      "value": 50000,
+      "pins": {
+        "1": "OUT_A",
+        "2": "OUT"
+      },
+      "notes": "Volume pot 100k placeholder modeled at 50% (NOT found in retrieved S002 text); Switch1/R14/R15/C11/X4 omitted"
+    },
+    {
+      "ref": "R_VOL5B",
+      "type": "R",
+      "value": 50000,
+      "pins": {
+        "1": "OUT",
+        "2": "GND"
+      },
+      "notes": "volume lower leg placeholder"
+    },
+    {
+      "ref": "R_LOAD",
+      "type": "R",
+      "value": 100000,
+      "pins": {
+        "1": "OUT",
+        "2": "GND"
+      }
+    }
+  ],
+  "analyses": [
+    {
+      "type": "op"
+    },
+    {
+      "type": "tran",
+      "stop": 0.03,
+      "step": 1e-05
+    },
+    {
+      "type": "ac",
+      "start": 20,
+      "stop": 20000,
+      "points": 100
+    }
+  ],
+  "deliverables": [
+    "spice",
+    "ltspice_asc",
+    "kicad_net",
+    "kicad_sch",
+    "bom",
+    "report"
+  ],
+  "assumptions": [
+    "9V only. All wiring beyond user-reported clip node table is assumed/provisional.",
+    "Op-amp feedback networks (X1/X3) are standard Vref-biased assumptions from component values; not pin-verified against S002 schematic.",
+    "X2 modeled as 500k (50% of 1M). S002 states 'gain pot (1M)' (accessed 2026-11-09) - mapping/wiring to X2 assumed.",
+    "X5 modeled as 50% of 100k placeholder - volume value NOT found in retrieved S002 text; unverified.",
+    "M1/M2/D1 exact part numbers unknown. APPROX_2N7000/APPROX_BAT46 are simulation-only, unverified.",
+    "Switch1, R14, R15, C11, X4 omitted/simplified for initial sim.",
+    "Provenance: user-provided text + node connections reported from schematic image (S002-based), 2026-11-09, unverified.",
+    "PROVISIONAL BIAS FIX: R2 connected to VREF (not GND) to achieve ~Vref bias in simulation; conflicts with S002 text snippet stating R2 to ground - VERIFY."
+  ],
+  "models": {
+    "TL082": {
+      "file": "../models/TL082.301",
+      "subckt_pins": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "vendor": "Texas Instruments",
+      "part": "TL082 (macromodel)",
+      "source": "TI SLOJ070 / S007",
+      "sha256": "adad2e131f728610963e0797670ea34d2857c0b26b3f49c6ce356a3213d89011"
+    },
+    "APPROX_2N7000": {
+      "file": "../models/APPROX_2N7000.lib",
+      "subckt_pins": [
+        "D",
+        "G",
+        "S"
+      ],
+      "vendor": "project approximation",
+      "part": "2N7000 APPROX sim-only",
+      "source": "local APPROX; not manufacturer model"
+    },
+    "APPROX_1N4148": {
+      "file": "../models/APPROX_1N4148.lib",
+      "vendor": "project approximation",
+      "part": "1N4148 APPROX sim-only (user selected)",
+      "source": "local APPROX; not manufacturer model; placeholder for D1",
+      "sha256": "bfa7e99c8627cad9b8f3d58bc8479b9e075bded3914e9da9fdd52fee30596daa"
+    }
+  },
+  "notes": [
+    "Clip network connections follow user-reported node table (2026-11-09).",
+    "Output tone switch network omitted.",
+    "Simulation-only."
+  ],
+  "environment": {
+    "ta_c": 25,
+    "tj_max_c": 125
+  },
+  "verification": {
+    "tolerance_percent": 10
+  }
+}

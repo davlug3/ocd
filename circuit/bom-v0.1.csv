@@ -1,0 +1,35 @@
+ref,block,value,part,package_suggestion,qty,status,source,notes
+J1,power,2.1mm DC barrel,DC jack center-negative,panel,1,proposed,C022,8-18V DC input (5V dropped 2026-11-09); add reverse polarity protection (Q4)
+D1,power,1N5817 or 1N400x,reverse polarity diode (proposed),DO-41/SMA,1,proposed,Q4/practice,Choose by current/drop/availability; verify orientation. S3 mentions protection diode (value/type not stated).
+C1,power,100uF/25V+,electrolytic bulk,radial,1,proposed,S2/S3/practice,Value not stated in text; 25V min for 18V use.
+C2,power,100nF,ceramic/film decoupling,0805/radial,1,proposed,S2/S3/practice,HF bypass in parallel with C1.
+R1,vref,100k,resistor 1% metal film,0805/1/4W,1,proposed,"S2/S3,C008",Vref divider upper. S2 names R4/R7; project refdes normalized. Value TBD vs locked schematic.
+R2,vref,100k,resistor 1% metal film,0805/1/4W,1,proposed,"S2/S3,C008",Vref divider lower.
+C3,vref,10uF/25V+,electrolytic/film Vref filter,radial,1,proposed,S2/S3,Stabilizes Vref (S2: C5 in their naming).
+J2,input,"1/4"" TS mono",input jack,panel,1,proposed,C002,Unbalanced instrument input.
+C4,input,22nF-100nF,film coupling,0805/radial,1,proposed,S2/S3,S3: C5 in their text; value TBD.
+R3,input,1M,resistor,0805/1/4W,1,proposed,S2,S2: R2 gives input cap reference to ground (~1M).
+R4,input,1k-10k,series resistor,0805/1/4W,1,proposed,S2/S3,S2: R3 limits current to op-amp; value TBD.
+R5,input,1M,bias to Vref,0805/1/4W,1,proposed,S2,S2: R6 biases op-amp to Vref; value TBD.
+U1,gain/clip,TL082,dual JFET-input op-amp,DIP-8/SOIC-8,1,confirmed-part/D002-risk,"S1-S3,S007,C011",Validate for 5V (A1) before build. TL082H differs; verify exact part. Pinout must be verified from S007/SLOS081O.
+R6,gain1,2.2k,feedback resistor (Rg),0805/1/4W,1,sourced-unverified,S3,S3 states R17=2.2k in k=1+(R6+R7)/R17; project mapping provisional.
+R7,gain1,18k,feedback resistor,0805/1/4W,1,sourced-unverified,S3,S3 states 18k in same formula; mapping provisional.
+RV1,gain1,1M,Drive pot,16/9mm pot,1,sourced-unverified,S2/S3,S3: 1M in gain formula; taper affects feel (verify).
+C5,gain1,100pF-1nF,HF stability/limit,C0G/film,1,proposed,S2/S3,S2: C6 stabilizes; value TBD.
+C6,gain1,100nF (varies),bass shaping/coupling,film,1,proposed,S2/S3/S4,S3: C7/C4 roles vary by revision. Value TBD.
+R8,clip,10k-47k,clipping series resistor,0805/1/4W,1,proposed,S2/S3,S2: R9 limits current to clipping stage. Critical topology element (C004). Value TBD.
+Q1,clip,2N7000,N-MOSFET body-diode clip to Vref path,TO-92/SOT-23,1,confirmed-part/pinout-unverified,"S1-S3,S008,C012",Verify pinout for exact manufacturer/package before PCB/sim.
+Q2,clip,2N7000,N-MOSFET body-diode clip to Vref path,TO-92/SOT-23,1,confirmed-part/pinout-unverified,"S1-S3,S008,C012",Verify pinout/orientation.
+D2,clip,BAT46 default / Ge opt / 1N4148 opt,"asymmetric clipping element, versatile pads",SOD-123/DO-35/pads,1,D003-default-proposed,"D003,S10-S12",Most-available default: BAT46-class Schottky. Selected 1N34A-class Ge OPTIONAL. 1N4148 optional. Versatile footprint/pads. No identical OCD tone claim.
+R9,gain2,4.7k (TBD),stage 2 feedback Rg,0805/1/4W,1,proposed,S3,S3: R10/R11 give ~5x; exact values TBD.
+R10,gain2,22k (TBD),stage 2 feedback Rf,0805/1/4W,1,proposed,S3,Target ~5x non-inverting gain (verify).
+C7,tone,22nF (TBD),tone cap (treble path),film,1,proposed,S2/S3,Naming/values differ by source; verify.
+RV2,tone,10k-25k,Tone pot,16/9mm pot,1,proposed,S2,S2: 10k pot X4 in their description; verify.
+R11,tone,TBD,HP/LP network resistor,0805/1/4W,1,proposed,S2/S3,S2: R14/R15 paralleled by HP/LP; S3 naming differs.
+R12,tone,TBD,HP/LP network resistor,0805/1/4W,1,proposed,S2/S3,
+SW1,tone,SPDT/DPDT,HP/LP voicing switch,toggle,1,proposed,S2/S3,Wiring per locked schematic.
+C8,output,1uF-10uF film,output coupling,film/radial,1,proposed,S3,S3: C11 high value.
+RV3,output,100k log,Volume pot,16/9mm pot,1,proposed,S4/practice,S4 notes log in v1.4 (verify).
+J3,output,"1/4"" TS mono",output jack,panel,1,proposed,C002,
+SW2,bypass,3PDT,true bypass footswitch,stomp,1,proposed,C002/A2,True bypass wiring; LED optional (Q5).
+LED1,ui,LED + CLR,indicator (optional),3/5mm,1,optional,Q5,Keep LED switching out of audio path.

@@ -1,0 +1,4 @@
+* APPROX_1N34A.lib - UNVERIFIED APPROXIMATION for SPICE EXPLORATION ONLY (v0.1)
+* Ge diode parameters vary widely (C009). DAFx26 (S001) used Is=2.58uA, n=1.61, Vt~25.8mV, Rs~1n, Rp~1T in their modeling context.
+* This is a simplified SPICE diode; not a verified 1N34A model.
+.MODEL APPROX_1N34A D (IS=2.58u RS=1n N=1.61 BV=60 IBV=1u CJO=0.8p)

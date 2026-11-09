@@ -1,0 +1,38 @@
+{
+  "handoff_version": 1,
+  "application": "REPLACE",
+  "description": "Planning handoff; requirements/metrics must cite verified sources.",
+  "conditions": {
+    "frequency_hz": 1000
+  },
+  "architecture": {
+    "summary": "REPLACE",
+    "blocks": [],
+    "supplies": []
+  },
+  "requirements": [
+    {
+      "id": "A1",
+      "text": "REPLACE",
+      "acceptance": "REPLACE with numeric limit and conditions",
+      "source": "S001"
+    }
+  ],
+  "metrics": [
+    {
+      "measure": "gain_db",
+      "target": 0.0,
+      "tolerance": 0.0,
+      "requirement": "A1"
+    }
+  ],
+  "risks": [],
+  "sources": [
+    {
+      "id": "S001",
+      "title": "REPLACE",
+      "url": "https://example.invalid/replace-me",
+      "accessed": "YYYY-MM-DD"
+    }
+  ]
+}

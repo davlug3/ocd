@@ -1,0 +1,138 @@
+{
+  "handoff_version": 1,
+  "application": "guitar overdrive pedal (OCD-style, unbranded v0.1)",
+  "description": "Hybrid v0.2 reference (reconciled 2026-11-09): v1.4/v1.7-style topology, hybrid anchors S002+S003 cross-checked with S001/S013 (provenance-labeled; not a verified Fulltone netlist). True-bypass core, 8-18V DC center-negative (5V dropped by explicit user decision), most-available parts/substitutions allowed with provenance, D003 BAT46 default + Ge/1N4148 options, no buffer default. D002: validate TL082 at 8-18V (min supply 7V typ per S007 opened 2026-11-09; 8V CM/swing unverified). DAFx26 v2 table used as exploration baseline only.",
+  "conditions": {
+    "supply_vdc": 9.0,
+    "supply_range_vdc": [
+      8.0,
+      18.0
+    ],
+    "frequency_hz": 1000,
+    "load_ohm": 100000,
+    "bandwidth_hz": [
+      20,
+      20000
+    ],
+    "temperature_c": 25
+  },
+  "architecture": {
+    "summary": "Input -> Gain1(TL082 candidate, Drive) -> Clip(2N7000+Ge/Schottky options to Vref) -> Gain2(TL082 candidate) -> Tone/HP-LP/Volume -> Out; true bypass",
+    "blocks": [
+      "input",
+      "gain1",
+      "clip_vref",
+      "gain2",
+      "tone_hplp",
+      "output",
+      "bypass"
+    ],
+    "supplies": [
+      {
+        "name": "VCC",
+        "voltage": 9.0,
+        "range_v": [
+          8.0,
+          18.0
+        ]
+      },
+      {
+        "name": "VREF",
+        "voltage": 4.5,
+        "note": "Vcc/2 derived (4.0V at 8V, 9.0V at 18V)"
+      }
+    ]
+  },
+  "requirements": [
+    {
+      "id": "A1",
+      "text": "Operate from 8-18V DC center-negative",
+      "acceptance": "No damage/oscillation; functional audio at 8V, 9V, and 18V into 100k load under stated conditions (input level/frequency TBD)",
+      "source": "S009"
+    },
+    {
+      "id": "A2",
+      "text": "True bypass",
+      "acceptance": "Dry signal passed when off; active circuit isolated per implementation",
+      "source": "S009"
+    },
+    {
+      "id": "A3",
+      "text": "Asymmetric OCD-style clipping character with HP/LP voicing",
+      "acceptance": "Qualitative + simulation waveform/spectrum under stated conditions (TBD); not a verified Fulltone clone claim",
+      "source": "S001"
+    },
+    {
+      "id": "A4",
+      "text": "Vref bias tracks Vcc/2",
+      "acceptance": "Within TBD tolerance across 8-18V (verify per locked divider)",
+      "source": "S002"
+    }
+  ],
+  "metrics": [
+    {
+      "measure": "vref_ratio",
+      "target": 0.5,
+      "tolerance": 0.02,
+      "requirement": "A4"
+    }
+  ],
+  "risks": [
+    {
+      "id": "K1",
+      "risk": "TL082 CM/swing/headroom may be insufficient at 8V single supply (condition/process/temperature dependent)",
+      "mitigation": "Verify SLOS081O limits (S007) + provenance-tracked SPICE/bench at 8/9/18V; substitute only with datasheet/SPICE provenance and recorded decision (D002)",
+      "verification": "A1, DC/transient sim, bench"
+    },
+    {
+      "id": "K2",
+      "risk": "1N34A Ge diode variability shifts clipping symmetry/threshold",
+      "mitigation": "Select/measure diodes or design for tolerance; D003 allows BAT46/1N4148 options with provenance",
+      "verification": "A3 sim/listening"
+    },
+    {
+      "id": "K3",
+      "risk": "Exact schematic values/orientation not a verified Fulltone netlist",
+      "mitigation": "Hybrid working reference S002+S003 cross-checked with S001/S013; label unverified items; confirm pin-level values/orientation against traceable schematic+datasheets before fabrication",
+      "verification": "design review"
+    }
+  ],
+  "sources": [
+    {
+      "id": "S001",
+      "title": "DAFx26 OCD Wave Digital Model (cross-check; OCD v2 context)",
+      "url": "https://dafx.de/paper-archive/2026/papers/DAFx26_paper_24.pdf",
+      "accessed": "2026-11-09"
+    },
+    {
+      "id": "S002",
+      "title": "Analog Is Not Dead - OCD analysis (opened this session)",
+      "url": "https://www.analogisnotdead.com/article34/circuit-analysis-fulltone-s-ocd",
+      "accessed": "2026-11-09"
+    },
+    {
+      "id": "S003",
+      "title": "zadvitsky OCD overdrive clone (opened this session, partial values)",
+      "url": "http://zadvitsky.com/index.php/projects/pedals/ocd-overdrive-diy.html",
+      "accessed": "2026-11-09"
+    },
+    {
+      "id": "S007",
+      "title": "TI TL082 datasheet/product (SLOS081O, opened this session)",
+      "url": "https://www.ti.com/lit/gpn/TL082",
+      "accessed": "2026-11-09"
+    },
+    {
+      "id": "S009",
+      "title": "User intake/reconciliation v0.1",
+      "url": "local:conversation/2026-11-09",
+      "accessed": "2026-11-09"
+    },
+    {
+      "id": "S013",
+      "title": "PCB Guitar Mania TOC (OCD) v2.1 build docs (authorized, cross-check)",
+      "url": "https://pcbguitarmania.com/wp-content/uploads/2018/02/TOC-2v1-Building-Docs.pdf",
+      "accessed": "2026-11-09"
+    }
+  ]
+}

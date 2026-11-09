@@ -1,0 +1,55 @@
+{
+  "version": 1,
+  "status": "draft-unverified",
+  "notes": "Project-normalized nets; update after locked schematic/netlist.",
+  "points": [
+    {
+      "id": "TP_VCC",
+      "net": "VCC",
+      "nominal": "5-18V DC",
+      "tolerance": null,
+      "conditions": "input supply",
+      "requirement": "A1"
+    },
+    {
+      "id": "TP_VREF",
+      "net": "VREF",
+      "nominal": "VCC/2",
+      "tolerance": "\u00b12% (A4 provisional)",
+      "conditions": "idle",
+      "requirement": "A4"
+    },
+    {
+      "id": "TP_IN",
+      "net": "IN_BUF",
+      "nominal": "TBD",
+      "tolerance": null,
+      "conditions": "input signal",
+      "requirement": "A3"
+    },
+    {
+      "id": "TP_GAIN1",
+      "net": "GAIN1_OUT",
+      "nominal": "TBD",
+      "tolerance": null,
+      "conditions": "Drive sweep",
+      "requirement": "A1/A3"
+    },
+    {
+      "id": "TP_CLIP",
+      "net": "CLIP_NODE",
+      "nominal": "clipped around VREF",
+      "tolerance": null,
+      "conditions": "overdrive",
+      "requirement": "A3"
+    },
+    {
+      "id": "TP_OUT",
+      "net": "OUT_PRE_VOL",
+      "nominal": "TBD",
+      "tolerance": null,
+      "conditions": "100k load",
+      "requirement": "A1"
+    }
+  ]
+}

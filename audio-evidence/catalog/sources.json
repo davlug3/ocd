@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "updated": "YYYY-MM-DD",
+  "policy": "Project-local registry. Only status=verified sources may be cited. See audio-engineering-skill references/source-policy.md.",
+  "sources": [
+    {
+      "id": "S001",
+      "tier": 1,
+      "title": "REPLACE: primary source title",
+      "authors": [
+        "REPLACE"
+      ],
+      "year": 2026,
+      "venue": "REPLACE",
+      "doi": null,
+      "url": "https://example.invalid/replace-me",
+      "accessed": null,
+      "status": "candidate",
+      "access": "open",
+      "topics": [
+        "REPLACE"
+      ],
+      "note": "Candidate lead. Open the source, record accessed date/locator, then set status=verified before citing."
+    }
+  ]
+}

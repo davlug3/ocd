@@ -1,0 +1,47 @@
+{
+  "status": "EXPLORATION_ONLY_NOT_V14_NOT_VERIFIED",
+  "source": "S001 DAFx26 OCD v2 Table 1/2 (search-extracted 2026-11-09, C020); verify against PDF",
+  "params": {
+    "R1": "10k",
+    "R2": "1M",
+    "R3": "470k",
+    "R4": "18k",
+    "R5": "500k(pot)",
+    "R6": "2.2k",
+    "R7": "10k",
+    "R8": "220k",
+    "R9": "10k",
+    "R10": "150k",
+    "R11": "39k",
+    "R12": "33k",
+    "R13": "22k",
+    "R14": "10k(pot)",
+    "R15": "500k(pot)",
+    "C1": "22n",
+    "C2": "220p",
+    "C3": "100n",
+    "C4": "10n",
+    "C5": "220p",
+    "C6": "100n",
+    "C7": "10u",
+    "C8": "47n",
+    "Vb": "4.5V"
+  },
+  "device_params": {
+    "1N34A": {
+      "Is": "2.58uA",
+      "n": 1.61,
+      "Vt": "25.8mV",
+      "Rs": "1n",
+      "Rp": "1T"
+    },
+    "2N7000": {
+      "kn": "0.025 A/V2",
+      "Vth": "2.1V",
+      "lambda": 0.02
+    }
+  },
+  "notes": [
+    "Use for SPICE exploration/scaffolding only. D001 v0.2 is hybrid true-bypass 5-18V D003-default; do not treat as fabrication BOM. Connections must come from verified schematic."
+  ]
+}

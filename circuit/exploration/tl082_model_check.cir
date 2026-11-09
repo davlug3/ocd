@@ -1,0 +1,16 @@
+* Validate TI TL082.301 in standard dual-supply non-inverting config
+VCC vp 0 DC 15
+VEE vn 0 DC -15
+Vin in 0 DC 0 SIN(0 10m 1k)
+Rg in fb 2.2k
+Rf fb out 100k
+XU1 in fb vp vn out TL082
+.include ../models/TL082.301
+.tran 10u 5m
+.control
+run
+meas tran vmax MAX v(out)
+meas tran vmin MIN v(out)
+print vmax vmin
+.endc
+.end

@@ -1,0 +1,32 @@
+References,Qty,Type,Value,Footprint,Notes
+C1,1,Capacitor,22n,,input coupling
+C10,1,Capacitor,10u,,output coupling
+C2 C5,2,Capacitor,10u,,
+C3,1,Capacitor,100n,,
+C4,1,Capacitor,100n,,LF response; assumed placement
+C6,1,Capacitor,220p,,HF/stability; assumed
+C7,1,Capacitor,10n,,user-reported VREF-CLIP_A
+C8,1,Capacitor,100n,,LF; assumed
+C9,1,Capacitor,220p,,HF; assumed
+D1,1,Diode,APPROX_1N4148,,user-reported polarity A=CLIP_A K=M2_D1_NODE; exact type unknown (user selected 1N4148 Si APPROX placeholder); APPROX sim-only
+M1,1,N-MOSFET,APPROX_2N7000,,user-reported from schematic image; exact part unknown; APPROX sim-only
+M2,1,N-MOSFET,APPROX_2N7000,,user-reported; exact part unknown
+R1,1,Resistor,100,,supply feed/filter node
+R11,1,Resistor,39k,,assumed gain ref
+R12,1,Resistor,220k,,user-reported bias to CLIP_B
+R13,1,Resistor,150k,,feedback; assumed placement
+R2,1,Resistor,1Meg,,PROVISIONAL BIAS FIX (2026-11-09): changed from GND to VREF to bias IN_B near Vref in single-supply sim; S002 text states R2 to ground (unverified mapping) - verify against schematic
+R3,1,Resistor,10k,,limits current to X1+
+R4 R7,2,Resistor,10k,,
+R5,1,Resistor,2.2k,,gain ref to Vref assumed
+R6,1,Resistor,470k,,bias to Vref
+R8,1,Resistor,18k,,gain network; placement assumed
+R9 R10,2,Resistor,10k,,user-reported
+R_LOAD,1,Resistor,100k,,
+R_VOL5A,1,Resistor,50k,,Volume pot 100k placeholder modeled at 50% (NOT found in retrieved S002 text); Switch1/R14/R15/C11/X4 omitted
+R_VOL5B,1,Resistor,50k,,volume lower leg placeholder
+R_X2POT,1,Resistor,500k,,Drive/gain pot modeled 50% of 1M (S002 gain pot 1M; mapping/wiring assumed)
+V1,1,Voltage source,9 V,,9V only (D_V1)
+V_IN,1,Voltage source,SIN source,,
+X1A,1,Op-amp,TL082,,TL082 section 1; wiring assumed
+X3A,1,Op-amp,TL082,,non-inv input CLIP_B per user node table; wiring assumed

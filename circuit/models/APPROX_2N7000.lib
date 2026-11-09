@@ -1,0 +1,11 @@
+* APPROX_2N7000.lib - UNVERIFIED APPROXIMATION for SPICE EXPLORATION ONLY (v0.1)
+* NOT a manufacturer model. Do not use for fabrication/verified performance claims.
+* Source: approximate placeholder; verify against exact 2N7000 manufacturer datasheet/model.
+* Subckt pin order chosen for exploration: D G S (common). Verify against your symbol/footprint.
+.SUBCKT APPROX_2N7000 D G S
+M1 D G S S NMOS2N7000
+.MODEL NMOS2N7000 NMOS (VTO=2.1 KP=0.05 LAMBDA=0.02 RD=1 RS=1 CBD=20p CBS=20p IS=1e-14)
+* Body diode D-S behavior is critical in OCD topology; this approximation is rough.
+DBODY S D DBODY2N7
+.MODEL DBODY2N7 D (IS=1e-9 N=1.6 RS=0.5 CJO=20p)
+.ENDS APPROX_2N7000

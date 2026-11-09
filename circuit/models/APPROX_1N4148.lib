@@ -1,0 +1,3 @@
+* APPROX_1N4148.lib - UNVERIFIED APPROXIMATION for SPICE EXPLORATION ONLY (D1 placeholder)
+* Not a verified manufacturer model. Use a sourced 1N4148 model for verification.
+.MODEL APPROX_1N4148 D (IS=2.52n RS=0.568 N=1.906 BV=100 IBV=100u CJO=4p TT=6n)
