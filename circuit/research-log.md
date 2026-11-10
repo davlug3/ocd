@@ -73,6 +73,22 @@ One row per source actually used. Keep the revision and the access date; a link 
 | M2 | D002 5V CM/swing hypothesis from C011 | arithmetic from TI parametrics | Vcc=5V, Vref=2.5V, CM headroom 3V, swing headroom 1.5V/rail | CM margin ~-0.5V (hypothesis); pk-pk swing ~2V typ headroom limit — **verify in SLOS081O** | 2026-11-09 |
 | M3 | TL082.301 single-supply Vref sim attempt | ngspice + TI TL082.301 | 5/9/18V exploration deck | **INCONCLUSIVE** (model/setup/debug needed) | 2026-11-09 |
 
+## 2026-11-10 S002 verification (webfetch)
+- S002 article text successfully retrieved via webfetch (earlier attempts failed).
+- **Confirmed from article text:** R2 (1M) connects input cap C1 to GROUND (not VREF); R6 biases op-amp to VREF; input impedance ~330k; gain pot 1M + R8 + R5 sets max gain; C4 limits bass; C6 stabilizes/limits HF; R9 limits current to clipping; R9+C7 reduce HF.
+- **Confirmed clipping:** 2N7000 || 2N7000 + 1N34A Ge diode, referenced to Vref (floating bias). Asymmetric: voltage cannot rise above +5V, almost reaches -3.5V at 9V.
+- **Confirmed tone/HP-LP:** X4 = 10k tone pot, C11 cap to ground, HP/LP switch parallels R14/R15, affects volume and bandwidth. Supply: 9V battery or 9V center-negative, up to 18V; at 18V opamps won't saturate → increased headroom. Vref from R4/R7/C5 divider (~Vcc/2).
+- **Comment conflict:** Karl LaRocca (20 May 2026) reports alternate clip wiring: M1 [S→VREF, D&G→R9/R10], M2 [D&G→VREF, S→D1]. Differs from draft. Schematic image not extracted; orientation unresolved.
+- **Evidence claims added:** C026 (R2→GND), C027 (clip devices/1N34A), C028 (tone/HP-LP), C029 (comment conflict), C030 (supply/Vref/headroom).
+- **Spec updated:** R2→GND (D_BIAS_FIX reverted), D1=APPROX_1N34A, tone/HP-LP components added (X4/R_X4A/R_X4B/C11/R14/R15), comment conflict documented in risks/assumptions/notes.
+- **ngspice -r buffer overflow:** long spec description line (>~400 chars) in .cir file caused buffer overflow with `-r` flag. Fixed by shortening description. Verify now PASS (7 passed, 5 skipped, 0 failed).
+- **S002 images downloaded** to `circuit/sources/s002-images/`: `fulltone-ocd.png` (main, 1610x682), `clipping.png` (clip stage, 1901x692), `1st-stage.png` (gain stage, 1892x690), `tone-stack.png` (tone/HP-LP, 1882x691), `power-supply.png` (power, 460x187). Images inspected by agent (Nemotron 3.5 Super VL image capability):
+  - **Clip wiring CONFIRMED from image:** M1[D&G=VREF,S=CLIP_A], M2[D=VREF,G&S=M2_D1_NODE], D1[A=CLIP_A,K=M2_D1_NODE] — matches user-reported wiring. Commenter-reported alternate wiring does NOT match S002 image (commenter was incorrect).
+  - **Image-read values:** R14≈22k, R15≈33k, C11≈47nF (confirmed from image inspection; medium-to-high confidence).
+  - Evidence claims C031 (clip wiring confirmed) and C032 (image-read values) added.
+- **Supply expanded to 8–18V DC center-negative per C022** (9V nominal test). Spec regenerated as `ocd_textsch_s002_8v18v_v0p2_draft`. DC sweep analysis added at 8/9/18V (1V steps). Vref tracks Vcc/2 across range: 8V→3.499V, 9V→3.870V, 10V→4.170V, 11V→4.469V, 12V→4.768V, 13V→5.066V, 14V→5.363V, 15V→5.661V, 16V→5.958V, 17V→6.255V, 18V→6.553V. Vref ~0.5V below Vcc/2 due to divider loading. Circuit operates without damage/oscillation at all supply voltages. Evidence claim C033 added.
+- **verify.py PASS** (7 passed, 5 skipped, 0 failed) for 8–18V draft. ngspice AC/DC sweep/OP/Tran all ran successfully.
+
 ## 2026-11-09 reconciliation (explicit user lock)
 - **Locked (S009/C022):** 8–18V DC center-negative (**5V support dropped**); hybrid anchors **S002+S003** cross-checked with **S001/S013** (provenance-labeled; not a verified Fulltone netlist); substitutions allowed with datasheet/SPICE provenance; **D002: validate TL082 at 8–18V**.
 - **Sources opened this session:** S002 `https://www.analogisnotdead.com/article34/circuit-analysis-fulltone-s-ocd`, S003 `http://zadvitsky.com/index.php/projects/pedals/ocd-overdrive-diy.html`, S007 `https://www.ti.com/product/TL082` (plus TL082H/TLV2372/TLV9152/OPA2197 pages reviewed for D002 context; not all added as catalog entries yet).

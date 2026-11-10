@@ -1,8 +1,8 @@
 {
   "name": "ocd_textsch_s002_9v_v0p1_draft",
-  "description": "OCD-style overdrive draft from user-provided text schematic + node connections reported from schematic image (S002-based: https://www.analogisnotdead.com/article34/circuit-analysis-fulltone-s-ocd, accessed 2026-11-09). 9V ONLY. UNVERIFIED: op-amp feedback/pin wiring assumed Vref-biased single-supply; M1/M2/D1 types unknown (APPROX sim-only); X2/X5 pot wiring modeled at 50%; Switch1/R14/R15/C11/X4 omitted/simplified. Not a verified Fulltone netlist. Do not fabricate.",
+  "description": "OCD-style overdrive 9V draft from S002-verified topology + user node connections. S002 confirms: R2 to GND, clip = 2N7000||2N7000+1N34A Ge to Vref, X4=10k tone pot, C11 cap to ground, HP/LP parallels R14/R15, gain pot 1M. Clip wiring CONFIRMED from S002 schematic image (matches user-reported; commenter-reported alternate does not match). Op-amp feedback wiring assumed. Not a verified Fulltone netlist. Do not fabricate.",
   "topology": "ocd_textsch_s002_9v",
-  "generated": "2026-11-09",
+  "generated": "2026-11-10",
   "ground": "GND",
   "supplies": [
     {
@@ -32,14 +32,15 @@
     }
   ],
   "assumptions": [
-    "9V only. All wiring beyond user-reported clip node table is assumed/provisional.",
+    "9V only. All wiring beyond user-reported clip node table and S002 article text is assumed/provisional.",
     "Op-amp feedback networks (X1/X3) are standard Vref-biased assumptions from component values; not pin-verified against S002 schematic.",
+    "R2 to GND per S002-confirmed text (C026) \u2014 not VREF. R6 biases op-amp non-inverting input to VREF.",
     "X2 modeled as 500k (50% of 1M). S002 states 'gain pot (1M)' (accessed 2026-11-09) - mapping/wiring to X2 assumed.",
     "X5 modeled as 50% of 100k placeholder - volume value NOT found in retrieved S002 text; unverified.",
-    "M1/M2/D1 exact part numbers unknown. APPROX_2N7000/APPROX_BAT46 are simulation-only, unverified.",
-    "Switch1, R14, R15, C11, X4 omitted/simplified for initial sim.",
-    "Provenance: user-provided text + node connections reported from schematic image (S002-based), 2026-11-09, unverified.",
-    "PROVISIONAL BIAS FIX: R2 connected to VREF (not GND) to achieve ~Vref bias in simulation; conflicts with S002 text snippet stating R2 to ground - VERIFY."
+    "M1/M2 exact part numbers unknown; APPROX_2N7000 simulation-only, unverified. D1=APPROX_1N34A per S002-confirmed 1N34A Ge clipping diode (C027). APPROX sim-only, Ge variability applies.",
+    "Clip wiring CONFIRMED from S002 schematic image: M1[D&G=VREF,S=CLIP_A], M2[D=VREF,G&S=M2_D1_NODE], D1[A=CLIP_A,K=M2_D1_NODE]. Commenter-reported alternate wiring does NOT match S002 image.",
+    "Tone/HP-LP added per S002: X4=10k pot, C11 cap to ground, Switch1 parallels R14/R15 (C028). R14=22k, R15=33k image-read from S002 schematic (verify); C11=47n placeholder. Switch1 wiring assumed.",
+    "Provenance: S002 article text + schematic images (webfetch 2026-11-10) + user-provided node connections from schematic image (2026-11-09). Images in circuit/sources/s002-images/."
   ],
   "warnings": [],
   "components": [
@@ -144,9 +145,9 @@
       "value": 1000000.0,
       "pins": {
         "1": "IN_B",
-        "2": "VREF"
+        "2": "GND"
       },
-      "notes": "PROVISIONAL BIAS FIX (2026-11-09): changed from GND to VREF to bias IN_B near Vref in single-supply sim; S002 text states R2 to ground (unverified mapping) - verify against schematic"
+      "notes": "S002-confirmed: R2 (1M) connects input cap C1 to GROUND as voltage reference, not to VREF. R6 biases op-amp to VREF."
     },
     {
       "ref": "R6",
@@ -282,7 +283,7 @@
         "3": "CLIP_A"
       },
       "model": "APPROX_2N7000",
-      "notes": "user-reported from schematic image; exact part unknown; APPROX sim-only"
+      "notes": "S002-schematic-image-confirmed: M1 [D&G=VREF, S=CLIP_A]. Exact part unknown; APPROX sim-only. Commenter-reported alternate wiring (M1[S=VREF,D&G=R9/R10]) does NOT match S002 image."
     },
     {
       "ref": "M2",
@@ -294,7 +295,7 @@
         "3": "M2_D1_NODE"
       },
       "model": "APPROX_2N7000",
-      "notes": "user-reported; exact part unknown"
+      "notes": "S002-schematic-image-confirmed: M2 [D=VREF, G&S=M2_D1_NODE]. Exact part unknown; APPROX sim-only. Commenter-reported alternate wiring (M2[D&G=VREF,S=D1]) does NOT match S002 image."
     },
     {
       "ref": "D1",
@@ -304,8 +305,8 @@
         "1": "CLIP_A",
         "2": "M2_D1_NODE"
       },
-      "model": "APPROX_1N4148",
-      "notes": "user-reported polarity A=CLIP_A K=M2_D1_NODE; exact type unknown (user selected 1N4148 Si APPROX placeholder); APPROX sim-only"
+      "model": "APPROX_1N34A",
+      "notes": "S002-schematic-image-confirmed: D1 [A=CLIP_A, K=M2_D1_NODE], 1N34A Ge per article text (C027). APPROX sim-only model, Ge variability applies."
     },
     {
       "ref": "X3A",
@@ -367,19 +368,69 @@
       "value": 1e-05,
       "pins": {
         "1": "X3_OUT",
-        "2": "OUT_A"
+        "2": "TONE_TOP"
       },
-      "notes": "output coupling"
+      "notes": "output coupling to tone network"
+    },
+    {
+      "ref": "R_X4A",
+      "type": "R",
+      "value": 5000.0,
+      "pins": {
+        "1": "TONE_TOP",
+        "2": "TONE_W"
+      },
+      "notes": "Tone pot X4 (10k) modeled at 50%: upper leg TONE_TOP\u2192TONE_W. S002-confirmed 10k pot. Wiring assumed."
+    },
+    {
+      "ref": "R_X4B",
+      "type": "R",
+      "value": 5000.0,
+      "pins": {
+        "1": "TONE_W",
+        "2": "GND"
+      },
+      "notes": "Tone pot X4 (10k) modeled at 50%: lower leg TONE_W\u2192GND. S002-confirmed 10k pot. Wiring assumed."
+    },
+    {
+      "ref": "C11",
+      "type": "C",
+      "value": 4.7e-08,
+      "pins": {
+        "1": "TONE_W",
+        "2": "GND"
+      },
+      "notes": "S002-confirmed: tone cap C11 to ground. Value TBD (47n placeholder)."
+    },
+    {
+      "ref": "R14",
+      "type": "R",
+      "value": 22000.0,
+      "pins": {
+        "1": "TONE_W",
+        "2": "VOL_TOP"
+      },
+      "notes": "S002-schematic-image-read: R14 HP/LP network resistor (value reads as 22k, verify). Always in path (HP position); R15 added in parallel when Switch1 closed (LP position)."
+    },
+    {
+      "ref": "R15",
+      "type": "R",
+      "value": 33000.0,
+      "pins": {
+        "1": "TONE_W",
+        "2": "VOL_TOP"
+      },
+      "notes": "S002-schematic-image-read: R15 HP/LP network resistor (value reads as 33k, verify). Added in parallel with R14 when Switch1 closed (LP position). Removing R15 models HP position (switch open)."
     },
     {
       "ref": "R_VOL5A",
       "type": "R",
       "value": 50000.0,
       "pins": {
-        "1": "OUT_A",
+        "1": "VOL_TOP",
         "2": "OUT"
       },
-      "notes": "Volume pot 100k placeholder modeled at 50% (NOT found in retrieved S002 text); Switch1/R14/R15/C11/X4 omitted"
+      "notes": "Volume pot 100k placeholder modeled at 50% (NOT found in retrieved S002 text)."
     },
     {
       "ref": "R_VOL5B",
@@ -416,7 +467,15 @@
       "Type": "Capacitor",
       "Value": "10u",
       "Footprint": "",
-      "Notes": "output coupling"
+      "Notes": "output coupling to tone network"
+    },
+    {
+      "References": "C11",
+      "Qty": "1",
+      "Type": "Capacitor",
+      "Value": "47n",
+      "Footprint": "",
+      "Notes": "S002-confirmed: tone cap C11 to ground. Value TBD (47n placeholder)."
     },
     {
       "References": "C2 C5",
@@ -478,9 +537,9 @@
       "References": "D1",
       "Qty": "1",
       "Type": "Diode",
-      "Value": "APPROX_1N4148",
+      "Value": "APPROX_1N34A",
       "Footprint": "",
-      "Notes": "user-reported polarity A=CLIP_A K=M2_D1_NODE; exact type unknown (user selected 1N4148 Si APPROX placeholder); APPROX sim-only"
+      "Notes": "S002-schematic-image-confirmed: D1 [A=CLIP_A, K=M2_D1_NODE], 1N34A Ge per article text (C027). APPROX sim-only model, Ge variability applies."
     },
     {
       "References": "M1",
@@ -488,7 +547,7 @@
       "Type": "N-MOSFET",
       "Value": "APPROX_2N7000",
       "Footprint": "",
-      "Notes": "user-reported from schematic image; exact part unknown; APPROX sim-only"
+      "Notes": "S002-schematic-image-confirmed: M1 [D&G=VREF, S=CLIP_A]. Exact part unknown; APPROX sim-only. Commenter-reported alternate wiring (M1[S=VREF,D&G=R9/R10]) does NOT match S002 image."
     },
     {
       "References": "M2",
@@ -496,7 +555,7 @@
       "Type": "N-MOSFET",
       "Value": "APPROX_2N7000",
       "Footprint": "",
-      "Notes": "user-reported; exact part unknown"
+      "Notes": "S002-schematic-image-confirmed: M2 [D=VREF, G&S=M2_D1_NODE]. Exact part unknown; APPROX sim-only. Commenter-reported alternate wiring (M2[D&G=VREF,S=D1]) does NOT match S002 image."
     },
     {
       "References": "R1",
@@ -531,12 +590,28 @@
       "Notes": "feedback; assumed placement"
     },
     {
+      "References": "R14",
+      "Qty": "1",
+      "Type": "Resistor",
+      "Value": "22k",
+      "Footprint": "",
+      "Notes": "S002-schematic-image-read: R14 HP/LP network resistor (value reads as 22k, verify). Always in path (HP position); R15 added in parallel when Switch1 closed (LP position)."
+    },
+    {
+      "References": "R15",
+      "Qty": "1",
+      "Type": "Resistor",
+      "Value": "33k",
+      "Footprint": "",
+      "Notes": "S002-schematic-image-read: R15 HP/LP network resistor (value reads as 33k, verify). Added in parallel with R14 when Switch1 closed (LP position). Removing R15 models HP position (switch open)."
+    },
+    {
       "References": "R2",
       "Qty": "1",
       "Type": "Resistor",
       "Value": "1Meg",
       "Footprint": "",
-      "Notes": "PROVISIONAL BIAS FIX (2026-11-09): changed from GND to VREF to bias IN_B near Vref in single-supply sim; S002 text states R2 to ground (unverified mapping) - verify against schematic"
+      "Notes": "S002-confirmed: R2 (1M) connects input cap C1 to GROUND as voltage reference, not to VREF. R6 biases op-amp to VREF."
     },
     {
       "References": "R3",
@@ -600,7 +675,7 @@
       "Type": "Resistor",
       "Value": "50k",
       "Footprint": "",
-      "Notes": "Volume pot 100k placeholder modeled at 50% (NOT found in retrieved S002 text); Switch1/R14/R15/C11/X4 omitted"
+      "Notes": "Volume pot 100k placeholder modeled at 50% (NOT found in retrieved S002 text)."
     },
     {
       "References": "R_VOL5B",
@@ -617,6 +692,22 @@
       "Value": "500k",
       "Footprint": "",
       "Notes": "Drive/gain pot modeled 50% of 1M (S002 gain pot 1M; mapping/wiring assumed)"
+    },
+    {
+      "References": "R_X4A",
+      "Qty": "1",
+      "Type": "Resistor",
+      "Value": "5k",
+      "Footprint": "",
+      "Notes": "Tone pot X4 (10k) modeled at 50%: upper leg TONE_TOP\u2192TONE_W. S002-confirmed 10k pot. Wiring assumed."
+    },
+    {
+      "References": "R_X4B",
+      "Qty": "1",
+      "Type": "Resistor",
+      "Value": "5k",
+      "Footprint": "",
+      "Notes": "Tone pot X4 (10k) modeled at 50%: lower leg TONE_W\u2192GND. S002-confirmed 10k pot. Wiring assumed."
     },
     {
       "References": "V1",
@@ -663,17 +754,17 @@
   "verification": {
     "ok": true,
     "name": "ocd_textsch_s002_9v_v0p1_draft",
-    "generated": "2026-11-09",
-    "summary": "7 passed, 3 skipped, 0 failed",
+    "generated": "2026-11-10",
+    "summary": "7 passed, 5 skipped, 0 failed",
     "checks": [
       {
         "name": "spec",
         "ok": true,
-        "detail": "valid spec with 34 components, 0 warning(s)",
+        "detail": "valid spec with 39 components, 0 warning(s)",
         "evidence": {
           "stats": {
-            "components": 34,
-            "nets": 17,
+            "components": 39,
+            "nets": 19,
             "sources": 2,
             "semiconductors": 3,
             "pcb": false
@@ -704,7 +795,7 @@
             },
             {
               "ref": "D1",
-              "model": "APPROX_1N4148",
+              "model": "APPROX_1N34A",
               "kind": "vendor"
             },
             {
@@ -718,37 +809,49 @@
       {
         "name": "design",
         "ok": true,
-        "detail": "3 requirements, 5 decisions, 5 risks, 2 sources",
+        "detail": "3 requirements, 6 decisions, 5 risks, 2 sources",
         "evidence": {
           "requirements": 3,
-          "decisions": 5,
+          "decisions": 6,
           "risks": 5,
           "sources": 2
         }
       },
       {
+        "name": "measurement_plan",
+        "ok": null,
+        "detail": "no measurement plan declared; add design.measurements with test points, setup and acceptance criteria",
+        "evidence": null
+      },
+      {
+        "name": "operating_limits",
+        "ok": null,
+        "detail": "no operating limits declared; add calculated stresses and sourced datasheet limits",
+        "evidence": null
+      },
+      {
         "name": "spice_netlist",
         "ok": true,
-        "detail": "34 devices, node lists match the spec",
+        "detail": "39 devices, node lists match the spec",
         "evidence": {
-          "devices": 34
+          "devices": 39
         }
       },
       {
         "name": "ltspice_asc",
         "ok": true,
-        "detail": "34 symbols; every pin has a matching net flag",
+        "detail": "39 symbols; every pin has a matching net flag",
         "evidence": {
-          "symbols": 34,
-          "flags": 76
+          "symbols": 39,
+          "flags": 86
         }
       },
       {
         "name": "kicad_netlist",
         "ok": true,
-        "detail": "17 nets match the spec exactly",
+        "detail": "19 nets match the spec exactly",
         "evidence": {
-          "nets": 17
+          "nets": 19
         }
       },
       {
@@ -772,12 +875,12 @@
       {
         "name": "ngspice",
         "ok": true,
-        "detail": "ngspice ran 3 analysis plot(s): AC Analysis, Operating Point, Transient Analysis; V(vcc)=9, V(in)=0, V(vcc_f)=8.15877, V(vref)=4.07938, V(in_b)=4.07937, V(x1_p)=4.07937, V(xx1a.11)=0.345441, V(xx1a.12)=0.345453, V(xx1a.6)=7.80968e-09, V(xx1a.7)=4.07933, V(x1_out)=4.07933, V(xx1a.53)=5.95877, V(xx1a.54)=2.2, V(xx1a.90)=-2.67625e-07, V(xx1a.91)=25, V(xx1a.92)=-25, V(xx1a.99)=4.07939, V(xx1a.10)=3.68079, V(x1_fb)=4.07938, V(xx1a.9)=0, V(xx1a.8)=4.07933, V(x2_w)=4.07938, V(clip_a)=4.07933, V(clip_b)=4.07933, V(m2_d1_node)=4.07935, V(xx3a.11)=0.345441, V(xx3a.12)=0.345453, V(xx3a.6)=2.37909e-08, V(xx3a.7)=4.07922, V(x3_out)=4.07922, V(xx3a.53)=5.95877, V(xx3a.54)=2.2, V(xx3a.90)=-8.47424e-07, V(xx3a.91)=25, V(xx3a.92)=-25, V(xx3a.99)=4.07939, V(xx3a.10)=3.68075, V(x3_fb)=4.07935, V(xx3a.9)=0, V(xx3a.8)=4.07922, V(out_a)=0, V(out)=0",
+        "detail": "ngspice ran 3 analysis plot(s): AC Analysis, Operating Point, Transient Analysis; V(vcc)=9, V(in)=0, V(vcc_f)=8.15686, V(vref)=3.86898, V(in_b)=2.63195, V(x1_p)=2.63195, V(xx1a.11)=6.66856e-08, V(xx1a.12)=0.695012, V(xx1a.6)=19.6535, V(xx1a.7)=1.49133, V(x1_out)=1.52315, V(xx1a.53)=5.95686, V(xx1a.54)=2.2, V(xx1a.90)=-0.212178, V(xx1a.91)=25, V(xx1a.92)=-25, V(xx1a.99)=4.07843, V(xx1a.10)=2.48501, V(x1_fb)=3.85906, V(xx1a.9)=0, V(xx1a.8)=1.49133, V(x2_w)=3.77789, V(clip_a)=1.74654, V(clip_b)=1.83882, V(m2_d1_node)=1.74656, V(xx3a.11)=6.5009e-08, V(xx3a.12)=0.697739, V(xx3a.6)=19.7299, V(xx3a.7)=1.49328, V(x3_out)=1.52305, V(xx3a.53)=5.95686, V(xx3a.54)=2.2, V(xx3a.90)=-0.198462, V(xx3a.91)=25, V(xx3a.92)=-25, V(xx3a.99)=4.07843, V(xx3a.10)=1.69355, V(x3_fb)=3.3849, V(xx3a.9)=0, V(xx3a.8)=1.49328, V(tone_top)=0, V(tone_w)=0, V(vol_top)=0, V(out)=0",
         "evidence": {
           "returncode": 0,
           "stderr": "",
-          "stdout": "******\n** ngspice-45.2 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Fri Sep 12 11:58:13 UTC 2025\n******\n\nBatch mode\n\nSimulation output goes to rawfile: /tmp/tmps7q_ye12/ngspice.raw\nComments and warnings go to log-file: /tmp/tmps7q_ye12/ngspice.log\n\n",
-          "log": "                 4.07937\nx1_p                                   4.07937\nxx1a.11                               0.345441\nxx1a.12                               0.345453\nxx1a.6                             7.80968e-09\nxx1a.7                                 4.07933\nx1_out                                 4.07933\nxx1a.53                                5.95877\nxx1a.54                                    2.2\nxx1a.90                           -2.67624e-07\nxx1a.91                                     25\nxx1a.92                                    -25\nxx1a.99                                4.07939\nxx1a.10                                3.68079\nx1_fb                                  4.07938\nxx1a.9                                       0\nxx1a.8                                 4.07933\nx2_w                                   4.07938\nclip_a                                 4.07933\nclip_b                                 4.07933\nm2_d1_node                             4.07935\nxx3a.11                               0.345441\nxx3a.12                               0.345453\nxx3a.6                             2.37901e-08\nxx3a.7                                 4.07922\nx3_out                                 4.07922\nxx3a.53                                5.95877\nxx3a.54                                    2.2\nxx3a.90                           -8.47424e-07\nxx3a.91                                     25\nxx3a.92                                    -25\nxx3a.99                                4.07939\nxx3a.10                                3.68075\nx3_fb                                  4.07935\nxx3a.9                                       0\nxx3a.8                                 4.07922\nout_a                                        0\nout                                          0\nh.xx3a.hlim#branch                 1.69485e-18\nv.xx3a.vlim#branch                -8.47424e-10\nh.xx1a.hlim#branch                 5.35249e-19\nv.xx1a.vlim#branch                -2.67624e-10\nv.xx3a.vln#branch                 -2.50008e-11\nv.xx3a.vlp#branch                 -2.50008e-11\nv.xx3a.ve#branch                   1.88002e-12\nv.xx3a.vc#branch                   1.88035e-12\nv.xx3a.vb#branch                   2.37901e-13\nv.xx1a.vln#branch                 -2.50008e-11\nv.xx1a.vlp#branch                 -2.50008e-11\nv.xx1a.ve#branch                   1.88013e-12\nv.xx1a.vc#branch                   1.88024e-12\nv.xx1a.vb#branch                   7.80968e-14\nv_in#branch                                  0\nv1#branch                          -0.00841228\na$poly$e.xx3a.egnd#branch_1_0     -3.87685e-07\na$poly$e.xx1a.egnd#branch_1_0     -3.88231e-07\n\n\nNo. of Data Rows : 4412\n\nTotal analysis time (seconds) = 0.149702\n\nTotal elapsed time (seconds) = 0.151 \n\nTotal DRAM available = 24032.066 MB.\nDRAM currently available = 3460.047 MB.\nMaximum ngspice program size =   22.305 MB.\nCurrent ngspice program size =   13.621 MB.\n\nShared ngspice pages =   11.574 MB.\nText (code) pages =    6.406 MB.\nStack = 0 bytes.\nLibrary pages =    2.105 MB.\n\n",
+          "stdout": "******\n** ngspice-45.2 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Fri Sep 12 11:58:13 UTC 2025\n******\n\nBatch mode\n\nSimulation output goes to rawfile: /tmp/tmp3hiaxn6c/ngspice.raw\nComments and warnings go to log-file: /tmp/tmp3hiaxn6c/ngspice.log\n\n",
+          "log": "           6.66856e-08\nxx1a.12                               0.695012\nxx1a.6                                 19.6535\nxx1a.7                                 1.49133\nx1_out                                 1.52315\nxx1a.53                                5.95686\nxx1a.54                                    2.2\nxx1a.90                              -0.212178\nxx1a.91                                     25\nxx1a.92                                    -25\nxx1a.99                                4.07843\nxx1a.10                                2.48501\nx1_fb                                  3.85906\nxx1a.9                                       0\nxx1a.8                                 1.49133\nx2_w                                   3.77789\nclip_a                                 1.74654\nclip_b                                 1.83882\nm2_d1_node                             1.74656\nxx3a.11                             6.5009e-08\nxx3a.12                               0.697739\nxx3a.6                                 19.7299\nxx3a.7                                 1.49328\nx3_out                                 1.52305\nxx3a.53                                5.95686\nxx3a.54                                    2.2\nxx3a.90                              -0.198462\nxx3a.91                                     25\nxx3a.92                                    -25\nxx3a.99                                4.07843\nxx3a.10                                1.69355\nx3_fb                                   3.3849\nxx3a.9                                       0\nxx3a.8                                 1.49328\ntone_top                                     0\ntone_w                                       0\nvol_top                                      0\nout                                          0\nh.xx3a.hlim#branch                 3.96924e-13\nv.xx3a.vlim#branch                -0.000198462\nh.xx1a.hlim#branch                 4.24355e-13\nv.xx1a.vlim#branch                -0.000212178\nv.xx3a.vln#branch                 -2.48023e-11\nv.xx3a.vlp#branch                 -2.51993e-11\nv.xx3a.ve#branch                   -0.00018605\nv.xx3a.vc#branch                   4.43463e-12\nv.xx3a.vb#branch                   0.000197299\nv.xx1a.vln#branch                 -2.47886e-11\nv.xx1a.vlp#branch                  -2.5213e-11\nv.xx1a.ve#branch                  -0.000185329\nv.xx1a.vc#branch                   4.43451e-12\nv.xx1a.vb#branch                   0.000196535\nv_in#branch                                  0\nv1#branch                          -0.00843135\na$poly$e.xx3a.egnd#branch_1_0      0.000196138\na$poly$e.xx1a.egnd#branch_1_0      0.000210625\n\n\nNo. of Data Rows : 3008\n\nTotal analysis time (seconds) = 0.0792955\n\nTotal elapsed time (seconds) = 0.081 \n\nTotal DRAM available = 24032.070 MB.\nDRAM currently available = 17421.367 MB.\nMaximum ngspice program size =   22.301 MB.\nCurrent ngspice program size =   13.641 MB.\n\nShared ngspice pages =   11.590 MB.\nText (code) pages =    6.406 MB.\nStack = 0 bytes.\nLibrary pages =    2.102 MB.\n\n",
           "plots": [
             "AC Analysis",
             "Operating Point",
@@ -786,45 +889,47 @@
           "node_voltages_V": {
             "vcc": 9.0,
             "in": 0.0,
-            "vcc_f": 8.15877150019972,
-            "vref": 4.079379492315153,
-            "in_b": 4.079368580967646,
-            "x1_p": 4.079368239697841,
-            "xx1a.11": 0.345440684721928,
-            "xx1a.12": 0.3454532885324744,
-            "xx1a.6": 7.809680721559964e-09,
-            "xx1a.7": 4.079330639284363,
-            "x1_out": 4.079330679428055,
-            "xx1a.53": 5.958771500199719,
+            "vcc_f": 8.156864560117782,
+            "vref": 3.868981674116162,
+            "in_b": 2.631950099590067,
+            "x1_p": 2.631949779851369,
+            "xx1a.11": 6.668561711666327e-08,
+            "xx1a.12": 0.6950117454916924,
+            "xx1a.6": 19.65350543481941,
+            "xx1a.7": 1.491326192310741,
+            "x1_out": 1.523152824443688,
+            "xx1a.53": 5.956864560117782,
             "xx1a.54": 2.2,
-            "xx1a.90": -2.676246120915135e-07,
+            "xx1a.90": -0.212177547552983,
             "xx1a.91": 25.0,
             "xx1a.92": -25.0,
-            "xx1a.99": 4.07938575009986,
-            "xx1a.10": 3.680785937348593,
-            "x1_fb": 4.079379211116579,
+            "xx1a.99": 4.078432280058891,
+            "xx1a.10": 2.485005958851656,
+            "x1_fb": 3.859060752123125,
             "xx1a.9": 0.0,
-            "xx1a.8": 4.079330639284363,
-            "x2_w": 4.079377524687248,
-            "clip_a": 4.079332418767875,
-            "clip_b": 4.079334139012182,
-            "m2_d1_node": 4.079347524783854,
-            "xx3a.11": 0.3454407425739037,
-            "xx3a.12": 0.3454533480261643,
-            "xx3a.6": 2.379087504777999e-08,
-            "xx3a.7": 4.079217871269372,
-            "x3_out": 4.079217998382898,
-            "xx3a.53": 5.95877150019972,
+            "xx1a.8": 1.491326192310741,
+            "x2_w": 3.777890206373646,
+            "clip_a": 1.746542912926418,
+            "clip_b": 1.838822560895141,
+            "m2_d1_node": 1.746558537339518,
+            "xx3a.11": 6.500897418527003e-08,
+            "xx3a.12": 0.6977394089811622,
+            "xx3a.6": 19.72993608675296,
+            "xx3a.7": 1.493283111536467,
+            "x3_out": 1.52305243062218,
+            "xx3a.53": 5.956864560117781,
             "xx3a.54": 2.2,
-            "xx3a.90": -8.474235088264905e-07,
+            "xx3a.90": -0.1984621272380828,
             "xx3a.91": 25.0,
             "xx3a.92": -25.0,
-            "xx3a.99": 4.07938575009986,
-            "xx3a.10": 3.680751888450886,
-            "x3_fb": 4.079345111859074,
+            "xx3a.99": 4.078432280058891,
+            "xx3a.10": 1.693551067211584,
+            "x3_fb": 3.384899950878881,
             "xx3a.9": 0.0,
-            "xx3a.8": 4.079217871269372,
-            "out_a": 0.0,
+            "xx3a.8": 1.493283111536467,
+            "tone_top": 0.0,
+            "tone_w": 0.0,
+            "vol_top": 0.0,
             "out": 0.0
           }
         }
@@ -860,14 +965,15 @@
       }
     ],
     "architecture": {
-      "summary": "Vref-biased single-supply 9V: input bias -> X1 gain -> R9/R10/R12/C7/M1/M2/D1 clip network -> X3 gain/filter -> simplified output volume. Switch1/X4 omitted.",
+      "summary": "Vref-biased single-supply 9V: input bias -> X1 gain -> R9/R10/R12/C7/M1/M2/D1 clip network (to Vref) -> X3 gain/filter -> tone (X4 10k pot + C11 to ground) -> HP/LP (Switch1 parallels R14/R15) -> volume -> OUT.",
       "blocks": [
         "power_ref",
         "input_bias",
         "x1_gain",
         "clip_network",
         "x3_gain",
-        "output_simplified"
+        "tone_hp_lp",
+        "output_volume"
       ],
       "interfaces": [
         "IN",
@@ -884,6 +990,7 @@
         "CLIP_A",
         "CLIP_B",
         "X3_OUT",
+        "TONE_W",
         "OUT"
       ]
     },
@@ -938,32 +1045,45 @@
       },
       {
         "id": "D_BIAS_FIX",
-        "decision": "Provisional: R2 to VREF (was GND per text) to fix DC bias in sim; D1=APPROX_1N4148 (user-selected placeholder) per 2026-11-09",
+        "decision": "Reverted: R2 to GND per S002-confirmed text (1M input reference to ground). R6 biases op-amp non-inverting input to VREF. D1=APPROX_1N34A per S002-confirmed 1N34A Ge clipping diode.",
         "alternatives": [
-          "keep R2 to GND and revise feedback topology",
-          "verify S002 image"
+          "keep R2 to VREF (provisional sim fix, conflicts with S002)",
+          "verify S002 image for pin-level confirmation"
         ],
-        "rationale": "OP showed IN_B~3V/X1_OUT saturated low with R2-GND + R6-VREF ratio; single-supply bias fix applied for simulatable OP",
+        "rationale": "S002 text explicitly states R2 connects input cap C1 to GROUND as voltage reference (C026). Previous VREF move was a provisional sim bias fix and is now removed.",
         "sources": [
-          "ngspice OP debug 2026-11-09",
-          "user selection 2026-11-09"
+          "S002 https://www.analogisnotdead.com/article34/circuit-analysis-fulltone-s-ocd accessed 2026-11-10 via webfetch (C026)",
+          "ngspice OP debug 2026-11-09 (superseded)"
+        ]
+      },
+      {
+        "id": "D_TONE",
+        "decision": "Implement S002-confirmed tone/HP-LP network: X4=10k tone pot, C11 tone cap to ground, Switch1 (HP/LP) parallels R14/R15. R14=22k/R15=33k image-read from S002 schematic (verify); C11=47n placeholder.",
+        "alternatives": [
+          "keep tone/volume simplified (prior draft)",
+          "ask user for exact tone/HP-LP values/wiring"
+        ],
+        "rationale": "S002 text confirms X4=10k pot, C11 cap to ground, HP/LP parallels R14/R15 (C028). Clip wiring confirmed from S002 schematic image matches user-reported wiring; commenter-reported alternate wiring does not match image.",
+        "sources": [
+          "S002 https://www.analogisnotdead.com/article34/circuit-analysis-fulltone-s-ocd accessed 2026-11-10 via webfetch (C028)",
+          "S002 schematic images in circuit/sources/s002-images/ (clipping.png, fulltone-ocd.png)"
         ]
       }
     ],
     "risks": [
       {
         "id": "K1",
-        "risk": "Op-amp feedback and input pin wiring assumed (text functional, not pin-net explicit)",
+        "risk": "Op-amp feedback and input pin wiring assumed (text functional, not pin-net explicit). R2\u2192GND confirmed from S002 image; X1/X3 feedback placement still assumed.",
         "severity": "high",
         "mitigation": "verify against actual S002 schematic",
         "verification": "schematic compare + sim"
       },
       {
         "id": "K2",
-        "risk": "M1/M2/D1 types/pinouts unknown; APPROX models unverified",
+        "risk": "M1/M2/D1 types/pinouts unknown; APPROX models unverified. Clip wiring CONFIRMED from S002 image: M1[D&G=VREF,S=CLIP_A], M2[D=VREF,G&S=M2_D1_NODE], D1[A=CLIP_A,K=M2_D1_NODE]. Commenter-reported alternate wiring does NOT match S002 image.",
         "severity": "high",
-        "mitigation": "identify parts from schematic/BOM",
-        "verification": "datasheets + sourced models"
+        "mitigation": "identify parts from schematic/BOM; obtain manufacturer models",
+        "verification": "datasheets + sourced models + schematic compare"
       },
       {
         "id": "K3",
@@ -974,16 +1094,16 @@
       },
       {
         "id": "K4",
-        "risk": "Switch1/R14/R15/C11/X4 omitted; output/tone not representative",
-        "severity": "high",
-        "mitigation": "add after confirming topology",
+        "risk": "Tone/HP-LP values are image-read (uncertain): R14=22k, R15=33k, C11=47n placeholder. X4=10k confirmed from S002 text. Switch1 wiring assumed.",
+        "severity": "medium",
+        "mitigation": "confirm values from S002 schematic image",
         "verification": "schematic compare"
       },
       {
         "id": "K5",
-        "risk": "User-reported node extraction from image; no image in repo",
-        "severity": "high",
-        "mitigation": "record provenance; verify against S002",
+        "risk": "S002 schematic image available but cannot be machine-analyzed; node extraction and clip wiring rely on human visual inspection. All image-read values should be verified against the source image.",
+        "severity": "medium",
+        "mitigation": "user/human verification of S002 images in circuit/sources/s002-images/",
         "verification": "manual check"
       }
     ],
@@ -1041,12 +1161,12 @@
     {
       "Ref": "D1",
       "Type": "D",
-      "Model": "APPROX_1N4148",
+      "Model": "APPROX_1N34A",
       "Kind": "vendor",
       "Vendor": "project approximation",
-      "Part": "1N4148 APPROX sim-only (user selected)",
-      "Source": "local APPROX; not manufacturer model; placeholder for D1",
-      "SHA256": "bfa7e99c8627cad9"
+      "Part": "1N34A Ge APPROX sim-only (S002-confirmed D1 type)",
+      "Source": "local APPROX; not manufacturer model; D1 per S002 C027",
+      "SHA256": "db949f2074c80243"
     },
     {
       "Ref": "X3A",

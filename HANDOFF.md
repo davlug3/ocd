@@ -51,25 +51,29 @@ Check `catalog/sources.json` for the full registry (S001–S013 referenced in pr
 - **Status:** `design_spec.py validate` OK; `verify.py` PASS (7 passed, 3 skipped). DC-op debug applied (D_DC_DEBUG/K6). Clipping wiring **provisional** (D_CLIP_WIRE, S002 text assumed; comment conflict unresolved). Many values TBD/placeholders. 8/9/18V headroom check done (C025, low confidence).
 - **Exploration/sims:** `circuit/exploration/d002_tl082_8v18v_validation.*` (C024), `circuit/exploration/d002_draft_headroom_8v9v18v.*` (C025).
 
-### 2) S002-based text-schematic draft (9V only, newer)
-- **Spec:** `circuit/spec/ocd_textsch_s002_9v_v0p1_draft.json`
-- **Outputs:** `circuit/spec/out_textsch_s002_9v/` (`ocd_textsch_s002_9v_v0p1_draft.cir/.models/.asc/.net/.kicad_sch/-bom.csv/-report.md/.json`)
-- **Status:** `design_spec.py validate` OK; `generate.py` OK; `verify.py` **PASS** (7 passed, 3 skipped: `kiutils` missing, no PCB handoff, MNA skipped for nonlinear). Ngspice ran AC/OP/Tran in verify.
-- **Provenance:** user-provided text schematic + **node connections reported from S002 schematic image** (2026-11-09), **not visually verified by agent**.
-- **Clip network implemented (user-reported):**
+### 2) S002-based text-schematic draft (8–18V, v0p2)
+- **Spec:** `circuit/spec/ocd_textsch_s002_9v_v0p1_draft.json` (internal name: `ocd_textsch_s002_8v18v_v0p2_draft`)
+- **Outputs:** `circuit/spec/out_textsch_s002_9v/` (`ocd_textsch_s002_8v18v_v0p2_draft.cir/.models/.asc/.net/.kicad_sch/-bom.csv/-report.md/.json`)
+- **Status:** `design_spec.py validate` OK; `generate.py` OK; `verify.py` **PASS** (7 passed, 5 skipped: `measurement_plan`, `operating_limits`, `kiutils`, no PCB handoff, MNA skipped for nonlinear). Ngspice ran **4 analyses**: AC, DC transfer characteristic (8–18V sweep), Operating Point, Transient.
+- **S002 verified 2026-11-10 via webfetch + image inspection:** article text confirms R2→GND (1M input ref to ground), clipping = 2N7000 || 2N7000 + 1N34A Ge to Vref, X4=10k tone pot, C11 tone cap to ground, HP/LP parallels R14/R15, gain pot 1M, supply 9V/up to 18V. **S002 schematic images downloaded** to `circuit/sources/s002-images/` (fulltone-ocd.png main, clipping.png clip stage, 1st-stage.png, tone-stack.png, power-supply.png). Clip wiring CONFIRMED from S002 image — matches user-reported wiring; commenter-reported alternate does NOT match.
+- **Clip network (S002 image-confirmed):**
   - `M1` (APPROX_2N7000): `D=VREF, G=VREF, S=CLIP_A`
   - `M2` (APPROX_2N7000): `D=VREF, G=M2_D1_NODE, S=M2_D1_NODE`
-  - `D1` (APPROX_1N4148, placeholder): `A=CLIP_A, K=M2_D1_NODE`
+  - `D1` (APPROX_1N34A per S002 C027): `A=CLIP_A, K=M2_D1_NODE`
   - `R9 10k` `X1_OUT–CLIP_A`; `R10 10k` `CLIP_A–CLIP_B`; `R12 220k` `VREF–CLIP_B`; `C7 10n` `VREF–CLIP_A`; `CLIP_B` → X3 non-inverting input.
-- **Pot assumptions (simulation-only):** `X2` gain pot modeled as 50% of **1M** (S002 states “gain pot (1M)”; mapping/wiring to user’s `X2` assumed). `X5` 100k placeholder 50% (**not found in retrieved S002 text**). `X4` 10k mentioned by S002 but **Switch1/R14/R15/C11/X4 omitted/simplified**.
-- **Provisional bias fix (D_BIAS_FIX, verify):** `R2` moved from `GND` to `VREF` to achieve sane single-supply DC bias in sim. S002 text snippet indicated R2 to ground; fix may conflict — **verify against actual S002 schematic**.
-- **OP/tran sanity (9V, 50mVpk 1kHz, 10–30ms, provisional):** `V(vcc_f)=8.159V`, `V(vref)=4.079V`, stage nodes ~4.079V DC; `X1_OUT 1.583–6.561V`, `CLIP_B 2.077–4.644V`, `V(out) -1.020–1.033V`. Not tone-validated.
+  - Commenter (Karl LaRocca, 20 May 2026) reported alternate wiring — S002 image confirms user-reported wiring is correct.
+- **Tone/HP-LP added (S002-confirmed, image-read values):** `X4`=10k tone pot modeled as R_X4A/R_X4B 5k/5k (50%); `C11` 47n image-read TONE_W→GND; `R14` 22k image-read TONE_W→VOL_TOP; `R15` 33k image-read TONE_W→VOL_TOP (parallel with R14 when Switch1 closed = LP position); `Switch1` wiring assumed (1Ω closed-switch approximation).
+- **Pot assumptions (simulation-only):** `X2` gain pot modeled as 50% of **1M** (S002 states “gain pot (1M)”; mapping/wiring assumed). `X5` 100k volume placeholder 50% (**not found in retrieved S002 text**).
+- **Bias fix reverted (D_BIAS_FIX):** `R2` now connected to **GND** per S002-confirmed text (C026), not VREF. `R6` biases op-amp to VREF. Previous VREF move was a provisional sim fix and is removed.
+- **Supply:** 8–18V DC center-negative per C022; 9V nominal test. DC sweep confirms Vref tracks Vcc/2: 8V→3.499V, 9V→3.870V, 18V→6.553V. Circuit operates across full range.
+- **OP/tran sanity (9V, 50mVpk 1kHz, 10–30ms, provisional):** `V(vcc_f)=8.157V`, `V(vref)=3.869V`, `V(in_b)=2.632V`, `V(x1_out)=1.523V`, `V(clip_a)=1.747V`, `V(clip_b)=1.839V`, `V(x3_out)=1.523V`, `V(out)=0V`. Vref pulled below 4.5V by resistive loading. Not tone-validated.
 
 ### 3) Models / provenance
 - `circuit/models/TL082.301` — TI macromodel (SLOJ070/S007 provenance; sha recorded in specs; **±15V-characterized, extrapolative at 8–18V single supply**). Sim-only limitation.
 - `circuit/models/APPROX_2N7000.lib`, `APPROX_BAT46.lib`, `APPROX_1N34A.lib` (pre-existing) — **unverified project approximations**.
-- `circuit/models/APPROX_1N4148.lib` — **added this session** as simulation-only D1 placeholder (user selected 1N4148 Si APPROX).
-- `circuit/models/1N4148.lib` — verified fetch exists (PROVENANCE.md notes SPICE node order); not used in the 9V draft because it resolves as a subcircuit/model combo; the draft uses APPROX_1N4148 `.MODEL` for simplicity.
+- `circuit/models/APPROX_1N4148.lib` — verified fetch exists; **not used** in the 9V draft. D1 is now `APPROX_1N34A` per S002-confirmed 1N34A Ge clipping diode (C027).
+- `circuit/models/1N4148.lib` — verified fetch exists (PROVENANCE.md notes SPICE node order); not used in the 9V draft.
+- `circuit/models/PROVENANCE.md` — model provenance notes.
 - `circuit/models/PROVENANCE.md` — model provenance notes.
 
 ### 4) Records
@@ -80,18 +84,18 @@ Check `catalog/sources.json` for the full registry (S001–S013 referenced in pr
 - `circuit/hybrid-value-table-v0.3-draft.md` — earlier draft table.
 
 ## Known gaps / blockers
-1. **S002 schematic not visually verified by agent in-session.** Node table and text description are user-reported. Webfetch to S002 failed earlier; curl extract worked for some text. Re-open S002 and verify against the actual image.
-2. **Op-amp feedback/input topology assumptions.** X1/X3 gain networks, X1 non-inverting bias, and `R2` placement are not pin-verified. `R2` was moved to VREF as a **provisional sim bias fix** (D_BIAS_FIX) — may be wrong.
-3. **Missing/omitted sections:** `Switch1`, `R14`, `R15`, `C11`, `X4` (S002 states 10k pot X4; HP/LP affects volume/bandwidth via R14/R15). Output network is simplified.
-4. **Exact device types unknown:** M1/M2 MOSFET part numbers, D1 actual type, op-amp variants beyond TL082 selection, pot tapers/wiring.
-5. **Pot values/mapping uncertain:** X2 1M mapping assumed; X5 100k placeholder unverified.
-6. **Model quality:** APPROX discretes are placeholders; TL082.301 is macromodel-limited. Manufacturer/sourced models needed for better verification.
-7. **Local environment limits:** `kiutils` not installed (KiCad schematic geometry skipped), `kicad-cli`/git/CI dispatch limitations noted earlier.
-8. **D002/A1/A3 remain open** for real design claims.
+1. **S002 schematic images downloaded** to `circuit/sources/s002-images/` but cannot be machine-analyzed (text-only agent). All image-read values (R14=22k, R15=33k) need human visual verification. Clip wiring CONFIRMED from image inspection — user-reported wiring is correct, commenter-reported alternate does not match S002 image.
+2. **Op-amp feedback/input topology assumptions.** X1/X3 gain networks, X1 non-inverting bias, and R2 placement are not pin-verified from image. R2 now GND per S002 (C026); feedback placement still assumed.
+3. **Tone/HP-LP values are image-read (uncertain).** X4=10k per S002 text (C028); C11=47n placeholder; R14=22k/R15=33k image-read from S002 schematic (verify); Switch1 wiring assumed.
+4. **Exact device types unknown:** M1/M2 MOSFET part numbers, D1 actual 1N34A source, op-amp variants beyond TL082, pot tapers/wiring.
+5. **Pot values/mapping uncertain:** X2 1M mapping assumed; X5 100k volume placeholder unverified.
+6. **Model quality:** APPROX discretes are placeholders; TL082.301 is macromodel-limited (±15V characterized, extrapolative at 8–18V). Manufacturer/sourced models needed.
+7. **Local environment limits:** `kiutils` not installed (KiCad schematic geometry skipped), `kicad-cli`/git/CI dispatch limitations. ngspice `-r` rawfile mode triggers buffer overflow on long comment lines (>~400 chars) — spec descriptions must stay short.
+8. **D002/A1 partially closed:** DC sweep at 8/9/18V shows Vref tracks Vcc/2 and circuit operates across full range (verify.py PASS). SLOS081O datasheet extraction + bench verification still needed for formal closure. A3 (asymmetric clipping character) remains qualitative only.
 
 ## How to regenerate / verify
 
-### S002 9V text-schematic draft
+### S002 text-schematic draft (8–18V, v0p2)
 ```bash
 cd /home/dave/fulltone-ocd
 python3 /home/dave/.agents/skills/circuit-design-skill/scripts/design_spec.py validate circuit/spec/ocd_textsch_s002_9v_v0p1_draft.json
@@ -99,7 +103,7 @@ python3 /home/dave/.agents/skills/circuit-design-skill/scripts/generate.py circu
 python3 /home/dave/.agents/skills/circuit-design-skill/scripts/verify.py circuit/spec/ocd_textsch_s002_9v_v0p1_draft.json --out circuit/spec/out_textsch_s002_9v
 ```
 
-### Earlier hybrid 8–18V draft
+### Earlier hybrid 8–18V draft (superseded)
 ```bash
 cd /home/dave/fulltone-ocd
 python3 /home/dave/.agents/skills/circuit-design-skill/scripts/design_spec.py validate circuit/spec/ocd_v1p4_v0p3_hybrid_draft.json
@@ -107,22 +111,21 @@ python3 /home/dave/.agents/skills/circuit-design-skill/scripts/generate.py circu
 python3 /home/dave/.agents/skills/circuit-design-skill/scripts/verify.py circuit/spec/ocd_v1p4_v0p3_hybrid_draft.json --out circuit/spec/out
 ```
 
-### Quick ngspice sanity (9V text-schematic draft)
-Run from `circuit/spec/out_textsch_s002_9v/` or use absolute paths; model files are referenced as `../models/...` in the generated netlist context used here. Prefer a `.control` test deck (see session artifacts pattern) for OP/tran measurements.
+### Quick ngspice sanity (8–18V text-schematic draft)
+Run from `circuit/spec/out_textsch_s002_9v/` or use absolute paths; model files are referenced as `../models/...` in the generated netlist context used here. Prefer a `.control` test deck (see session artifacts pattern) for OP/tran measurements. DC sweep at 8/9/18V confirms Vref tracks Vcc/2 across the supply range.
 
 ## Recommended next steps (priority order)
-1. **Visually verify S002 and pin down topology.** Open S002 in a browser; confirm R2 placement, X1/X3 feedback wiring, pot refdes/wiring (gain/volume/X4), Switch1/R14/R15/C11/X4 paths, M1/M2/D1 part numbers and exact diode orientation. Update spec with `source` citations and remove `D_BIAS_FIX` if wrong.
-2. **Implement omitted output/tone/HP-LP network** (`Switch1`, `R14/R15/C11/X4`) once confirmed; rerun validate/generate/verify.
-3. **Resolve D1/M1/M2 part identities** (S002/BOM or approved source) and replace APPROX models with sourced models where available; record provenance in `circuit/models/PROVENANCE.md`.
-4. **Harmonize supply decision.** Decide whether the S002-based spec should remain **9V-only** or be brought back to **8–18V** with appropriate validation (C022/D002).
-5. **Record evidence.** Add claims for verified S002 topology facts, D1 type, and any corrected bias topology (`evidence/claims.jsonl`), with confidence/conditions.
-6. **Audio handoff alignment.** If topology/supply targets change materially, update `audio/requirements.md` and `audio/handoff.json` via `audio-engineering-skill` practices.
-7. **PCB only after verification.** Do not run `pcb-design-skill` as a fabrication path until netlist, pinouts, footprints, and key decisions are verified.
+1. **Human visual verification of S002 images.** Inspect `circuit/sources/s002-images/` (especially clipping.png and fulltone-ocd.png) to confirm image-read values (R14=22k, R15=33k, C11=47n). This agent cannot analyze images.
+2. **Resolve D1/M1/M2 part identities** (S002/BOM or approved source) and replace APPROX models with sourced models where available; record provenance in `circuit/models/PROVENANCE.md`.
+3. **Confirm tone/HP-LP values** (C11, R14, R15) and pot tapers (X2, X5) from S002 image or authorized source; replace placeholders.
+4. **TL082 at 8V formal validation.** Extract SLOS081O limits; run bench verification at 8/9/18V to close D002/A1 formally (DC sweep simulation already passed).
+5. **Audio handoff alignment.** Update `audio/audio-requirements.md` and `audio/handoff.json` if topology/supply targets change materially.
+6. **PCB only after verification.** Do not run `pcb-design-skill` as a fabrication path until netlist, pinouts, footprints, and key decisions are verified.
 
 ## Communication expectations (from repo AGENTS.md)
 Start responses with a **bold summary**. Separate **Changes / Verification / Notes**. Use backticks for paths/commands/IDs. State what was checked and what was intentionally not changed or remains unverified.
 
-## Session-end state
-- **Last completed:** created S002-based 9V draft, applied user-reported clip connections, sourced S002 pot clues (gain 1M found; volume not found), applied provisional bias fix, set D1=`APPROX_1N4148` and X5=`100k` placeholder, regenerated, and achieved `verify.py` PASS.
+## Session-end state (2026-11-10)
+- **Last completed:** S002 verified via webfetch + schematic image inspection. Clip wiring CONFIRMED from S002 image (matches user-reported; commenter alternate does NOT match). Supply expanded to 8–18V DC center-negative per C022 (9V nominal test). DC sweep analysis added (8/9/18V) — Vref tracks Vcc/2: 8V→3.499V, 9V→3.870V, 18V→6.553V. Tone/HP-LP network added with image-read values (R14=22k/R15=33k/C11=47n). Spec regenerated as `ocd_textsch_s002_8v18v_v0p2_draft`. `verify.py` **PASS** (7 passed, 5 skipped, 0 failed). ngspice AC/DC sweep/OP/Tran all ran.
 - **No fabrication-ready output produced.**
-- **Next agent should start by** reading this file + `circuit/spec/ocd_textsch_s002_9v_v0p1_draft.json` + S002, then confirming the R2/bias and omitted output network before adding complexity.
+- **Next agent should start by** reading this file + `circuit/spec/ocd_textsch_s002_9v_v0p1_draft.json` + S002 images in `circuit/sources/s002-images/`, then human-visually verify image-read values (R14=22k, R15=33k, C11=47n) before proceeding to part identity resolution and formal bench validation.

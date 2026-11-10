@@ -3,7 +3,7 @@
 ## Rails
 | Rail | Nominal | Tolerance | Max load current | Quiescent current | Ripple limit | Source |
 |---|---|---|---|---|---|---|
-| Vcc (single) | 5–18V DC (user) | TBD (adapter dependent) | TBD | TBD (TL082 + any LED/buffer) | TBD | C002 |
+| Vcc (single) | 8–18V DC (user, reconciled 2026-11-09) | TBD (adapter dependent) | TBD | TBD (TL082 + any LED/buffer) | TBD | C022 |
 | Vref (derived) | Vcc/2 | TBD (divider tolerance) | bias only | n/a | must be well filtered | S2,C003 |
 
 ## Source and rectification

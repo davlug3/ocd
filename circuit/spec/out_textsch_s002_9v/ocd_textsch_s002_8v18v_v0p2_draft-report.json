@@ -1,0 +1,1225 @@
+{
+  "name": "ocd_textsch_s002_8v18v_v0p2_draft",
+  "description": "OCD-style overdrive draft from S002-verified topology + user node connections. Supply 8-18V DC center-negative, 9V nominal test. Clip wiring confirmed from S002 image. Op-amp feedback wiring assumed. Not a verified Fulltone netlist. Do not fabricate.",
+  "topology": "ocd_textsch_s002_9v",
+  "generated": "2026-11-10",
+  "ground": "GND",
+  "supplies": [
+    {
+      "name": "VCC",
+      "voltage": 9.0,
+      "range_v": [
+        8.0,
+        18.0
+      ],
+      "source": "8-18V DC center-negative per C022; 9V nominal test condition"
+    }
+  ],
+  "environment": {
+    "ta_c": 25,
+    "tj_max_c": 125
+  },
+  "analyses": [
+    {
+      "type": "op"
+    },
+    {
+      "type": "dc",
+      "source": "V1",
+      "start": 8,
+      "stop": 18,
+      "step": 1
+    },
+    {
+      "type": "tran",
+      "stop": 0.03,
+      "step": 1e-05
+    },
+    {
+      "type": "ac",
+      "start": 20,
+      "stop": 20000,
+      "points": 100
+    }
+  ],
+  "assumptions": [
+    "9V nominal test; design range 8-18V DC center-negative per C022.",
+    "Op-amp feedback networks (X1/X3) are standard Vref-biased assumptions from component values; not pin-verified against S002 schematic.",
+    "R2 to GND per S002-confirmed text and schematic image (C026) \u2014 not VREF. R6 biases op-amp non-inverting input to VREF.",
+    "X2 modeled as 500k (50% of 1M). S002 states 'gain pot (1M)' \u2014 mapping/wiring to X2 assumed.",
+    "X5 modeled as 50% of 100k placeholder \u2014 volume value NOT found in retrieved S002 text; unverified.",
+    "M1/M2 exact part numbers unknown; APPROX_2N7000 simulation-only, unverified. D1=APPROX_1N34A per S002-confirmed 1N34A Ge clipping diode (C027). APPROX sim-only, Ge variability applies.",
+    "Clip wiring CONFIRMED from S002 schematic image: M1[D&G=VREF,S=CLIP_A], M2[D=VREF,G&S=M2_D1_NODE], D1[A=CLIP_A,K=M2_D1_NODE]. Commenter-reported alternate wiring does NOT match S002 image.",
+    "Tone/HP-LP values CONFIRMED from S002 schematic image: X4=10k pot (article text), C11=47nF, R14=22k, R15=33k. Switch1 wiring assumed.",
+    "Provenance: S002 article text + schematic images (webfetch 2026-11-10) + user-provided node connections from schematic image (2026-11-09). Images in circuit/sources/s002-images/."
+  ],
+  "warnings": [],
+  "components": [
+    {
+      "ref": "V1",
+      "type": "V",
+      "value": 0.0,
+      "pins": {
+        "1": "VCC",
+        "2": "GND"
+      },
+      "notes": "9V nominal test; design range 8-18V DC center-negative (C022)",
+      "dc": 9.0
+    },
+    {
+      "ref": "V_IN",
+      "type": "V",
+      "value": 0.0,
+      "pins": {
+        "1": "IN",
+        "2": "GND"
+      },
+      "waveform": {
+        "type": "sin",
+        "params": [
+          0,
+          0.05,
+          1000
+        ]
+      },
+      "dc": 0.0,
+      "ac": 1.0
+    },
+    {
+      "ref": "R1",
+      "type": "R",
+      "value": 100.0,
+      "pins": {
+        "1": "VCC",
+        "2": "VCC_F"
+      },
+      "notes": "S002-schematic-image-confirmed: supply feed/filter node (R1=100\u03a9)."
+    },
+    {
+      "ref": "C2",
+      "type": "C",
+      "value": 1e-05,
+      "pins": {
+        "1": "VCC_F",
+        "2": "GND"
+      },
+      "notes": "S002-schematic-image-confirmed: power bulk filter (C2=10\u00b5F)."
+    },
+    {
+      "ref": "C3",
+      "type": "C",
+      "value": 1e-07,
+      "pins": {
+        "1": "VCC_F",
+        "2": "GND"
+      },
+      "notes": "S002-schematic-image-confirmed: power HF decoupling (C3=100nF)."
+    },
+    {
+      "ref": "R4",
+      "type": "R",
+      "value": 10000.0,
+      "pins": {
+        "1": "VCC_F",
+        "2": "VREF"
+      },
+      "notes": "S002-schematic-image-confirmed: Vref divider upper (R4=10k)."
+    },
+    {
+      "ref": "R7",
+      "type": "R",
+      "value": 10000.0,
+      "pins": {
+        "1": "VREF",
+        "2": "GND"
+      },
+      "notes": "S002-schematic-image-confirmed: Vref divider lower (R7=10k)."
+    },
+    {
+      "ref": "C5",
+      "type": "C",
+      "value": 1e-05,
+      "pins": {
+        "1": "VREF",
+        "2": "GND"
+      },
+      "notes": "S002-schematic-image-confirmed: Vref filter cap (C5=10\u00b5F)."
+    },
+    {
+      "ref": "C1",
+      "type": "C",
+      "value": 2.2e-08,
+      "pins": {
+        "1": "IN",
+        "2": "IN_B"
+      },
+      "notes": "S002-schematic-image-confirmed: input coupling cap (C1=22nF)."
+    },
+    {
+      "ref": "R2",
+      "type": "R",
+      "value": 1000000.0,
+      "pins": {
+        "1": "IN_B",
+        "2": "GND"
+      },
+      "notes": "S002-schematic-image-confirmed: R2 (1M) connects input cap C1 to GROUND as voltage reference, not to VREF. R6 biases op-amp to VREF."
+    },
+    {
+      "ref": "R6",
+      "type": "R",
+      "value": 470000.0,
+      "pins": {
+        "1": "IN_B",
+        "2": "VREF"
+      },
+      "notes": "S002-schematic-image-confirmed: biases op-amp non-inverting input to VREF (R6=470k)."
+    },
+    {
+      "ref": "R3",
+      "type": "R",
+      "value": 10000.0,
+      "pins": {
+        "1": "IN_B",
+        "2": "X1_P"
+      },
+      "notes": "S002-schematic-image-confirmed: limits current to op-amp input (R3=10k)."
+    },
+    {
+      "ref": "X1A",
+      "type": "OPAMP",
+      "value": 0.0,
+      "pins": {
+        "1": "X1_P",
+        "2": "X1_FB",
+        "3": "VCC_F",
+        "4": "GND",
+        "5": "X1_OUT"
+      },
+      "model": "TL082",
+      "notes": "TL082 section 1; wiring assumed"
+    },
+    {
+      "ref": "R5",
+      "type": "R",
+      "value": 2200.0,
+      "pins": {
+        "1": "X1_FB",
+        "2": "VREF"
+      },
+      "notes": "S002-schematic-image-confirmed: gain ref to Vref (R5=2.2k)."
+    },
+    {
+      "ref": "R8",
+      "type": "R",
+      "value": 18000.0,
+      "pins": {
+        "1": "X1_FB",
+        "2": "X2_W"
+      },
+      "notes": "S002-schematic-image-confirmed: gain network (R8=18k)."
+    },
+    {
+      "ref": "R_X2POT",
+      "type": "R",
+      "value": 500000.0,
+      "pins": {
+        "1": "X2_W",
+        "2": "X1_OUT"
+      },
+      "notes": "Drive/gain pot modeled 50% of 1M (S002 states gain pot 1M; mapping/wiring assumed)."
+    },
+    {
+      "ref": "C4",
+      "type": "C",
+      "value": 1e-07,
+      "pins": {
+        "1": "X1_FB",
+        "2": "VREF"
+      },
+      "notes": "S002-schematic-image-confirmed: bass limit in gain path (C4=100nF)."
+    },
+    {
+      "ref": "C6",
+      "type": "C",
+      "value": 2.2e-10,
+      "pins": {
+        "1": "X1_OUT",
+        "2": "X1_FB"
+      },
+      "notes": "S002-schematic-image-confirmed: HF stability cap (C6=220pF)."
+    },
+    {
+      "ref": "R9",
+      "type": "R",
+      "value": 10000.0,
+      "pins": {
+        "1": "X1_OUT",
+        "2": "CLIP_A"
+      },
+      "notes": "S002-schematic-image-confirmed: series into clipping (R9=10k)."
+    },
+    {
+      "ref": "C7",
+      "type": "C",
+      "value": 1e-08,
+      "pins": {
+        "1": "VREF",
+        "2": "CLIP_A"
+      },
+      "notes": "S002-schematic-image-confirmed: VREF-CLIP_A cap (C7=10nF)."
+    },
+    {
+      "ref": "R10",
+      "type": "R",
+      "value": 10000.0,
+      "pins": {
+        "1": "CLIP_A",
+        "2": "CLIP_B"
+      },
+      "notes": "S002-schematic-image-confirmed: clip network resistor (R10=10k)."
+    },
+    {
+      "ref": "R12",
+      "type": "R",
+      "value": 220000.0,
+      "pins": {
+        "1": "VREF",
+        "2": "CLIP_B"
+      },
+      "notes": "S002-schematic-image-confirmed: bias to CLIP_B (R12=220k)."
+    },
+    {
+      "ref": "M1",
+      "type": "NMOS",
+      "value": 0.0,
+      "pins": {
+        "1": "VREF",
+        "2": "VREF",
+        "3": "CLIP_A"
+      },
+      "model": "APPROX_2N7000",
+      "notes": "S002-schematic-image-confirmed: M1 [D&G=VREF, S=CLIP_A]. Exact part unknown; APPROX sim-only. Commenter-reported alternate wiring (M1[S=VREF,D&G=R9/R10]) does NOT match S002 image."
+    },
+    {
+      "ref": "M2",
+      "type": "NMOS",
+      "value": 0.0,
+      "pins": {
+        "1": "VREF",
+        "2": "M2_D1_NODE",
+        "3": "M2_D1_NODE"
+      },
+      "model": "APPROX_2N7000",
+      "notes": "S002-schematic-image-confirmed: M2 [D=VREF, G&S=M2_D1_NODE]. Exact part unknown; APPROX sim-only. Commenter-reported alternate wiring (M2[D&G=VREF,S=D1]) does NOT match S002 image."
+    },
+    {
+      "ref": "D1",
+      "type": "D",
+      "value": 0.0,
+      "pins": {
+        "1": "CLIP_A",
+        "2": "M2_D1_NODE"
+      },
+      "model": "APPROX_1N34A",
+      "notes": "S002-schematic-image-confirmed: D1 [A=CLIP_A, K=M2_D1_NODE], 1N34A Ge per article text (C027). APPROX sim-only model, Ge variability applies."
+    },
+    {
+      "ref": "X3A",
+      "type": "OPAMP",
+      "value": 0.0,
+      "pins": {
+        "1": "CLIP_B",
+        "2": "X3_FB",
+        "3": "VCC_F",
+        "4": "GND",
+        "5": "X3_OUT"
+      },
+      "model": "TL082",
+      "notes": "S002-schematic-image-confirmed: TL082 section 2; non-inv input CLIP_B; wiring assumed."
+    },
+    {
+      "ref": "R11",
+      "type": "R",
+      "value": 39000.0,
+      "pins": {
+        "1": "X3_FB",
+        "2": "VREF"
+      },
+      "notes": "S002-schematic-image-confirmed: gain ref to Vref (R11=39k)."
+    },
+    {
+      "ref": "R13",
+      "type": "R",
+      "value": 150000.0,
+      "pins": {
+        "1": "X3_FB",
+        "2": "X3_OUT"
+      },
+      "notes": "S002-schematic-image-confirmed: feedback (R13=150k)."
+    },
+    {
+      "ref": "C8",
+      "type": "C",
+      "value": 1e-07,
+      "pins": {
+        "1": "X3_FB",
+        "2": "VREF"
+      },
+      "notes": "S002-schematic-image-confirmed: LF response (C8=100nF)."
+    },
+    {
+      "ref": "C9",
+      "type": "C",
+      "value": 2.2e-10,
+      "pins": {
+        "1": "X3_OUT",
+        "2": "X3_FB"
+      },
+      "notes": "S002-schematic-image-confirmed: HF stability (C9=220pF)."
+    },
+    {
+      "ref": "C10",
+      "type": "C",
+      "value": 1e-05,
+      "pins": {
+        "1": "X3_OUT",
+        "2": "TONE_TOP"
+      },
+      "notes": "S002-schematic-image-confirmed: output coupling cap (C10=10\u00b5F)."
+    },
+    {
+      "ref": "R_X4A",
+      "type": "R",
+      "value": 5000.0,
+      "pins": {
+        "1": "TONE_TOP",
+        "2": "TONE_W"
+      },
+      "notes": "Tone pot X4 (10k) modeled at 50%: upper leg TONE_TOP\u2192TONE_W. S002-confirmed 10k pot. Wiring assumed."
+    },
+    {
+      "ref": "R_X4B",
+      "type": "R",
+      "value": 5000.0,
+      "pins": {
+        "1": "TONE_W",
+        "2": "GND"
+      },
+      "notes": "Tone pot X4 (10k) modeled at 50%: lower leg TONE_W\u2192GND. S002-confirmed 10k pot. Wiring assumed."
+    },
+    {
+      "ref": "C11",
+      "type": "C",
+      "value": 4.7e-08,
+      "pins": {
+        "1": "TONE_W",
+        "2": "GND"
+      },
+      "notes": "S002-schematic-image-confirmed: tone cap C11 to ground (C11=47nF)."
+    },
+    {
+      "ref": "R14",
+      "type": "R",
+      "value": 22000.0,
+      "pins": {
+        "1": "TONE_W",
+        "2": "VOL_TOP"
+      },
+      "notes": "S002-schematic-image-confirmed: HP/LP network resistor (R14=22k). Always in path (HP position); R15 added in parallel when Switch1 closed (LP position)."
+    },
+    {
+      "ref": "R15",
+      "type": "R",
+      "value": 33000.0,
+      "pins": {
+        "1": "TONE_W",
+        "2": "VOL_TOP"
+      },
+      "notes": "S002-schematic-image-confirmed: HP/LP network resistor (R15=33k). Added in parallel with R14 when Switch1 closed (LP position). Removing R15 models HP position (switch open)."
+    },
+    {
+      "ref": "R_VOL5A",
+      "type": "R",
+      "value": 50000.0,
+      "pins": {
+        "1": "VOL_TOP",
+        "2": "OUT"
+      },
+      "notes": "Volume pot 100k modeled at 50% (X5 value not found in retrieved S002 text; 100k is placeholder)."
+    },
+    {
+      "ref": "R_VOL5B",
+      "type": "R",
+      "value": 50000.0,
+      "pins": {
+        "1": "OUT",
+        "2": "GND"
+      },
+      "notes": "Volume pot lower leg modeled at 50% (X5 value not found in retrieved S002 text; 100k is placeholder)."
+    },
+    {
+      "ref": "R_LOAD",
+      "type": "R",
+      "value": 100000.0,
+      "pins": {
+        "1": "OUT",
+        "2": "GND"
+      }
+    }
+  ],
+  "bom": [
+    {
+      "References": "C1",
+      "Qty": "1",
+      "Type": "Capacitor",
+      "Value": "22n",
+      "Footprint": "",
+      "Notes": "S002-schematic-image-confirmed: input coupling cap (C1=22nF)."
+    },
+    {
+      "References": "C10",
+      "Qty": "1",
+      "Type": "Capacitor",
+      "Value": "10u",
+      "Footprint": "",
+      "Notes": "S002-schematic-image-confirmed: output coupling cap (C10=10\u00b5F)."
+    },
+    {
+      "References": "C11",
+      "Qty": "1",
+      "Type": "Capacitor",
+      "Value": "47n",
+      "Footprint": "",
+      "Notes": "S002-schematic-image-confirmed: tone cap C11 to ground (C11=47nF)."
+    },
+    {
+      "References": "C2",
+      "Qty": "1",
+      "Type": "Capacitor",
+      "Value": "10u",
+      "Footprint": "",
+      "Notes": "S002-schematic-image-confirmed: power bulk filter (C2=10\u00b5F)."
+    },
+    {
+      "References": "C3",
+      "Qty": "1",
+      "Type": "Capacitor",
+      "Value": "100n",
+      "Footprint": "",
+      "Notes": "S002-schematic-image-confirmed: power HF decoupling (C3=100nF)."
+    },
+    {
+      "References": "C4",
+      "Qty": "1",
+      "Type": "Capacitor",
+      "Value": "100n",
+      "Footprint": "",
+      "Notes": "S002-schematic-image-confirmed: bass limit in gain path (C4=100nF)."
+    },
+    {
+      "References": "C5",
+      "Qty": "1",
+      "Type": "Capacitor",
+      "Value": "10u",
+      "Footprint": "",
+      "Notes": "S002-schematic-image-confirmed: Vref filter cap (C5=10\u00b5F)."
+    },
+    {
+      "References": "C6",
+      "Qty": "1",
+      "Type": "Capacitor",
+      "Value": "220p",
+      "Footprint": "",
+      "Notes": "S002-schematic-image-confirmed: HF stability cap (C6=220pF)."
+    },
+    {
+      "References": "C7",
+      "Qty": "1",
+      "Type": "Capacitor",
+      "Value": "10n",
+      "Footprint": "",
+      "Notes": "S002-schematic-image-confirmed: VREF-CLIP_A cap (C7=10nF)."
+    },
+    {
+      "References": "C8",
+      "Qty": "1",
+      "Type": "Capacitor",
+      "Value": "100n",
+      "Footprint": "",
+      "Notes": "S002-schematic-image-confirmed: LF response (C8=100nF)."
+    },
+    {
+      "References": "C9",
+      "Qty": "1",
+      "Type": "Capacitor",
+      "Value": "220p",
+      "Footprint": "",
+      "Notes": "S002-schematic-image-confirmed: HF stability (C9=220pF)."
+    },
+    {
+      "References": "D1",
+      "Qty": "1",
+      "Type": "Diode",
+      "Value": "APPROX_1N34A",
+      "Footprint": "",
+      "Notes": "S002-schematic-image-confirmed: D1 [A=CLIP_A, K=M2_D1_NODE], 1N34A Ge per article text (C027). APPROX sim-only model, Ge variability applies."
+    },
+    {
+      "References": "M1",
+      "Qty": "1",
+      "Type": "N-MOSFET",
+      "Value": "APPROX_2N7000",
+      "Footprint": "",
+      "Notes": "S002-schematic-image-confirmed: M1 [D&G=VREF, S=CLIP_A]. Exact part unknown; APPROX sim-only. Commenter-reported alternate wiring (M1[S=VREF,D&G=R9/R10]) does NOT match S002 image."
+    },
+    {
+      "References": "M2",
+      "Qty": "1",
+      "Type": "N-MOSFET",
+      "Value": "APPROX_2N7000",
+      "Footprint": "",
+      "Notes": "S002-schematic-image-confirmed: M2 [D=VREF, G&S=M2_D1_NODE]. Exact part unknown; APPROX sim-only. Commenter-reported alternate wiring (M2[D&G=VREF,S=D1]) does NOT match S002 image."
+    },
+    {
+      "References": "R1",
+      "Qty": "1",
+      "Type": "Resistor",
+      "Value": "100",
+      "Footprint": "",
+      "Notes": "S002-schematic-image-confirmed: supply feed/filter node (R1=100\u03a9)."
+    },
+    {
+      "References": "R10",
+      "Qty": "1",
+      "Type": "Resistor",
+      "Value": "10k",
+      "Footprint": "",
+      "Notes": "S002-schematic-image-confirmed: clip network resistor (R10=10k)."
+    },
+    {
+      "References": "R11",
+      "Qty": "1",
+      "Type": "Resistor",
+      "Value": "39k",
+      "Footprint": "",
+      "Notes": "S002-schematic-image-confirmed: gain ref to Vref (R11=39k)."
+    },
+    {
+      "References": "R12",
+      "Qty": "1",
+      "Type": "Resistor",
+      "Value": "220k",
+      "Footprint": "",
+      "Notes": "S002-schematic-image-confirmed: bias to CLIP_B (R12=220k)."
+    },
+    {
+      "References": "R13",
+      "Qty": "1",
+      "Type": "Resistor",
+      "Value": "150k",
+      "Footprint": "",
+      "Notes": "S002-schematic-image-confirmed: feedback (R13=150k)."
+    },
+    {
+      "References": "R14",
+      "Qty": "1",
+      "Type": "Resistor",
+      "Value": "22k",
+      "Footprint": "",
+      "Notes": "S002-schematic-image-confirmed: HP/LP network resistor (R14=22k). Always in path (HP position); R15 added in parallel when Switch1 closed (LP position)."
+    },
+    {
+      "References": "R15",
+      "Qty": "1",
+      "Type": "Resistor",
+      "Value": "33k",
+      "Footprint": "",
+      "Notes": "S002-schematic-image-confirmed: HP/LP network resistor (R15=33k). Added in parallel with R14 when Switch1 closed (LP position). Removing R15 models HP position (switch open)."
+    },
+    {
+      "References": "R2",
+      "Qty": "1",
+      "Type": "Resistor",
+      "Value": "1Meg",
+      "Footprint": "",
+      "Notes": "S002-schematic-image-confirmed: R2 (1M) connects input cap C1 to GROUND as voltage reference, not to VREF. R6 biases op-amp to VREF."
+    },
+    {
+      "References": "R3",
+      "Qty": "1",
+      "Type": "Resistor",
+      "Value": "10k",
+      "Footprint": "",
+      "Notes": "S002-schematic-image-confirmed: limits current to op-amp input (R3=10k)."
+    },
+    {
+      "References": "R4",
+      "Qty": "1",
+      "Type": "Resistor",
+      "Value": "10k",
+      "Footprint": "",
+      "Notes": "S002-schematic-image-confirmed: Vref divider upper (R4=10k)."
+    },
+    {
+      "References": "R5",
+      "Qty": "1",
+      "Type": "Resistor",
+      "Value": "2.2k",
+      "Footprint": "",
+      "Notes": "S002-schematic-image-confirmed: gain ref to Vref (R5=2.2k)."
+    },
+    {
+      "References": "R6",
+      "Qty": "1",
+      "Type": "Resistor",
+      "Value": "470k",
+      "Footprint": "",
+      "Notes": "S002-schematic-image-confirmed: biases op-amp non-inverting input to VREF (R6=470k)."
+    },
+    {
+      "References": "R7",
+      "Qty": "1",
+      "Type": "Resistor",
+      "Value": "10k",
+      "Footprint": "",
+      "Notes": "S002-schematic-image-confirmed: Vref divider lower (R7=10k)."
+    },
+    {
+      "References": "R8",
+      "Qty": "1",
+      "Type": "Resistor",
+      "Value": "18k",
+      "Footprint": "",
+      "Notes": "S002-schematic-image-confirmed: gain network (R8=18k)."
+    },
+    {
+      "References": "R9",
+      "Qty": "1",
+      "Type": "Resistor",
+      "Value": "10k",
+      "Footprint": "",
+      "Notes": "S002-schematic-image-confirmed: series into clipping (R9=10k)."
+    },
+    {
+      "References": "R_LOAD",
+      "Qty": "1",
+      "Type": "Resistor",
+      "Value": "100k",
+      "Footprint": "",
+      "Notes": ""
+    },
+    {
+      "References": "R_VOL5A",
+      "Qty": "1",
+      "Type": "Resistor",
+      "Value": "50k",
+      "Footprint": "",
+      "Notes": "Volume pot 100k modeled at 50% (X5 value not found in retrieved S002 text; 100k is placeholder)."
+    },
+    {
+      "References": "R_VOL5B",
+      "Qty": "1",
+      "Type": "Resistor",
+      "Value": "50k",
+      "Footprint": "",
+      "Notes": "Volume pot lower leg modeled at 50% (X5 value not found in retrieved S002 text; 100k is placeholder)."
+    },
+    {
+      "References": "R_X2POT",
+      "Qty": "1",
+      "Type": "Resistor",
+      "Value": "500k",
+      "Footprint": "",
+      "Notes": "Drive/gain pot modeled 50% of 1M (S002 states gain pot 1M; mapping/wiring assumed)."
+    },
+    {
+      "References": "R_X4A",
+      "Qty": "1",
+      "Type": "Resistor",
+      "Value": "5k",
+      "Footprint": "",
+      "Notes": "Tone pot X4 (10k) modeled at 50%: upper leg TONE_TOP\u2192TONE_W. S002-confirmed 10k pot. Wiring assumed."
+    },
+    {
+      "References": "R_X4B",
+      "Qty": "1",
+      "Type": "Resistor",
+      "Value": "5k",
+      "Footprint": "",
+      "Notes": "Tone pot X4 (10k) modeled at 50%: lower leg TONE_W\u2192GND. S002-confirmed 10k pot. Wiring assumed."
+    },
+    {
+      "References": "V1",
+      "Qty": "1",
+      "Type": "Voltage source",
+      "Value": "9 V",
+      "Footprint": "",
+      "Notes": "9V nominal test; design range 8-18V DC center-negative (C022)"
+    },
+    {
+      "References": "V_IN",
+      "Qty": "1",
+      "Type": "Voltage source",
+      "Value": "SIN source",
+      "Footprint": "",
+      "Notes": ""
+    },
+    {
+      "References": "X1A",
+      "Qty": "1",
+      "Type": "Op-amp",
+      "Value": "TL082",
+      "Footprint": "",
+      "Notes": "TL082 section 1; wiring assumed"
+    },
+    {
+      "References": "X3A",
+      "Qty": "1",
+      "Type": "Op-amp",
+      "Value": "TL082",
+      "Footprint": "",
+      "Notes": "S002-schematic-image-confirmed: TL082 section 2; non-inv input CLIP_B; wiring assumed."
+    }
+  ],
+  "files": {
+    "spice": "ocd_textsch_s002_8v18v_v0p2_draft.cir",
+    "models": "ocd_textsch_s002_8v18v_v0p2_draft.models",
+    "ltspice_asc": "ocd_textsch_s002_8v18v_v0p2_draft.asc",
+    "kicad_net": "ocd_textsch_s002_8v18v_v0p2_draft.net",
+    "kicad_sch": "ocd_textsch_s002_8v18v_v0p2_draft.kicad_sch",
+    "bom": "ocd_textsch_s002_8v18v_v0p2_draft-bom.csv",
+    "report": "ocd_textsch_s002_8v18v_v0p2_draft-report.md"
+  },
+  "verification": {
+    "ok": true,
+    "name": "ocd_textsch_s002_8v18v_v0p2_draft",
+    "generated": "2026-11-10",
+    "summary": "7 passed, 5 skipped, 0 failed",
+    "checks": [
+      {
+        "name": "spec",
+        "ok": true,
+        "detail": "valid spec with 39 components, 0 warning(s)",
+        "evidence": {
+          "stats": {
+            "components": 39,
+            "nets": 19,
+            "sources": 2,
+            "semiconductors": 3,
+            "pcb": false
+          }
+        }
+      },
+      {
+        "name": "models",
+        "ok": true,
+        "detail": "vendor models supplied",
+        "evidence": {
+          "status": "vendor models supplied",
+          "devices": [
+            {
+              "ref": "X1A",
+              "model": "TL082",
+              "kind": "vendor"
+            },
+            {
+              "ref": "M1",
+              "model": "APPROX_2N7000",
+              "kind": "vendor"
+            },
+            {
+              "ref": "M2",
+              "model": "APPROX_2N7000",
+              "kind": "vendor"
+            },
+            {
+              "ref": "D1",
+              "model": "APPROX_1N34A",
+              "kind": "vendor"
+            },
+            {
+              "ref": "X3A",
+              "model": "TL082",
+              "kind": "vendor"
+            }
+          ]
+        }
+      },
+      {
+        "name": "design",
+        "ok": true,
+        "detail": "3 requirements, 6 decisions, 5 risks, 2 sources",
+        "evidence": {
+          "requirements": 3,
+          "decisions": 6,
+          "risks": 5,
+          "sources": 2
+        }
+      },
+      {
+        "name": "measurement_plan",
+        "ok": null,
+        "detail": "no measurement plan declared; add design.measurements with test points, setup and acceptance criteria",
+        "evidence": null
+      },
+      {
+        "name": "operating_limits",
+        "ok": null,
+        "detail": "no operating limits declared; add calculated stresses and sourced datasheet limits",
+        "evidence": null
+      },
+      {
+        "name": "spice_netlist",
+        "ok": true,
+        "detail": "39 devices, node lists match the spec",
+        "evidence": {
+          "devices": 39
+        }
+      },
+      {
+        "name": "ltspice_asc",
+        "ok": true,
+        "detail": "39 symbols; every pin has a matching net flag",
+        "evidence": {
+          "symbols": 39,
+          "flags": 86
+        }
+      },
+      {
+        "name": "kicad_netlist",
+        "ok": true,
+        "detail": "19 nets match the spec exactly",
+        "evidence": {
+          "nets": 19
+        }
+      },
+      {
+        "name": "kicad_schematic",
+        "ok": null,
+        "detail": "kiutils is not installed; schematic geometry not parsed (set PYTHONPATH to a kiutils checkout)",
+        "evidence": null
+      },
+      {
+        "name": "pcb_handoff",
+        "ok": null,
+        "detail": "not generated (add \"pcb\" to deliverables)",
+        "evidence": null
+      },
+      {
+        "name": "mna_linear",
+        "ok": null,
+        "detail": "circuit contains nonlinear element(s) M1, M2, D1; MNA only solves linear circuits",
+        "evidence": null
+      },
+      {
+        "name": "ngspice",
+        "ok": true,
+        "detail": "ngspice ran 4 analysis plot(s): AC Analysis, DC transfer characteristic, Operating Point, Transient Analysis; V(vcc)=9, V(in)=0, V(vcc_f)=8.15686, V(vref)=3.86898, V(in_b)=2.63195, V(x1_p)=2.63195, V(xx1a.11)=6.66856e-08, V(xx1a.12)=0.695012, V(xx1a.6)=19.6535, V(xx1a.7)=1.49133, V(x1_out)=1.52315, V(xx1a.53)=5.95686, V(xx1a.54)=2.2, V(xx1a.90)=-0.212178, V(xx1a.91)=25, V(xx1a.92)=-25, V(xx1a.99)=4.07843, V(xx1a.10)=2.48501, V(x1_fb)=3.85906, V(xx1a.9)=0, V(xx1a.8)=1.49133, V(x2_w)=3.77789, V(clip_a)=1.74654, V(clip_b)=1.83882, V(m2_d1_node)=1.74656, V(xx3a.11)=6.5009e-08, V(xx3a.12)=0.697739, V(xx3a.6)=19.7299, V(xx3a.7)=1.49328, V(x3_out)=1.52305, V(xx3a.53)=5.95686, V(xx3a.54)=2.2, V(xx3a.90)=-0.198462, V(xx3a.91)=25, V(xx3a.92)=-25, V(xx3a.99)=4.07843, V(xx3a.10)=1.69355, V(x3_fb)=3.3849, V(xx3a.9)=0, V(xx3a.8)=1.49328, V(tone_top)=0, V(tone_w)=0, V(vol_top)=0, V(out)=0",
+        "evidence": {
+          "returncode": 0,
+          "stderr": "",
+          "stdout": "******\n** ngspice-45.2 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Fri Sep 12 11:58:13 UTC 2025\n******\n\nBatch mode\n\nSimulation output goes to rawfile: /tmp/tmp27f3dhcs/ngspice.raw\nComments and warnings go to log-file: /tmp/tmp27f3dhcs/ngspice.log\n\n",
+          "log": "           6.66856e-08\nxx1a.12                               0.695012\nxx1a.6                                 19.6535\nxx1a.7                                 1.49133\nx1_out                                 1.52315\nxx1a.53                                5.95686\nxx1a.54                                    2.2\nxx1a.90                              -0.212178\nxx1a.91                                     25\nxx1a.92                                    -25\nxx1a.99                                4.07843\nxx1a.10                                2.48501\nx1_fb                                  3.85906\nxx1a.9                                       0\nxx1a.8                                 1.49133\nx2_w                                   3.77789\nclip_a                                 1.74654\nclip_b                                 1.83882\nm2_d1_node                             1.74656\nxx3a.11                             6.5009e-08\nxx3a.12                               0.697739\nxx3a.6                                 19.7299\nxx3a.7                                 1.49328\nx3_out                                 1.52305\nxx3a.53                                5.95686\nxx3a.54                                    2.2\nxx3a.90                              -0.198462\nxx3a.91                                     25\nxx3a.92                                    -25\nxx3a.99                                4.07843\nxx3a.10                                1.69355\nx3_fb                                   3.3849\nxx3a.9                                       0\nxx3a.8                                 1.49328\ntone_top                                     0\ntone_w                                       0\nvol_top                                      0\nout                                          0\nh.xx3a.hlim#branch                 3.96924e-13\nv.xx3a.vlim#branch                -0.000198462\nh.xx1a.hlim#branch                 4.24355e-13\nv.xx1a.vlim#branch                -0.000212178\nv.xx3a.vln#branch                 -2.48023e-11\nv.xx3a.vlp#branch                 -2.51993e-11\nv.xx3a.ve#branch                   -0.00018605\nv.xx3a.vc#branch                   4.43463e-12\nv.xx3a.vb#branch                   0.000197299\nv.xx1a.vln#branch                 -2.47886e-11\nv.xx1a.vlp#branch                  -2.5213e-11\nv.xx1a.ve#branch                  -0.000185329\nv.xx1a.vc#branch                   4.43451e-12\nv.xx1a.vb#branch                   0.000196535\nv_in#branch                                  0\nv1#branch                          -0.00843135\na$poly$e.xx3a.egnd#branch_1_0      0.000196138\na$poly$e.xx1a.egnd#branch_1_0      0.000210625\n\n\nNo. of Data Rows : 3008\n\nTotal analysis time (seconds) = 0.0867703\n\nTotal elapsed time (seconds) = 0.088 \n\nTotal DRAM available = 24032.070 MB.\nDRAM currently available = 16687.719 MB.\nMaximum ngspice program size =   22.301 MB.\nCurrent ngspice program size =   13.703 MB.\n\nShared ngspice pages =   11.652 MB.\nText (code) pages =    6.406 MB.\nStack = 0 bytes.\nLibrary pages =    2.102 MB.\n\n",
+          "plots": [
+            "AC Analysis",
+            "DC transfer characteristic",
+            "Operating Point",
+            "Transient Analysis"
+          ],
+          "node_voltages_V": {
+            "vcc": 9.0,
+            "in": 0.0,
+            "vcc_f": 8.156864560117782,
+            "vref": 3.868981674116162,
+            "in_b": 2.631950099590067,
+            "x1_p": 2.631949779851369,
+            "xx1a.11": 6.668561711666327e-08,
+            "xx1a.12": 0.6950117454916924,
+            "xx1a.6": 19.65350543481941,
+            "xx1a.7": 1.491326192310741,
+            "x1_out": 1.523152824443688,
+            "xx1a.53": 5.956864560117782,
+            "xx1a.54": 2.2,
+            "xx1a.90": -0.212177547552983,
+            "xx1a.91": 25.0,
+            "xx1a.92": -25.0,
+            "xx1a.99": 4.078432280058891,
+            "xx1a.10": 2.485005958851656,
+            "x1_fb": 3.859060752123125,
+            "xx1a.9": 0.0,
+            "xx1a.8": 1.491326192310741,
+            "x2_w": 3.777890206373646,
+            "clip_a": 1.746542912926418,
+            "clip_b": 1.838822560895141,
+            "m2_d1_node": 1.746558537339518,
+            "xx3a.11": 6.500897418527003e-08,
+            "xx3a.12": 0.6977394089811622,
+            "xx3a.6": 19.72993608675296,
+            "xx3a.7": 1.493283111536467,
+            "x3_out": 1.52305243062218,
+            "xx3a.53": 5.956864560117781,
+            "xx3a.54": 2.2,
+            "xx3a.90": -0.1984621272380828,
+            "xx3a.91": 25.0,
+            "xx3a.92": -25.0,
+            "xx3a.99": 4.078432280058891,
+            "xx3a.10": 1.693551067211584,
+            "x3_fb": 3.384899950878881,
+            "xx3a.9": 0.0,
+            "xx3a.8": 1.493283111536467,
+            "tone_top": 0.0,
+            "tone_w": 0.0,
+            "vol_top": 0.0,
+            "out": 0.0
+          }
+        }
+      }
+    ],
+    "warnings": [],
+    "simulation_status": "vendor models supplied",
+    "provenance": {
+      "backend": "local",
+      "required_stages": []
+    }
+  },
+  "pcb": null,
+  "design": {
+    "requirements": [
+      {
+        "id": "R1",
+        "text": "9V DC operation with Vref ~4.5V",
+        "acceptance": "op/bench TBD",
+        "source": "user text + S002"
+      },
+      {
+        "id": "R2",
+        "text": "Two TL082 gain stages + MOSFET/diode nonlinear stage (user-reported connections)",
+        "acceptance": "sim/bench TBD",
+        "source": "user-provided 2026-11-09"
+      },
+      {
+        "id": "R3",
+        "text": "Adjustable gain and volume (simplified in sim)",
+        "acceptance": "pots TBD",
+        "source": "user text"
+      }
+    ],
+    "architecture": {
+      "summary": "Vref-biased single-supply 9V: input bias -> X1 gain -> R9/R10/R12/C7/M1/M2/D1 clip network (to Vref) -> X3 gain/filter -> tone (X4 10k pot + C11 to ground) -> HP/LP (Switch1 parallels R14/R15) -> volume -> OUT.",
+      "blocks": [
+        "power_ref",
+        "input_bias",
+        "x1_gain",
+        "clip_network",
+        "x3_gain",
+        "tone_hp_lp",
+        "output_volume"
+      ],
+      "interfaces": [
+        "IN",
+        "OUT 100k",
+        "VCC 9V",
+        "GND"
+      ],
+      "budgets": {
+        "vref": "~4.5V"
+      },
+      "test_points": [
+        "VREF",
+        "X1_OUT",
+        "CLIP_A",
+        "CLIP_B",
+        "X3_OUT",
+        "TONE_W",
+        "OUT"
+      ]
+    },
+    "decisions": [
+      {
+        "id": "D_V1",
+        "decision": "8-18V DC center-negative per C022; 9V nominal test condition",
+        "alternatives": [
+          "9V only",
+          "5-18V (prior, dropped)"
+        ],
+        "rationale": "Project requires 8-18V range (C022); S002 confirms circuit works 9V to 18V; 9V used as nominal test point",
+        "sources": [
+          "S009/C022 user reconciliation 2026-11-09",
+          "S002 https://www.analogisnotdead.com/article34/circuit-analysis-fulltone-s-ocd accessed 2026-11-10 via webfetch"
+        ]
+      },
+      {
+        "id": "D_CLIP_V1",
+        "decision": "Implement user-reported M1/M2/D1/R9/R10/R12/C7 connections from schematic image (S002-based)",
+        "alternatives": [
+          "prior provisional draft wiring"
+        ],
+        "rationale": "user provided explicit node table 2026-11-09",
+        "sources": [
+          "user-reported from schematic image, 2026-11-09",
+          "S002 https://www.analogisnotdead.com/article34/circuit-analysis-fulltone-s-ocd accessed 2026-11-09"
+        ]
+      },
+      {
+        "id": "D_POTS",
+        "decision": "X2 gain pot 1M per S002 retrieved text (mapping to X2 assumed); X5 volume 100k placeholder (not found in retrieved S002 text); X4/Switch1 omitted for sim",
+        "alternatives": [
+          "ask user for exact pot values/wiring"
+        ],
+        "rationale": "user asked to find likely values from academic/available sources; S002 states 'gain pot (1M)' and '10k pot X4'; volume not explicit in retrieval",
+        "sources": [
+          "S002 accessed 2026-11-09 (curl extract)",
+          "placeholder for X5"
+        ]
+      },
+      {
+        "id": "D_DEV",
+        "decision": "TL082.301 sim-only; M1/M2 APPROX_2N7000, D1 APPROX_BAT46 placeholders (user: D1 any of those)",
+        "alternatives": [
+          "APPROX_1N34A",
+          "sourced models"
+        ],
+        "rationale": "exact parts unknown; simulation-only",
+        "sources": [
+          "TI SLOJ070 TL082.301",
+          "local APPROX models"
+        ]
+      },
+      {
+        "id": "D_BIAS_FIX",
+        "decision": "Reverted: R2 to GND per S002-confirmed text (1M input reference to ground). R6 biases op-amp non-inverting input to VREF. D1=APPROX_1N34A per S002-confirmed 1N34A Ge clipping diode.",
+        "alternatives": [
+          "keep R2 to VREF (provisional sim fix, conflicts with S002)",
+          "verify S002 image for pin-level confirmation"
+        ],
+        "rationale": "S002 text explicitly states R2 connects input cap C1 to GROUND as voltage reference (C026). Previous VREF move was a provisional sim bias fix and is now removed.",
+        "sources": [
+          "S002 https://www.analogisnotdead.com/article34/circuit-analysis-fulltone-s-ocd accessed 2026-11-10 via webfetch (C026)",
+          "ngspice OP debug 2026-11-09 (superseded)"
+        ]
+      },
+      {
+        "id": "D_TONE",
+        "decision": "Implement S002-confirmed tone/HP-LP network: X4=10k tone pot, C11 tone cap to ground, Switch1 (HP/LP) parallels R14/R15. R14=22k/R15=33k image-read from S002 schematic (verify); C11=47n placeholder.",
+        "alternatives": [
+          "keep tone/volume simplified (prior draft)",
+          "ask user for exact tone/HP-LP values/wiring"
+        ],
+        "rationale": "S002 text confirms X4=10k pot, C11 cap to ground, HP/LP parallels R14/R15 (C028). Clip wiring confirmed from S002 schematic image matches user-reported wiring; commenter-reported alternate wiring does not match image.",
+        "sources": [
+          "S002 https://www.analogisnotdead.com/article34/circuit-analysis-fulltone-s-ocd accessed 2026-11-10 via webfetch (C028)",
+          "S002 schematic images in circuit/sources/s002-images/ (clipping.png, fulltone-ocd.png)"
+        ]
+      }
+    ],
+    "risks": [
+      {
+        "id": "K1",
+        "risk": "Op-amp feedback and input pin wiring assumed (text functional, not pin-net explicit). R2\u2192GND confirmed from S002 image; X1/X3 feedback placement still assumed.",
+        "severity": "high",
+        "mitigation": "verify against actual S002 schematic",
+        "verification": "schematic compare + sim"
+      },
+      {
+        "id": "K2",
+        "risk": "M1/M2/D1 types/pinouts unknown; APPROX models unverified. Clip wiring CONFIRMED from S002 image: M1[D&G=VREF,S=CLIP_A], M2[D=VREF,G&S=M2_D1_NODE], D1[A=CLIP_A,K=M2_D1_NODE]. Commenter-reported alternate wiring does NOT match S002 image.",
+        "severity": "high",
+        "mitigation": "identify parts from schematic/BOM; obtain manufacturer models",
+        "verification": "datasheets + sourced models + schematic compare"
+      },
+      {
+        "id": "K3",
+        "risk": "X2/X5 values/wiring/placement uncertain; X5 is placeholder",
+        "severity": "medium",
+        "mitigation": "confirm from S002 schematic image/BOM",
+        "verification": "source check"
+      },
+      {
+        "id": "K4",
+        "risk": "Tone/HP-LP values CONFIRMED from S002 schematic image: R14=22k, R15=33k, C11=47nF. X4=10k confirmed from S002 text. Switch1 wiring assumed.",
+        "severity": "low",
+        "mitigation": "human visual verification of S002 image recommended",
+        "verification": "schematic compare"
+      },
+      {
+        "id": "K5",
+        "risk": "S002 schematic image available but cannot be machine-analyzed (text-only agent). All image-confirmed values should be human-verified against source image.",
+        "severity": "low",
+        "mitigation": "user/human verification of S002 images in circuit/sources/s002-images/",
+        "verification": "manual check"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Circuit Analysis: Fulltone's OCD",
+        "publisher": "Analog Is Not Dead",
+        "url": "https://www.analogisnotdead.com/article34/circuit-analysis-fulltone-s-ocd",
+        "revision": "n/a",
+        "accessed": "2026-11-09",
+        "id": "S002"
+      },
+      {
+        "title": "User-provided text schematic + node connections",
+        "publisher": "local conversation",
+        "url": "local:conversation/2026-11-09",
+        "revision": "n/a",
+        "accessed": "2026-11-09",
+        "id": "U1"
+      }
+    ]
+  },
+  "simulation_status": "vendor models supplied",
+  "models": [
+    {
+      "Ref": "X1A",
+      "Type": "OPAMP",
+      "Model": "TL082",
+      "Kind": "vendor",
+      "Vendor": "Texas Instruments",
+      "Part": "TL082 (macromodel)",
+      "Source": "TI SLOJ070 / S007",
+      "SHA256": "adad2e131f728610"
+    },
+    {
+      "Ref": "M1",
+      "Type": "NMOS",
+      "Model": "APPROX_2N7000",
+      "Kind": "vendor",
+      "Vendor": "project approximation",
+      "Part": "2N7000 APPROX sim-only",
+      "Source": "local APPROX; not manufacturer model",
+      "SHA256": "081054dff4a75cb5"
+    },
+    {
+      "Ref": "M2",
+      "Type": "NMOS",
+      "Model": "APPROX_2N7000",
+      "Kind": "vendor",
+      "Vendor": "project approximation",
+      "Part": "2N7000 APPROX sim-only",
+      "Source": "local APPROX; not manufacturer model",
+      "SHA256": "081054dff4a75cb5"
+    },
+    {
+      "Ref": "D1",
+      "Type": "D",
+      "Model": "APPROX_1N34A",
+      "Kind": "vendor",
+      "Vendor": "project approximation",
+      "Part": "1N34A Ge APPROX sim-only (S002-confirmed D1 type)",
+      "Source": "local APPROX; not manufacturer model; D1 per S002 C027",
+      "SHA256": "db949f2074c80243"
+    },
+    {
+      "Ref": "X3A",
+      "Type": "OPAMP",
+      "Model": "TL082",
+      "Kind": "vendor",
+      "Vendor": "Texas Instruments",
+      "Part": "TL082 (macromodel)",
+      "Source": "TI SLOJ070 / S007",
+      "SHA256": "adad2e131f728610"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+References,Qty,Type,Value,Footprint,Notes
+C1,1,Capacitor,22n,,S002-schematic-image-confirmed: input coupling cap (C1=22nF).
+C10,1,Capacitor,10u,,S002-schematic-image-confirmed: output coupling cap (C10=10µF).
+C11,1,Capacitor,47n,,S002-schematic-image-confirmed: tone cap C11 to ground (C11=47nF).
+C2,1,Capacitor,10u,,S002-schematic-image-confirmed: power bulk filter (C2=10µF).
+C3,1,Capacitor,100n,,S002-schematic-image-confirmed: power HF decoupling (C3=100nF).
+C4,1,Capacitor,100n,,S002-schematic-image-confirmed: bass limit in gain path (C4=100nF).
+C5,1,Capacitor,10u,,S002-schematic-image-confirmed: Vref filter cap (C5=10µF).
+C6,1,Capacitor,220p,,S002-schematic-image-confirmed: HF stability cap (C6=220pF).
+C7,1,Capacitor,10n,,S002-schematic-image-confirmed: VREF-CLIP_A cap (C7=10nF).
+C8,1,Capacitor,100n,,S002-schematic-image-confirmed: LF response (C8=100nF).
+C9,1,Capacitor,220p,,S002-schematic-image-confirmed: HF stability (C9=220pF).
+D1,1,Diode,APPROX_1N34A,,"S002-schematic-image-confirmed: D1 [A=CLIP_A, K=M2_D1_NODE], 1N34A Ge per article text (C027). APPROX sim-only model, Ge variability applies."
+M1,1,N-MOSFET,APPROX_2N7000,,"S002-schematic-image-confirmed: M1 [D&G=VREF, S=CLIP_A]. Exact part unknown; APPROX sim-only. Commenter-reported alternate wiring (M1[S=VREF,D&G=R9/R10]) does NOT match S002 image."
+M2,1,N-MOSFET,APPROX_2N7000,,"S002-schematic-image-confirmed: M2 [D=VREF, G&S=M2_D1_NODE]. Exact part unknown; APPROX sim-only. Commenter-reported alternate wiring (M2[D&G=VREF,S=D1]) does NOT match S002 image."
+R1,1,Resistor,100,,S002-schematic-image-confirmed: supply feed/filter node (R1=100Ω).
+R10,1,Resistor,10k,,S002-schematic-image-confirmed: clip network resistor (R10=10k).
+R11,1,Resistor,39k,,S002-schematic-image-confirmed: gain ref to Vref (R11=39k).
+R12,1,Resistor,220k,,S002-schematic-image-confirmed: bias to CLIP_B (R12=220k).
+R13,1,Resistor,150k,,S002-schematic-image-confirmed: feedback (R13=150k).
+R14,1,Resistor,22k,,S002-schematic-image-confirmed: HP/LP network resistor (R14=22k). Always in path (HP position); R15 added in parallel when Switch1 closed (LP position).
+R15,1,Resistor,33k,,S002-schematic-image-confirmed: HP/LP network resistor (R15=33k). Added in parallel with R14 when Switch1 closed (LP position). Removing R15 models HP position (switch open).
+R2,1,Resistor,1Meg,,"S002-schematic-image-confirmed: R2 (1M) connects input cap C1 to GROUND as voltage reference, not to VREF. R6 biases op-amp to VREF."
+R3,1,Resistor,10k,,S002-schematic-image-confirmed: limits current to op-amp input (R3=10k).
+R4,1,Resistor,10k,,S002-schematic-image-confirmed: Vref divider upper (R4=10k).
+R5,1,Resistor,2.2k,,S002-schematic-image-confirmed: gain ref to Vref (R5=2.2k).
+R6,1,Resistor,470k,,S002-schematic-image-confirmed: biases op-amp non-inverting input to VREF (R6=470k).
+R7,1,Resistor,10k,,S002-schematic-image-confirmed: Vref divider lower (R7=10k).
+R8,1,Resistor,18k,,S002-schematic-image-confirmed: gain network (R8=18k).
+R9,1,Resistor,10k,,S002-schematic-image-confirmed: series into clipping (R9=10k).
+R_LOAD,1,Resistor,100k,,
+R_VOL5A,1,Resistor,50k,,Volume pot 100k modeled at 50% (X5 value not found in retrieved S002 text; 100k is placeholder).
+R_VOL5B,1,Resistor,50k,,Volume pot lower leg modeled at 50% (X5 value not found in retrieved S002 text; 100k is placeholder).
+R_X2POT,1,Resistor,500k,,Drive/gain pot modeled 50% of 1M (S002 states gain pot 1M; mapping/wiring assumed).
+R_X4A,1,Resistor,5k,,Tone pot X4 (10k) modeled at 50%: upper leg TONE_TOP→TONE_W. S002-confirmed 10k pot. Wiring assumed.
+R_X4B,1,Resistor,5k,,Tone pot X4 (10k) modeled at 50%: lower leg TONE_W→GND. S002-confirmed 10k pot. Wiring assumed.
+V1,1,Voltage source,9 V,,9V nominal test; design range 8-18V DC center-negative (C022)
+V_IN,1,Voltage source,SIN source,,
+X1A,1,Op-amp,TL082,,TL082 section 1; wiring assumed
+X3A,1,Op-amp,TL082,,S002-schematic-image-confirmed: TL082 section 2; non-inv input CLIP_B; wiring assumed.
