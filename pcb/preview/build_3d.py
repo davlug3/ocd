@@ -37,42 +37,79 @@ MODEL_RE = re.compile(r'\(model "\$\{KICAD9_3DMODEL_DIR\}/([^"]+)"')
 # (Neutrik switched jacks, CUI PJ-102AH, Alpha RD901F 9 mm pot). Substitute
 # simple VRML stand-ins so the 3D preview shows the part envelope instead of
 # omitting the component. These are previews, not manufacturer geometry.
-def _box(x: float, y: float, z: float, sx: float, sy: float, sz: float) -> str:
+def _mesh(points: list[tuple[float, float, float]],
+          triangles: list[tuple[int, int, int]],
+          color: str = "0.10 0.10 0.11") -> str:
+    """Minimal VRML2 IndexedFaceSet mesh (no Transform/Box/Cylinder nodes)."""
+    pts = ",\n".join(f"{x:.4f} {y:.4f} {z:.4f}" for x, y, z in points)
+    idx = ",\n".join(f"{a}, {b}, {c}, -1" for a, b, c in triangles)
     return f"""#VRML V2.0 utf8
-Transform {{
-  translation {x} {y} {z}
-  children [
-    Shape {{
-      appearance Appearance {{ material Material {{
-        diffuseColor 0.10 0.10 0.11
-        specularColor 0.25 0.25 0.25
-        shininess 0.35
-      }} }}
-      geometry Box {{ size {sx} {sy} {sz} }}
-    }}
-  ]
+Shape {{
+  appearance Appearance {{ material Material {{
+    diffuseColor {color}
+    specularColor 0.25 0.25 0.25
+    shininess 0.35
+  }} }}
+  geometry IndexedFaceSet {{
+    solid FALSE
+    coord Coordinate {{ point [
+      {pts}
+    ] }}
+    coordIndex [
+      {idx}
+    ]
+  }}
 }}
 """
+
+
+def _box(x: float, y: float, z: float, sx: float, sy: float, sz: float) -> str:
+    x0, x1 = x - sx / 2, x + sx / 2
+    y0, y1 = y - sy / 2, y + sy / 2
+    z0, z1 = z - sz / 2, z + sz / 2
+    pts = [
+        (x0, y0, z0), (x1, y0, z0), (x1, y1, z0), (x0, y1, z0),
+        (x0, y0, z1), (x1, y0, z1), (x1, y1, z1), (x0, y1, z1),
+    ]
+    tris = [
+        (0, 2, 1), (0, 3, 2),
+        (4, 5, 6), (4, 6, 7),
+        (0, 1, 5), (0, 5, 4),
+        (1, 2, 6), (1, 6, 5),
+        (2, 3, 7), (2, 7, 6),
+        (3, 0, 4), (3, 4, 7),
+    ]
+    return _mesh(pts, tris)
+
+
+def _cylinder(x: float, y: float, z0: float, z1: float, r: float,
+              segments: int = 16) -> str:
+    import math
+
+    pts: list[tuple[float, float, float]] = []
+    for z in (z0, z1):
+        for i in range(segments):
+            a = 2 * math.pi * i / segments
+            pts.append((x + r * math.cos(a), y + r * math.sin(a), z))
+    cb = len(pts)
+    pts.append((x, y, z0))
+    ct = len(pts)
+    pts.append((x, y, z1))
+
+    tris: list[tuple[int, int, int]] = []
+    for i in range(segments):
+        j = (i + 1) % segments
+        b0, b1 = i, j
+        t0, t1 = segments + i, segments + j
+        tris.append((b0, b1, t1))
+        tris.append((b0, t1, t0))
+        tris.append((cb, b1, b0))
+        tris.append((ct, t0, t1))
+    return _mesh(pts, tris, "0.55 0.55 0.58")
 
 
 def _pot(x: float, y: float) -> str:
-    body = _box(x, y, 3.0, 9.0, 9.0, 6.0)
-    shaft = f"""Transform {{
-  translation {x} {y} 11.0
-  rotation 1 0 0 1.5708
-  children [
-    Shape {{
-      appearance Appearance {{ material Material {{
-        diffuseColor 0.55 0.55 0.58
-        specularColor 0.6 0.6 0.6
-        shininess 0.8
-      }} }}
-      geometry Cylinder {{ radius 3.0 height 10.0 }}
-    }}
-  ]
-}}
-"""
-    return body + shaft
+    return _box(x, y, 3.0, 9.0, 9.0, 6.0) + _cylinder(x, y, 6.0, 16.0, 3.0)
 
 
 SUBSTITUTES: dict[str, str] = {
