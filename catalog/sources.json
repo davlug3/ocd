@@ -328,6 +328,96 @@
         "bom"
       ],
       "note": "Reproducible local artifacts: generated .cir, verification JSON, supply-corner and VTO probes, BOM. Simulation-only, NOT bench evidence; claims citing this stay exploratory unless independently bench-verified."
+    },
+    {
+      "id": "S016",
+      "tier": 1,
+      "title": "PJ-102AH DC Power Jack datasheet",
+      "authors": [
+        "Same Sky (formerly CUI Devices)"
+      ],
+      "year": 2024,
+      "venue": "Same Sky / CUI Devices",
+      "doi": null,
+      "url": "https://www.sameskydevices.com/product/resource/pj-102ah.pdf",
+      "accessed": "2026-11-11",
+      "status": "verified",
+      "access": "open",
+      "topics": [
+        "dc-jack",
+        "power",
+        "switch",
+        "battery",
+        "pj-102ah"
+      ],
+      "note": "Official datasheet (HTTP 200, application/pdf). KiCad footprint Connector_BarrelJack:BarrelJack_CUI_PJ-102AH_Horizontal links an Adafruit mirror of the same drawing. Pad 1=center pin, pad 2=sleeve, pad 3=switch. Distributor listing (Digi-Key 408448) states 'Single Switch, Normally Closed'; switch is closed between pads 2-3 with no plug and opens when a plug is inserted. Schematic image is vector, text extraction incomplete; switch state confirmed by distributor description plus community notes."
+    },
+    {
+      "id": "S017",
+      "tier": 1,
+      "title": "9mm Single Metal Shaft, Multi-Ganged Series (RD901F/RD902F/RD904F) datasheet",
+      "authors": [
+        "Taiwan Alpha Electronic Co., Ltd."
+      ],
+      "year": 2026,
+      "venue": "Taiwan Alpha Electronic Co., Ltd.",
+      "doi": null,
+      "url": "http://www.taiwanalpha.com.tw/downloads?target=products&id=113",
+      "accessed": "2026-11-11",
+      "status": "verified",
+      "access": "open",
+      "topics": [
+        "potentiometer",
+        "pinout",
+        "mechanical",
+        "rd901f"
+      ],
+      "note": "HTTP 200, application/pdf, 5 pages. Confirms RD901F-40-00D = single unit, vertical, with bracket, no switch. Mono-unit circuit drawing shows pins 1 and 3 as the fixed ends and pin 2 as the wiper; the extracted text does not state which end is CW. Tapers: A=log, B=linear, C=rev-log. The CW/CCW end assignment is a build-time check, not a verified fact."
+    },
+    {
+      "id": "S018",
+      "tier": 1,
+      "title": "Neutrik NMJ6HFD2 and NMJ4HFD2 6.35 mm jack product pages",
+      "authors": [
+        "Neutrik AG"
+      ],
+      "year": 2026,
+      "venue": "Neutrik AG",
+      "doi": null,
+      "url": "https://www.neutrik.com/en/product/nmj6hfd2",
+      "accessed": "2026-11-11",
+      "status": "verified",
+      "access": "open",
+      "topics": [
+        "jack",
+        "connector",
+        "battery-disconnect",
+        "nmj6hfd2",
+        "nmj4hfd2"
+      ],
+      "note": "KiCad footprints link these product pages: Connector_Audio:Jack_6.35mm_Neutrik_NMJ6HFD2_Horizontal (stereo, switched; pads R,S,T,RN,SN,TN) and ..._NMJ4HFD2_Horizontal (mono, switched; pads S,T,SN,TN). A mono TS plug inserted into the stereo jack shorts the ring contact to the plug sleeve, which is the standard battery-negative disconnect."
+    },
+    {
+      "id": "S019",
+      "tier": 2,
+      "title": "KiCad official footprints library (master branch)",
+      "authors": [
+        "KiCad contributors"
+      ],
+      "year": 2026,
+      "venue": "KiCad EDA",
+      "doi": null,
+      "url": "https://github.com/KiCad/kicad-footprints",
+      "accessed": "2026-11-11",
+      "status": "verified",
+      "access": "open",
+      "topics": [
+        "footprints",
+        "pads",
+        "mechanical",
+        "kicad"
+      ],
+      "note": "Footprint names and pad numbers read from raw master files: Device:D/LED pin 1=K, 2=A; DIP-8 pads 1-8; TO-92_Inline pads 1-3; Neutrik jacks R/S/T/RN/SN/TN; BarrelJack_CUI_PJ-102AH pads 1-3; PinHeader_2x05 pads 1-10; MountingHole_3.2mm_M3 pad 1 NPTH. Master is ahead of the KiCad 9 release; CI resolves the installed KiCad 9 library and is the compatibility gate."
     }
   ]
 }

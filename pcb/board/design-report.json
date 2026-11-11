@@ -1,0 +1,380 @@
+{
+  "name": "ocd_v0p4_8v18v",
+  "revision": "v0.4",
+  "profile": "2layer-low-speed",
+  "automation": "full",
+  "professional_claim": true,
+  "failures": [],
+  "required_signoff": [],
+  "completed_signoff": [],
+  "missing_signoff": [],
+  "missing_signoff_metadata": [],
+  "gates": {
+    "structural": "error",
+    "drc": "error",
+    "unconnected": "zero",
+    "dfm": "error",
+    "netlist_parity": "error",
+    "fab": "error",
+    "stackup": "off",
+    "impedance": "off",
+    "length_match": "off",
+    "thermal": "report",
+    "emc": "off",
+    "rf": "off",
+    "safety": "off",
+    "mechanical": "off"
+  },
+  "automated": {
+    "spec": {
+      "ok": true,
+      "errors": 0,
+      "warnings": 8
+    },
+    "structural": 0,
+    "drc": 0,
+    "unconnected": 0,
+    "dfm": 0,
+    "netlist_parity": 0,
+    "stackup": 0,
+    "impedance": 0,
+    "length_match": 0,
+    "fab": 0,
+    "thermal": "reported",
+    "emc": "not_verified"
+  },
+  "findings": {
+    "ok": true,
+    "errors": [],
+    "warnings": [
+      {
+        "code": "components.ref_format",
+        "message": "reference 'D_PWR' does not look like a standard designator"
+      },
+      {
+        "code": "components.ref_format",
+        "message": "reference 'R_LED' does not look like a standard designator"
+      },
+      {
+        "code": "components.ref_format",
+        "message": "reference 'D_LED' does not look like a standard designator"
+      },
+      {
+        "code": "components.ref_format",
+        "message": "reference 'J_IN' does not look like a standard designator"
+      },
+      {
+        "code": "components.ref_format",
+        "message": "reference 'J_OUT' does not look like a standard designator"
+      },
+      {
+        "code": "components.ref_format",
+        "message": "reference 'J_PWR' does not look like a standard designator"
+      },
+      {
+        "code": "components.ref_format",
+        "message": "reference 'SW_FS' does not look like a standard designator"
+      },
+      {
+        "code": "components.ref_format",
+        "message": "reference 'SW_HP' does not look like a standard designator"
+      }
+    ]
+  },
+  "assumptions": [
+    "X1A and X3A are two sections of one TL082 dual op-amp; they are merged into a single DIP-8 U1 on the board.",
+    "The Drive, Tone and Volume pots replace the fixed simulation resistors R_X2POT, R_X4 and R_VOL5A/B; the SPICE netlist remains the electrical source of truth.",
+    "The 3PDT and HP/LP toggle are panel-mounted and wired to headers; a PCB-mounted 3PDT footprint needs a verified switch datasheet.",
+    "The input jack is a TRS part used as mono: the ring carries the battery negative and completes it only when a mono plug is inserted.",
+    "The DC jack is center-negative; its normally-closed switch (pads 2-3) disconnects the battery when a DC plug is inserted.",
+    "Mechanical placement relative to the 1590B enclosure drilling is a follow-up; this board is electrically routed but not yet panel-fitted.",
+    "The PCB overlay is generated from the circuit spec; the SPICE netlist is the electrical source of truth.",
+    "Logical SPICE pin numbers are not physical footprint pads; pin maps must come from the real package datasheet.",
+    "The pcb-design-skill DRC, DFM and unconnected gates, not this handoff, decide whether the board is manufacturable.",
+    "Ideal switches and simulation sources are excluded from the board."
+  ],
+  "notes": [
+    "The default 2-layer stackup is a generic 1.6 mm FR4 core; confirm it with the fabricator.",
+    "Full automation is only claimed when DRC, unconnected and DFM gates all pass.",
+    "This profile is not for controlled impedance, RF, high voltage, flex or safety-critical designs."
+  ],
+  "disclaimer": "A professional claim means the automated gates listed in this report passed and the required human sign-offs are recorded. It does not certify performance that the pipeline cannot measure (RF, EMC, thermal, safety, flex fatigue).",
+  "elapsed_s": 11.8,
+  "stages": {
+    "unconnected": 0,
+    "structural": 0,
+    "drc": 0,
+    "dfm": 0,
+    "netlist_parity": 0,
+    "length_match": 0,
+    "stackup": 0,
+    "impedance": 0,
+    "thermal": "reported",
+    "emc": "not_verified",
+    "fab": 0
+  },
+  "artifacts": {
+    "spec": "build/pcb/ocd_v0p4_8v18v.spec.json",
+    "backend": {
+      "selected": "local",
+      "environment": "ci",
+      "missing": [],
+      "local_ready": true,
+      "ci_usable": false
+    },
+    "board": "build/pcb/ocd_v0p4_8v18v.kicad_pcb",
+    "project": "build/pcb/ocd_v0p4_8v18v.kicad_pro",
+    "routing": {
+      "attempts": [
+        {
+          "exit_code": 0,
+          "elapsed_s": 5.0,
+          "jar": "build/freerouting.jar",
+          "log": "build/pcb/route-attempt-1/freerouting-1.log",
+          "ses_bytes": 20888,
+          "width_clamps": 8,
+          "attempt": 1,
+          "unconnected": 0,
+          "tracks": 263,
+          "board": "build/pcb/route-attempt-1/ocd_v0p4_8v18v.kicad_pcb"
+        }
+      ],
+      "selected_attempt": "route-attempt-1",
+      "unconnected": 0,
+      "tracks": 261,
+      "board": "build/pcb/ocd_v0p4_8v18v.kicad_pcb",
+      "metrics": {
+        "track_length_mm": 1270.673,
+        "track_segment_count": 261,
+        "via_count": 2,
+        "via_layer_transition_count": 2,
+        "unconnected_items": 0,
+        "clearance_violations": 0,
+        "track_length_by_layer_mm": {
+          "B.Cu": 720.521,
+          "F.Cu": 550.152
+        },
+        "track_length_by_net_mm": {
+          "BAT_NEG": 25.658,
+          "BAT_POS": 24.942,
+          "CLIP_A": 87.389,
+          "CLIP_B": 10.194,
+          "GND": 191.579,
+          "IN": 19.293,
+          "IN_B": 59.49,
+          "J_IN_TIP": 39.455,
+          "J_OUT_TIP": 53.509,
+          "LED_A": 49.937,
+          "M2_D1_NODE": 28.522,
+          "OUT": 20.257,
+          "SW1_1": 9.458,
+          "TONE_TOP": 51.956,
+          "TONE_W": 12.857,
+          "VCC": 5.908,
+          "VCC_F": 97.347,
+          "VCC_JACK": 7.696,
+          "VOL_TOP": 23.543,
+          "VREF": 105.9,
+          "X1_FB": 99.83,
+          "X1_OUT": 68.349,
+          "X1_P": 33.77,
+          "X1_RG": 6.658,
+          "X2_W": 8.578,
+          "X3_FB": 47.008,
+          "X3_OUT": 62.668,
+          "X3_RG": 18.922
+        },
+        "length_measurement_methods": [
+          "pcbnew.GetLength"
+        ],
+        "notes": [
+          "KiCad PCB track lengths are geometric copper-segment lengths; zone current paths are not included.",
+          "Via-layer transition count is a via-count proxy and does not model detailed layer-stack topology.",
+          "Clearance violations are populated only after the KiCad DRC report is available.",
+          "These metrics do not establish impedance, return-path quality, current capacity, thermal, EMC, or safety compliance."
+        ],
+        "drc_violations": 0,
+        "drc_ok": true
+      },
+      "metrics_report": "build/pcb/route-metrics.json",
+      "feedback": {
+        "enabled": false,
+        "rounds": []
+      },
+      "feedback_report": "build/pcb/route-feedback.json"
+    },
+    "check": {
+      "structural": {
+        "ok": true,
+        "exit_code": 0,
+        "output": "build/pcb/ocd_v0p4_8v18v.kicad_pcb: KiCad 9.0, 29 nets, 46 footprints, 261 segments, 2 vias, 2 zones\n0 error(s), 0 warning(s)"
+      },
+      "drc": {
+        "ok": true,
+        "exit_code": 0,
+        "violations": 0,
+        "unconnected": 0,
+        "warnings": 0,
+        "clearance_violations": 0,
+        "report": "build/pcb/check/ocd_v0p4_8v18v.drc.rpt",
+        "error_report": "build/pcb/check/ocd_v0p4_8v18v.drc-errors.rpt",
+        "full_exit_code": 0,
+        "full_output": "Found 0 violations\nFound 0 unconnected items\nSaved DRC Report to build/pcb/check/ocd_v0p4_8v18v.drc.rpt",
+        "gate_output": "Found 0 violations\nFound 0 unconnected items\nSaved DRC Report to build/pcb/check/ocd_v0p4_8v18v.drc-errors.rpt"
+      },
+      "dfm": {
+        "ok": true,
+        "errors": [],
+        "warnings": []
+      },
+      "netlist_parity": {
+        "ok": true,
+        "errors": []
+      },
+      "length_match": {
+        "ok": true,
+        "errors": [],
+        "warnings": [],
+        "lengths_mm": {
+          "CLIP_A": 87.389,
+          "CLIP_B": 10.194,
+          "GND": 191.579,
+          "IN": 19.293,
+          "IN_B": 59.49,
+          "LED_A": 49.937,
+          "M2_D1_NODE": 28.522,
+          "SW1_1": 9.458,
+          "TONE_TOP": 51.956,
+          "TONE_W": 12.857,
+          "VCC": 5.908,
+          "VCC_F": 97.347,
+          "VCC_JACK": 7.696,
+          "VOL_TOP": 23.543,
+          "VREF": 105.9,
+          "X1_FB": 99.83,
+          "X1_OUT": 68.349,
+          "X1_P": 33.77,
+          "X1_RG": 6.658,
+          "X2_W": 8.578,
+          "X3_FB": 47.008,
+          "X3_OUT": 62.668,
+          "X3_RG": 18.922,
+          "OUT": 20.257,
+          "J_IN_TIP": 39.455,
+          "BAT_NEG": 25.658,
+          "J_OUT_TIP": 53.509,
+          "BAT_POS": 24.942
+        }
+      },
+      "ok": true
+    },
+    "length_match": {
+      "ok": true,
+      "errors": [],
+      "warnings": [],
+      "lengths_mm": {
+        "CLIP_A": 87.389,
+        "CLIP_B": 10.194,
+        "GND": 191.579,
+        "IN": 19.293,
+        "IN_B": 59.49,
+        "LED_A": 49.937,
+        "M2_D1_NODE": 28.522,
+        "SW1_1": 9.458,
+        "TONE_TOP": 51.956,
+        "TONE_W": 12.857,
+        "VCC": 5.908,
+        "VCC_F": 97.347,
+        "VCC_JACK": 7.696,
+        "VOL_TOP": 23.543,
+        "VREF": 105.9,
+        "X1_FB": 99.83,
+        "X1_OUT": 68.349,
+        "X1_P": 33.77,
+        "X1_RG": 6.658,
+        "X2_W": 8.578,
+        "X3_FB": 47.008,
+        "X3_OUT": 62.668,
+        "X3_RG": 18.922,
+        "OUT": 20.257,
+        "J_IN_TIP": 39.455,
+        "BAT_NEG": 25.658,
+        "J_OUT_TIP": 53.509,
+        "BAT_POS": 24.942
+      }
+    },
+    "impedance": [],
+    "fab": {
+      "output_dir": "build/pcb/fab",
+      "archive": "build/pcb/fab/ocd_v0p4_8v18v-fabrication.zip",
+      "gerbers": "build/pcb/fab/gerbers",
+      "drill": "build/pcb/fab/drill",
+      "gerber_files": [
+        "ocd_v0p4_8v18v-B_Cu.gbl",
+        "ocd_v0p4_8v18v-B_Mask.gbs",
+        "ocd_v0p4_8v18v-B_Paste.gbp",
+        "ocd_v0p4_8v18v-B_Silkscreen.gbo",
+        "ocd_v0p4_8v18v-Edge_Cuts.gm1",
+        "ocd_v0p4_8v18v-F_Cu.gtl",
+        "ocd_v0p4_8v18v-F_Mask.gts",
+        "ocd_v0p4_8v18v-F_Paste.gtp",
+        "ocd_v0p4_8v18v-F_Silkscreen.gto",
+        "ocd_v0p4_8v18v-job.gbrjob"
+      ],
+      "drill_files": [
+        "ocd_v0p4_8v18v.drl"
+      ],
+      "pos": "build/pcb/fab/ocd_v0p4_8v18v-pos.csv",
+      "step": "build/pcb/fab/ocd_v0p4_8v18v.step",
+      "ipc356": "build/pcb/fab/ocd_v0p4_8v18v-ipc356.net",
+      "readme": "build/pcb/fab/fabrication-README.md",
+      "required_outputs": [
+        "drill",
+        "gerbers",
+        "ipc356",
+        "pos",
+        "step"
+      ],
+      "missing_required": [],
+      "steps": [
+        {
+          "step": "gerbers",
+          "ok": true,
+          "required": true,
+          "exit_code": 0,
+          "output": "Plotted to 'build/pcb/fab/gerbers/ocd_v0p4_8v18v-F_Cu.gtl'.\nPlotted to 'build/pcb/fab/gerbers/ocd_v0p4_8v18v-B_Cu.gbl'.\nPlotted to 'build/pcb/fab/gerbers/ocd_v0p4_8v18v-F_Paste.gtp'.\nPlotted to 'build/pcb/fab/gerbers/ocd_v0p4_8v18v-B_Paste.gbp'.\nPlotted to 'build/pcb/fab/gerbers/ocd_v0p4_8v18v-F_Silkscreen.gto'.\nPlotted to 'build/pcb/fab/gerbers/ocd_v0p4_8v18v-B_Silkscreen.gbo'.\nPlotted to 'build/pcb/fab/gerbers/ocd_v0p4_8v18v-F_Mask.gts'.\nPlotted to 'build/pcb/fab/gerbers/ocd_v0p4_8v18v-B_Mask.gbs'.\nPlotted to 'build/pcb/fab/gerbers/ocd_v0p4_8v18v-Edge_Cuts.gm1'."
+        },
+        {
+          "step": "drill",
+          "ok": true,
+          "required": true,
+          "exit_code": 0,
+          "output": "Created file 'build/pcb/fab/drill/ocd_v0p4_8v18v.drl'\nDone."
+        },
+        {
+          "step": "pos",
+          "ok": true,
+          "required": true,
+          "exit_code": 0,
+          "output": "Wrote position data to 'build/pcb/fab/ocd_v0p4_8v18v-pos.csv'."
+        },
+        {
+          "step": "step",
+          "ok": true,
+          "required": true,
+          "exit_code": 0,
+          "output": "EL_DIR}/Connector_PinHeader_2.54mm.3dshapes/PinHeader_1x02_P2.54mm_Vertical.step\nCould not add 3D model for C8.\nFile not found: ${KICAD9_3DMODEL_DIR}/Capacitor_THT.3dshapes/C_Disc_D5.0mm_W2.5mm_P5.00mm.step\nCould not add 3D model for C11.\nFile not found: ${KICAD9_3DMODEL_DIR}/Capacitor_THT.3dshapes/C_Disc_D5.0mm_W2.5mm_P5.00mm.step\nCould not add 3D model for R2.\nFile not found: ${KICAD9_3DMODEL_DIR}/Resistor_THT.3dshapes/R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal.step\nCould not add 3D model for C6.\nFile not found: ${KICAD9_3DMODEL_DIR}/Capacitor_THT.3dshapes/C_Disc_D5.0mm_W2.5mm_P5.00mm.step\nCould not add 3D model for R12.\nFile not found: ${KICAD9_3DMODEL_DIR}/Resistor_THT.3dshapes/R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal.step\nCould not add 3D model for D1.\nFile not found: ${KICAD9_3DMODEL_DIR}/Diode_THT.3dshapes/D_DO-35_SOD27_P7.62mm_Horizontal.step\nCould not add 3D model for R10.\nFile not found: ${KICAD9_3DMODEL_DIR}/Resistor_THT.3dshapes/R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal.step\nCould not add 3D model for C7.\nFile not found: ${KICAD9_3DMODEL_DIR}/Capacitor_THT.3dshapes/C_Disc_D5.0mm_W2.5mm_P5.00mm.step\nCould not add 3D model for J_IN.\nFile not found: ${KICAD9_3DMODEL_DIR}/Connector_Audio.3dshapes/Jack_6.35mm_Neutrik_NMJ6HFD2_Horizontal.step\nCould not add 3D model for X2.\nFile not found: ${KICAD9_3DMODEL_DIR}/Potentiometer_THT.3dshapes/Potentiometer_Alpha_RD901F-40-00D_Single_Vertical.step\nCould not add 3D model for R8.\nFile not found: ${KICAD9_3DMODEL_DIR}/Resistor_THT.3dshapes/R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal.step\nCould not add 3D model for X4.\nFile not found: ${KICAD9_3DMODEL_DIR}/Potentiometer_THT.3dshapes/Potentiometer_Alpha_RD901F-40-00D_Single_Vertical.step\nCould not add 3D model for R11.\nFile not found: ${KICAD9_3DMODEL_DIR}/Resistor_THT.3dshapes/R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal.step\nCould not add 3D model for D_LED.\nFile not found: ${KICAD9_3DMODEL_DIR}/LED_THT.3dshapes/LED_D5.0mm.step\nCould not add 3D model for C10.\nFile not found: ${KICAD9_3DMODEL_DIR}/Capacitor_THT.3dshapes/CP_Radial_D5.0mm_P2.00mm.step\nCould not add 3D model for D_PWR.\nFile not found: ${KICAD9_3DMODEL_DIR}/Diode_THT.3dshapes/D_DO-41_SOD81_P10.16mm_Horizontal.step\nCould not add 3D model for R5.\nFile not found: ${KICAD9_3DMODEL_DIR}/Resistor_THT.3dshapes/R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal.step\nCould not add 3D model for R9.\nFile not found: ${KICAD9_3DMODEL_DIR}/Resistor_THT.3dshapes/R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal.step\nCould not add 3D model for R_LED.\nFile not found: ${KICAD9_3DMODEL_DIR}/Resistor_THT.3dshapes/R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal.step\nCould not add 3D model for R3.\nFile not found: ${KICAD9_3DMODEL_DIR}/Resistor_THT.3dshapes/R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal.step\nCould not add 3D model for M2.\nFile not found: ${KICAD9_3DMODEL_DIR}/Package_TO_SOT_THT.3dshapes/TO-92_Inline.step\nCould not add 3D model for J_PWR.\nFile not found: ${KICAD9_3DMODEL_DIR}/Connector_BarrelJack.3dshapes/BarrelJack_CUI_PJ-102AH_Horizontal.step\nCould not add 3D model for C3.\nFile not found: ${KICAD9_3DMODEL_DIR}/Capacitor_THT.3dshapes/C_Disc_D5.0mm_W2.5mm_P5.00mm.step\nCreate PCB solid model.\nBoard outline: found 4 initial points.\nBuild board outlines (1 outlines) with 4 points.\nBuild board cutouts and holes (244 hole(s)).\nSubtracting holes for shapes\nSubtracting holes for pads\nSubtracting holes for vias\nGenerate board full shape.\nWriting STEP file.\n\n*******************************************************************\n******        Statistics on Transfer (Write)                 ******\n\n*******************************************************************\n******        Transfer Mode = 0  I.E.  As Is       ******\n******        Transferring Shape, ShapeType = 0                      ******\n** WorkSession : Sending all data\n Step File Name : $tempfile$.step(5527 ents)  Write  Done\nSTEP file 'build/pcb/fab/ocd_v0p4_8v18v.step' created.\n\nExport time 0.219 s"
+        },
+        {
+          "step": "ipc356",
+          "ok": true,
+          "required": true,
+          "exit_code": 0,
+          "command": "ipcd356",
+          "output": "Successfully created IPC-D-356 file"
+        }
+      ],
+      "ok": true
+    }
+  }
+}

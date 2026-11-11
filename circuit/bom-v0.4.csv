@@ -42,4 +42,11 @@ Item,References,Qty,Category,Value,Suggested part,Package,Status,Reconciles (sim
 41,BT1,1,Battery,9V,9V battery + snap,9V,proposed,(power),Battery option; do not install with 18V supply.,design
 42,ENC1,1,Enclosure,1590B,1590B die-cast enclosure,-,mechanical,-,Board target 108 x 58 mm (spec pcb block).,design
 43,KN1-KN3,3,Hardware,Knob,6.35mm shaft knob,-,mechanical,-,One per pot (X2/X4/X5).,design
-44,PCB1,1,PCB,108 x 58 mm,"2-layer, 1.6mm, THT",-,Phase C,-,Not yet generated; footprints/pin maps pending (K6/K8).,design
+44,PCB1,1,PCB,108 x 58 mm,"2-layer, 1.6mm, THT",-,Phase C routed; gates passed,-,Routed 108x58 mm 2-layer board; CI DRC/DFM/netlist/fab gates passed (run 43059805373). Panel fit still open (K6/K8). See pcb/README.md and pcb/board/.,design
+45,J_IN,1,Jack,1/4in TRS switched,Neutrik NMJ6HFD2,THT,proposed,(board-only),Input jack; ring contact = battery-negative disconnect (C047).,S018
+46,J_OUT,1,Jack,1/4in TS switched,Neutrik NMJ4HFD2,THT,proposed,(board-only),Output jack.,S018
+47,J_PWR,1,Power jack,9V DC center-negative switched,CUI/Same Sky PJ-102AH,THT,proposed,(board-only),Switch pads 2-3 disconnect the battery when DC is inserted (C045).,S016
+48,BT1,1,Header,2.54mm 1x02,PinHeader_1x02_P2.54mm_Vertical,THT,proposed,(board-only),Off-board 9V battery snap.,design
+49,SW_FS,1,Header,2.54mm 2x05,PinHeader_2x05_P2.54mm_Vertical,THT,proposed,(board-only),3PDT true-bypass interface; wire header pin n to 3PDT pin n.,design
+50,SW_HP,1,Header,2.54mm 1x03,PinHeader_1x03_P2.54mm_Vertical,THT,proposed,(board-only),HP/LP toggle interface; short 1-2 for HP.,design
+51,H1-H4,4,Mounting,M3 non-plated hole,3.2mm NPTH,THT,proposed,(board-only),"Corner mounting holes at (7,7),(101,7),(7,51),(101,51) mm.",design

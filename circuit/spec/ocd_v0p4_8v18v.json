@@ -1064,12 +1064,465 @@
       "height_mm": 58.0,
       "layers": 2,
       "thickness_mm": 1.6,
-      "copper_oz": 1.0
+      "copper_oz": 1.0,
+      "material": "FR4",
+      "surface_finish": "HASL-LF",
+      "mask_color": "green",
+      "silkscreen_color": "white",
+      "edge_radius_mm": 0.0
+    },
+    "rules": {
+      "min_track_width_mm": 0.2,
+      "min_clearance_mm": 0.2,
+      "min_via_diameter_mm": 0.6,
+      "min_via_drill_mm": 0.3,
+      "min_hole_diameter_mm": 0.3,
+      "min_annular_ring_mm": 0.15,
+      "edge_clearance_mm": 0.5,
+      "min_silk_width_mm": 0.15,
+      "min_mask_sliver_mm": 0.1,
+      "min_hole_to_hole_mm": 0.5
+    },
+    "netclasses": {
+      "Default": {
+        "track_width_mm": 0.25,
+        "clearance_mm": 0.2,
+        "via_diameter_mm": 0.6,
+        "via_drill_mm": 0.3
+      },
+      "Power": {
+        "track_width_mm": 0.5,
+        "clearance_mm": 0.3,
+        "via_diameter_mm": 0.8,
+        "via_drill_mm": 0.4
+      }
+    },
+    "nets": [
+      {
+        "name": "GND",
+        "class": "Power",
+        "voltage_v": 0.0
+      },
+      {
+        "name": "VCC_JACK",
+        "class": "Power",
+        "voltage_v": 9.0
+      },
+      {
+        "name": "VCC",
+        "class": "Power",
+        "voltage_v": 9.0
+      },
+      {
+        "name": "VCC_F",
+        "class": "Power",
+        "voltage_v": 9.0
+      },
+      {
+        "name": "BAT_POS",
+        "class": "Default"
+      },
+      {
+        "name": "BAT_NEG",
+        "class": "Default"
+      },
+      {
+        "name": "J_IN_TIP",
+        "class": "Default"
+      },
+      {
+        "name": "J_OUT_TIP",
+        "class": "Default"
+      }
+    ],
+    "footprints": {
+      "R1": "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal",
+      "R2": "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal",
+      "R3": "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal",
+      "R4": "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal",
+      "R5": "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal",
+      "R6": "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal",
+      "R7": "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal",
+      "R8": "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal",
+      "R9": "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal",
+      "R10": "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal",
+      "R11": "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal",
+      "R12": "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal",
+      "R13": "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal",
+      "R14": "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal",
+      "R15": "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal",
+      "R_LED": "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal",
+      "C2": "Capacitor_THT:CP_Radial_D5.0mm_P2.00mm",
+      "C5": "Capacitor_THT:CP_Radial_D5.0mm_P2.00mm",
+      "C10": "Capacitor_THT:CP_Radial_D5.0mm_P2.00mm",
+      "C1": "Capacitor_THT:C_Disc_D5.0mm_W2.5mm_P5.00mm",
+      "C3": "Capacitor_THT:C_Disc_D5.0mm_W2.5mm_P5.00mm",
+      "C4": "Capacitor_THT:C_Disc_D5.0mm_W2.5mm_P5.00mm",
+      "C6": "Capacitor_THT:C_Disc_D5.0mm_W2.5mm_P5.00mm",
+      "C7": "Capacitor_THT:C_Disc_D5.0mm_W2.5mm_P5.00mm",
+      "C8": "Capacitor_THT:C_Disc_D5.0mm_W2.5mm_P5.00mm",
+      "C9": "Capacitor_THT:C_Disc_D5.0mm_W2.5mm_P5.00mm",
+      "C11": "Capacitor_THT:C_Disc_D5.0mm_W2.5mm_P5.00mm",
+      "D_PWR": "Diode_THT:D_DO-41_SOD81_P10.16mm_Horizontal",
+      "D1": "Diode_THT:D_DO-35_SOD27_P7.62mm_Horizontal",
+      "D_LED": "LED_THT:LED_D5.0mm",
+      "M1": "Package_TO_SOT_THT:TO-92_Inline",
+      "M2": "Package_TO_SOT_THT:TO-92_Inline"
     },
     "pin_map": {
+      "refs": {
+        "M1": {
+          "d": "3",
+          "g": "2",
+          "s": "1",
+          "b": "1"
+        },
+        "M2": {
+          "d": "3",
+          "g": "2",
+          "s": "1",
+          "b": "1"
+        },
+        "X1A": [
+          "3",
+          "2",
+          "8",
+          "4",
+          "1"
+        ],
+        "X3A": [
+          "5",
+          "6",
+          "8",
+          "4",
+          "7"
+        ]
+      },
       "exclude": [
-        "R_LOAD"
+        "R_LOAD",
+        "X1A",
+        "X3A",
+        "R_X2POT",
+        "R_X4",
+        "R_VOL5A",
+        "R_VOL5B",
+        "SW1"
       ]
-    }
+    },
+    "node_aliases": {
+      "0": "GND"
+    },
+    "placement": {
+      "mode": "auto",
+      "margin_mm": 1.5,
+      "grid_mm": 1.27,
+      "clearance_mm": 0.8,
+      "fixed_refs": [
+        "H1",
+        "H2",
+        "H3",
+        "H4",
+        "U1",
+        "X2",
+        "X4",
+        "X5",
+        "J_IN",
+        "J_OUT"
+      ]
+    },
+    "routing": {
+      "mode": "freerouting",
+      "max_passes": 100,
+      "threads": 4,
+      "timeout_s": 1800,
+      "attempts": 3,
+      "optimize": true
+    },
+    "zones": [
+      {
+        "net": "GND",
+        "layer": "B.Cu",
+        "clearance_mm": 0.3,
+        "min_thickness_mm": 0.25,
+        "pad_connection": "solid"
+      },
+      {
+        "net": "GND",
+        "layer": "F.Cu",
+        "clearance_mm": 0.3,
+        "min_thickness_mm": 0.25,
+        "pad_connection": "solid"
+      }
+    ],
+    "fabrication": {
+      "vendor": "generic",
+      "capabilities": {
+        "min_track_mm": 0.15,
+        "min_clearance_mm": 0.15,
+        "min_via_diameter_mm": 0.45,
+        "min_via_drill_mm": 0.2,
+        "min_annular_ring_mm": 0.125,
+        "min_hole_to_hole_mm": 0.5,
+        "max_width_mm": 300,
+        "max_height_mm": 300,
+        "max_layers": 8
+      }
+    },
+    "extra_components": [
+      {
+        "ref": "U1",
+        "value": "TL082",
+        "footprint": "Package_DIP:DIP-8_W7.62mm",
+        "pads": {
+          "1": "X1_OUT",
+          "2": "X1_FB",
+          "3": "X1_P",
+          "4": "GND",
+          "5": "CLIP_B",
+          "6": "X3_FB",
+          "7": "X3_OUT",
+          "8": "VCC_F"
+        },
+        "properties": {
+          "note": "one DIP-8 replaces the two SPICE sections X1A and X3A"
+        },
+        "at": {
+          "x_mm": 54.0,
+          "y_mm": 35.0,
+          "rotation_deg": 0.0,
+          "side": "front"
+        },
+        "board_only": true
+      },
+      {
+        "ref": "X2",
+        "value": "1M",
+        "footprint": "Potentiometer_THT:Potentiometer_Alpha_RD901F-40-00D_Single_Vertical",
+        "pads": {
+          "1": "X1_OUT",
+          "2": "X2_W",
+          "3": "X2_W"
+        },
+        "properties": {
+          "note": "pin1=CCW, pin2=wiper, pin3=CW tied to wiper; CW increases gain"
+        },
+        "at": {
+          "x_mm": 19.0,
+          "y_mm": 10.0,
+          "rotation_deg": 0.0,
+          "side": "front"
+        },
+        "board_only": true
+      },
+      {
+        "ref": "X4",
+        "value": "10k",
+        "footprint": "Potentiometer_THT:Potentiometer_Alpha_RD901F-40-00D_Single_Vertical",
+        "pads": {
+          "1": "TONE_TOP",
+          "2": "TONE_W",
+          "3": "TONE_W"
+        },
+        "properties": {
+          "note": "pin1=CCW, pin2=wiper, pin3=CW tied to wiper; CW increases resistance"
+        },
+        "at": {
+          "x_mm": 34.0,
+          "y_mm": 10.0,
+          "rotation_deg": 0.0,
+          "side": "front"
+        },
+        "board_only": true
+      },
+      {
+        "ref": "X5",
+        "value": "100k",
+        "footprint": "Potentiometer_THT:Potentiometer_Alpha_RD901F-40-00D_Single_Vertical",
+        "pads": {
+          "1": "GND",
+          "2": "OUT",
+          "3": "VOL_TOP"
+        },
+        "properties": {
+          "note": "pin1=CCW/GND, pin2=wiper/OUT, pin3=CW/VOL_TOP"
+        },
+        "at": {
+          "x_mm": 49.0,
+          "y_mm": 10.0,
+          "rotation_deg": 0.0,
+          "side": "front"
+        },
+        "board_only": true
+      },
+      {
+        "ref": "J_IN",
+        "value": "NMJ6HFD2",
+        "footprint": "Connector_Audio:Jack_6.35mm_Neutrik_NMJ6HFD2_Horizontal",
+        "pads": {
+          "T": "J_IN_TIP",
+          "S": "GND",
+          "R": "BAT_NEG"
+        },
+        "properties": {
+          "note": "mono plug shorts R to S, completing the battery negative"
+        },
+        "at": {
+          "x_mm": 9.45,
+          "y_mm": 25.0,
+          "rotation_deg": 0.0,
+          "side": "front"
+        },
+        "board_only": true
+      },
+      {
+        "ref": "J_OUT",
+        "value": "NMJ4HFD2",
+        "footprint": "Connector_Audio:Jack_6.35mm_Neutrik_NMJ4HFD2_Horizontal",
+        "pads": {
+          "T": "J_OUT_TIP",
+          "S": "GND"
+        },
+        "at": {
+          "x_mm": 98.55,
+          "y_mm": 33.0,
+          "rotation_deg": 180.0,
+          "side": "front"
+        },
+        "board_only": true
+      },
+      {
+        "ref": "J_PWR",
+        "value": "PJ-102AH",
+        "footprint": "Connector_BarrelJack:BarrelJack_CUI_PJ-102AH_Horizontal",
+        "pads": {
+          "1": "GND",
+          "2": "VCC_JACK",
+          "3": "BAT_POS"
+        },
+        "properties": {
+          "note": "PJ-102AH: pad1=center, pad2=sleeve, pad3=switch (2-3 closed with no plug)"
+        },
+        "board_only": true
+      },
+      {
+        "ref": "BT1",
+        "value": "BATT",
+        "footprint": "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical",
+        "pads": {
+          "1": "BAT_POS",
+          "2": "BAT_NEG"
+        },
+        "board_only": true
+      },
+      {
+        "ref": "SW_FS",
+        "value": "3PDT",
+        "footprint": "Connector_PinHeader_2.54mm:PinHeader_2x05_P2.54mm_Vertical",
+        "pads": {
+          "1": "J_IN_TIP",
+          "2": "IN",
+          "3": "J_OUT_TIP",
+          "4": "J_OUT_TIP",
+          "5": "OUT",
+          "6": "GND",
+          "8": "LED_A",
+          "9": "GND"
+        },
+        "properties": {
+          "note": "header pin n wires 1:1 to 3PDT pin n; pin 7 open = LED on when engaged"
+        },
+        "board_only": true
+      },
+      {
+        "ref": "SW_HP",
+        "value": "HP/LP",
+        "footprint": "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical",
+        "pads": {
+          "1": "SW1_1",
+          "2": "VOL_TOP"
+        },
+        "properties": {
+          "note": "toggle shorts 1-2 for HP; open for LP"
+        },
+        "board_only": true
+      },
+      {
+        "ref": "H1",
+        "value": "M3",
+        "footprint": "MountingHole:MountingHole_3.2mm_M3",
+        "pads": {},
+        "at": {
+          "x_mm": 7.0,
+          "y_mm": 7.0,
+          "rotation_deg": 0,
+          "side": "front"
+        },
+        "properties": {
+          "note": "non-plated M3 mounting hole"
+        },
+        "board_only": true
+      },
+      {
+        "ref": "H2",
+        "value": "M3",
+        "footprint": "MountingHole:MountingHole_3.2mm_M3",
+        "pads": {},
+        "at": {
+          "x_mm": 101.0,
+          "y_mm": 7.0,
+          "rotation_deg": 0,
+          "side": "front"
+        },
+        "properties": {
+          "note": "non-plated M3 mounting hole"
+        },
+        "board_only": true
+      },
+      {
+        "ref": "H3",
+        "value": "M3",
+        "footprint": "MountingHole:MountingHole_3.2mm_M3",
+        "pads": {},
+        "at": {
+          "x_mm": 7.0,
+          "y_mm": 51.0,
+          "rotation_deg": 0,
+          "side": "front"
+        },
+        "properties": {
+          "note": "non-plated M3 mounting hole"
+        },
+        "board_only": true
+      },
+      {
+        "ref": "H4",
+        "value": "M3",
+        "footprint": "MountingHole:MountingHole_3.2mm_M3",
+        "pads": {},
+        "at": {
+          "x_mm": 101.0,
+          "y_mm": 51.0,
+          "rotation_deg": 0,
+          "side": "front"
+        },
+        "properties": {
+          "note": "non-plated M3 mounting hole"
+        },
+        "board_only": true
+      }
+    ],
+    "assumptions": [
+      "X1A and X3A are two sections of one TL082 dual op-amp; they are merged into a single DIP-8 U1 on the board.",
+      "The Drive, Tone and Volume pots replace the fixed simulation resistors R_X2POT, R_X4 and R_VOL5A/B; the SPICE netlist remains the electrical source of truth.",
+      "The 3PDT and HP/LP toggle are panel-mounted and wired to headers; a PCB-mounted 3PDT footprint needs a verified switch datasheet.",
+      "The input jack is a TRS part used as mono: the ring carries the battery negative and completes it only when a mono plug is inserted.",
+      "The DC jack is center-negative; its normally-closed switch (pads 2-3) disconnects the battery when a DC plug is inserted.",
+      "Mechanical placement relative to the 1590B enclosure drilling is a follow-up; this board is electrically routed but not yet panel-fitted."
+    ],
+    "notes": [
+      "Through-hole 1590B board.",
+      "Board-only parts: pots, jacks, DC jack, battery header, switch headers.",
+      "The LED is always-on in the electrical model; 3PDT pole 3 can switch it on the board."
+    ]
   }
 }

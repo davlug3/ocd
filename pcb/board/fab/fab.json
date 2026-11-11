@@ -1,0 +1,72 @@
+{
+  "output_dir": "build/pcb/fab",
+  "archive": "build/pcb/fab/ocd_v0p4_8v18v-fabrication.zip",
+  "gerbers": "build/pcb/fab/gerbers",
+  "drill": "build/pcb/fab/drill",
+  "gerber_files": [
+    "ocd_v0p4_8v18v-B_Cu.gbl",
+    "ocd_v0p4_8v18v-B_Mask.gbs",
+    "ocd_v0p4_8v18v-B_Paste.gbp",
+    "ocd_v0p4_8v18v-B_Silkscreen.gbo",
+    "ocd_v0p4_8v18v-Edge_Cuts.gm1",
+    "ocd_v0p4_8v18v-F_Cu.gtl",
+    "ocd_v0p4_8v18v-F_Mask.gts",
+    "ocd_v0p4_8v18v-F_Paste.gtp",
+    "ocd_v0p4_8v18v-F_Silkscreen.gto",
+    "ocd_v0p4_8v18v-job.gbrjob"
+  ],
+  "drill_files": [
+    "ocd_v0p4_8v18v.drl"
+  ],
+  "pos": "build/pcb/fab/ocd_v0p4_8v18v-pos.csv",
+  "step": "build/pcb/fab/ocd_v0p4_8v18v.step",
+  "ipc356": "build/pcb/fab/ocd_v0p4_8v18v-ipc356.net",
+  "readme": "build/pcb/fab/fabrication-README.md",
+  "required_outputs": [
+    "drill",
+    "gerbers",
+    "ipc356",
+    "pos",
+    "step"
+  ],
+  "missing_required": [],
+  "steps": [
+    {
+      "step": "gerbers",
+      "ok": true,
+      "required": true,
+      "exit_code": 0,
+      "output": "Plotted to 'build/pcb/fab/gerbers/ocd_v0p4_8v18v-F_Cu.gtl'.\nPlotted to 'build/pcb/fab/gerbers/ocd_v0p4_8v18v-B_Cu.gbl'.\nPlotted to 'build/pcb/fab/gerbers/ocd_v0p4_8v18v-F_Paste.gtp'.\nPlotted to 'build/pcb/fab/gerbers/ocd_v0p4_8v18v-B_Paste.gbp'.\nPlotted to 'build/pcb/fab/gerbers/ocd_v0p4_8v18v-F_Silkscreen.gto'.\nPlotted to 'build/pcb/fab/gerbers/ocd_v0p4_8v18v-B_Silkscreen.gbo'.\nPlotted to 'build/pcb/fab/gerbers/ocd_v0p4_8v18v-F_Mask.gts'.\nPlotted to 'build/pcb/fab/gerbers/ocd_v0p4_8v18v-B_Mask.gbs'.\nPlotted to 'build/pcb/fab/gerbers/ocd_v0p4_8v18v-Edge_Cuts.gm1'."
+    },
+    {
+      "step": "drill",
+      "ok": true,
+      "required": true,
+      "exit_code": 0,
+      "output": "Created file 'build/pcb/fab/drill/ocd_v0p4_8v18v.drl'\nDone."
+    },
+    {
+      "step": "pos",
+      "ok": true,
+      "required": true,
+      "exit_code": 0,
+      "output": "Wrote position data to 'build/pcb/fab/ocd_v0p4_8v18v-pos.csv'."
+    },
+    {
+      "step": "step",
+      "ok": true,
+      "required": true,
+      "exit_code": 0,
+      "output": "EL_DIR}/Connector_PinHeader_2.54mm.3dshapes/PinHeader_1x02_P2.54mm_Vertical.step\nCould not add 3D model for C8.\nFile not found: ${KICAD9_3DMODEL_DIR}/Capacitor_THT.3dshapes/C_Disc_D5.0mm_W2.5mm_P5.00mm.step\nCould not add 3D model for C11.\nFile not found: ${KICAD9_3DMODEL_DIR}/Capacitor_THT.3dshapes/C_Disc_D5.0mm_W2.5mm_P5.00mm.step\nCould not add 3D model for R2.\nFile not found: ${KICAD9_3DMODEL_DIR}/Resistor_THT.3dshapes/R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal.step\nCould not add 3D model for C6.\nFile not found: ${KICAD9_3DMODEL_DIR}/Capacitor_THT.3dshapes/C_Disc_D5.0mm_W2.5mm_P5.00mm.step\nCould not add 3D model for R12.\nFile not found: ${KICAD9_3DMODEL_DIR}/Resistor_THT.3dshapes/R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal.step\nCould not add 3D model for D1.\nFile not found: ${KICAD9_3DMODEL_DIR}/Diode_THT.3dshapes/D_DO-35_SOD27_P7.62mm_Horizontal.step\nCould not add 3D model for R10.\nFile not found: ${KICAD9_3DMODEL_DIR}/Resistor_THT.3dshapes/R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal.step\nCould not add 3D model for C7.\nFile not found: ${KICAD9_3DMODEL_DIR}/Capacitor_THT.3dshapes/C_Disc_D5.0mm_W2.5mm_P5.00mm.step\nCould not add 3D model for J_IN.\nFile not found: ${KICAD9_3DMODEL_DIR}/Connector_Audio.3dshapes/Jack_6.35mm_Neutrik_NMJ6HFD2_Horizontal.step\nCould not add 3D model for X2.\nFile not found: ${KICAD9_3DMODEL_DIR}/Potentiometer_THT.3dshapes/Potentiometer_Alpha_RD901F-40-00D_Single_Vertical.step\nCould not add 3D model for R8.\nFile not found: ${KICAD9_3DMODEL_DIR}/Resistor_THT.3dshapes/R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal.step\nCould not add 3D model for X4.\nFile not found: ${KICAD9_3DMODEL_DIR}/Potentiometer_THT.3dshapes/Potentiometer_Alpha_RD901F-40-00D_Single_Vertical.step\nCould not add 3D model for R11.\nFile not found: ${KICAD9_3DMODEL_DIR}/Resistor_THT.3dshapes/R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal.step\nCould not add 3D model for D_LED.\nFile not found: ${KICAD9_3DMODEL_DIR}/LED_THT.3dshapes/LED_D5.0mm.step\nCould not add 3D model for C10.\nFile not found: ${KICAD9_3DMODEL_DIR}/Capacitor_THT.3dshapes/CP_Radial_D5.0mm_P2.00mm.step\nCould not add 3D model for D_PWR.\nFile not found: ${KICAD9_3DMODEL_DIR}/Diode_THT.3dshapes/D_DO-41_SOD81_P10.16mm_Horizontal.step\nCould not add 3D model for R5.\nFile not found: ${KICAD9_3DMODEL_DIR}/Resistor_THT.3dshapes/R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal.step\nCould not add 3D model for R9.\nFile not found: ${KICAD9_3DMODEL_DIR}/Resistor_THT.3dshapes/R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal.step\nCould not add 3D model for R_LED.\nFile not found: ${KICAD9_3DMODEL_DIR}/Resistor_THT.3dshapes/R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal.step\nCould not add 3D model for R3.\nFile not found: ${KICAD9_3DMODEL_DIR}/Resistor_THT.3dshapes/R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal.step\nCould not add 3D model for M2.\nFile not found: ${KICAD9_3DMODEL_DIR}/Package_TO_SOT_THT.3dshapes/TO-92_Inline.step\nCould not add 3D model for J_PWR.\nFile not found: ${KICAD9_3DMODEL_DIR}/Connector_BarrelJack.3dshapes/BarrelJack_CUI_PJ-102AH_Horizontal.step\nCould not add 3D model for C3.\nFile not found: ${KICAD9_3DMODEL_DIR}/Capacitor_THT.3dshapes/C_Disc_D5.0mm_W2.5mm_P5.00mm.step\nCreate PCB solid model.\nBoard outline: found 4 initial points.\nBuild board outlines (1 outlines) with 4 points.\nBuild board cutouts and holes (244 hole(s)).\nSubtracting holes for shapes\nSubtracting holes for pads\nSubtracting holes for vias\nGenerate board full shape.\nWriting STEP file.\n\n*******************************************************************\n******        Statistics on Transfer (Write)                 ******\n\n*******************************************************************\n******        Transfer Mode = 0  I.E.  As Is       ******\n******        Transferring Shape, ShapeType = 0                      ******\n** WorkSession : Sending all data\n Step File Name : $tempfile$.step(5527 ents)  Write  Done\nSTEP file 'build/pcb/fab/ocd_v0p4_8v18v.step' created.\n\nExport time 0.219 s"
+    },
+    {
+      "step": "ipc356",
+      "ok": true,
+      "required": true,
+      "exit_code": 0,
+      "command": "ipcd356",
+      "output": "Successfully created IPC-D-356 file"
+    }
+  ],
+  "ok": true
+}

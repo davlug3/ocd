@@ -1,0 +1,66 @@
+{
+  "structural": {
+    "ok": true,
+    "exit_code": 0,
+    "output": "build/pcb/ocd_v0p4_8v18v.kicad_pcb: KiCad 9.0, 29 nets, 46 footprints, 261 segments, 2 vias, 2 zones\n0 error(s), 0 warning(s)"
+  },
+  "drc": {
+    "ok": true,
+    "exit_code": 0,
+    "violations": 0,
+    "unconnected": 0,
+    "warnings": 0,
+    "clearance_violations": 0,
+    "report": "build/pcb/check/ocd_v0p4_8v18v.drc.rpt",
+    "error_report": "build/pcb/check/ocd_v0p4_8v18v.drc-errors.rpt",
+    "full_exit_code": 0,
+    "full_output": "Found 0 violations\nFound 0 unconnected items\nSaved DRC Report to build/pcb/check/ocd_v0p4_8v18v.drc.rpt",
+    "gate_output": "Found 0 violations\nFound 0 unconnected items\nSaved DRC Report to build/pcb/check/ocd_v0p4_8v18v.drc-errors.rpt",
+    "report_text": "** Drc report for ocd_v0p4_8v18v.kicad_pcb **\n** Created on 2026-11-11T16:36:13+0000 **\n** Report includes: Errors, Warnings, Exclusions **\n\n** Found 0 DRC violations **\n\n** Found 0 unconnected pads **\n\n** Found 0 Footprint errors **\n\n** End of Report **\n"
+  },
+  "dfm": {
+    "ok": true,
+    "errors": [],
+    "warnings": []
+  },
+  "netlist_parity": {
+    "ok": true,
+    "errors": []
+  },
+  "length_match": {
+    "ok": true,
+    "errors": [],
+    "warnings": [],
+    "lengths_mm": {
+      "CLIP_A": 87.389,
+      "CLIP_B": 10.194,
+      "GND": 191.579,
+      "IN": 19.293,
+      "IN_B": 59.49,
+      "LED_A": 49.937,
+      "M2_D1_NODE": 28.522,
+      "SW1_1": 9.458,
+      "TONE_TOP": 51.956,
+      "TONE_W": 12.857,
+      "VCC": 5.908,
+      "VCC_F": 97.347,
+      "VCC_JACK": 7.696,
+      "VOL_TOP": 23.543,
+      "VREF": 105.9,
+      "X1_FB": 99.83,
+      "X1_OUT": 68.349,
+      "X1_P": 33.77,
+      "X1_RG": 6.658,
+      "X2_W": 8.578,
+      "X3_FB": 47.008,
+      "X3_OUT": 62.668,
+      "X3_RG": 18.922,
+      "OUT": 20.257,
+      "J_IN_TIP": 39.455,
+      "BAT_NEG": 25.658,
+      "J_OUT_TIP": 53.509,
+      "BAT_POS": 24.942
+    }
+  },
+  "ok": true
+}

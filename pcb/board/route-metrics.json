@@ -1,0 +1,53 @@
+{
+  "track_length_mm": 1270.673,
+  "track_segment_count": 261,
+  "via_count": 2,
+  "via_layer_transition_count": 2,
+  "unconnected_items": 0,
+  "clearance_violations": 0,
+  "track_length_by_layer_mm": {
+    "B.Cu": 720.521,
+    "F.Cu": 550.152
+  },
+  "track_length_by_net_mm": {
+    "BAT_NEG": 25.658,
+    "BAT_POS": 24.942,
+    "CLIP_A": 87.389,
+    "CLIP_B": 10.194,
+    "GND": 191.579,
+    "IN": 19.293,
+    "IN_B": 59.49,
+    "J_IN_TIP": 39.455,
+    "J_OUT_TIP": 53.509,
+    "LED_A": 49.937,
+    "M2_D1_NODE": 28.522,
+    "OUT": 20.257,
+    "SW1_1": 9.458,
+    "TONE_TOP": 51.956,
+    "TONE_W": 12.857,
+    "VCC": 5.908,
+    "VCC_F": 97.347,
+    "VCC_JACK": 7.696,
+    "VOL_TOP": 23.543,
+    "VREF": 105.9,
+    "X1_FB": 99.83,
+    "X1_OUT": 68.349,
+    "X1_P": 33.77,
+    "X1_RG": 6.658,
+    "X2_W": 8.578,
+    "X3_FB": 47.008,
+    "X3_OUT": 62.668,
+    "X3_RG": 18.922
+  },
+  "length_measurement_methods": [
+    "pcbnew.GetLength"
+  ],
+  "notes": [
+    "KiCad PCB track lengths are geometric copper-segment lengths; zone current paths are not included.",
+    "Via-layer transition count is a via-count proxy and does not model detailed layer-stack topology.",
+    "Clearance violations are populated only after the KiCad DRC report is available.",
+    "These metrics do not establish impedance, return-path quality, current capacity, thermal, EMC, or safety compliance."
+  ],
+  "drc_violations": 0,
+  "drc_ok": true
+}

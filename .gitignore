@@ -1,0 +1,10 @@
+# Transient CI logs and downloaded build scratch
+pcb/ci-dispatch.log
+pcb/build/
+
+# Python
+__pycache__/
+*.pyc
+
+# Local editor/OS noise
+.DS_Store
