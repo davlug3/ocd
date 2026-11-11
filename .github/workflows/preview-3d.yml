@@ -1,0 +1,41 @@
+name: 3D preview
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  preview:
+    name: Build GLB / STEP / renders in KiCad 9
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build 3D preview
+        run: |
+          set -euo pipefail
+          docker run --rm --user root \
+            -v "${PWD}:/work" -w /work -e HOME=/tmp \
+            kicad/kicad:9.0 bash -lc '
+              set -euo pipefail
+              if ! command -v python3 >/dev/null 2>&1; then
+                apt-get update -qq
+                apt-get install -y -qq python3 >/dev/null
+              fi
+              python3 pcb/preview/build_3d.py \
+                --board pcb/board/ocd_v0p4_8v18v.kicad_pcb \
+                --out-dir pcb/preview
+            '
+
+      - name: Upload 3D preview
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ocd-3d-preview
+          path: |
+            pcb/preview/*.glb
+            pcb/preview/*-components.step
+            pcb/preview/*-3d-*.png
+          if-no-files-found: warn

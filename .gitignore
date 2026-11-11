@@ -2,6 +2,9 @@
 pcb/ci-dispatch.log
 pcb/build/
 
+# Downloaded KiCad 3D model library (multi-GB upstream; fetched on demand)
+pcb/preview/models/
+
 # Python
 __pycache__/
 *.pyc
