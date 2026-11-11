@@ -43,6 +43,8 @@ jobs:
                 -D KICAD9_3DMODEL_DIR=/work/pcb/preview/models \
                 /work/pcb/board/ocd_v0p4_8v18v.kicad_pcb 2>&1 | tail -40 || true
               echo "orig rc=${PIPESTATUS[0]}"
+              curl -fsSL -o /work/pcb/preview/models/Connector_Audio.3dshapes/Jack_6.35mm_Neutrik_NMJ6HFD2_Horizontal.wrl \
+                https://raw.githubusercontent.com/KiCad/kicad-packages3D/master/Resistor_THT.3dshapes/R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal.wrl
               kicad-cli pcb export glb -o /work/pcb/preview/test-preview.glb -f --subst-models \
                 -D KICAD9_3DMODEL_DIR=/work/pcb/preview/models \
                 /work/pcb/preview/ocd_v0p4_8v18v-preview.kicad_pcb 2>&1 | tail -40 || true
