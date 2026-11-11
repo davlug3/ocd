@@ -1,0 +1,2408 @@
+{
+  "name": "ocd_v0p4_8v18v",
+  "description": "OCD-style overdrive v0.4: S002-verified topology + user node connections; 8-18V DC center-negative, 9V nominal. D_FB_FIX moves C4/C8 in series with R5/R11 (the prior parallel placement saturated both op-amps). Adds 1N5819 protection, status LED, 9V battery/DC-jack provision, and an explicit HP/LP SW1. Not a verified Fulltone netlist; 2N7000/1N34A/1N5819 models are approximations.",
+  "topology": "ocd_v0p4_8v18v",
+  "generated": "2026-11-11",
+  "ground": "GND",
+  "supplies": [
+    {
+      "name": "VCC_JACK",
+      "voltage": 9.0,
+      "range_v": [
+        8.0,
+        18.0
+      ],
+      "source": "8-18V DC center-negative at the jack; 9V nominal test; VCC after 1N5819 protection; VCC_F after R1 filter"
+    }
+  ],
+  "environment": {
+    "ta_c": 25,
+    "tj_max_c": 125
+  },
+  "analyses": [
+    {
+      "type": "op"
+    },
+    {
+      "type": "dc",
+      "source": "V1",
+      "start": 8.0,
+      "stop": 18.0,
+      "step": 1.0
+    },
+    {
+      "type": "tran",
+      "step": 1e-05,
+      "stop": 0.03
+    },
+    {
+      "type": "fourier",
+      "fundamental": 1000.0,
+      "output": "v(out)"
+    },
+    {
+      "type": "ac",
+      "start": 20.0,
+      "stop": 20000.0,
+      "points": 200
+    },
+    {
+      "type": "noise",
+      "output": "OUT",
+      "source": "V_AC",
+      "start": 20.0,
+      "stop": 20000.0,
+      "points": 100
+    }
+  ],
+  "assumptions": [
+    "S002 topology; S003 cross-check; S001/S013 context; not a verified Fulltone netlist.",
+    "TL082 vendor model; 2N7000/1N34A/1N5819/LED/SW models are approximations or ideal. The models gate is SKIP.",
+    "Pots are modeled as 50% linear snapshots; actual tapers/values are unverified.",
+    "HP/LP is modeled as a voltage-controlled SW1; the physical part is an SPDT and PCB mapping is Phase C.",
+    "Battery/DC-jack/3PDT wiring is not simulated; it is bench/PCB Phase C.",
+    "AC excitation is split into V_IN and V_AC; THD/noise are exploratory."
+  ],
+  "warnings": [
+    "model 'APPROX_2N7000' has no vendor/part/source provenance; the report will call it declared, not vendor",
+    "model 'APPROX_1N34A' has no vendor/part/source provenance; the report will call it declared, not vendor",
+    "metrics.metrics[0]: exploratory=true ignores the target or limit",
+    "metrics.metrics[1]: exploratory=true ignores the target or limit",
+    "metrics.metrics[2]: exploratory=true ignores the target or limit",
+    "metrics.metrics[3]: exploratory=true ignores the target or limit",
+    "metrics.metrics[4]: exploratory=true ignores the target or limit",
+    "D_PWR (D) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+    "R1 (R) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+    "C2 (C) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+    "C3 (C) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+    "R4 (R) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+    "R7 (R) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+    "C5 (C) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+    "C1 (C) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+    "R2 (R) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+    "R6 (R) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+    "R3 (R) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+    "X1A (OPAMP) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+    "R5 (R) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+    "R8 (R) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+    "R_X2POT (R) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+    "C4 (C) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+    "C6 (C) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+    "R9 (R) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+    "C7 (C) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+    "R10 (R) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+    "R12 (R) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+    "M1 (NMOS) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+    "M2 (NMOS) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+    "D1 (D) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+    "X3A (OPAMP) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+    "R11 (R) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+    "R13 (R) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+    "C8 (C) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+    "C9 (C) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+    "C10 (C) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+    "R_X4 (R) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+    "C11 (C) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+    "R14 (R) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+    "R15 (R) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+    "R_VOL5A (R) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+    "R_VOL5B (R) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+    "R_LED (R) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+    "D_LED (LED) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+    "R_LOAD is a boardable part but was explicitly excluded; the PCB will not contain it",
+    "X1A (OPAMP) has no pcb.pin_map entry; the PCB pipeline will ask for a package pinout",
+    "M1 (NMOS) has no pcb.pin_map entry; the PCB pipeline will ask for a package pinout",
+    "M2 (NMOS) has no pcb.pin_map entry; the PCB pipeline will ask for a package pinout",
+    "X3A (OPAMP) has no pcb.pin_map entry; the PCB pipeline will ask for a package pinout"
+  ],
+  "components": [
+    {
+      "ref": "V1",
+      "type": "V",
+      "value": 0.0,
+      "pins": {
+        "1": "VCC_JACK",
+        "2": "GND"
+      },
+      "notes": "9V nominal test at the DC jack; design range 8-18V DC center-negative (C022). D_PWR and R1 drop before the op-amp rail.",
+      "dc": 9.0
+    },
+    {
+      "ref": "V_IN",
+      "type": "V",
+      "value": 0.0,
+      "pins": {
+        "1": "IN",
+        "2": "IN_SRC"
+      },
+      "notes": "Transient excitation 50mVpk/1kHz. AC excitation is V_AC because the generator drops AC when a waveform is present.",
+      "waveform": {
+        "type": "sin",
+        "params": [
+          0,
+          0.05,
+          1000
+        ]
+      },
+      "dc": 0.0,
+      "ac": 0.0
+    },
+    {
+      "ref": "V_AC",
+      "type": "V",
+      "value": 0.0,
+      "pins": {
+        "1": "IN_SRC",
+        "2": "GND"
+      },
+      "notes": "AC excitation 1V for .ac/.noise. Simulation-only; in series with V_IN. Workaround for the generator dropping AC on a waveform source.",
+      "dc": 0.0,
+      "ac": 1.0
+    },
+    {
+      "ref": "D_PWR",
+      "type": "D",
+      "value": 0.0,
+      "pins": {
+        "1": "VCC_JACK",
+        "2": "VCC"
+      },
+      "model": "APPROX_1N5819",
+      "notes": "Series Schottky reverse-polarity protection; 1N5819 default. APPROX model; Vf ~0.25-0.3V. 8V-jack margin to the TL082 7V minimum is a bench gate (D_PROT)."
+    },
+    {
+      "ref": "R1",
+      "type": "R",
+      "value": 100.0,
+      "pins": {
+        "1": "VCC",
+        "2": "VCC_F"
+      },
+      "notes": "S002-schematic-image-confirmed: supply feed/filter node (R1=100ohm), now after D_PWR protection."
+    },
+    {
+      "ref": "C2",
+      "type": "C",
+      "value": 1e-05,
+      "pins": {
+        "1": "VCC_F",
+        "2": "GND"
+      },
+      "notes": "S002-schematic-image-confirmed: power bulk filter (C2=10\u00b5F)."
+    },
+    {
+      "ref": "C3",
+      "type": "C",
+      "value": 1e-07,
+      "pins": {
+        "1": "VCC_F",
+        "2": "GND"
+      },
+      "notes": "S002-schematic-image-confirmed: power HF decoupling (C3=100nF)."
+    },
+    {
+      "ref": "R4",
+      "type": "R",
+      "value": 10000.0,
+      "pins": {
+        "1": "VCC_F",
+        "2": "VREF"
+      },
+      "notes": "S002-schematic-image-confirmed: Vref divider upper (R4=10k)."
+    },
+    {
+      "ref": "R7",
+      "type": "R",
+      "value": 10000.0,
+      "pins": {
+        "1": "VREF",
+        "2": "GND"
+      },
+      "notes": "S002-schematic-image-confirmed: Vref divider lower (R7=10k)."
+    },
+    {
+      "ref": "C5",
+      "type": "C",
+      "value": 1e-05,
+      "pins": {
+        "1": "VREF",
+        "2": "GND"
+      },
+      "notes": "S002-schematic-image-confirmed: Vref filter cap (C5=10\u00b5F)."
+    },
+    {
+      "ref": "C1",
+      "type": "C",
+      "value": 2.2e-08,
+      "pins": {
+        "1": "IN",
+        "2": "IN_B"
+      },
+      "notes": "S002-schematic-image-confirmed: input coupling cap (C1=22nF)."
+    },
+    {
+      "ref": "R2",
+      "type": "R",
+      "value": 1000000.0,
+      "pins": {
+        "1": "IN_B",
+        "2": "GND"
+      },
+      "notes": "S002-schematic-image-confirmed: R2 (1M) connects input cap C1 to GROUND as voltage reference, not to VREF. R6 biases op-amp to VREF."
+    },
+    {
+      "ref": "R6",
+      "type": "R",
+      "value": 470000.0,
+      "pins": {
+        "1": "IN_B",
+        "2": "VREF"
+      },
+      "notes": "S002-schematic-image-confirmed: biases op-amp non-inverting input to VREF (R6=470k)."
+    },
+    {
+      "ref": "R3",
+      "type": "R",
+      "value": 10000.0,
+      "pins": {
+        "1": "IN_B",
+        "2": "X1_P"
+      },
+      "notes": "S002-schematic-image-confirmed: limits current to op-amp input (R3=10k)."
+    },
+    {
+      "ref": "X1A",
+      "type": "OPAMP",
+      "value": 0.0,
+      "pins": {
+        "1": "X1_P",
+        "2": "X1_FB",
+        "3": "VCC_F",
+        "4": "GND",
+        "5": "X1_OUT"
+      },
+      "model": "TL082",
+      "notes": "TL082 section 1; wiring assumed"
+    },
+    {
+      "ref": "R5",
+      "type": "R",
+      "value": 2200.0,
+      "pins": {
+        "1": "X1_FB",
+        "2": "X1_RG"
+      },
+      "notes": "S002-confirmed value R5=2.2k. D_FB_FIX: R5 is in series with C4 to VREF so the stage has unity DC gain and an AC bass limit."
+    },
+    {
+      "ref": "R8",
+      "type": "R",
+      "value": 18000.0,
+      "pins": {
+        "1": "X1_FB",
+        "2": "X2_W"
+      },
+      "notes": "S002-schematic-image-confirmed: gain network (R8=18k)."
+    },
+    {
+      "ref": "R_X2POT",
+      "type": "R",
+      "value": 500000.0,
+      "pins": {
+        "1": "X2_W",
+        "2": "X1_OUT"
+      },
+      "notes": "Drive/gain pot modeled 50% of 1M (S002 states gain pot 1M; mapping/wiring assumed)."
+    },
+    {
+      "ref": "C4",
+      "type": "C",
+      "value": 1e-07,
+      "pins": {
+        "1": "X1_RG",
+        "2": "VREF"
+      },
+      "notes": "S002-confirmed C4=100nF. D_FB_FIX: C4 is in series with R5, not in parallel with it; the parallel placement had zero DC feedback and saturated X1."
+    },
+    {
+      "ref": "C6",
+      "type": "C",
+      "value": 2.2e-10,
+      "pins": {
+        "1": "X1_OUT",
+        "2": "X1_FB"
+      },
+      "notes": "S002-schematic-image-confirmed: HF stability cap (C6=220pF)."
+    },
+    {
+      "ref": "R9",
+      "type": "R",
+      "value": 10000.0,
+      "pins": {
+        "1": "X1_OUT",
+        "2": "CLIP_A"
+      },
+      "notes": "S002-schematic-image-confirmed: series into clipping (R9=10k)."
+    },
+    {
+      "ref": "C7",
+      "type": "C",
+      "value": 1e-08,
+      "pins": {
+        "1": "VREF",
+        "2": "CLIP_A"
+      },
+      "notes": "S002-schematic-image-confirmed: VREF-CLIP_A cap (C7=10nF)."
+    },
+    {
+      "ref": "R10",
+      "type": "R",
+      "value": 10000.0,
+      "pins": {
+        "1": "CLIP_A",
+        "2": "CLIP_B"
+      },
+      "notes": "S002-schematic-image-confirmed: clip network resistor (R10=10k)."
+    },
+    {
+      "ref": "R12",
+      "type": "R",
+      "value": 220000.0,
+      "pins": {
+        "1": "VREF",
+        "2": "CLIP_B"
+      },
+      "notes": "S002-schematic-image-confirmed: bias to CLIP_B (R12=220k)."
+    },
+    {
+      "ref": "M1",
+      "type": "NMOS",
+      "value": 0.0,
+      "pins": {
+        "1": "VREF",
+        "2": "VREF",
+        "3": "CLIP_A"
+      },
+      "model": "APPROX_2N7000",
+      "notes": "S002-schematic-image-confirmed: M1 [D&G=VREF, S=CLIP_A]. Exact part unknown; APPROX sim-only. Commenter-reported alternate wiring (M1[S=VREF,D&G=R9/R10]) does NOT match S002 image."
+    },
+    {
+      "ref": "M2",
+      "type": "NMOS",
+      "value": 0.0,
+      "pins": {
+        "1": "VREF",
+        "2": "M2_D1_NODE",
+        "3": "M2_D1_NODE"
+      },
+      "model": "APPROX_2N7000",
+      "notes": "S002-schematic-image-confirmed: M2 [D=VREF, G&S=M2_D1_NODE]. Exact part unknown; APPROX sim-only. Commenter-reported alternate wiring (M2[D&G=VREF,S=D1]) does NOT match S002 image."
+    },
+    {
+      "ref": "D1",
+      "type": "D",
+      "value": 0.0,
+      "pins": {
+        "1": "CLIP_A",
+        "2": "M2_D1_NODE"
+      },
+      "model": "APPROX_1N34A",
+      "notes": "S002-schematic-image-confirmed: D1 [A=CLIP_A, K=M2_D1_NODE], 1N34A Ge per article text (C027). APPROX sim-only model, Ge variability applies."
+    },
+    {
+      "ref": "X3A",
+      "type": "OPAMP",
+      "value": 0.0,
+      "pins": {
+        "1": "CLIP_B",
+        "2": "X3_FB",
+        "3": "VCC_F",
+        "4": "GND",
+        "5": "X3_OUT"
+      },
+      "model": "TL082",
+      "notes": "S002-schematic-image-confirmed: TL082 section 2; non-inv input CLIP_B; wiring assumed."
+    },
+    {
+      "ref": "R11",
+      "type": "R",
+      "value": 39000.0,
+      "pins": {
+        "1": "X3_FB",
+        "2": "X3_RG"
+      },
+      "notes": "S002-confirmed R11=39k. D_FB_FIX: R11 is in series with C8 to VREF so the stage has unity DC gain."
+    },
+    {
+      "ref": "R13",
+      "type": "R",
+      "value": 150000.0,
+      "pins": {
+        "1": "X3_FB",
+        "2": "X3_OUT"
+      },
+      "notes": "S002-schematic-image-confirmed: feedback (R13=150k)."
+    },
+    {
+      "ref": "C8",
+      "type": "C",
+      "value": 1e-07,
+      "pins": {
+        "1": "X3_RG",
+        "2": "VREF"
+      },
+      "notes": "S002-confirmed C8=100nF. D_FB_FIX: C8 is in series with R11, not in parallel with it; the parallel placement had zero DC feedback and saturated X3."
+    },
+    {
+      "ref": "C9",
+      "type": "C",
+      "value": 2.2e-10,
+      "pins": {
+        "1": "X3_OUT",
+        "2": "X3_FB"
+      },
+      "notes": "S002-schematic-image-confirmed: HF stability (C9=220pF)."
+    },
+    {
+      "ref": "C10",
+      "type": "C",
+      "value": 1e-05,
+      "pins": {
+        "1": "X3_OUT",
+        "2": "TONE_TOP"
+      },
+      "notes": "S002-schematic-image-confirmed: output coupling cap (C10=10\u00b5F)."
+    },
+    {
+      "ref": "R_X4",
+      "type": "R",
+      "value": 5000.0,
+      "pins": {
+        "1": "TONE_TOP",
+        "2": "TONE_W"
+      },
+      "notes": "S002 tone pot X4=10k wired as a rheostat in series with C11 to ground (treble passes through X4 then C11). 50% snapshot=5k; BOM part is a 10k pot."
+    },
+    {
+      "ref": "C11",
+      "type": "C",
+      "value": 4.7e-08,
+      "pins": {
+        "1": "TONE_W",
+        "2": "GND"
+      },
+      "notes": "S002-schematic-image-confirmed: tone cap C11 to ground (C11=47nF)."
+    },
+    {
+      "ref": "R14",
+      "type": "R",
+      "value": 22000.0,
+      "pins": {
+        "1": "TONE_TOP",
+        "2": "VOL_TOP"
+      },
+      "notes": "S002-confirmed R14=22k. Main signal path from TONE_TOP (after C10) to VOL_TOP; always in circuit (LP=open, darker)."
+    },
+    {
+      "ref": "R15",
+      "type": "R",
+      "value": 33000.0,
+      "pins": {
+        "1": "TONE_TOP",
+        "2": "SW1_1"
+      },
+      "notes": "S002-confirmed R15=33k. Switched in parallel with R14 via SW1 from TONE_TOP to VOL_TOP; HP=closed/parallel=brighter (S003), LP=open/darker."
+    },
+    {
+      "ref": "SW1",
+      "type": "SW",
+      "value": 0.0,
+      "pins": {
+        "1": "SW1_1",
+        "2": "VOL_TOP",
+        "3": "HP_CTRL",
+        "4": "GND"
+      },
+      "model": "SW1MODEL",
+      "notes": "HP/LP toggle modeled as a voltage-controlled switch. HP = closed (V_HP=5V) -> R15 parallel with R14 (brighter); LP = open (V_HP=0V) -> R14 only (darker). Physical part is an SPDT; PCB pad mapping is Phase C."
+    },
+    {
+      "ref": "V_HP",
+      "type": "V",
+      "value": 0.0,
+      "pins": {
+        "1": "HP_CTRL",
+        "2": "GND"
+      },
+      "notes": "Simulation-only switch control. 5V = HP (SW1 closed, parallel, brighter); change to 0V for the LP variant.",
+      "dc": 5.0
+    },
+    {
+      "ref": "R_VOL5A",
+      "type": "R",
+      "value": 50000.0,
+      "pins": {
+        "1": "VOL_TOP",
+        "2": "OUT"
+      },
+      "notes": "Volume pot 100k modeled at 50% (X5 value not found in retrieved S002 text; 100k is placeholder)."
+    },
+    {
+      "ref": "R_VOL5B",
+      "type": "R",
+      "value": 50000.0,
+      "pins": {
+        "1": "OUT",
+        "2": "GND"
+      },
+      "notes": "Volume pot lower leg modeled at 50% (X5 value not found in retrieved S002 text; 100k is placeholder)."
+    },
+    {
+      "ref": "R_LOAD",
+      "type": "R",
+      "value": 100000.0,
+      "pins": {
+        "1": "OUT",
+        "2": "GND"
+      }
+    },
+    {
+      "ref": "R_LED",
+      "type": "R",
+      "value": 4700.0,
+      "pins": {
+        "1": "VCC_F",
+        "2": "LED_A"
+      },
+      "notes": "Status LED series resistor; 1.35mA at 9V, ~3mA at 18V (Vf 1.8V). Physical LED switching is via the 3PDT (D_LED)."
+    },
+    {
+      "ref": "D_LED",
+      "type": "LED",
+      "value": 1.8,
+      "pins": {
+        "1": "LED_A",
+        "2": "GND"
+      },
+      "model": "LED_RED",
+      "notes": "Status LED, 1.8V red generic model. Always-on in simulation; physically switched by the 3PDT."
+    }
+  ],
+  "bom": [
+    {
+      "References": "C1",
+      "Qty": "1",
+      "Type": "Capacitor",
+      "Value": "22n",
+      "Manufacturer": "",
+      "MPN": "",
+      "Package": "",
+      "Footprint": "",
+      "Footprint status": "unassigned",
+      "Pad map verified": "False",
+      "Datasheet URL": "",
+      "Datasheet revision": "",
+      "Sourcing URL": "",
+      "Footprint evidence": "",
+      "Notes": "S002-schematic-image-confirmed: input coupling cap (C1=22nF)."
+    },
+    {
+      "References": "C10",
+      "Qty": "1",
+      "Type": "Capacitor",
+      "Value": "10u",
+      "Manufacturer": "",
+      "MPN": "",
+      "Package": "",
+      "Footprint": "",
+      "Footprint status": "unassigned",
+      "Pad map verified": "False",
+      "Datasheet URL": "",
+      "Datasheet revision": "",
+      "Sourcing URL": "",
+      "Footprint evidence": "",
+      "Notes": "S002-schematic-image-confirmed: output coupling cap (C10=10\u00b5F)."
+    },
+    {
+      "References": "C11",
+      "Qty": "1",
+      "Type": "Capacitor",
+      "Value": "47n",
+      "Manufacturer": "",
+      "MPN": "",
+      "Package": "",
+      "Footprint": "",
+      "Footprint status": "unassigned",
+      "Pad map verified": "False",
+      "Datasheet URL": "",
+      "Datasheet revision": "",
+      "Sourcing URL": "",
+      "Footprint evidence": "",
+      "Notes": "S002-schematic-image-confirmed: tone cap C11 to ground (C11=47nF)."
+    },
+    {
+      "References": "C2",
+      "Qty": "1",
+      "Type": "Capacitor",
+      "Value": "10u",
+      "Manufacturer": "",
+      "MPN": "",
+      "Package": "",
+      "Footprint": "",
+      "Footprint status": "unassigned",
+      "Pad map verified": "False",
+      "Datasheet URL": "",
+      "Datasheet revision": "",
+      "Sourcing URL": "",
+      "Footprint evidence": "",
+      "Notes": "S002-schematic-image-confirmed: power bulk filter (C2=10\u00b5F)."
+    },
+    {
+      "References": "C3",
+      "Qty": "1",
+      "Type": "Capacitor",
+      "Value": "100n",
+      "Manufacturer": "",
+      "MPN": "",
+      "Package": "",
+      "Footprint": "",
+      "Footprint status": "unassigned",
+      "Pad map verified": "False",
+      "Datasheet URL": "",
+      "Datasheet revision": "",
+      "Sourcing URL": "",
+      "Footprint evidence": "",
+      "Notes": "S002-schematic-image-confirmed: power HF decoupling (C3=100nF)."
+    },
+    {
+      "References": "C4",
+      "Qty": "1",
+      "Type": "Capacitor",
+      "Value": "100n",
+      "Manufacturer": "",
+      "MPN": "",
+      "Package": "",
+      "Footprint": "",
+      "Footprint status": "unassigned",
+      "Pad map verified": "False",
+      "Datasheet URL": "",
+      "Datasheet revision": "",
+      "Sourcing URL": "",
+      "Footprint evidence": "",
+      "Notes": "S002-confirmed C4=100nF. D_FB_FIX: C4 is in series with R5, not in parallel with it; the parallel placement had zero DC feedback and saturated X1."
+    },
+    {
+      "References": "C5",
+      "Qty": "1",
+      "Type": "Capacitor",
+      "Value": "10u",
+      "Manufacturer": "",
+      "MPN": "",
+      "Package": "",
+      "Footprint": "",
+      "Footprint status": "unassigned",
+      "Pad map verified": "False",
+      "Datasheet URL": "",
+      "Datasheet revision": "",
+      "Sourcing URL": "",
+      "Footprint evidence": "",
+      "Notes": "S002-schematic-image-confirmed: Vref filter cap (C5=10\u00b5F)."
+    },
+    {
+      "References": "C6",
+      "Qty": "1",
+      "Type": "Capacitor",
+      "Value": "220p",
+      "Manufacturer": "",
+      "MPN": "",
+      "Package": "",
+      "Footprint": "",
+      "Footprint status": "unassigned",
+      "Pad map verified": "False",
+      "Datasheet URL": "",
+      "Datasheet revision": "",
+      "Sourcing URL": "",
+      "Footprint evidence": "",
+      "Notes": "S002-schematic-image-confirmed: HF stability cap (C6=220pF)."
+    },
+    {
+      "References": "C7",
+      "Qty": "1",
+      "Type": "Capacitor",
+      "Value": "10n",
+      "Manufacturer": "",
+      "MPN": "",
+      "Package": "",
+      "Footprint": "",
+      "Footprint status": "unassigned",
+      "Pad map verified": "False",
+      "Datasheet URL": "",
+      "Datasheet revision": "",
+      "Sourcing URL": "",
+      "Footprint evidence": "",
+      "Notes": "S002-schematic-image-confirmed: VREF-CLIP_A cap (C7=10nF)."
+    },
+    {
+      "References": "C8",
+      "Qty": "1",
+      "Type": "Capacitor",
+      "Value": "100n",
+      "Manufacturer": "",
+      "MPN": "",
+      "Package": "",
+      "Footprint": "",
+      "Footprint status": "unassigned",
+      "Pad map verified": "False",
+      "Datasheet URL": "",
+      "Datasheet revision": "",
+      "Sourcing URL": "",
+      "Footprint evidence": "",
+      "Notes": "S002-confirmed C8=100nF. D_FB_FIX: C8 is in series with R11, not in parallel with it; the parallel placement had zero DC feedback and saturated X3."
+    },
+    {
+      "References": "C9",
+      "Qty": "1",
+      "Type": "Capacitor",
+      "Value": "220p",
+      "Manufacturer": "",
+      "MPN": "",
+      "Package": "",
+      "Footprint": "",
+      "Footprint status": "unassigned",
+      "Pad map verified": "False",
+      "Datasheet URL": "",
+      "Datasheet revision": "",
+      "Sourcing URL": "",
+      "Footprint evidence": "",
+      "Notes": "S002-schematic-image-confirmed: HF stability (C9=220pF)."
+    },
+    {
+      "References": "D1",
+      "Qty": "1",
+      "Type": "Diode",
+      "Value": "APPROX_1N34A",
+      "Manufacturer": "",
+      "MPN": "",
+      "Package": "",
+      "Footprint": "",
+      "Footprint status": "unassigned",
+      "Pad map verified": "False",
+      "Datasheet URL": "",
+      "Datasheet revision": "",
+      "Sourcing URL": "",
+      "Footprint evidence": "",
+      "Notes": "S002-schematic-image-confirmed: D1 [A=CLIP_A, K=M2_D1_NODE], 1N34A Ge per article text (C027). APPROX sim-only model, Ge variability applies."
+    },
+    {
+      "References": "D_LED",
+      "Qty": "1",
+      "Type": "LED",
+      "Value": "LED_RED",
+      "Manufacturer": "",
+      "MPN": "",
+      "Package": "",
+      "Footprint": "",
+      "Footprint status": "unassigned",
+      "Pad map verified": "False",
+      "Datasheet URL": "",
+      "Datasheet revision": "",
+      "Sourcing URL": "",
+      "Footprint evidence": "",
+      "Notes": "Status LED, 1.8V red generic model. Always-on in simulation; physically switched by the 3PDT."
+    },
+    {
+      "References": "D_PWR",
+      "Qty": "1",
+      "Type": "Diode",
+      "Value": "APPROX_1N5819",
+      "Manufacturer": "",
+      "MPN": "",
+      "Package": "",
+      "Footprint": "",
+      "Footprint status": "unassigned",
+      "Pad map verified": "False",
+      "Datasheet URL": "",
+      "Datasheet revision": "",
+      "Sourcing URL": "",
+      "Footprint evidence": "",
+      "Notes": "Series Schottky reverse-polarity protection; 1N5819 default. APPROX model; Vf ~0.25-0.3V. 8V-jack margin to the TL082 7V minimum is a bench gate (D_PROT)."
+    },
+    {
+      "References": "M1",
+      "Qty": "1",
+      "Type": "N-MOSFET",
+      "Value": "APPROX_2N7000",
+      "Manufacturer": "",
+      "MPN": "",
+      "Package": "",
+      "Footprint": "",
+      "Footprint status": "unassigned",
+      "Pad map verified": "False",
+      "Datasheet URL": "",
+      "Datasheet revision": "",
+      "Sourcing URL": "",
+      "Footprint evidence": "",
+      "Notes": "S002-schematic-image-confirmed: M1 [D&G=VREF, S=CLIP_A]. Exact part unknown; APPROX sim-only. Commenter-reported alternate wiring (M1[S=VREF,D&G=R9/R10]) does NOT match S002 image."
+    },
+    {
+      "References": "M2",
+      "Qty": "1",
+      "Type": "N-MOSFET",
+      "Value": "APPROX_2N7000",
+      "Manufacturer": "",
+      "MPN": "",
+      "Package": "",
+      "Footprint": "",
+      "Footprint status": "unassigned",
+      "Pad map verified": "False",
+      "Datasheet URL": "",
+      "Datasheet revision": "",
+      "Sourcing URL": "",
+      "Footprint evidence": "",
+      "Notes": "S002-schematic-image-confirmed: M2 [D=VREF, G&S=M2_D1_NODE]. Exact part unknown; APPROX sim-only. Commenter-reported alternate wiring (M2[D&G=VREF,S=D1]) does NOT match S002 image."
+    },
+    {
+      "References": "R1",
+      "Qty": "1",
+      "Type": "Resistor",
+      "Value": "100",
+      "Manufacturer": "",
+      "MPN": "",
+      "Package": "",
+      "Footprint": "",
+      "Footprint status": "unassigned",
+      "Pad map verified": "False",
+      "Datasheet URL": "",
+      "Datasheet revision": "",
+      "Sourcing URL": "",
+      "Footprint evidence": "",
+      "Notes": "S002-schematic-image-confirmed: supply feed/filter node (R1=100ohm), now after D_PWR protection."
+    },
+    {
+      "References": "R10",
+      "Qty": "1",
+      "Type": "Resistor",
+      "Value": "10k",
+      "Manufacturer": "",
+      "MPN": "",
+      "Package": "",
+      "Footprint": "",
+      "Footprint status": "unassigned",
+      "Pad map verified": "False",
+      "Datasheet URL": "",
+      "Datasheet revision": "",
+      "Sourcing URL": "",
+      "Footprint evidence": "",
+      "Notes": "S002-schematic-image-confirmed: clip network resistor (R10=10k)."
+    },
+    {
+      "References": "R11",
+      "Qty": "1",
+      "Type": "Resistor",
+      "Value": "39k",
+      "Manufacturer": "",
+      "MPN": "",
+      "Package": "",
+      "Footprint": "",
+      "Footprint status": "unassigned",
+      "Pad map verified": "False",
+      "Datasheet URL": "",
+      "Datasheet revision": "",
+      "Sourcing URL": "",
+      "Footprint evidence": "",
+      "Notes": "S002-confirmed R11=39k. D_FB_FIX: R11 is in series with C8 to VREF so the stage has unity DC gain."
+    },
+    {
+      "References": "R12",
+      "Qty": "1",
+      "Type": "Resistor",
+      "Value": "220k",
+      "Manufacturer": "",
+      "MPN": "",
+      "Package": "",
+      "Footprint": "",
+      "Footprint status": "unassigned",
+      "Pad map verified": "False",
+      "Datasheet URL": "",
+      "Datasheet revision": "",
+      "Sourcing URL": "",
+      "Footprint evidence": "",
+      "Notes": "S002-schematic-image-confirmed: bias to CLIP_B (R12=220k)."
+    },
+    {
+      "References": "R13",
+      "Qty": "1",
+      "Type": "Resistor",
+      "Value": "150k",
+      "Manufacturer": "",
+      "MPN": "",
+      "Package": "",
+      "Footprint": "",
+      "Footprint status": "unassigned",
+      "Pad map verified": "False",
+      "Datasheet URL": "",
+      "Datasheet revision": "",
+      "Sourcing URL": "",
+      "Footprint evidence": "",
+      "Notes": "S002-schematic-image-confirmed: feedback (R13=150k)."
+    },
+    {
+      "References": "R14",
+      "Qty": "1",
+      "Type": "Resistor",
+      "Value": "22k",
+      "Manufacturer": "",
+      "MPN": "",
+      "Package": "",
+      "Footprint": "",
+      "Footprint status": "unassigned",
+      "Pad map verified": "False",
+      "Datasheet URL": "",
+      "Datasheet revision": "",
+      "Sourcing URL": "",
+      "Footprint evidence": "",
+      "Notes": "S002-confirmed R14=22k. Main signal path from TONE_TOP (after C10) to VOL_TOP; always in circuit (LP=open, darker)."
+    },
+    {
+      "References": "R15",
+      "Qty": "1",
+      "Type": "Resistor",
+      "Value": "33k",
+      "Manufacturer": "",
+      "MPN": "",
+      "Package": "",
+      "Footprint": "",
+      "Footprint status": "unassigned",
+      "Pad map verified": "False",
+      "Datasheet URL": "",
+      "Datasheet revision": "",
+      "Sourcing URL": "",
+      "Footprint evidence": "",
+      "Notes": "S002-confirmed R15=33k. Switched in parallel with R14 via SW1 from TONE_TOP to VOL_TOP; HP=closed/parallel=brighter (S003), LP=open/darker."
+    },
+    {
+      "References": "R2",
+      "Qty": "1",
+      "Type": "Resistor",
+      "Value": "1Meg",
+      "Manufacturer": "",
+      "MPN": "",
+      "Package": "",
+      "Footprint": "",
+      "Footprint status": "unassigned",
+      "Pad map verified": "False",
+      "Datasheet URL": "",
+      "Datasheet revision": "",
+      "Sourcing URL": "",
+      "Footprint evidence": "",
+      "Notes": "S002-schematic-image-confirmed: R2 (1M) connects input cap C1 to GROUND as voltage reference, not to VREF. R6 biases op-amp to VREF."
+    },
+    {
+      "References": "R3",
+      "Qty": "1",
+      "Type": "Resistor",
+      "Value": "10k",
+      "Manufacturer": "",
+      "MPN": "",
+      "Package": "",
+      "Footprint": "",
+      "Footprint status": "unassigned",
+      "Pad map verified": "False",
+      "Datasheet URL": "",
+      "Datasheet revision": "",
+      "Sourcing URL": "",
+      "Footprint evidence": "",
+      "Notes": "S002-schematic-image-confirmed: limits current to op-amp input (R3=10k)."
+    },
+    {
+      "References": "R4",
+      "Qty": "1",
+      "Type": "Resistor",
+      "Value": "10k",
+      "Manufacturer": "",
+      "MPN": "",
+      "Package": "",
+      "Footprint": "",
+      "Footprint status": "unassigned",
+      "Pad map verified": "False",
+      "Datasheet URL": "",
+      "Datasheet revision": "",
+      "Sourcing URL": "",
+      "Footprint evidence": "",
+      "Notes": "S002-schematic-image-confirmed: Vref divider upper (R4=10k)."
+    },
+    {
+      "References": "R5",
+      "Qty": "1",
+      "Type": "Resistor",
+      "Value": "2.2k",
+      "Manufacturer": "",
+      "MPN": "",
+      "Package": "",
+      "Footprint": "",
+      "Footprint status": "unassigned",
+      "Pad map verified": "False",
+      "Datasheet URL": "",
+      "Datasheet revision": "",
+      "Sourcing URL": "",
+      "Footprint evidence": "",
+      "Notes": "S002-confirmed value R5=2.2k. D_FB_FIX: R5 is in series with C4 to VREF so the stage has unity DC gain and an AC bass limit."
+    },
+    {
+      "References": "R6",
+      "Qty": "1",
+      "Type": "Resistor",
+      "Value": "470k",
+      "Manufacturer": "",
+      "MPN": "",
+      "Package": "",
+      "Footprint": "",
+      "Footprint status": "unassigned",
+      "Pad map verified": "False",
+      "Datasheet URL": "",
+      "Datasheet revision": "",
+      "Sourcing URL": "",
+      "Footprint evidence": "",
+      "Notes": "S002-schematic-image-confirmed: biases op-amp non-inverting input to VREF (R6=470k)."
+    },
+    {
+      "References": "R7",
+      "Qty": "1",
+      "Type": "Resistor",
+      "Value": "10k",
+      "Manufacturer": "",
+      "MPN": "",
+      "Package": "",
+      "Footprint": "",
+      "Footprint status": "unassigned",
+      "Pad map verified": "False",
+      "Datasheet URL": "",
+      "Datasheet revision": "",
+      "Sourcing URL": "",
+      "Footprint evidence": "",
+      "Notes": "S002-schematic-image-confirmed: Vref divider lower (R7=10k)."
+    },
+    {
+      "References": "R8",
+      "Qty": "1",
+      "Type": "Resistor",
+      "Value": "18k",
+      "Manufacturer": "",
+      "MPN": "",
+      "Package": "",
+      "Footprint": "",
+      "Footprint status": "unassigned",
+      "Pad map verified": "False",
+      "Datasheet URL": "",
+      "Datasheet revision": "",
+      "Sourcing URL": "",
+      "Footprint evidence": "",
+      "Notes": "S002-schematic-image-confirmed: gain network (R8=18k)."
+    },
+    {
+      "References": "R9",
+      "Qty": "1",
+      "Type": "Resistor",
+      "Value": "10k",
+      "Manufacturer": "",
+      "MPN": "",
+      "Package": "",
+      "Footprint": "",
+      "Footprint status": "unassigned",
+      "Pad map verified": "False",
+      "Datasheet URL": "",
+      "Datasheet revision": "",
+      "Sourcing URL": "",
+      "Footprint evidence": "",
+      "Notes": "S002-schematic-image-confirmed: series into clipping (R9=10k)."
+    },
+    {
+      "References": "R_LED",
+      "Qty": "1",
+      "Type": "Resistor",
+      "Value": "4.7k",
+      "Manufacturer": "",
+      "MPN": "",
+      "Package": "",
+      "Footprint": "",
+      "Footprint status": "unassigned",
+      "Pad map verified": "False",
+      "Datasheet URL": "",
+      "Datasheet revision": "",
+      "Sourcing URL": "",
+      "Footprint evidence": "",
+      "Notes": "Status LED series resistor; 1.35mA at 9V, ~3mA at 18V (Vf 1.8V). Physical LED switching is via the 3PDT (D_LED)."
+    },
+    {
+      "References": "R_LOAD",
+      "Qty": "1",
+      "Type": "Resistor",
+      "Value": "100k",
+      "Manufacturer": "",
+      "MPN": "",
+      "Package": "",
+      "Footprint": "",
+      "Footprint status": "unassigned",
+      "Pad map verified": "False",
+      "Datasheet URL": "",
+      "Datasheet revision": "",
+      "Sourcing URL": "",
+      "Footprint evidence": "",
+      "Notes": ""
+    },
+    {
+      "References": "R_VOL5A",
+      "Qty": "1",
+      "Type": "Resistor",
+      "Value": "50k",
+      "Manufacturer": "",
+      "MPN": "",
+      "Package": "",
+      "Footprint": "",
+      "Footprint status": "unassigned",
+      "Pad map verified": "False",
+      "Datasheet URL": "",
+      "Datasheet revision": "",
+      "Sourcing URL": "",
+      "Footprint evidence": "",
+      "Notes": "Volume pot 100k modeled at 50% (X5 value not found in retrieved S002 text; 100k is placeholder)."
+    },
+    {
+      "References": "R_VOL5B",
+      "Qty": "1",
+      "Type": "Resistor",
+      "Value": "50k",
+      "Manufacturer": "",
+      "MPN": "",
+      "Package": "",
+      "Footprint": "",
+      "Footprint status": "unassigned",
+      "Pad map verified": "False",
+      "Datasheet URL": "",
+      "Datasheet revision": "",
+      "Sourcing URL": "",
+      "Footprint evidence": "",
+      "Notes": "Volume pot lower leg modeled at 50% (X5 value not found in retrieved S002 text; 100k is placeholder)."
+    },
+    {
+      "References": "R_X2POT",
+      "Qty": "1",
+      "Type": "Resistor",
+      "Value": "500k",
+      "Manufacturer": "",
+      "MPN": "",
+      "Package": "",
+      "Footprint": "",
+      "Footprint status": "unassigned",
+      "Pad map verified": "False",
+      "Datasheet URL": "",
+      "Datasheet revision": "",
+      "Sourcing URL": "",
+      "Footprint evidence": "",
+      "Notes": "Drive/gain pot modeled 50% of 1M (S002 states gain pot 1M; mapping/wiring assumed)."
+    },
+    {
+      "References": "R_X4",
+      "Qty": "1",
+      "Type": "Resistor",
+      "Value": "5k",
+      "Manufacturer": "",
+      "MPN": "",
+      "Package": "",
+      "Footprint": "",
+      "Footprint status": "unassigned",
+      "Pad map verified": "False",
+      "Datasheet URL": "",
+      "Datasheet revision": "",
+      "Sourcing URL": "",
+      "Footprint evidence": "",
+      "Notes": "S002 tone pot X4=10k wired as a rheostat in series with C11 to ground (treble passes through X4 then C11). 50% snapshot=5k; BOM part is a 10k pot."
+    },
+    {
+      "References": "SW1",
+      "Qty": "1",
+      "Type": "Analog switch",
+      "Value": "SW1MODEL",
+      "Manufacturer": "",
+      "MPN": "",
+      "Package": "",
+      "Footprint": "",
+      "Footprint status": "unassigned",
+      "Pad map verified": "False",
+      "Datasheet URL": "",
+      "Datasheet revision": "",
+      "Sourcing URL": "",
+      "Footprint evidence": "",
+      "Notes": "HP/LP toggle modeled as a voltage-controlled switch. HP = closed (V_HP=5V) -> R15 parallel with R14 (brighter); LP = open (V_HP=0V) -> R14 only (darker). Physical part is an SPDT; PCB pad mapping is Phase C."
+    },
+    {
+      "References": "V1",
+      "Qty": "1",
+      "Type": "Voltage source",
+      "Value": "9 V",
+      "Manufacturer": "",
+      "MPN": "",
+      "Package": "",
+      "Footprint": "",
+      "Footprint status": "unassigned",
+      "Pad map verified": "False",
+      "Datasheet URL": "",
+      "Datasheet revision": "",
+      "Sourcing URL": "",
+      "Footprint evidence": "",
+      "Notes": "9V nominal test at the DC jack; design range 8-18V DC center-negative (C022). D_PWR and R1 drop before the op-amp rail."
+    },
+    {
+      "References": "V_AC",
+      "Qty": "1",
+      "Type": "Voltage source",
+      "Value": "0 V",
+      "Manufacturer": "",
+      "MPN": "",
+      "Package": "",
+      "Footprint": "",
+      "Footprint status": "unassigned",
+      "Pad map verified": "False",
+      "Datasheet URL": "",
+      "Datasheet revision": "",
+      "Sourcing URL": "",
+      "Footprint evidence": "",
+      "Notes": "AC excitation 1V for .ac/.noise. Simulation-only; in series with V_IN. Workaround for the generator dropping AC on a waveform source."
+    },
+    {
+      "References": "V_HP",
+      "Qty": "1",
+      "Type": "Voltage source",
+      "Value": "5 V",
+      "Manufacturer": "",
+      "MPN": "",
+      "Package": "",
+      "Footprint": "",
+      "Footprint status": "unassigned",
+      "Pad map verified": "False",
+      "Datasheet URL": "",
+      "Datasheet revision": "",
+      "Sourcing URL": "",
+      "Footprint evidence": "",
+      "Notes": "Simulation-only switch control. 5V = HP (SW1 closed, parallel, brighter); change to 0V for the LP variant."
+    },
+    {
+      "References": "V_IN",
+      "Qty": "1",
+      "Type": "Voltage source",
+      "Value": "SIN source",
+      "Manufacturer": "",
+      "MPN": "",
+      "Package": "",
+      "Footprint": "",
+      "Footprint status": "unassigned",
+      "Pad map verified": "False",
+      "Datasheet URL": "",
+      "Datasheet revision": "",
+      "Sourcing URL": "",
+      "Footprint evidence": "",
+      "Notes": "Transient excitation 50mVpk/1kHz. AC excitation is V_AC because the generator drops AC when a waveform is present."
+    },
+    {
+      "References": "X1A",
+      "Qty": "1",
+      "Type": "Op-amp",
+      "Value": "TL082",
+      "Manufacturer": "",
+      "MPN": "",
+      "Package": "",
+      "Footprint": "",
+      "Footprint status": "unassigned",
+      "Pad map verified": "False",
+      "Datasheet URL": "",
+      "Datasheet revision": "",
+      "Sourcing URL": "",
+      "Footprint evidence": "",
+      "Notes": "TL082 section 1; wiring assumed"
+    },
+    {
+      "References": "X3A",
+      "Qty": "1",
+      "Type": "Op-amp",
+      "Value": "TL082",
+      "Manufacturer": "",
+      "MPN": "",
+      "Package": "",
+      "Footprint": "",
+      "Footprint status": "unassigned",
+      "Pad map verified": "False",
+      "Datasheet URL": "",
+      "Datasheet revision": "",
+      "Sourcing URL": "",
+      "Footprint evidence": "",
+      "Notes": "S002-schematic-image-confirmed: TL082 section 2; non-inv input CLIP_B; wiring assumed."
+    }
+  ],
+  "files": {
+    "spice": "ocd_v0p4_8v18v.cir",
+    "models": "ocd_v0p4_8v18v.models",
+    "ltspice_asc": "ocd_v0p4_8v18v.asc",
+    "kicad_net": "ocd_v0p4_8v18v.net",
+    "kicad_sch": "ocd_v0p4_8v18v.kicad_sch",
+    "bom": "ocd_v0p4_8v18v-bom.csv",
+    "test_plan": "ocd_v0p4_8v18v-test-plan.md",
+    "report": "ocd_v0p4_8v18v-report.md"
+  },
+  "verification": {
+    "ok": true,
+    "name": "ocd_v0p4_8v18v",
+    "generated": "2026-11-11",
+    "summary": "13 passed, 5 skipped, 0 failed",
+    "checks": [
+      {
+        "name": "spec",
+        "ok": true,
+        "detail": "valid spec with 44 components, 50 warning(s)",
+        "evidence": {
+          "stats": {
+            "components": 44,
+            "nets": 26,
+            "sources": 4,
+            "semiconductors": 5,
+            "pcb": true
+          }
+        }
+      },
+      {
+        "name": "models",
+        "ok": null,
+        "detail": "declared models (no vendor provenance); models are declared inline but have no vendor/part/source; record provenance to call them vendor models",
+        "evidence": {
+          "status": "declared models (no vendor provenance)",
+          "devices": [
+            {
+              "ref": "D_PWR",
+              "model": "APPROX_1N5819",
+              "kind": "declared"
+            },
+            {
+              "ref": "X1A",
+              "model": "TL082",
+              "kind": "vendor"
+            },
+            {
+              "ref": "M1",
+              "model": "APPROX_2N7000",
+              "kind": "declared"
+            },
+            {
+              "ref": "M2",
+              "model": "APPROX_2N7000",
+              "kind": "declared"
+            },
+            {
+              "ref": "D1",
+              "model": "APPROX_1N34A",
+              "kind": "declared"
+            },
+            {
+              "ref": "X3A",
+              "model": "TL082",
+              "kind": "vendor"
+            },
+            {
+              "ref": "SW1",
+              "model": "SW1MODEL",
+              "kind": "declared"
+            },
+            {
+              "ref": "D_LED",
+              "model": "LED_RED",
+              "kind": "declared"
+            }
+          ]
+        }
+      },
+      {
+        "name": "design",
+        "ok": true,
+        "detail": "14 requirements, 14 decisions, 9 risks, 7 sources",
+        "evidence": {
+          "requirements": 14,
+          "decisions": 14,
+          "risks": 9,
+          "sources": 7
+        }
+      },
+      {
+        "name": "measurement_plan",
+        "ok": true,
+        "detail": "8 actionable measurements trace to declared requirements",
+        "evidence": {
+          "measurement_count": 8,
+          "requirement_ids": [
+            "A1",
+            "A2",
+            "A3",
+            "A4",
+            "A5",
+            "A6",
+            "E1",
+            "E2",
+            "E3",
+            "E4",
+            "E5",
+            "E6",
+            "E7",
+            "E8"
+          ]
+        }
+      },
+      {
+        "name": "operating_limits",
+        "ok": true,
+        "detail": "5 calculated stresses are within their declared sourced limits",
+        "evidence": [
+          {
+            "id": "L1",
+            "parameter": "TL082 total supply voltage at 18V jack",
+            "value": 18.0,
+            "unit": "V",
+            "min": null,
+            "max": 30.0,
+            "condition": "VCC_JACK=18V; VCC_F <= 18V after D_PWR/R1",
+            "source": "TI TL082 SLOS081O (S007)",
+            "margin_to_min": null,
+            "margin_to_max": 12.0,
+            "passed": true
+          },
+          {
+            "id": "L2",
+            "parameter": "TL082 total supply voltage at 8V jack",
+            "value": 7.25,
+            "unit": "V",
+            "min": 7.0,
+            "max": null,
+            "condition": "VCC_JACK=8V; 1N5819 drop ~0.3V; R1 drop 0.84V with the pessimistic TL082 model current",
+            "source": "TI TL082 SLOS081O (S007); 1N5819 Vf to verify (S014)",
+            "margin_to_min": 0.25,
+            "margin_to_max": null,
+            "passed": true
+          },
+          {
+            "id": "L3",
+            "parameter": "TL082 input common-mode voltage at 8V jack",
+            "value": 3.59,
+            "unit": "V",
+            "min": 3.0,
+            "max": 4.25,
+            "condition": "VCC_JACK=8V; VCC_F=7.25V; VREF=3.59V; 3V typ common-mode headroom from each rail",
+            "source": "TI TL082 SLOS081O (S007)",
+            "margin_to_min": 0.5899999999999999,
+            "margin_to_max": 0.6600000000000001,
+            "passed": true
+          },
+          {
+            "id": "L4",
+            "parameter": "TL082 available output swing around VREF at 8V jack",
+            "value": 2.09,
+            "unit": "V",
+            "min": 1.5,
+            "max": null,
+            "condition": "VCC_F=7.25V; VREF=3.59V; 1.5V typ swing to each rail",
+            "source": "TI TL082 SLOS081O (S007)",
+            "margin_to_min": 0.5899999999999999,
+            "margin_to_max": null,
+            "passed": true
+          },
+          {
+            "id": "L5",
+            "parameter": "1N5819 reverse voltage",
+            "value": 18.0,
+            "unit": "V",
+            "min": null,
+            "max": 40.0,
+            "condition": "Reverse polarity at an 18V jack",
+            "source": "Vishay 1N5819 datasheet, Vr=40V (S014)",
+            "margin_to_min": null,
+            "margin_to_max": 22.0,
+            "passed": true
+          }
+        ]
+      },
+      {
+        "name": "spice_netlist",
+        "ok": true,
+        "detail": "44 devices, node lists match the spec",
+        "evidence": {
+          "devices": 44
+        }
+      },
+      {
+        "name": "ltspice_asc",
+        "ok": true,
+        "detail": "44 symbols; every pin has a matching net flag",
+        "evidence": {
+          "symbols": 44,
+          "flags": 98
+        }
+      },
+      {
+        "name": "kicad_netlist",
+        "ok": true,
+        "detail": "26 nets match the spec exactly",
+        "evidence": {
+          "nets": 26
+        }
+      },
+      {
+        "name": "kicad_schematic",
+        "ok": null,
+        "detail": "kiutils is not installed; schematic geometry not parsed (set PYTHONPATH to a kiutils checkout)",
+        "evidence": null
+      },
+      {
+        "name": "pcb_handoff",
+        "ok": null,
+        "detail": "not generated (add \"pcb\" to deliverables)",
+        "evidence": null
+      },
+      {
+        "name": "mna_linear",
+        "ok": null,
+        "detail": "circuit contains nonlinear element(s) D_PWR, M1, M2, D1, SW1, D_LED; MNA only solves linear circuits",
+        "evidence": null
+      },
+      {
+        "name": "ngspice",
+        "ok": true,
+        "detail": "ngspice ran 6 analysis plot(s): AC Analysis, DC transfer characteristic, Operating Point, Transient Analysis, Noise Spectral Density Curves, Integrated Noise; V(vcc_jack)=9, V(in)=0, V(in_src)=0, V(vcc)=8.75112, V(vcc_f)=7.81275, V(vref)=3.86748, V(in_b)=2.63093, V(x1_p)=2.63093, V(xx1a.11)=0.347612, V(xx1a.12)=0.347671, V(xx1a.6)=0.000180826, V(xx1a.7)=2.6302, V(x1_out)=2.631, V(xx1a.53)=5.61275, V(xx1a.54)=2.2, V(xx1a.90)=-0.00530625, V(xx1a.91)=25, V(xx1a.92)=-25, V(xx1a.99)=3.90638, V(xx1a.10)=2.23428, V(x1_fb)=2.63098, V(xx1a.9)=0, V(xx1a.8)=2.6302, V(x1_rg)=2.63098, V(x2_w)=2.63098, V(clip_a)=2.68406, V(clip_b)=2.73551, V(m2_d1_node)=2.68408, V(xx3a.11)=0.347434, V(xx3a.12)=0.347489, V(xx3a.6)=0.000165792, V(xx3a.7)=2.73557, V(x3_out)=2.73557, V(xx3a.53)=5.61275, V(xx3a.54)=2.2, V(xx3a.90)=3.04378e-08, V(xx3a.91)=25, V(xx3a.92)=-25, V(xx3a.99)=3.90638, V(xx3a.10)=2.3387, V(x3_fb)=2.73556, V(xx3a.9)=0, V(xx3a.8)=2.73557, V(x3_rg)=2.73556, V(tone_top)=0, V(tone_w)=0, V(vol_top)=0, V(sw1_1)=0, V(hp_ctrl)=5, V(out)=0, V(led_a)=1.66634",
+        "evidence": {
+          "returncode": 0,
+          "stderr": "",
+          "stdout": "******\n** ngspice-47 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2026, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Wed Aug 12 07:02:38 UTC 2026\n******\n\nBatch mode\n\nSimulation output goes to rawfile: /data/data/com.termux/files/home/.cache/opencode/tmp/tmpo0787qk_/ngspice.raw\nComments and warnings go to log-file: /data/data/com.termux/files/home/.cache/opencode/tmp/tmpo0787qk_/ngspice.log\n\n",
+          "log": "          3.90638\nxx1a.10                                2.23428\nx1_fb                                  2.63098\nxx1a.9                                       0\nxx1a.8                                  2.6302\nx1_rg                                  2.63098\nx2_w                                   2.63098\nclip_a                                 2.68406\nclip_b                                 2.73551\nm2_d1_node                             2.68408\nxx3a.11                               0.347434\nxx3a.12                               0.347489\nxx3a.6                             0.000165792\nxx3a.7                                 2.73557\nx3_out                                 2.73557\nxx3a.53                                5.61275\nxx3a.54                                    2.2\nxx3a.90                            3.04378e-08\nxx3a.91                                     25\nxx3a.92                                    -25\nxx3a.99                                3.90638\nxx3a.10                                 2.3387\nx3_fb                                  2.73556\nxx3a.9                                       0\nxx3a.8                                 2.73557\nx3_rg                                  2.73556\ntone_top                                     0\ntone_w                                       0\nvol_top                                      0\nsw1_1                                        0\nhp_ctrl                                      5\nout                                          0\nled_a                                  1.66634\nh.xx3a.hlim#branch                -6.08755e-20\nv.xx3a.vlim#branch                 3.04378e-11\nh.xx1a.hlim#branch                 1.06125e-14\nv.xx1a.vlim#branch                -5.30625e-06\nv_hp#branch                                  0\nv.xx3a.vln#branch                 -2.50008e-11\nv.xx3a.vlp#branch                 -2.50008e-11\nv.xx3a.ve#branch                   5.36368e-13\nv.xx3a.vc#branch                   2.87798e-12\nv.xx3a.vb#branch                   1.65792e-09\nv.xx1a.vln#branch                 -2.49955e-11\nv.xx1a.vlp#branch                 -2.50061e-11\nv.xx1a.ve#branch                   4.31799e-13\nv.xx1a.vc#branch                   2.98255e-12\nv.xx1a.vb#branch                   1.80826e-09\nv_ac#branch                                  0\nv_in#branch                                  0\nv1#branch                          -0.00938369\na$poly$e.xx3a.egnd#branch_1_0     -1.52798e-06\na$poly$e.xx1a.egnd#branch_1_0      3.67652e-06\n\n\nNo. of Data Rows : 27330\nNo. of Data Columns : 3  \n\nNo. of Data Rows : 301\nNo. of Data Columns : 2  \n\nNo. of Data Rows : 1\n.fourier line ignored since rawfile was produced.\n\nTotal analysis time (seconds) = 12.6199\n\nTotal elapsed time (seconds) = 12.631 \n\nTotal DRAM available = 7278.039 MB.\nDRAM currently available =  157.133 MB.\nMaximum ngspice program size = 2232.238 MB.\nCurrent ngspice program size =    9.082 MB.\n\nShared ngspice pages =    7.066 MB.\nText (code) pages =    5.531 MB.\nStack = 0 bytes.\nLibrary pages =    8.066 MB.\n\n",
+          "plots": [
+            "AC Analysis",
+            "DC transfer characteristic",
+            "Operating Point",
+            "Transient Analysis",
+            "Noise Spectral Density Curves",
+            "Integrated Noise"
+          ],
+          "node_voltages_V": {
+            "vcc_jack": 9.0,
+            "in": 0.0,
+            "in_src": 0.0,
+            "vcc": 8.751119587933756,
+            "vcc_f": 7.812750748975335,
+            "vref": 3.867483957254043,
+            "in_b": 2.630931020636523,
+            "x1_p": 2.630930693893579,
+            "xx1a.11": 0.3476118396485932,
+            "xx1a.12": 0.3476711047478368,
+            "xx1a.6": 0.0001808256241788403,
+            "xx1a.7": 2.63020310857003,
+            "x1_out": 2.630999045512478,
+            "xx1a.53": 5.612750748975335,
+            "xx1a.54": 2.2,
+            "xx1a.90": -0.005306246282983638,
+            "xx1a.91": 25.0,
+            "xx1a.92": -25.0,
+            "xx1a.99": 3.906375374487668,
+            "xx1a.10": 2.234275863841777,
+            "x1_fb": 2.630982120142933,
+            "xx1a.9": 0.0,
+            "xx1a.8": 2.63020310857003,
+            "x1_rg": 2.630982120142933,
+            "x2_w": 2.630982708283188,
+            "clip_a": 2.684061809579365,
+            "clip_b": 2.73551463289434,
+            "m2_d1_node": 2.684077990681281,
+            "xx3a.11": 0.3474338100132336,
+            "xx3a.12": 0.3474892416097057,
+            "xx3a.6": 0.0001657919989166742,
+            "xx3a.7": 2.735567666615524,
+            "x3_out": 2.735567662049859,
+            "xx3a.53": 5.612750748975335,
+            "xx3a.54": 2.2,
+            "xx3a.90": 3.043776548355132e-08,
+            "xx3a.91": 25.0,
+            "xx3a.92": -25.0,
+            "xx3a.99": 3.906375374487668,
+            "xx3a.10": 2.338701980060788,
+            "x3_fb": 2.735562745142549,
+            "xx3a.9": 0.0,
+            "xx3a.8": 2.735567666615524,
+            "x3_rg": 2.735562745142549,
+            "tone_top": 0.0,
+            "tone_w": 0.0,
+            "vol_top": 0.0,
+            "sw1_1": 0.0,
+            "hp_ctrl": 5.0,
+            "out": 0.0,
+            "led_a": 1.666339453292887
+          }
+        }
+      },
+      {
+        "name": "metrics",
+        "ok": true,
+        "detail": "M1: gain_db=44.5706 dB (INFO; exploratory); M2: bandwidth_width_hz=1368.55 Hz (INFO; exploratory); M3: thd_percent=66.3437 % (INFO; exploratory); M4: noise_uv=141.417 uV (INFO; exploratory); M5: output_vrms=0.69027 V (INFO; exploratory)",
+        "evidence": {
+          "metrics": [
+            {
+              "id": "M1",
+              "measure": "gain_db",
+              "value": 44.57056490563844,
+              "unit": "dB",
+              "detail": "at 1002.37 Hz",
+              "requirement": "A5",
+              "ok": null,
+              "rule": "exploratory"
+            },
+            {
+              "id": "M2",
+              "measure": "bandwidth_width_hz",
+              "value": 1368.5460234646528,
+              "unit": "Hz",
+              "detail": "dominant passband 366.239..1734.79 Hz; dominant peak 863.038 Hz at 44.692 dB",
+              "requirement": "A5",
+              "ok": null,
+              "rule": "exploratory"
+            },
+            {
+              "id": "M3",
+              "measure": "thd_percent",
+              "value": 66.3437,
+              "unit": "%",
+              "detail": "reported by ngspice .four",
+              "requirement": "A3",
+              "ok": null,
+              "rule": "exploratory"
+            },
+            {
+              "id": "M4",
+              "measure": "noise_uv",
+              "value": 141.41692782887887,
+              "unit": "uV",
+              "detail": "output-referred RMS over the noise sweep",
+              "requirement": null,
+              "ok": null,
+              "rule": "exploratory"
+            },
+            {
+              "id": "M5",
+              "measure": "output_vrms",
+              "value": 0.6902704620445859,
+              "unit": "V",
+              "detail": "RMS over 0.0225..0.03 s",
+              "requirement": "A5",
+              "ok": null,
+              "rule": "exploratory"
+            }
+          ],
+          "conditions": {
+            "supply_vdc": 9.0,
+            "supply_range_vdc": [
+              8.0,
+              18.0
+            ],
+            "frequency_hz": 1000,
+            "input_vrms": 0.0354,
+            "input_peak_v": 0.05,
+            "load_ohm": 100000,
+            "bandwidth_hz": [
+              20,
+              20000
+            ],
+            "temperature_c": 25
+          }
+        }
+      },
+      {
+        "name": "kicad_pcb_drc",
+        "ok": null,
+        "detail": "actual PCB file not found (ocd_v0p4_8v18v.kicad_pcb); PCB handoff is not a board",
+        "evidence": null
+      },
+      {
+        "name": "required:design",
+        "ok": true,
+        "detail": "stage 'design' required and passed (design)",
+        "evidence": null
+      },
+      {
+        "name": "required:limits",
+        "ok": true,
+        "detail": "stage 'limits' required and passed (operating_limits)",
+        "evidence": null
+      },
+      {
+        "name": "required:measurements",
+        "ok": true,
+        "detail": "stage 'measurements' required and passed (measurement_plan)",
+        "evidence": null
+      },
+      {
+        "name": "required:simulate",
+        "ok": true,
+        "detail": "stage 'simulate' required and passed (ngspice)",
+        "evidence": null
+      }
+    ],
+    "warnings": [
+      "model 'APPROX_2N7000' has no vendor/part/source provenance; the report will call it declared, not vendor",
+      "model 'APPROX_1N34A' has no vendor/part/source provenance; the report will call it declared, not vendor",
+      "metrics.metrics[0]: exploratory=true ignores the target or limit",
+      "metrics.metrics[1]: exploratory=true ignores the target or limit",
+      "metrics.metrics[2]: exploratory=true ignores the target or limit",
+      "metrics.metrics[3]: exploratory=true ignores the target or limit",
+      "metrics.metrics[4]: exploratory=true ignores the target or limit",
+      "D_PWR (D) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+      "R1 (R) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+      "C2 (C) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+      "C3 (C) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+      "R4 (R) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+      "R7 (R) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+      "C5 (C) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+      "C1 (C) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+      "R2 (R) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+      "R6 (R) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+      "R3 (R) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+      "X1A (OPAMP) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+      "R5 (R) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+      "R8 (R) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+      "R_X2POT (R) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+      "C4 (C) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+      "C6 (C) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+      "R9 (R) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+      "C7 (C) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+      "R10 (R) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+      "R12 (R) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+      "M1 (NMOS) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+      "M2 (NMOS) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+      "D1 (D) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+      "X3A (OPAMP) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+      "R11 (R) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+      "R13 (R) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+      "C8 (C) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+      "C9 (C) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+      "C10 (C) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+      "R_X4 (R) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+      "C11 (C) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+      "R14 (R) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+      "R15 (R) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+      "R_VOL5A (R) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+      "R_VOL5B (R) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+      "R_LED (R) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+      "D_LED (LED) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+      "R_LOAD is a boardable part but was explicitly excluded; the PCB will not contain it",
+      "X1A (OPAMP) has no pcb.pin_map entry; the PCB pipeline will ask for a package pinout",
+      "M1 (NMOS) has no pcb.pin_map entry; the PCB pipeline will ask for a package pinout",
+      "M2 (NMOS) has no pcb.pin_map entry; the PCB pipeline will ask for a package pinout",
+      "X3A (OPAMP) has no pcb.pin_map entry; the PCB pipeline will ask for a package pinout"
+    ],
+    "simulation_status": "declared models (no vendor provenance)",
+    "provenance": {
+      "backend": "local",
+      "required_stages": [
+        "design",
+        "limits",
+        "measurements",
+        "simulate"
+      ]
+    }
+  },
+  "pcb": null,
+  "design": {
+    "requirements": [
+      {
+        "id": "E1",
+        "text": "Operate from 8-18V DC center-negative at the jack with series reverse-polarity protection; the protected/filtered rail VCC_F must keep the TL082 within its 7-30V total-supply range.",
+        "acceptance": "At 8V jack, VCC_F >= 7.0V; at 18V jack, VCC_F <= 30V; reverse polarity draws no current and causes no damage (current-limited test).",
+        "source": "S007, S009"
+      },
+      {
+        "id": "E2",
+        "text": "Vref = VCC_F/2 within +/-5% at 8/9/18V and stable under signal.",
+        "acceptance": "Measured VREF 3.59/4.04/7.95V nominal at 8/9/18V, +/-5%; no shift or oscillation under drive.",
+        "source": "S002, S007"
+      },
+      {
+        "id": "E3",
+        "text": "Both TL082 stages have unity DC gain and no quiescent saturation.",
+        "acceptance": "X1_OUT ~= X1_P and X3_OUT ~= X3_P; neither output at a rail at 8/9/18V.",
+        "source": "S002, simulation"
+      },
+      {
+        "id": "E4",
+        "text": "SW1 selects R14 only (LP, darker) or R14 in parallel with R15 (HP, brighter).",
+        "acceptance": "Repeatable HP/LP frequency-response difference at 1kHz with Drive/Tone/Volume fixed; no oscillation. Parallel position is brighter per S003.",
+        "source": "S002, S003"
+      },
+      {
+        "id": "E5",
+        "text": "Status LED with series resistor from VCC_F to GND, 1-5mA at 8-18V.",
+        "acceptance": "LED on; measured current 1-5mA.",
+        "source": "S009"
+      },
+      {
+        "id": "E6",
+        "text": "9V battery option with a switching DC jack and input-jack battery disconnect.",
+        "acceptance": "Battery disconnects when the DC plug is inserted; no battery drain when the input jack is unplugged.",
+        "source": "S009"
+      },
+      {
+        "id": "E7",
+        "text": "True bypass with a 3PDT; dry signal passes when off.",
+        "acceptance": "Continuity/audio check; active circuit isolated when off.",
+        "source": "S009"
+      },
+      {
+        "id": "E8",
+        "text": "PCB-mounted 1/4-inch TS jacks and 3PDT; 1590B enclosure, 108 x 58mm board, through-hole (Phase C).",
+        "acceptance": "Test fit in 1590B; jack/switch alignment and board dimensions verified (Phase C).",
+        "source": "S009"
+      },
+      {
+        "id": "A1",
+        "text": "Operate from 8-18V DC center-negative",
+        "acceptance": "No damage/oscillation; functional audio at 8V, 9V, and 18V into 100k load under stated conditions (50mVpk, 1kHz; 20Hz-20kHz)",
+        "source": "S009"
+      },
+      {
+        "id": "A2",
+        "text": "True bypass",
+        "acceptance": "Dry signal passed when off; active circuit isolated per implementation",
+        "source": "S009"
+      },
+      {
+        "id": "A3",
+        "text": "Asymmetric OCD-style clipping character with HP/LP voicing",
+        "acceptance": "Qualitative + simulation waveform/spectrum under stated conditions (exploratory); not a verified Fulltone clone claim",
+        "source": "S001"
+      },
+      {
+        "id": "A4",
+        "text": "Stable bias with no low-frequency instability (hum, motorboating, or oscillation) at 8/9/18V",
+        "acceptance": "Audible/measured: no hum, motorboating, or oscillation at 8/9/18V; bias stable under signal. Circuit-level VREF = VCC_F/2 is verified under E2.",
+        "source": "S002"
+      },
+      {
+        "id": "A5",
+        "text": "Drive/Volume control range and output level",
+        "acceptance": "Measure gain at 1kHz and output level at Drive/Volume extremes; exploratory pending a verified reference",
+        "source": "S002"
+      },
+      {
+        "id": "A6",
+        "text": "HP/LP voicing is selectable and audibly different",
+        "acceptance": "Repeatable frequency-response difference between HP and LP at the same Drive/Tone/Volume; no oscillation",
+        "source": "S002"
+      }
+    ],
+    "decisions": [
+      {
+        "id": "D_V1",
+        "decision": "8-18V DC center-negative at the jack; 9V nominal test.",
+        "rationale": "User intake; TL082 total-supply maximum is 30V (S007).",
+        "sources": [
+          "S009",
+          "S007"
+        ]
+      },
+      {
+        "id": "D_CLIP_V1",
+        "decision": "Clip network M1/M2/D1 wiring per the S002 schematic image.",
+        "rationale": "The image confirms M1[D&G=VREF,S=CLIP_A], M2[D=VREF,G&S=M2_D1_NODE], D1[A=CLIP_A,K=M2_D1_NODE].",
+        "sources": [
+          "S002"
+        ]
+      },
+      {
+        "id": "D_POTS",
+        "decision": "X2 Drive 1M audio, X5 Volume 100k audio provisional, X4 Tone 10k audio wired as a rheostat in series with C11 to ground; 50% linear snapshot in simulation.",
+        "rationale": "S002 gives the pot values and confirms X4 sends treble through the 10k pot and C11 to ground. Tapers and the X5 value are unverified.",
+        "sources": [
+          "S002",
+          "S003"
+        ]
+      },
+      {
+        "id": "D_DEV",
+        "decision": "TL082 vendor model; 2N7000/1N34A project approximations; 1N5819/LED/SW ideal models.",
+        "rationale": "Only the TL082 has a vendor macromodel; the rest are simulation-only approximations and the models gate is SKIP.",
+        "sources": [
+          "S007",
+          "S002"
+        ]
+      },
+      {
+        "id": "D_BIAS_FIX",
+        "decision": "Keep R2 to GND, R6 to VREF, and D1 as 1N34A; do not add a second Ge diode.",
+        "rationale": "S002 text and image confirm this bias arrangement.",
+        "sources": [
+          "S002"
+        ]
+      },
+      {
+        "id": "D_TONE",
+        "decision": "Tone/HP-LP: R14 22k always in path; R15 33k in parallel only when SW1 is closed (HP); SW1 open = LP.",
+        "rationale": "S002 confirms R14/R15 values. S003 states the switch-on position parallels R12/R13 (R14/R15 here) reducing high-frequency loss, i.e. brighter; AGENTS.md defines HP as brighter/more presence. So HP=closed/parallel, LP=open. Reverses the provisional D_TONE label.",
+        "sources": [
+          "S002",
+          "S003"
+        ]
+      },
+      {
+        "id": "D_FB_FIX",
+        "decision": "Move C4 in series with R5 (X1_FB -> X1_RG -> VREF) and C8 in series with R11 (X3_FB -> X3_RG -> VREF).",
+        "rationale": "The prior parallel placement gave zero DC feedback and saturated both op-amps. Series placement gives unity DC gain and the intended AC bass limit. 8/9/18V OP after the fix: VREF 3.588/4.039/7.947V; X1_OUT 2.441/2.747/5.406V; X3_OUT 2.538/2.857/5.905V.",
+        "sources": [
+          "S002",
+          "simulation"
+        ]
+      },
+      {
+        "id": "D_PROT",
+        "decision": "1N5819 series Schottky reverse-polarity protection; P-FET fallback if the 8V margin fails.",
+        "rationale": "Simple and low-drop. At 8V jack the TL082 sees about 7.7V real (about 7.25V with the pessimistic model), leaving roughly 0.7V above the 7V minimum; bench gate.",
+        "sources": [
+          "S007",
+          "S014"
+        ]
+      },
+      {
+        "id": "D_LED",
+        "decision": "LED + 4.7k from VCC_F to GND; always-on in simulation; physically switched by the 3PDT.",
+        "rationale": "Status indicator at 1.35mA/9V and about 3mA/18V.",
+        "sources": [
+          "S009"
+        ]
+      },
+      {
+        "id": "D_BAT",
+        "decision": "9V battery via a switching DC jack and input-jack battery disconnect.",
+        "rationale": "User requirement; prevents battery drain when unplugged.",
+        "sources": [
+          "S009"
+        ]
+      },
+      {
+        "id": "D_AC_SRC",
+        "decision": "Split V_IN (SIN) and V_AC (AC 1V) in series because the generator drops AC when a waveform is present.",
+        "rationale": "AC metrics need excitation while transient needs a sine. Verified AC gain at 1kHz/9V after the fix: OUT 37.2dB, X1_OUT 43.1dB, X3_OUT 54.5dB.",
+        "sources": [
+          "simulation"
+        ]
+      },
+      {
+        "id": "D_MODEL_LIMITS",
+        "decision": "Use datasheet TL082 limits for headroom and the vendor model for AC/clipping shape; model supply current is not trustworthy.",
+        "rationale": "The TL082 model draws 8.4mA at 9V and 16.6mA at 18V vs about 2.8mA real, inflating the R1 drop.",
+        "sources": [
+          "S007"
+        ]
+      },
+      {
+        "id": "D_PCB_MECH",
+        "decision": "1590B enclosure, 108 x 58mm board, through-hole, PCB-mounted I/O jacks and 3PDT (Phase C).",
+        "rationale": "User decision; PCB work is deferred.",
+        "sources": [
+          "S009"
+        ]
+      },
+      {
+        "id": "D_PRIOR_SIM",
+        "decision": "Prior AC/THD/Vref results are superseded.",
+        "rationale": "The old netlist had C4/C8 in parallel (saturated bias) and V_IN without an AC magnitude (zero AC excitation).",
+        "sources": [
+          "simulation"
+        ]
+      }
+    ],
+    "architecture": {
+      "summary": "VCC_JACK -> D_PWR(1N5819) -> VCC -> R1/C2/C3 -> VCC_F; Vref divider; input C1/R2/R6/R3; X1 gain (R5+C4 series, R8/Drive, C6); clip R9/C7/R10/R12/M1/M2/D1; X3 gain (R11+C8 series, R13, C9); tone/HP-LP (R14/R15/SW1); volume; LED; true bypass.",
+      "blocks": [
+        "power_entry",
+        "protection",
+        "power_filter",
+        "vref",
+        "input_bias",
+        "gain1",
+        "clip_vref",
+        "gain2",
+        "tone_hplp",
+        "volume",
+        "led",
+        "bypass"
+      ],
+      "supplies": [
+        {
+          "name": "VCC_JACK",
+          "voltage": 9.0,
+          "range_v": [
+            8.0,
+            18.0
+          ],
+          "note": "DC jack; 1N5819 series protection"
+        },
+        {
+          "name": "VCC_F",
+          "voltage": 8.16,
+          "range_v": [
+            7.25,
+            17.35
+          ],
+          "note": "Filtered op-amp rail after R1; model current makes this pessimistic; real ~8.4V at 9V"
+        },
+        {
+          "name": "VREF",
+          "voltage": 4.04,
+          "note": "VCC_F/2; 3.59V at 8V, 7.95V at 18V"
+        }
+      ],
+      "interfaces": [
+        "IN",
+        "OUT",
+        "VCC_JACK",
+        "VBAT",
+        "GND"
+      ],
+      "budgets": {
+        "vref": "VCC_F/2 +/-5%",
+        "headroom": "+/-2.09V at 8V, +/-2.54V at 9V, +/-6.45V at 18V (TL082 typ 1.5V rail headroom; model VCC_F)",
+        "supply_current": "TL082 model 8.4mA at 9V, 16.6mA at 18V; datasheet 2.8mA typ"
+      },
+      "test_points": [
+        "VCC_JACK",
+        "VCC",
+        "VCC_F",
+        "VREF",
+        "IN_B",
+        "X1_FB",
+        "X1_OUT",
+        "CLIP_A",
+        "CLIP_B",
+        "X3_FB",
+        "X3_OUT",
+        "TONE_W",
+        "VOL_TOP",
+        "OUT",
+        "LED_A"
+      ]
+    },
+    "risks": [
+      {
+        "id": "K1",
+        "risk": "TL082 CM/swing/headroom may be insufficient at 8V single supply (condition/process/temperature dependent)",
+        "mitigation": "Verify SLOS081O limits (S007) + provenance-tracked SPICE/bench at 8/9/18V; substitute only with datasheet/SPICE provenance and a recorded decision (D002)",
+        "verification": "A1, E1-E3, DC/transient sim, bench"
+      },
+      {
+        "id": "K2",
+        "risk": "1N34A Ge diode variability shifts clipping symmetry/threshold",
+        "mitigation": "Select/measure diodes or design for tolerance; D003 allows BAT46/1N4148 options with provenance",
+        "verification": "A3 sim/listening"
+      },
+      {
+        "id": "K3",
+        "risk": "Exact schematic values/orientation not a verified Fulltone netlist",
+        "mitigation": "Hybrid working reference S002+S003 cross-checked with S001/S013; label unverified items; confirm pin-level values/orientation against traceable schematic+datasheets before fabrication",
+        "verification": "design review"
+      },
+      {
+        "id": "K4",
+        "risk": "1N5819 drop plus the TL082 7V minimum leaves only about 0.7V at an 8V jack",
+        "mitigation": "Bench-gate 8V operation; fall back to a P-FET reverse-polarity circuit if the margin fails",
+        "verification": "E1, 8V bench, DC sweep"
+      },
+      {
+        "id": "K5",
+        "risk": "The TL082 model supply current is about 3-6x the datasheet value, so simulated VCC_F/headroom is pessimistic",
+        "mitigation": "Use datasheet limits for headroom decisions; record the model artifact",
+        "verification": "S007 comparison"
+      },
+      {
+        "id": "K6",
+        "risk": "PCB-mounted 3PDT/jack mechanical alignment and the SW1 physical SPDT mapping are unproven",
+        "mitigation": "Phase C mechanical fit check in a 1590B; confirm footprint pad positions and switch mapping before fabrication",
+        "verification": "E8, Phase C"
+      },
+      {
+        "id": "K7",
+        "risk": "X2/X5 values, wiring and tapers are unverified.",
+        "severity": "medium",
+        "mitigation": "Confirm against a traceable schematic/photo; mark the 50% linear simulation snapshot.",
+        "verification": "E4, A5"
+      },
+      {
+        "id": "K8",
+        "risk": "The voltage-controlled SW1 model has four nodes but the physical HP/LP switch is a three-terminal SPDT.",
+        "severity": "high",
+        "mitigation": "Define the physical pad mapping in Phase C; keep the control pins simulation-only.",
+        "verification": "E4, Phase C"
+      },
+      {
+        "id": "K9",
+        "risk": "AC/THD/noise metrics are exploratory; there is no verified reference target.",
+        "severity": "medium",
+        "mitigation": "Record conditions and model provenance; do not claim a verified clone performance.",
+        "verification": "A3/A5 metrics, bench"
+      }
+    ],
+    "sources": [
+      {
+        "id": "S001",
+        "title": "DAFx26 OCD Wave Digital Model (cross-check; OCD v2 context)",
+        "url": "https://dafx.de/paper-archive/2026/papers/DAFx26_paper_24.pdf",
+        "accessed": "2026-11-09"
+      },
+      {
+        "id": "S002",
+        "title": "Analog Is Not Dead - OCD analysis (opened this session)",
+        "url": "https://www.analogisnotdead.com/article34/circuit-analysis-fulltone-s-ocd",
+        "accessed": "2026-11-09"
+      },
+      {
+        "id": "S003",
+        "title": "zadvitsky OCD overdrive clone (opened this session, partial values)",
+        "url": "http://zadvitsky.com/index.php/projects/pedals/ocd-overdrive-diy.html",
+        "accessed": "2026-11-09"
+      },
+      {
+        "id": "S007",
+        "title": "TI TL082 datasheet/product (SLOS081O, opened this session)",
+        "url": "https://www.ti.com/lit/gpn/TL082",
+        "accessed": "2026-11-11"
+      },
+      {
+        "id": "S009",
+        "title": "User intake/reconciliation v0.1",
+        "url": "local:conversation/2026-11-09",
+        "accessed": "2026-11-09"
+      },
+      {
+        "id": "S013",
+        "title": "PCB Guitar Mania TOC (OCD) v2.1 build docs (authorized, cross-check)",
+        "url": "https://pcbguitarmania.com/wp-content/uploads/2018/02/TOC-2v1-Building-Docs.pdf",
+        "accessed": "2026-11-09"
+      },
+      {
+        "id": "S014",
+        "title": "Vishay 1N5817/1N5818/1N5819 Schottky datasheet",
+        "url": "https://www.vishay.com/docs/88525/1n5817.pdf",
+        "accessed": "2026-11-11"
+      }
+    ],
+    "operating_limits": [
+      {
+        "id": "L1",
+        "parameter": "TL082 total supply voltage at 18V jack",
+        "value": 18.0,
+        "unit": "V",
+        "max": 30.0,
+        "condition": "VCC_JACK=18V; VCC_F <= 18V after D_PWR/R1",
+        "source": "TI TL082 SLOS081O (S007)"
+      },
+      {
+        "id": "L2",
+        "parameter": "TL082 total supply voltage at 8V jack",
+        "value": 7.25,
+        "unit": "V",
+        "min": 7.0,
+        "condition": "VCC_JACK=8V; 1N5819 drop ~0.3V; R1 drop 0.84V with the pessimistic TL082 model current",
+        "source": "TI TL082 SLOS081O (S007); 1N5819 Vf to verify (S014)"
+      },
+      {
+        "id": "L3",
+        "parameter": "TL082 input common-mode voltage at 8V jack",
+        "value": 3.59,
+        "unit": "V",
+        "min": 3.0,
+        "max": 4.25,
+        "condition": "VCC_JACK=8V; VCC_F=7.25V; VREF=3.59V; 3V typ common-mode headroom from each rail",
+        "source": "TI TL082 SLOS081O (S007)"
+      },
+      {
+        "id": "L4",
+        "parameter": "TL082 available output swing around VREF at 8V jack",
+        "value": 2.09,
+        "unit": "V",
+        "min": 1.5,
+        "condition": "VCC_F=7.25V; VREF=3.59V; 1.5V typ swing to each rail",
+        "source": "TI TL082 SLOS081O (S007)"
+      },
+      {
+        "id": "L5",
+        "parameter": "1N5819 reverse voltage",
+        "value": 18.0,
+        "unit": "V",
+        "max": 40.0,
+        "condition": "Reverse polarity at an 18V jack",
+        "source": "Vishay 1N5819 datasheet, Vr=40V (S014)"
+      }
+    ],
+    "measurements": [
+      {
+        "id": "M_E1",
+        "requirement": "E1",
+        "test_point": "VCC_JACK, VCC_F",
+        "quantity": "DC voltage and reverse-polarity current",
+        "method": "DMM at 8/9/18V; current-limited reverse-polarity test",
+        "equipment": "bench supply, DMM",
+        "conditions": "no signal, 25C, 100k load",
+        "acceptance": "VCC_F >= 7.0V at 8V jack; no damage; reverse polarity draws no current"
+      },
+      {
+        "id": "M_E2",
+        "requirement": "E2",
+        "test_point": "VREF",
+        "quantity": "DC voltage",
+        "method": "DMM at 8/9/18V",
+        "equipment": "DMM",
+        "conditions": "no signal, 25C",
+        "acceptance": "VREF = VCC_F/2 +/-5% at 8/9/18V"
+      },
+      {
+        "id": "M_E3",
+        "requirement": "E3",
+        "test_point": "X1_P, X1_OUT, X3_FB, X3_OUT",
+        "quantity": "DC voltage",
+        "method": "DMM/scope at 9V",
+        "equipment": "DMM, oscilloscope",
+        "conditions": "no signal, 25C",
+        "acceptance": "X1_OUT ~= X1_P; X3_OUT ~= X3_FB; neither at a rail"
+      },
+      {
+        "id": "M_E4",
+        "requirement": "E4",
+        "test_point": "OUT",
+        "quantity": "frequency response",
+        "method": "sweep 20Hz-20kHz in LP and HP positions",
+        "equipment": "audio analyzer or scope",
+        "conditions": "Drive/Tone/Volume fixed; 50mVpk input",
+        "acceptance": "Repeatable LP/HP difference at 1kHz; no oscillation"
+      },
+      {
+        "id": "M_E5",
+        "requirement": "E5",
+        "test_point": "LED_A",
+        "quantity": "LED current and forward voltage",
+        "method": "DMM at 8/9/18V",
+        "equipment": "DMM",
+        "conditions": "LED on, 25C",
+        "acceptance": "1-5mA; LED on"
+      },
+      {
+        "id": "M_E6",
+        "requirement": "E6",
+        "test_point": "VBAT, VCC_JACK",
+        "quantity": "DC voltage and continuity",
+        "method": "DMM with battery and DC plug; input jack inserted/removed",
+        "equipment": "DMM, bench supply",
+        "conditions": "battery only; DC plug in/out; input jack in/out",
+        "acceptance": "Battery disconnects with DC plug; no drain when input unplugged"
+      },
+      {
+        "id": "M_E7",
+        "requirement": "E7",
+        "test_point": "IN, OUT",
+        "quantity": "continuity/audio",
+        "method": "true-bypass check",
+        "equipment": "DMM, audio source",
+        "conditions": "pedal off",
+        "acceptance": "Dry signal passes; circuit isolated when off"
+      },
+      {
+        "id": "M_E8",
+        "requirement": "E8",
+        "test_point": "PCB mechanical",
+        "quantity": "mechanical fit",
+        "method": "test fit in 1590B; caliper check",
+        "equipment": "1590B enclosure, calipers",
+        "conditions": "THT board, PCB-mounted jacks/3PDT",
+        "acceptance": "Fits 108 x 58mm; jacks/switch align (Phase C)"
+      }
+    ]
+  },
+  "simulation_status": "declared models (no vendor provenance)",
+  "models": [
+    {
+      "Ref": "D_PWR",
+      "Type": "D",
+      "Model": "APPROX_1N5819",
+      "Kind": "declared",
+      "Vendor": "",
+      "Part": "",
+      "Source": "",
+      "SHA256": ""
+    },
+    {
+      "Ref": "X1A",
+      "Type": "OPAMP",
+      "Model": "TL082",
+      "Kind": "vendor",
+      "Vendor": "Texas Instruments",
+      "Part": "TL082 (macromodel)",
+      "Source": "TI SLOJ070 / S007",
+      "SHA256": "adad2e131f728610"
+    },
+    {
+      "Ref": "M1",
+      "Type": "NMOS",
+      "Model": "APPROX_2N7000",
+      "Kind": "declared",
+      "Vendor": "",
+      "Part": "2N7000 APPROX sim-only",
+      "Source": "local APPROX; not manufacturer model",
+      "SHA256": "081054dff4a75cb5"
+    },
+    {
+      "Ref": "M2",
+      "Type": "NMOS",
+      "Model": "APPROX_2N7000",
+      "Kind": "declared",
+      "Vendor": "",
+      "Part": "2N7000 APPROX sim-only",
+      "Source": "local APPROX; not manufacturer model",
+      "SHA256": "081054dff4a75cb5"
+    },
+    {
+      "Ref": "D1",
+      "Type": "D",
+      "Model": "APPROX_1N34A",
+      "Kind": "declared",
+      "Vendor": "",
+      "Part": "1N34A Ge APPROX sim-only (S002-confirmed D1 type)",
+      "Source": "local APPROX; not manufacturer model; D1 per S002 C027",
+      "SHA256": "db949f2074c80243"
+    },
+    {
+      "Ref": "X3A",
+      "Type": "OPAMP",
+      "Model": "TL082",
+      "Kind": "vendor",
+      "Vendor": "Texas Instruments",
+      "Part": "TL082 (macromodel)",
+      "Source": "TI SLOJ070 / S007",
+      "SHA256": "adad2e131f728610"
+    },
+    {
+      "Ref": "SW1",
+      "Type": "SW",
+      "Model": "SW1MODEL",
+      "Kind": "declared",
+      "Vendor": "",
+      "Part": "",
+      "Source": "",
+      "SHA256": ""
+    },
+    {
+      "Ref": "D_LED",
+      "Type": "LED",
+      "Model": "LED_RED",
+      "Kind": "declared",
+      "Vendor": "",
+      "Part": "",
+      "Source": "",
+      "SHA256": ""
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 {
   "handoff_version": 1,
-  "application": "guitar overdrive pedal (OCD-style, unbranded v0.1)",
-  "description": "Hybrid v0.2 reference (reconciled 2026-11-09): v1.4/v1.7-style topology, hybrid anchors S002+S003 cross-checked with S001/S013 (provenance-labeled; not a verified Fulltone netlist). True-bypass core, 8-18V DC center-negative (5V dropped by explicit user decision), most-available parts/substitutions allowed with provenance, D003 BAT46 default + Ge/1N4148 options, no buffer default. D002: validate TL082 at 8-18V (min supply 7V typ per S007 opened 2026-11-09; 8V CM/swing unverified). DAFx26 v2 table used as exploration baseline only.",
+  "application": "guitar overdrive pedal (OCD-style, unbranded v0.4)",
+  "description": "Hybrid v0.4 (2026-11-11): v1.4/v1.7-style topology, S002+S003 anchors cross-checked with S001/S013 (provenance-labeled; not a verified Fulltone netlist). D_FB_FIX moves C4/C8 in series with R5/R11; the prior parallel placement saturated both op-amps. 8-18V DC center-negative, 9V nominal, 1N5819 series protection, status LED, 9V battery/switching DC jack, explicit HP/LP SW1, true-bypass core, THT 1590B target. TL082 limits: 7-30V total supply, 3V typ common-mode, 1.5V typ output swing (S007). 2N7000/1N34A/1N5819 models are approximations; models gate is SKIP. AC excitation is split V_IN/V_AC because the generator drops AC on a waveform source. DAFx26 v2 table remains exploration-only.",
   "conditions": {
     "supply_vdc": 9.0,
     "supply_range_vdc": [
@@ -9,6 +9,8 @@
       18.0
     ],
     "frequency_hz": 1000,
+    "input_vrms": 0.0354,
+    "input_peak_v": 0.05,
     "load_ohm": 100000,
     "bandwidth_hz": [
       20,
@@ -17,37 +19,81 @@
     "temperature_c": 25
   },
   "architecture": {
-    "summary": "Input -> Gain1(TL082 candidate, Drive) -> Clip(2N7000+Ge/Schottky options to Vref) -> Gain2(TL082 candidate) -> Tone/HP-LP/Volume -> Out; true bypass",
+    "summary": "VCC_JACK -> D_PWR(1N5819) -> VCC -> R1/C2/C3 -> VCC_F; Vref divider; input C1/R2/R6/R3; X1 gain (R5+C4 series, R8/Drive, C6); clip R9/C7/R10/R12/M1/M2/D1; X3 gain (R11+C8 series, R13, C9); tone/HP-LP (R14/R15/SW1); volume; LED; true bypass.",
     "blocks": [
-      "input",
+      "power_entry",
+      "protection",
+      "power_filter",
+      "vref",
+      "input_bias",
       "gain1",
       "clip_vref",
       "gain2",
       "tone_hplp",
-      "output",
+      "volume",
+      "led",
       "bypass"
     ],
     "supplies": [
       {
-        "name": "VCC",
+        "name": "VCC_JACK",
         "voltage": 9.0,
         "range_v": [
           8.0,
           18.0
-        ]
+        ],
+        "note": "DC jack; 1N5819 series protection"
+      },
+      {
+        "name": "VCC_F",
+        "voltage": 8.16,
+        "range_v": [
+          7.25,
+          17.35
+        ],
+        "note": "Filtered op-amp rail after R1; model current makes this pessimistic; real ~8.4V at 9V"
       },
       {
         "name": "VREF",
-        "voltage": 4.5,
-        "note": "Vcc/2 derived (4.0V at 8V, 9.0V at 18V)"
+        "voltage": 4.04,
+        "note": "VCC_F/2; 3.59V at 8V, 7.95V at 18V"
       }
+    ],
+    "interfaces": [
+      "IN",
+      "OUT",
+      "VCC_JACK",
+      "VBAT",
+      "GND"
+    ],
+    "budgets": {
+      "vref": "VCC_F/2 +/-5%",
+      "headroom": "+/-2.09V at 8V, +/-2.54V at 9V, +/-6.45V at 18V (TL082 typ 1.5V rail headroom; model VCC_F)",
+      "supply_current": "TL082 model 8.4mA at 9V, 16.6mA at 18V; datasheet 2.8mA typ"
+    },
+    "test_points": [
+      "VCC_JACK",
+      "VCC",
+      "VCC_F",
+      "VREF",
+      "IN_B",
+      "X1_FB",
+      "X1_OUT",
+      "CLIP_A",
+      "CLIP_B",
+      "X3_FB",
+      "X3_OUT",
+      "TONE_W",
+      "VOL_TOP",
+      "OUT",
+      "LED_A"
     ]
   },
   "requirements": [
     {
       "id": "A1",
       "text": "Operate from 8-18V DC center-negative",
-      "acceptance": "No damage/oscillation; functional audio at 8V, 9V, and 18V into 100k load under stated conditions (input level/frequency TBD)",
+      "acceptance": "No damage/oscillation; functional audio at 8V, 9V, and 18V into 100k load under stated conditions (50mVpk, 1kHz; 20Hz-20kHz)",
       "source": "S009"
     },
     {
@@ -59,30 +105,70 @@
     {
       "id": "A3",
       "text": "Asymmetric OCD-style clipping character with HP/LP voicing",
-      "acceptance": "Qualitative + simulation waveform/spectrum under stated conditions (TBD); not a verified Fulltone clone claim",
+      "acceptance": "Qualitative + simulation waveform/spectrum under stated conditions (exploratory); not a verified Fulltone clone claim",
       "source": "S001"
     },
     {
       "id": "A4",
-      "text": "Vref bias tracks Vcc/2",
-      "acceptance": "Within TBD tolerance across 8-18V (verify per locked divider)",
+      "text": "Stable bias with no low-frequency instability (hum, motorboating, or oscillation) at 8/9/18V",
+      "acceptance": "Audible/measured: no hum, motorboating, or oscillation at 8/9/18V; bias stable under signal. Circuit-level VREF = VCC_F/2 is verified under E2.",
+      "source": "S002"
+    },
+    {
+      "id": "A5",
+      "text": "Drive/Volume control range and output level",
+      "acceptance": "Measure gain at 1kHz and output level at Drive/Volume extremes; exploratory pending a verified reference",
+      "source": "S002"
+    },
+    {
+      "id": "A6",
+      "text": "HP/LP voicing is selectable and audibly different",
+      "acceptance": "Repeatable frequency-response difference between HP and LP at the same Drive/Tone/Volume; no oscillation",
       "source": "S002"
     }
   ],
   "metrics": [
     {
-      "measure": "vref_ratio",
-      "target": 0.5,
-      "tolerance": 0.02,
-      "requirement": "A4"
+      "measure": "gain_db",
+      "requirement": "A5",
+      "exploratory": true,
+      "min": 0.0,
+      "max": 80.0
+    },
+    {
+      "measure": "bandwidth_width_hz",
+      "requirement": "A5",
+      "exploratory": true,
+      "min": 20.0,
+      "max": 50000.0
+    },
+    {
+      "measure": "thd_percent",
+      "requirement": "A3",
+      "exploratory": true,
+      "min": 0.0,
+      "max": 100.0
+    },
+    {
+      "measure": "noise_uv",
+      "exploratory": true,
+      "min": 0.0,
+      "max": 100000.0
+    },
+    {
+      "measure": "output_vrms",
+      "requirement": "A5",
+      "exploratory": true,
+      "min": 0.0,
+      "max": 10.0
     }
   ],
   "risks": [
     {
       "id": "K1",
       "risk": "TL082 CM/swing/headroom may be insufficient at 8V single supply (condition/process/temperature dependent)",
-      "mitigation": "Verify SLOS081O limits (S007) + provenance-tracked SPICE/bench at 8/9/18V; substitute only with datasheet/SPICE provenance and recorded decision (D002)",
-      "verification": "A1, DC/transient sim, bench"
+      "mitigation": "Verify SLOS081O limits (S007) + provenance-tracked SPICE/bench at 8/9/18V; substitute only with datasheet/SPICE provenance and a recorded decision (D002)",
+      "verification": "A1, E1-E3, DC/transient sim, bench"
     },
     {
       "id": "K2",
@@ -95,6 +181,24 @@
       "risk": "Exact schematic values/orientation not a verified Fulltone netlist",
       "mitigation": "Hybrid working reference S002+S003 cross-checked with S001/S013; label unverified items; confirm pin-level values/orientation against traceable schematic+datasheets before fabrication",
       "verification": "design review"
+    },
+    {
+      "id": "K4",
+      "risk": "1N5819 drop plus the TL082 7V minimum leaves only about 0.7V at an 8V jack",
+      "mitigation": "Bench-gate 8V operation; fall back to a P-FET reverse-polarity circuit if the margin fails",
+      "verification": "E1, 8V bench, DC sweep"
+    },
+    {
+      "id": "K5",
+      "risk": "The TL082 model supply current is about 3-6x the datasheet value, so simulated VCC_F/headroom is pessimistic",
+      "mitigation": "Use datasheet limits for headroom decisions; record the model artifact",
+      "verification": "S007 comparison"
+    },
+    {
+      "id": "K6",
+      "risk": "PCB-mounted 3PDT/jack mechanical alignment and the SW1 physical SPDT mapping are unproven",
+      "mitigation": "Phase C mechanical fit check in a 1590B; confirm footprint pad positions and switch mapping before fabrication",
+      "verification": "E8, Phase C"
     }
   ],
   "sources": [
@@ -120,7 +224,7 @@
       "id": "S007",
       "title": "TI TL082 datasheet/product (SLOS081O, opened this session)",
       "url": "https://www.ti.com/lit/gpn/TL082",
-      "accessed": "2026-11-09"
+      "accessed": "2026-11-11"
     },
     {
       "id": "S009",

@@ -1,0 +1,45 @@
+References,Qty,Type,Value,Manufacturer,MPN,Package,Footprint,Footprint status,Pad map verified,Datasheet URL,Datasheet revision,Sourcing URL,Footprint evidence,Notes
+C1,1,Capacitor,22n,,,,,unassigned,False,,,,,S002-schematic-image-confirmed: input coupling cap (C1=22nF).
+C10,1,Capacitor,10u,,,,,unassigned,False,,,,,S002-schematic-image-confirmed: output coupling cap (C10=10µF).
+C11,1,Capacitor,47n,,,,,unassigned,False,,,,,S002-schematic-image-confirmed: tone cap C11 to ground (C11=47nF).
+C2,1,Capacitor,10u,,,,,unassigned,False,,,,,S002-schematic-image-confirmed: power bulk filter (C2=10µF).
+C3,1,Capacitor,100n,,,,,unassigned,False,,,,,S002-schematic-image-confirmed: power HF decoupling (C3=100nF).
+C4,1,Capacitor,100n,,,,,unassigned,False,,,,,"S002-confirmed C4=100nF. D_FB_FIX: C4 is in series with R5, not in parallel with it; the parallel placement had zero DC feedback and saturated X1."
+C5,1,Capacitor,10u,,,,,unassigned,False,,,,,S002-schematic-image-confirmed: Vref filter cap (C5=10µF).
+C6,1,Capacitor,220p,,,,,unassigned,False,,,,,S002-schematic-image-confirmed: HF stability cap (C6=220pF).
+C7,1,Capacitor,10n,,,,,unassigned,False,,,,,S002-schematic-image-confirmed: VREF-CLIP_A cap (C7=10nF).
+C8,1,Capacitor,100n,,,,,unassigned,False,,,,,"S002-confirmed C8=100nF. D_FB_FIX: C8 is in series with R11, not in parallel with it; the parallel placement had zero DC feedback and saturated X3."
+C9,1,Capacitor,220p,,,,,unassigned,False,,,,,S002-schematic-image-confirmed: HF stability (C9=220pF).
+D1,1,Diode,APPROX_1N34A,,,,,unassigned,False,,,,,"S002-schematic-image-confirmed: D1 [A=CLIP_A, K=M2_D1_NODE], 1N34A Ge per article text (C027). APPROX sim-only model, Ge variability applies."
+D_LED,1,LED,LED_RED,,,,,unassigned,False,,,,,"Status LED, 1.8V red generic model. Always-on in simulation; physically switched by the 3PDT."
+D_PWR,1,Diode,APPROX_1N5819,,,,,unassigned,False,,,,,Series Schottky reverse-polarity protection; 1N5819 default. APPROX model; Vf ~0.25-0.3V. 8V-jack margin to the TL082 7V minimum is a bench gate (D_PROT).
+M1,1,N-MOSFET,APPROX_2N7000,,,,,unassigned,False,,,,,"S002-schematic-image-confirmed: M1 [D&G=VREF, S=CLIP_A]. Exact part unknown; APPROX sim-only. Commenter-reported alternate wiring (M1[S=VREF,D&G=R9/R10]) does NOT match S002 image."
+M2,1,N-MOSFET,APPROX_2N7000,,,,,unassigned,False,,,,,"S002-schematic-image-confirmed: M2 [D=VREF, G&S=M2_D1_NODE]. Exact part unknown; APPROX sim-only. Commenter-reported alternate wiring (M2[D&G=VREF,S=D1]) does NOT match S002 image."
+R1,1,Resistor,100,,,,,unassigned,False,,,,,"S002-schematic-image-confirmed: supply feed/filter node (R1=100ohm), now after D_PWR protection."
+R10,1,Resistor,10k,,,,,unassigned,False,,,,,S002-schematic-image-confirmed: clip network resistor (R10=10k).
+R11,1,Resistor,39k,,,,,unassigned,False,,,,,S002-confirmed R11=39k. D_FB_FIX: R11 is in series with C8 to VREF so the stage has unity DC gain.
+R12,1,Resistor,220k,,,,,unassigned,False,,,,,S002-schematic-image-confirmed: bias to CLIP_B (R12=220k).
+R13,1,Resistor,150k,,,,,unassigned,False,,,,,S002-schematic-image-confirmed: feedback (R13=150k).
+R14,1,Resistor,22k,,,,,unassigned,False,,,,,"S002-confirmed R14=22k. Main signal path from TONE_TOP (after C10) to VOL_TOP; always in circuit (LP=open, darker)."
+R15,1,Resistor,33k,,,,,unassigned,False,,,,,"S002-confirmed R15=33k. Switched in parallel with R14 via SW1 from TONE_TOP to VOL_TOP; HP=closed/parallel=brighter (S003), LP=open/darker."
+R2,1,Resistor,1Meg,,,,,unassigned,False,,,,,"S002-schematic-image-confirmed: R2 (1M) connects input cap C1 to GROUND as voltage reference, not to VREF. R6 biases op-amp to VREF."
+R3,1,Resistor,10k,,,,,unassigned,False,,,,,S002-schematic-image-confirmed: limits current to op-amp input (R3=10k).
+R4,1,Resistor,10k,,,,,unassigned,False,,,,,S002-schematic-image-confirmed: Vref divider upper (R4=10k).
+R5,1,Resistor,2.2k,,,,,unassigned,False,,,,,S002-confirmed value R5=2.2k. D_FB_FIX: R5 is in series with C4 to VREF so the stage has unity DC gain and an AC bass limit.
+R6,1,Resistor,470k,,,,,unassigned,False,,,,,S002-schematic-image-confirmed: biases op-amp non-inverting input to VREF (R6=470k).
+R7,1,Resistor,10k,,,,,unassigned,False,,,,,S002-schematic-image-confirmed: Vref divider lower (R7=10k).
+R8,1,Resistor,18k,,,,,unassigned,False,,,,,S002-schematic-image-confirmed: gain network (R8=18k).
+R9,1,Resistor,10k,,,,,unassigned,False,,,,,S002-schematic-image-confirmed: series into clipping (R9=10k).
+R_LED,1,Resistor,4.7k,,,,,unassigned,False,,,,,"Status LED series resistor; 1.35mA at 9V, ~3mA at 18V (Vf 1.8V). Physical LED switching is via the 3PDT (D_LED)."
+R_LOAD,1,Resistor,100k,,,,,unassigned,False,,,,,
+R_VOL5A,1,Resistor,50k,,,,,unassigned,False,,,,,Volume pot 100k modeled at 50% (X5 value not found in retrieved S002 text; 100k is placeholder).
+R_VOL5B,1,Resistor,50k,,,,,unassigned,False,,,,,Volume pot lower leg modeled at 50% (X5 value not found in retrieved S002 text; 100k is placeholder).
+R_X2POT,1,Resistor,500k,,,,,unassigned,False,,,,,Drive/gain pot modeled 50% of 1M (S002 states gain pot 1M; mapping/wiring assumed).
+R_X4,1,Resistor,5k,,,,,unassigned,False,,,,,S002 tone pot X4=10k wired as a rheostat in series with C11 to ground (treble passes through X4 then C11). 50% snapshot=5k; BOM part is a 10k pot.
+SW1,1,Analog switch,SW1MODEL,,,,,unassigned,False,,,,,HP/LP toggle modeled as a voltage-controlled switch. HP = closed (V_HP=5V) -> R15 parallel with R14 (brighter); LP = open (V_HP=0V) -> R14 only (darker). Physical part is an SPDT; PCB pad mapping is Phase C.
+V1,1,Voltage source,9 V,,,,,unassigned,False,,,,,9V nominal test at the DC jack; design range 8-18V DC center-negative (C022). D_PWR and R1 drop before the op-amp rail.
+V_AC,1,Voltage source,0 V,,,,,unassigned,False,,,,,AC excitation 1V for .ac/.noise. Simulation-only; in series with V_IN. Workaround for the generator dropping AC on a waveform source.
+V_HP,1,Voltage source,5 V,,,,,unassigned,False,,,,,"Simulation-only switch control. 5V = HP (SW1 closed, parallel, brighter); change to 0V for the LP variant."
+V_IN,1,Voltage source,SIN source,,,,,unassigned,False,,,,,Transient excitation 50mVpk/1kHz. AC excitation is V_AC because the generator drops AC when a waveform is present.
+X1A,1,Op-amp,TL082,,,,,unassigned,False,,,,,TL082 section 1; wiring assumed
+X3A,1,Op-amp,TL082,,,,,unassigned,False,,,,,S002-schematic-image-confirmed: TL082 section 2; non-inv input CLIP_B; wiring assumed.

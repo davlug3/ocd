@@ -61,8 +61,9 @@ Fill/lock this before choosing final values. A number without conditions is not 
 | A1 | Operates from **8–18V DC center-negative** without damage | No damage, no oscillation; functional audio at **8V, 9V, and 18V** into 100k load under stated conditions (input level/frequency TBD) | Bench/sim: supply sweep/points 8/9/18V, 1 kHz input, 100k load | unverified (S009 user req reconciled 2026-11-09; D002 electrical feasibility TBD) |
 | A2 | True bypass passes dry signal when off | No audible level/tone change attributable to active circuit in bypass (within reasonable wiring limits) | A/B listening + level check | unverified |
 | A3 | Asymmetric overdrive character with HP/LP voicing | Qualitative + waveform/spectrum comparison to reference topology behavior | SPICE transient/FFT + listening test | unverified |
-| A4 | Vref bias ≈ Vcc/2 | Within tolerance TBD across **8–18V** | DC measurement/simulation | unverified |
-| A5 | Controls function as specified | Volume/Drive/Tone/HP-LP produce expected sweep | Bench functional test | unverified |
+| A4 | Stable bias with no low-frequency instability (hum, motorboating, oscillation) at 8/9/18V | No hum/motorboating/oscillation at 8/9/18V; bias stable under signal. Circuit-level Vref=Vcc/2 verified under E2 within +/-5%. | DC measurement/simulation at 8/9/18V, no signal and under drive | unverified (S002 article text; E2 circuit requirement) |
+| A5 | Controls function as specified | Volume/Drive/Tone/HP-LP produce expected sweep; gain measurable at 1kHz; output level at Drive/Volume extremes | SPICE AC/tran + bench functional test | unverified |
+| A6 | HP/LP voicing selectable and audibly different | Repeatable frequency-response difference between HP and LP at same Drive/Tone/Volume; parallel position brighter (treble cut less); no oscillation | SPICE AC sweep HP vs LP + listening test | unverified |
 
 ## 7. Assumptions and gaps
 

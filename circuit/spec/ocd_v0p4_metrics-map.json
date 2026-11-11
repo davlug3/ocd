@@ -1,0 +1,43 @@
+{
+  "metrics": [
+    {
+      "measure": "gain_db",
+      "requirement": "A5",
+      "id": "M1",
+      "analysis": "ac",
+      "output": "v(out)",
+      "input": "v(in)",
+      "frequency": 1000.0
+    },
+    {
+      "measure": "bandwidth_width_hz",
+      "requirement": "A5",
+      "id": "M2",
+      "analysis": "ac",
+      "output": "v(out)",
+      "input": "v(in)"
+    },
+    {
+      "measure": "thd_percent",
+      "requirement": "A3",
+      "id": "M3",
+      "analysis": "fourier",
+      "output": "v(out)",
+      "fundamental": 1000.0
+    },
+    {
+      "measure": "noise_uv",
+      "requirement": null,
+      "id": "M4",
+      "analysis": "noise",
+      "output": "v(out)"
+    },
+    {
+      "measure": "output_vrms",
+      "requirement": "A5",
+      "id": "M5",
+      "analysis": "tran",
+      "output": "v(out)"
+    }
+  ]
+}

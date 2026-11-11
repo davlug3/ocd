@@ -1,0 +1,461 @@
+{
+  "ok": true,
+  "name": "ocd_v0p4_8v18v",
+  "generated": "2026-11-11",
+  "summary": "13 passed, 5 skipped, 0 failed",
+  "checks": [
+    {
+      "name": "spec",
+      "ok": true,
+      "detail": "valid spec with 44 components, 50 warning(s)",
+      "evidence": {
+        "stats": {
+          "components": 44,
+          "nets": 26,
+          "sources": 4,
+          "semiconductors": 5,
+          "pcb": true
+        }
+      }
+    },
+    {
+      "name": "models",
+      "ok": null,
+      "detail": "declared models (no vendor provenance); models are declared inline but have no vendor/part/source; record provenance to call them vendor models",
+      "evidence": {
+        "status": "declared models (no vendor provenance)",
+        "devices": [
+          {
+            "ref": "D_PWR",
+            "model": "APPROX_1N5819",
+            "kind": "declared"
+          },
+          {
+            "ref": "X1A",
+            "model": "TL082",
+            "kind": "vendor"
+          },
+          {
+            "ref": "M1",
+            "model": "APPROX_2N7000",
+            "kind": "declared"
+          },
+          {
+            "ref": "M2",
+            "model": "APPROX_2N7000",
+            "kind": "declared"
+          },
+          {
+            "ref": "D1",
+            "model": "APPROX_1N34A",
+            "kind": "declared"
+          },
+          {
+            "ref": "X3A",
+            "model": "TL082",
+            "kind": "vendor"
+          },
+          {
+            "ref": "SW1",
+            "model": "SW1MODEL",
+            "kind": "declared"
+          },
+          {
+            "ref": "D_LED",
+            "model": "LED_RED",
+            "kind": "declared"
+          }
+        ]
+      }
+    },
+    {
+      "name": "design",
+      "ok": true,
+      "detail": "14 requirements, 14 decisions, 9 risks, 7 sources",
+      "evidence": {
+        "requirements": 14,
+        "decisions": 14,
+        "risks": 9,
+        "sources": 7
+      }
+    },
+    {
+      "name": "measurement_plan",
+      "ok": true,
+      "detail": "8 actionable measurements trace to declared requirements",
+      "evidence": {
+        "measurement_count": 8,
+        "requirement_ids": [
+          "A1",
+          "A2",
+          "A3",
+          "A4",
+          "A5",
+          "A6",
+          "E1",
+          "E2",
+          "E3",
+          "E4",
+          "E5",
+          "E6",
+          "E7",
+          "E8"
+        ]
+      }
+    },
+    {
+      "name": "operating_limits",
+      "ok": true,
+      "detail": "5 calculated stresses are within their declared sourced limits",
+      "evidence": [
+        {
+          "id": "L1",
+          "parameter": "TL082 total supply voltage at 18V jack",
+          "value": 18.0,
+          "unit": "V",
+          "min": null,
+          "max": 30.0,
+          "condition": "VCC_JACK=18V; VCC_F <= 18V after D_PWR/R1",
+          "source": "TI TL082 SLOS081O (S007)",
+          "margin_to_min": null,
+          "margin_to_max": 12.0,
+          "passed": true
+        },
+        {
+          "id": "L2",
+          "parameter": "TL082 total supply voltage at 8V jack",
+          "value": 7.25,
+          "unit": "V",
+          "min": 7.0,
+          "max": null,
+          "condition": "VCC_JACK=8V; 1N5819 drop ~0.3V; R1 drop 0.84V with the pessimistic TL082 model current",
+          "source": "TI TL082 SLOS081O (S007); 1N5819 Vf to verify (S014)",
+          "margin_to_min": 0.25,
+          "margin_to_max": null,
+          "passed": true
+        },
+        {
+          "id": "L3",
+          "parameter": "TL082 input common-mode voltage at 8V jack",
+          "value": 3.59,
+          "unit": "V",
+          "min": 3.0,
+          "max": 4.25,
+          "condition": "VCC_JACK=8V; VCC_F=7.25V; VREF=3.59V; 3V typ common-mode headroom from each rail",
+          "source": "TI TL082 SLOS081O (S007)",
+          "margin_to_min": 0.5899999999999999,
+          "margin_to_max": 0.6600000000000001,
+          "passed": true
+        },
+        {
+          "id": "L4",
+          "parameter": "TL082 available output swing around VREF at 8V jack",
+          "value": 2.09,
+          "unit": "V",
+          "min": 1.5,
+          "max": null,
+          "condition": "VCC_F=7.25V; VREF=3.59V; 1.5V typ swing to each rail",
+          "source": "TI TL082 SLOS081O (S007)",
+          "margin_to_min": 0.5899999999999999,
+          "margin_to_max": null,
+          "passed": true
+        },
+        {
+          "id": "L5",
+          "parameter": "1N5819 reverse voltage",
+          "value": 18.0,
+          "unit": "V",
+          "min": null,
+          "max": 40.0,
+          "condition": "Reverse polarity at an 18V jack",
+          "source": "Vishay 1N5819 datasheet, Vr=40V (S014)",
+          "margin_to_min": null,
+          "margin_to_max": 22.0,
+          "passed": true
+        }
+      ]
+    },
+    {
+      "name": "spice_netlist",
+      "ok": true,
+      "detail": "44 devices, node lists match the spec",
+      "evidence": {
+        "devices": 44
+      }
+    },
+    {
+      "name": "ltspice_asc",
+      "ok": true,
+      "detail": "44 symbols; every pin has a matching net flag",
+      "evidence": {
+        "symbols": 44,
+        "flags": 98
+      }
+    },
+    {
+      "name": "kicad_netlist",
+      "ok": true,
+      "detail": "26 nets match the spec exactly",
+      "evidence": {
+        "nets": 26
+      }
+    },
+    {
+      "name": "kicad_schematic",
+      "ok": null,
+      "detail": "kiutils is not installed; schematic geometry not parsed (set PYTHONPATH to a kiutils checkout)",
+      "evidence": null
+    },
+    {
+      "name": "pcb_handoff",
+      "ok": null,
+      "detail": "not generated (add \"pcb\" to deliverables)",
+      "evidence": null
+    },
+    {
+      "name": "mna_linear",
+      "ok": null,
+      "detail": "circuit contains nonlinear element(s) D_PWR, M1, M2, D1, SW1, D_LED; MNA only solves linear circuits",
+      "evidence": null
+    },
+    {
+      "name": "ngspice",
+      "ok": true,
+      "detail": "ngspice ran 6 analysis plot(s): AC Analysis, DC transfer characteristic, Operating Point, Transient Analysis, Noise Spectral Density Curves, Integrated Noise; V(vcc_jack)=9, V(in)=0, V(in_src)=0, V(vcc)=8.75112, V(vcc_f)=7.81275, V(vref)=3.86748, V(in_b)=2.63093, V(x1_p)=2.63093, V(xx1a.11)=0.347612, V(xx1a.12)=0.347671, V(xx1a.6)=0.000180826, V(xx1a.7)=2.6302, V(x1_out)=2.631, V(xx1a.53)=5.61275, V(xx1a.54)=2.2, V(xx1a.90)=-0.00530625, V(xx1a.91)=25, V(xx1a.92)=-25, V(xx1a.99)=3.90638, V(xx1a.10)=2.23428, V(x1_fb)=2.63098, V(xx1a.9)=0, V(xx1a.8)=2.6302, V(x1_rg)=2.63098, V(x2_w)=2.63098, V(clip_a)=2.68406, V(clip_b)=2.73551, V(m2_d1_node)=2.68408, V(xx3a.11)=0.347434, V(xx3a.12)=0.347489, V(xx3a.6)=0.000165792, V(xx3a.7)=2.73557, V(x3_out)=2.73557, V(xx3a.53)=5.61275, V(xx3a.54)=2.2, V(xx3a.90)=3.04378e-08, V(xx3a.91)=25, V(xx3a.92)=-25, V(xx3a.99)=3.90638, V(xx3a.10)=2.3387, V(x3_fb)=2.73556, V(xx3a.9)=0, V(xx3a.8)=2.73557, V(x3_rg)=2.73556, V(tone_top)=0, V(tone_w)=0, V(vol_top)=0, V(sw1_1)=0, V(hp_ctrl)=5, V(out)=0, V(led_a)=1.66634",
+      "evidence": {
+        "returncode": 0,
+        "stderr": "",
+        "stdout": "******\n** ngspice-47 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2026, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Wed Aug 12 07:02:38 UTC 2026\n******\n\nBatch mode\n\nSimulation output goes to rawfile: /data/data/com.termux/files/home/.cache/opencode/tmp/tmpo0787qk_/ngspice.raw\nComments and warnings go to log-file: /data/data/com.termux/files/home/.cache/opencode/tmp/tmpo0787qk_/ngspice.log\n\n",
+        "log": "          3.90638\nxx1a.10                                2.23428\nx1_fb                                  2.63098\nxx1a.9                                       0\nxx1a.8                                  2.6302\nx1_rg                                  2.63098\nx2_w                                   2.63098\nclip_a                                 2.68406\nclip_b                                 2.73551\nm2_d1_node                             2.68408\nxx3a.11                               0.347434\nxx3a.12                               0.347489\nxx3a.6                             0.000165792\nxx3a.7                                 2.73557\nx3_out                                 2.73557\nxx3a.53                                5.61275\nxx3a.54                                    2.2\nxx3a.90                            3.04378e-08\nxx3a.91                                     25\nxx3a.92                                    -25\nxx3a.99                                3.90638\nxx3a.10                                 2.3387\nx3_fb                                  2.73556\nxx3a.9                                       0\nxx3a.8                                 2.73557\nx3_rg                                  2.73556\ntone_top                                     0\ntone_w                                       0\nvol_top                                      0\nsw1_1                                        0\nhp_ctrl                                      5\nout                                          0\nled_a                                  1.66634\nh.xx3a.hlim#branch                -6.08755e-20\nv.xx3a.vlim#branch                 3.04378e-11\nh.xx1a.hlim#branch                 1.06125e-14\nv.xx1a.vlim#branch                -5.30625e-06\nv_hp#branch                                  0\nv.xx3a.vln#branch                 -2.50008e-11\nv.xx3a.vlp#branch                 -2.50008e-11\nv.xx3a.ve#branch                   5.36368e-13\nv.xx3a.vc#branch                   2.87798e-12\nv.xx3a.vb#branch                   1.65792e-09\nv.xx1a.vln#branch                 -2.49955e-11\nv.xx1a.vlp#branch                 -2.50061e-11\nv.xx1a.ve#branch                   4.31799e-13\nv.xx1a.vc#branch                   2.98255e-12\nv.xx1a.vb#branch                   1.80826e-09\nv_ac#branch                                  0\nv_in#branch                                  0\nv1#branch                          -0.00938369\na$poly$e.xx3a.egnd#branch_1_0     -1.52798e-06\na$poly$e.xx1a.egnd#branch_1_0      3.67652e-06\n\n\nNo. of Data Rows : 27330\nNo. of Data Columns : 3  \n\nNo. of Data Rows : 301\nNo. of Data Columns : 2  \n\nNo. of Data Rows : 1\n.fourier line ignored since rawfile was produced.\n\nTotal analysis time (seconds) = 12.6199\n\nTotal elapsed time (seconds) = 12.631 \n\nTotal DRAM available = 7278.039 MB.\nDRAM currently available =  157.133 MB.\nMaximum ngspice program size = 2232.238 MB.\nCurrent ngspice program size =    9.082 MB.\n\nShared ngspice pages =    7.066 MB.\nText (code) pages =    5.531 MB.\nStack = 0 bytes.\nLibrary pages =    8.066 MB.\n\n",
+        "plots": [
+          "AC Analysis",
+          "DC transfer characteristic",
+          "Operating Point",
+          "Transient Analysis",
+          "Noise Spectral Density Curves",
+          "Integrated Noise"
+        ],
+        "node_voltages_V": {
+          "vcc_jack": 9.0,
+          "in": 0.0,
+          "in_src": 0.0,
+          "vcc": 8.751119587933756,
+          "vcc_f": 7.812750748975335,
+          "vref": 3.867483957254043,
+          "in_b": 2.630931020636523,
+          "x1_p": 2.630930693893579,
+          "xx1a.11": 0.3476118396485932,
+          "xx1a.12": 0.3476711047478368,
+          "xx1a.6": 0.0001808256241788403,
+          "xx1a.7": 2.63020310857003,
+          "x1_out": 2.630999045512478,
+          "xx1a.53": 5.612750748975335,
+          "xx1a.54": 2.2,
+          "xx1a.90": -0.005306246282983638,
+          "xx1a.91": 25.0,
+          "xx1a.92": -25.0,
+          "xx1a.99": 3.906375374487668,
+          "xx1a.10": 2.234275863841777,
+          "x1_fb": 2.630982120142933,
+          "xx1a.9": 0.0,
+          "xx1a.8": 2.63020310857003,
+          "x1_rg": 2.630982120142933,
+          "x2_w": 2.630982708283188,
+          "clip_a": 2.684061809579365,
+          "clip_b": 2.73551463289434,
+          "m2_d1_node": 2.684077990681281,
+          "xx3a.11": 0.3474338100132336,
+          "xx3a.12": 0.3474892416097057,
+          "xx3a.6": 0.0001657919989166742,
+          "xx3a.7": 2.735567666615524,
+          "x3_out": 2.735567662049859,
+          "xx3a.53": 5.612750748975335,
+          "xx3a.54": 2.2,
+          "xx3a.90": 3.043776548355132e-08,
+          "xx3a.91": 25.0,
+          "xx3a.92": -25.0,
+          "xx3a.99": 3.906375374487668,
+          "xx3a.10": 2.338701980060788,
+          "x3_fb": 2.735562745142549,
+          "xx3a.9": 0.0,
+          "xx3a.8": 2.735567666615524,
+          "x3_rg": 2.735562745142549,
+          "tone_top": 0.0,
+          "tone_w": 0.0,
+          "vol_top": 0.0,
+          "sw1_1": 0.0,
+          "hp_ctrl": 5.0,
+          "out": 0.0,
+          "led_a": 1.666339453292887
+        }
+      }
+    },
+    {
+      "name": "metrics",
+      "ok": true,
+      "detail": "M1: gain_db=44.5706 dB (INFO; exploratory); M2: bandwidth_width_hz=1368.55 Hz (INFO; exploratory); M3: thd_percent=66.3437 % (INFO; exploratory); M4: noise_uv=141.417 uV (INFO; exploratory); M5: output_vrms=0.69027 V (INFO; exploratory)",
+      "evidence": {
+        "metrics": [
+          {
+            "id": "M1",
+            "measure": "gain_db",
+            "value": 44.57056490563844,
+            "unit": "dB",
+            "detail": "at 1002.37 Hz",
+            "requirement": "A5",
+            "ok": null,
+            "rule": "exploratory"
+          },
+          {
+            "id": "M2",
+            "measure": "bandwidth_width_hz",
+            "value": 1368.5460234646528,
+            "unit": "Hz",
+            "detail": "dominant passband 366.239..1734.79 Hz; dominant peak 863.038 Hz at 44.692 dB",
+            "requirement": "A5",
+            "ok": null,
+            "rule": "exploratory"
+          },
+          {
+            "id": "M3",
+            "measure": "thd_percent",
+            "value": 66.3437,
+            "unit": "%",
+            "detail": "reported by ngspice .four",
+            "requirement": "A3",
+            "ok": null,
+            "rule": "exploratory"
+          },
+          {
+            "id": "M4",
+            "measure": "noise_uv",
+            "value": 141.41692782887887,
+            "unit": "uV",
+            "detail": "output-referred RMS over the noise sweep",
+            "requirement": null,
+            "ok": null,
+            "rule": "exploratory"
+          },
+          {
+            "id": "M5",
+            "measure": "output_vrms",
+            "value": 0.6902704620445859,
+            "unit": "V",
+            "detail": "RMS over 0.0225..0.03 s",
+            "requirement": "A5",
+            "ok": null,
+            "rule": "exploratory"
+          }
+        ],
+        "conditions": {
+          "supply_vdc": 9.0,
+          "supply_range_vdc": [
+            8.0,
+            18.0
+          ],
+          "frequency_hz": 1000,
+          "input_vrms": 0.0354,
+          "input_peak_v": 0.05,
+          "load_ohm": 100000,
+          "bandwidth_hz": [
+            20,
+            20000
+          ],
+          "temperature_c": 25
+        }
+      }
+    },
+    {
+      "name": "kicad_pcb_drc",
+      "ok": null,
+      "detail": "actual PCB file not found (ocd_v0p4_8v18v.kicad_pcb); PCB handoff is not a board",
+      "evidence": null
+    },
+    {
+      "name": "required:design",
+      "ok": true,
+      "detail": "stage 'design' required and passed (design)",
+      "evidence": null
+    },
+    {
+      "name": "required:limits",
+      "ok": true,
+      "detail": "stage 'limits' required and passed (operating_limits)",
+      "evidence": null
+    },
+    {
+      "name": "required:measurements",
+      "ok": true,
+      "detail": "stage 'measurements' required and passed (measurement_plan)",
+      "evidence": null
+    },
+    {
+      "name": "required:simulate",
+      "ok": true,
+      "detail": "stage 'simulate' required and passed (ngspice)",
+      "evidence": null
+    }
+  ],
+  "warnings": [
+    "model 'APPROX_2N7000' has no vendor/part/source provenance; the report will call it declared, not vendor",
+    "model 'APPROX_1N34A' has no vendor/part/source provenance; the report will call it declared, not vendor",
+    "metrics.metrics[0]: exploratory=true ignores the target or limit",
+    "metrics.metrics[1]: exploratory=true ignores the target or limit",
+    "metrics.metrics[2]: exploratory=true ignores the target or limit",
+    "metrics.metrics[3]: exploratory=true ignores the target or limit",
+    "metrics.metrics[4]: exploratory=true ignores the target or limit",
+    "D_PWR (D) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+    "R1 (R) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+    "C2 (C) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+    "C3 (C) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+    "R4 (R) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+    "R7 (R) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+    "C5 (C) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+    "C1 (C) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+    "R2 (R) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+    "R6 (R) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+    "R3 (R) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+    "X1A (OPAMP) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+    "R5 (R) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+    "R8 (R) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+    "R_X2POT (R) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+    "C4 (C) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+    "C6 (C) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+    "R9 (R) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+    "C7 (C) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+    "R10 (R) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+    "R12 (R) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+    "M1 (NMOS) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+    "M2 (NMOS) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+    "D1 (D) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+    "X3A (OPAMP) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+    "R11 (R) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+    "R13 (R) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+    "C8 (C) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+    "C9 (C) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+    "C10 (C) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+    "R_X4 (R) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+    "C11 (C) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+    "R14 (R) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+    "R15 (R) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+    "R_VOL5A (R) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+    "R_VOL5B (R) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+    "R_LED (R) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+    "D_LED (LED) has no footprint; the PCB pipeline will ask for one or fail with --no-ask",
+    "R_LOAD is a boardable part but was explicitly excluded; the PCB will not contain it",
+    "X1A (OPAMP) has no pcb.pin_map entry; the PCB pipeline will ask for a package pinout",
+    "M1 (NMOS) has no pcb.pin_map entry; the PCB pipeline will ask for a package pinout",
+    "M2 (NMOS) has no pcb.pin_map entry; the PCB pipeline will ask for a package pinout",
+    "X3A (OPAMP) has no pcb.pin_map entry; the PCB pipeline will ask for a package pinout"
+  ],
+  "simulation_status": "declared models (no vendor provenance)",
+  "provenance": {
+    "backend": "local",
+    "required_stages": [
+      "design",
+      "limits",
+      "measurements",
+      "simulate"
+    ]
+  }
+}

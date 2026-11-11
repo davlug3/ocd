@@ -113,3 +113,39 @@ One row per source actually used. Keep the revision and the access date; a link 
   | 9V | 4.491/4.504V | 1.594/7.406V | 4.008/5.203V | 2.123/7.431V | -0.207/0.480V |
   | 18V | 8.982/9.010V | 1.607/16.394V | 8.438/10.862V | 6.297/16.460V | 0.006/1.575V |
 - **Interpretation (cautious):** Headroom increases with supply; 8V is more constrained. Vref shows ripple (unbuffered divider under dynamic load). Strong internal clipping/saturation visible; **not evidence of correct OCD tone/behavior** due to provisional wiring/models/values. D002/A1/A3 remain open.
+
+## 2026-11-11 Phase A+B completion — electrical design (v0.4)
+
+Scope: fix evidence/contracts and finish electrical design; PCB deferred to Phase C (1590B, 108x58mm board target recorded).
+
+### Spec
+- New canonical spec: `circuit/spec/ocd_v0p4_8v18v.json` (name `ocd_v0p4_8v18v`, topology `ocd_v0p4_8v18v`), 45 components, 8-18V DC center-negative, 9V nominal.
+- Replaces `circuit/spec/ocd_textsch_s002_9v_v0p1_draft.json` (file name said v0p1, internal name v0p2) — superseded.
+
+### Fixes applied (all verified in sim)
+- D_FB_FIX (C034): C4 in series with R5 and C8 in series with R11 to VREF (unity DC gain, AC bass limit). Old parallel placement saturated both op-amps.
+- D_AC_SRC (C035): split V_IN (SIN transient) + V_AC (1V AC) in series; generator drops AC on waveform source.
+- D_PROT/D_LED/D_BAT (C036): 1N5819 series protection, LED+4.7k from VCC_F, 9V battery via switching DC jack + input-jack disconnect, explicit HP/LP SW1.
+- D_TONE/D_POTS (C037): X4=10k rheostat in series with C11 to ground (shunt treble cut from TONE_TOP); R14=22k/R15=33k from TONE_TOP to volume; HP=closed/parallel (brighter per S003), LP=open (darker). Reverses provisional label.
+- Models (C036/C040): vendor removed from APPROX_2N7000/APPROX_1N34A (declared, models gate SKIP); real SHA256 recorded; APPROX_1N5819/SW1MODEL/LED_RED string cards added; TL082 vendor model kept.
+
+### Skill fixes applied (C040)
+- `ngspice_raw.find_plot("tran")`: word-boundary match (was matching "DC transfer characteristic", broke output_vrms).
+- `verify.py`: re-runs ngspice without `-r` when `.four` is ignored by rawfile mode, restoring THD.
+
+### Verification
+- `design_spec.py validate`: OK (51 warnings: declared models + missing footprints expected in Phase C).
+- `audio_handoff.py --audio-skill .`: merge OK, 5 metrics, 14 requirements.
+- `generate_with_footprints.py --assembly through-hole`: OK (passive footprints assigned; semiconductors unassigned, Phase C).
+- `verify.py --require design,limits,measurements,simulate`: **13 passed, 5 skipped, 0 failed**. Required gates PASS.
+- 9V nominal metrics (exploratory): gain 44.57dB @1kHz, passband width 1369Hz, THD 66.3%, noise 141µV, output 0.690Vrms. No verified reference targets.
+- Supply-corner matrix (C039): VREF~VCC_F/2 at 8/9/18V, no saturation, HP/LP selectable. 18V midband gain reduction is a model artifact (bench-verify).
+
+### Claims
+- evidence/claims.jsonl: added C034-C041. Prior saturated-bias and zero-AC results superseded (C041).
+
+### Remaining (Phase C / open)
+- Footprints for semiconductors (D_PWR, M1, M2, D1, D_LED) + OPAMP pin maps; 3PDT/jack/battery mechanical (K6/K8).
+- TL082 SLOS081O limits extraction + bench at 8/9/18V to close D002/A1 (K1/K4/K5).
+- X2/X5 pot tapers/wiring (K7); X5 value not in S002 text.
+- Human visual confirmation of S002 images (tone-stack rheostat, clip wiring already image-confirmed per C031/C032).
