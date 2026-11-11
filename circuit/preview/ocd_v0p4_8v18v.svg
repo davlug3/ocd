@@ -1,0 +1,461 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1901" height="4735" viewBox="0 0 1901 4735">
+<title>ocd_v0p4_8v18v</title>
+<rect width="100%" height="100%" fill="#FFFFFF"/>
+<circle cx="81.72" cy="4665.15" r="22.86" fill="none" stroke="#111111" stroke-width="2.29"/>
+<polyline points="76.00,4665.15 87.44,4665.15" fill="none" stroke="#111111" stroke-width="2.29" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="81.72,4670.86 81.72,4659.44" fill="none" stroke="#111111" stroke-width="2.29" stroke-linejoin="round" stroke-linecap="round"/>
+<line x1="81.72" y1="4630.86" x2="81.72" y2="4642.29" stroke="#111111" stroke-width="2.29"/>
+<line x1="81.72" y1="4699.44" x2="81.72" y2="4688.01" stroke="#111111" stroke-width="2.29"/>
+<text x="104.58" y="4699.44" fill="#111111" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 104.58 4699.44)">V1</text>
+<text x="104.58" y="4630.86" fill="#111111" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 104.58 4630.86)">9 V</text>
+<circle cx="653.22" cy="4665.15" r="22.86" fill="none" stroke="#111111" stroke-width="2.29"/>
+<polyline points="647.50,4665.15 658.94,4665.15" fill="none" stroke="#111111" stroke-width="2.29" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="653.22,4670.86 653.22,4659.44" fill="none" stroke="#111111" stroke-width="2.29" stroke-linejoin="round" stroke-linecap="round"/>
+<line x1="653.22" y1="4630.86" x2="653.22" y2="4642.29" stroke="#111111" stroke-width="2.29"/>
+<line x1="653.22" y1="4699.44" x2="653.22" y2="4688.01" stroke="#111111" stroke-width="2.29"/>
+<text x="676.08" y="4699.44" fill="#111111" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 676.08 4699.44)">V_IN</text>
+<text x="676.08" y="4630.86" fill="#111111" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 676.08 4630.86)">SIN source</text>
+<circle cx="1224.72" cy="4665.15" r="22.86" fill="none" stroke="#111111" stroke-width="2.29"/>
+<polyline points="1219.00,4665.15 1230.43,4665.15" fill="none" stroke="#111111" stroke-width="2.29" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="1224.72,4670.86 1224.72,4659.44" fill="none" stroke="#111111" stroke-width="2.29" stroke-linejoin="round" stroke-linecap="round"/>
+<line x1="1224.72" y1="4630.86" x2="1224.72" y2="4642.29" stroke="#111111" stroke-width="2.29"/>
+<line x1="1224.72" y1="4699.44" x2="1224.72" y2="4688.01" stroke="#111111" stroke-width="2.29"/>
+<text x="1247.58" y="4699.44" fill="#111111" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 1247.58 4699.44)">V_AC</text>
+<text x="1247.58" y="4630.86" fill="#111111" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 1247.58 4630.86)">0 V</text>
+<polyline points="1784.79,4653.72 1807.65,4653.72 1796.22,4676.58 1784.79,4653.72" fill="none" stroke="#111111" stroke-width="2.29" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="1784.79,4676.58 1807.65,4676.58" fill="none" stroke="#111111" stroke-width="2.29" stroke-linejoin="round" stroke-linecap="round"/>
+<line x1="1796.22" y1="4630.86" x2="1796.22" y2="4653.72" stroke="#111111" stroke-width="2.29"/>
+<line x1="1796.22" y1="4699.44" x2="1796.22" y2="4676.58" stroke="#111111" stroke-width="2.29"/>
+<text x="1819.08" y="4699.44" fill="#111111" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 1819.08 4699.44)">D_PWR</text>
+<text x="1819.08" y="4630.86" fill="#111111" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 1819.08 4630.86)">APPROX_1N5819</text>
+<rect x="72.58" y="4173.66" width="18.29" height="68.58" fill="none" stroke="#111111" stroke-width="2.29"/>
+<line x1="81.72" y1="4150.80" x2="81.72" y2="4173.66" stroke="#111111" stroke-width="2.29"/>
+<line x1="81.72" y1="4265.10" x2="81.72" y2="4242.24" stroke="#111111" stroke-width="2.29"/>
+<text x="104.58" y="4242.24" fill="#111111" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 104.58 4242.24)">R1</text>
+<text x="104.58" y="4173.66" fill="#111111" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 104.58 4173.66)">100</text>
+<polyline points="639.50,4203.38 666.94,4203.38" fill="none" stroke="#111111" stroke-width="2.29" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="639.50,4212.52 666.94,4212.52" fill="none" stroke="#111111" stroke-width="2.29" stroke-linejoin="round" stroke-linecap="round"/>
+<line x1="653.22" y1="4162.23" x2="653.22" y2="4203.38" stroke="#111111" stroke-width="2.29"/>
+<line x1="653.22" y1="4253.67" x2="653.22" y2="4212.52" stroke="#111111" stroke-width="2.29"/>
+<text x="676.08" y="4242.24" fill="#111111" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 676.08 4242.24)">C2</text>
+<text x="676.08" y="4173.66" fill="#111111" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 676.08 4173.66)">10u</text>
+<polyline points="1211.00,4203.38 1238.44,4203.38" fill="none" stroke="#111111" stroke-width="2.29" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="1211.00,4212.52 1238.44,4212.52" fill="none" stroke="#111111" stroke-width="2.29" stroke-linejoin="round" stroke-linecap="round"/>
+<line x1="1224.72" y1="4162.23" x2="1224.72" y2="4203.38" stroke="#111111" stroke-width="2.29"/>
+<line x1="1224.72" y1="4253.67" x2="1224.72" y2="4212.52" stroke="#111111" stroke-width="2.29"/>
+<text x="1247.58" y="4242.24" fill="#111111" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 1247.58 4242.24)">C3</text>
+<text x="1247.58" y="4173.66" fill="#111111" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 1247.58 4173.66)">100n</text>
+<rect x="1787.08" y="4173.66" width="18.29" height="68.58" fill="none" stroke="#111111" stroke-width="2.29"/>
+<line x1="1796.22" y1="4150.80" x2="1796.22" y2="4173.66" stroke="#111111" stroke-width="2.29"/>
+<line x1="1796.22" y1="4265.10" x2="1796.22" y2="4242.24" stroke="#111111" stroke-width="2.29"/>
+<text x="1819.08" y="4242.24" fill="#111111" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 1819.08 4242.24)">R4</text>
+<text x="1819.08" y="4173.66" fill="#111111" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 1819.08 4173.66)">10k</text>
+<rect x="72.58" y="3716.46" width="18.29" height="68.58" fill="none" stroke="#111111" stroke-width="2.29"/>
+<line x1="81.72" y1="3693.60" x2="81.72" y2="3716.46" stroke="#111111" stroke-width="2.29"/>
+<line x1="81.72" y1="3807.90" x2="81.72" y2="3785.04" stroke="#111111" stroke-width="2.29"/>
+<text x="104.58" y="3785.04" fill="#111111" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 104.58 3785.04)">R7</text>
+<text x="104.58" y="3716.46" fill="#111111" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 104.58 3716.46)">10k</text>
+<polyline points="639.50,3746.18 666.94,3746.18" fill="none" stroke="#111111" stroke-width="2.29" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="639.50,3755.32 666.94,3755.32" fill="none" stroke="#111111" stroke-width="2.29" stroke-linejoin="round" stroke-linecap="round"/>
+<line x1="653.22" y1="3705.03" x2="653.22" y2="3746.18" stroke="#111111" stroke-width="2.29"/>
+<line x1="653.22" y1="3796.47" x2="653.22" y2="3755.32" stroke="#111111" stroke-width="2.29"/>
+<text x="676.08" y="3785.04" fill="#111111" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 676.08 3785.04)">C5</text>
+<text x="676.08" y="3716.46" fill="#111111" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 676.08 3716.46)">10u</text>
+<polyline points="1211.00,3746.18 1238.44,3746.18" fill="none" stroke="#111111" stroke-width="2.29" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="1211.00,3755.32 1238.44,3755.32" fill="none" stroke="#111111" stroke-width="2.29" stroke-linejoin="round" stroke-linecap="round"/>
+<line x1="1224.72" y1="3705.03" x2="1224.72" y2="3746.18" stroke="#111111" stroke-width="2.29"/>
+<line x1="1224.72" y1="3796.47" x2="1224.72" y2="3755.32" stroke="#111111" stroke-width="2.29"/>
+<text x="1247.58" y="3785.04" fill="#111111" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 1247.58 3785.04)">C1</text>
+<text x="1247.58" y="3716.46" fill="#111111" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 1247.58 3716.46)">22n</text>
+<rect x="1787.08" y="3716.46" width="18.29" height="68.58" fill="none" stroke="#111111" stroke-width="2.29"/>
+<line x1="1796.22" y1="3693.60" x2="1796.22" y2="3716.46" stroke="#111111" stroke-width="2.29"/>
+<line x1="1796.22" y1="3807.90" x2="1796.22" y2="3785.04" stroke="#111111" stroke-width="2.29"/>
+<text x="1819.08" y="3785.04" fill="#111111" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 1819.08 3785.04)">R2</text>
+<text x="1819.08" y="3716.46" fill="#111111" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 1819.08 3716.46)">1Meg</text>
+<rect x="72.58" y="3259.26" width="18.29" height="68.58" fill="none" stroke="#111111" stroke-width="2.29"/>
+<line x1="81.72" y1="3236.40" x2="81.72" y2="3259.26" stroke="#111111" stroke-width="2.29"/>
+<line x1="81.72" y1="3350.70" x2="81.72" y2="3327.84" stroke="#111111" stroke-width="2.29"/>
+<text x="104.58" y="3327.84" fill="#111111" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 104.58 3327.84)">R6</text>
+<text x="104.58" y="3259.26" fill="#111111" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 104.58 3259.26)">470k</text>
+<rect x="644.08" y="3259.26" width="18.29" height="68.58" fill="none" stroke="#111111" stroke-width="2.29"/>
+<line x1="653.22" y1="3236.40" x2="653.22" y2="3259.26" stroke="#111111" stroke-width="2.29"/>
+<line x1="653.22" y1="3350.70" x2="653.22" y2="3327.84" stroke="#111111" stroke-width="2.29"/>
+<text x="676.08" y="3327.84" fill="#111111" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 676.08 3327.84)">R3</text>
+<text x="676.08" y="3259.26" fill="#111111" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 676.08 3259.26)">10k</text>
+<polyline points="1179.00,3247.83 1179.00,3339.27 1270.44,3293.55 1179.00,3247.83" fill="none" stroke="#111111" stroke-width="2.29" stroke-linejoin="round" stroke-linecap="round"/>
+<line x1="1156.14" y1="3270.69" x2="1179.00" y2="3270.69" stroke="#111111" stroke-width="2.29"/>
+<line x1="1156.14" y1="3316.41" x2="1179.00" y2="3316.41" stroke="#111111" stroke-width="2.29"/>
+<line x1="1224.72" y1="3224.97" x2="1224.72" y2="3247.83" stroke="#111111" stroke-width="2.29"/>
+<line x1="1224.72" y1="3362.13" x2="1224.72" y2="3339.27" stroke="#111111" stroke-width="2.29"/>
+<line x1="1293.30" y1="3293.55" x2="1270.44" y2="3293.55" stroke="#111111" stroke-width="2.29"/>
+<text x="1247.58" y="3327.84" fill="#111111" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 1247.58 3327.84)">X1A</text>
+<text x="1247.58" y="3259.26" fill="#111111" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 1247.58 3259.26)">TL082</text>
+<rect x="1787.08" y="3259.26" width="18.29" height="68.58" fill="none" stroke="#111111" stroke-width="2.29"/>
+<line x1="1796.22" y1="3236.40" x2="1796.22" y2="3259.26" stroke="#111111" stroke-width="2.29"/>
+<line x1="1796.22" y1="3350.70" x2="1796.22" y2="3327.84" stroke="#111111" stroke-width="2.29"/>
+<text x="1819.08" y="3327.84" fill="#111111" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 1819.08 3327.84)">R5</text>
+<text x="1819.08" y="3259.26" fill="#111111" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 1819.08 3259.26)">2.2k</text>
+<rect x="72.58" y="2802.06" width="18.29" height="68.58" fill="none" stroke="#111111" stroke-width="2.29"/>
+<line x1="81.72" y1="2779.20" x2="81.72" y2="2802.06" stroke="#111111" stroke-width="2.29"/>
+<line x1="81.72" y1="2893.50" x2="81.72" y2="2870.64" stroke="#111111" stroke-width="2.29"/>
+<text x="104.58" y="2870.64" fill="#111111" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 104.58 2870.64)">R8</text>
+<text x="104.58" y="2802.06" fill="#111111" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 104.58 2802.06)">18k</text>
+<rect x="644.08" y="2802.06" width="18.29" height="68.58" fill="none" stroke="#111111" stroke-width="2.29"/>
+<line x1="653.22" y1="2779.20" x2="653.22" y2="2802.06" stroke="#111111" stroke-width="2.29"/>
+<line x1="653.22" y1="2893.50" x2="653.22" y2="2870.64" stroke="#111111" stroke-width="2.29"/>
+<text x="676.08" y="2870.64" fill="#111111" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 676.08 2870.64)">R_X2POT</text>
+<text x="676.08" y="2802.06" fill="#111111" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 676.08 2802.06)">500k</text>
+<polyline points="1211.00,2831.78 1238.44,2831.78" fill="none" stroke="#111111" stroke-width="2.29" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="1211.00,2840.92 1238.44,2840.92" fill="none" stroke="#111111" stroke-width="2.29" stroke-linejoin="round" stroke-linecap="round"/>
+<line x1="1224.72" y1="2790.63" x2="1224.72" y2="2831.78" stroke="#111111" stroke-width="2.29"/>
+<line x1="1224.72" y1="2882.07" x2="1224.72" y2="2840.92" stroke="#111111" stroke-width="2.29"/>
+<text x="1247.58" y="2870.64" fill="#111111" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 1247.58 2870.64)">C4</text>
+<text x="1247.58" y="2802.06" fill="#111111" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 1247.58 2802.06)">100n</text>
+<polyline points="1782.50,2831.78 1809.94,2831.78" fill="none" stroke="#111111" stroke-width="2.29" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="1782.50,2840.92 1809.94,2840.92" fill="none" stroke="#111111" stroke-width="2.29" stroke-linejoin="round" stroke-linecap="round"/>
+<line x1="1796.22" y1="2790.63" x2="1796.22" y2="2831.78" stroke="#111111" stroke-width="2.29"/>
+<line x1="1796.22" y1="2882.07" x2="1796.22" y2="2840.92" stroke="#111111" stroke-width="2.29"/>
+<text x="1819.08" y="2870.64" fill="#111111" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 1819.08 2870.64)">C6</text>
+<text x="1819.08" y="2802.06" fill="#111111" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 1819.08 2802.06)">220p</text>
+<rect x="72.58" y="2344.86" width="18.29" height="68.58" fill="none" stroke="#111111" stroke-width="2.29"/>
+<line x1="81.72" y1="2322.00" x2="81.72" y2="2344.86" stroke="#111111" stroke-width="2.29"/>
+<line x1="81.72" y1="2436.30" x2="81.72" y2="2413.44" stroke="#111111" stroke-width="2.29"/>
+<text x="104.58" y="2413.44" fill="#111111" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 104.58 2413.44)">R9</text>
+<text x="104.58" y="2344.86" fill="#111111" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 104.58 2344.86)">10k</text>
+<polyline points="639.50,2374.58 666.94,2374.58" fill="none" stroke="#111111" stroke-width="2.29" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="639.50,2383.72 666.94,2383.72" fill="none" stroke="#111111" stroke-width="2.29" stroke-linejoin="round" stroke-linecap="round"/>
+<line x1="653.22" y1="2333.43" x2="653.22" y2="2374.58" stroke="#111111" stroke-width="2.29"/>
+<line x1="653.22" y1="2424.87" x2="653.22" y2="2383.72" stroke="#111111" stroke-width="2.29"/>
+<text x="676.08" y="2413.44" fill="#111111" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 676.08 2413.44)">C7</text>
+<text x="676.08" y="2344.86" fill="#111111" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 676.08 2344.86)">10n</text>
+<rect x="1215.58" y="2344.86" width="18.29" height="68.58" fill="none" stroke="#111111" stroke-width="2.29"/>
+<line x1="1224.72" y1="2322.00" x2="1224.72" y2="2344.86" stroke="#111111" stroke-width="2.29"/>
+<line x1="1224.72" y1="2436.30" x2="1224.72" y2="2413.44" stroke="#111111" stroke-width="2.29"/>
+<text x="1247.58" y="2413.44" fill="#111111" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 1247.58 2413.44)">R10</text>
+<text x="1247.58" y="2344.86" fill="#111111" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 1247.58 2344.86)">10k</text>
+<rect x="1787.08" y="2344.86" width="18.29" height="68.58" fill="none" stroke="#111111" stroke-width="2.29"/>
+<line x1="1796.22" y1="2322.00" x2="1796.22" y2="2344.86" stroke="#111111" stroke-width="2.29"/>
+<line x1="1796.22" y1="2436.30" x2="1796.22" y2="2413.44" stroke="#111111" stroke-width="2.29"/>
+<text x="1819.08" y="2413.44" fill="#111111" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 1819.08 2413.44)">R12</text>
+<text x="1819.08" y="2344.86" fill="#111111" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 1819.08 2344.86)">220k</text>
+<rect x="70.29" y="1899.09" width="22.86" height="45.72" fill="none" stroke="#111111" stroke-width="2.29"/>
+<polyline points="58.86,1921.95 70.29,1921.95" fill="none" stroke="#111111" stroke-width="2.29" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="81.72,1899.09 81.72,1910.52" fill="none" stroke="#111111" stroke-width="2.29" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="81.72,1944.81 81.72,1933.38" fill="none" stroke="#111111" stroke-width="2.29" stroke-linejoin="round" stroke-linecap="round"/>
+<line x1="81.72" y1="1876.23" x2="81.72" y2="1899.09" stroke="#111111" stroke-width="2.29"/>
+<line x1="36.00" y1="1921.95" x2="58.86" y2="1921.95" stroke="#111111" stroke-width="2.29"/>
+<line x1="81.72" y1="1967.67" x2="81.72" y2="1944.81" stroke="#111111" stroke-width="2.29"/>
+<text x="104.58" y="1956.24" fill="#111111" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 104.58 1956.24)">M1</text>
+<text x="104.58" y="1887.66" fill="#111111" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 104.58 1887.66)">APPROX_2N7000</text>
+<rect x="641.79" y="1899.09" width="22.86" height="45.72" fill="none" stroke="#111111" stroke-width="2.29"/>
+<polyline points="630.36,1921.95 641.79,1921.95" fill="none" stroke="#111111" stroke-width="2.29" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="653.22,1899.09 653.22,1910.52" fill="none" stroke="#111111" stroke-width="2.29" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="653.22,1944.81 653.22,1933.38" fill="none" stroke="#111111" stroke-width="2.29" stroke-linejoin="round" stroke-linecap="round"/>
+<line x1="653.22" y1="1876.23" x2="653.22" y2="1899.09" stroke="#111111" stroke-width="2.29"/>
+<line x1="607.50" y1="1921.95" x2="630.36" y2="1921.95" stroke="#111111" stroke-width="2.29"/>
+<line x1="653.22" y1="1967.67" x2="653.22" y2="1944.81" stroke="#111111" stroke-width="2.29"/>
+<text x="676.08" y="1956.24" fill="#111111" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 676.08 1956.24)">M2</text>
+<text x="676.08" y="1887.66" fill="#111111" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 676.08 1887.66)">APPROX_2N7000</text>
+<polyline points="1213.29,1910.52 1236.15,1910.52 1224.72,1933.38 1213.29,1910.52" fill="none" stroke="#111111" stroke-width="2.29" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="1213.29,1933.38 1236.15,1933.38" fill="none" stroke="#111111" stroke-width="2.29" stroke-linejoin="round" stroke-linecap="round"/>
+<line x1="1224.72" y1="1887.66" x2="1224.72" y2="1910.52" stroke="#111111" stroke-width="2.29"/>
+<line x1="1224.72" y1="1956.24" x2="1224.72" y2="1933.38" stroke="#111111" stroke-width="2.29"/>
+<text x="1247.58" y="1956.24" fill="#111111" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 1247.58 1956.24)">D1</text>
+<text x="1247.58" y="1887.66" fill="#111111" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 1247.58 1887.66)">APPROX_1N34A</text>
+<polyline points="1750.50,1876.23 1750.50,1967.67 1841.94,1921.95 1750.50,1876.23" fill="none" stroke="#111111" stroke-width="2.29" stroke-linejoin="round" stroke-linecap="round"/>
+<line x1="1727.64" y1="1899.09" x2="1750.50" y2="1899.09" stroke="#111111" stroke-width="2.29"/>
+<line x1="1727.64" y1="1944.81" x2="1750.50" y2="1944.81" stroke="#111111" stroke-width="2.29"/>
+<line x1="1796.22" y1="1853.37" x2="1796.22" y2="1876.23" stroke="#111111" stroke-width="2.29"/>
+<line x1="1796.22" y1="1990.53" x2="1796.22" y2="1967.67" stroke="#111111" stroke-width="2.29"/>
+<line x1="1864.80" y1="1921.95" x2="1841.94" y2="1921.95" stroke="#111111" stroke-width="2.29"/>
+<text x="1819.08" y="1956.24" fill="#111111" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 1819.08 1956.24)">X3A</text>
+<text x="1819.08" y="1887.66" fill="#111111" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 1819.08 1887.66)">TL082</text>
+<rect x="72.58" y="1430.46" width="18.29" height="68.58" fill="none" stroke="#111111" stroke-width="2.29"/>
+<line x1="81.72" y1="1407.60" x2="81.72" y2="1430.46" stroke="#111111" stroke-width="2.29"/>
+<line x1="81.72" y1="1521.90" x2="81.72" y2="1499.04" stroke="#111111" stroke-width="2.29"/>
+<text x="104.58" y="1499.04" fill="#111111" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 104.58 1499.04)">R11</text>
+<text x="104.58" y="1430.46" fill="#111111" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 104.58 1430.46)">39k</text>
+<rect x="644.08" y="1430.46" width="18.29" height="68.58" fill="none" stroke="#111111" stroke-width="2.29"/>
+<line x1="653.22" y1="1407.60" x2="653.22" y2="1430.46" stroke="#111111" stroke-width="2.29"/>
+<line x1="653.22" y1="1521.90" x2="653.22" y2="1499.04" stroke="#111111" stroke-width="2.29"/>
+<text x="676.08" y="1499.04" fill="#111111" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 676.08 1499.04)">R13</text>
+<text x="676.08" y="1430.46" fill="#111111" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 676.08 1430.46)">150k</text>
+<polyline points="1211.00,1460.18 1238.44,1460.18" fill="none" stroke="#111111" stroke-width="2.29" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="1211.00,1469.32 1238.44,1469.32" fill="none" stroke="#111111" stroke-width="2.29" stroke-linejoin="round" stroke-linecap="round"/>
+<line x1="1224.72" y1="1419.03" x2="1224.72" y2="1460.18" stroke="#111111" stroke-width="2.29"/>
+<line x1="1224.72" y1="1510.47" x2="1224.72" y2="1469.32" stroke="#111111" stroke-width="2.29"/>
+<text x="1247.58" y="1499.04" fill="#111111" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 1247.58 1499.04)">C8</text>
+<text x="1247.58" y="1430.46" fill="#111111" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 1247.58 1430.46)">100n</text>
+<polyline points="1782.50,1460.18 1809.94,1460.18" fill="none" stroke="#111111" stroke-width="2.29" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="1782.50,1469.32 1809.94,1469.32" fill="none" stroke="#111111" stroke-width="2.29" stroke-linejoin="round" stroke-linecap="round"/>
+<line x1="1796.22" y1="1419.03" x2="1796.22" y2="1460.18" stroke="#111111" stroke-width="2.29"/>
+<line x1="1796.22" y1="1510.47" x2="1796.22" y2="1469.32" stroke="#111111" stroke-width="2.29"/>
+<text x="1819.08" y="1499.04" fill="#111111" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 1819.08 1499.04)">C9</text>
+<text x="1819.08" y="1430.46" fill="#111111" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 1819.08 1430.46)">220p</text>
+<polyline points="68.00,1002.98 95.44,1002.98" fill="none" stroke="#111111" stroke-width="2.29" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="68.00,1012.12 95.44,1012.12" fill="none" stroke="#111111" stroke-width="2.29" stroke-linejoin="round" stroke-linecap="round"/>
+<line x1="81.72" y1="961.83" x2="81.72" y2="1002.98" stroke="#111111" stroke-width="2.29"/>
+<line x1="81.72" y1="1053.27" x2="81.72" y2="1012.12" stroke="#111111" stroke-width="2.29"/>
+<text x="104.58" y="1041.84" fill="#111111" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 104.58 1041.84)">C10</text>
+<text x="104.58" y="973.26" fill="#111111" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 104.58 973.26)">10u</text>
+<rect x="644.08" y="973.26" width="18.29" height="68.58" fill="none" stroke="#111111" stroke-width="2.29"/>
+<line x1="653.22" y1="950.40" x2="653.22" y2="973.26" stroke="#111111" stroke-width="2.29"/>
+<line x1="653.22" y1="1064.70" x2="653.22" y2="1041.84" stroke="#111111" stroke-width="2.29"/>
+<text x="676.08" y="1041.84" fill="#111111" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 676.08 1041.84)">R_X4</text>
+<text x="676.08" y="973.26" fill="#111111" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 676.08 973.26)">5k</text>
+<polyline points="1211.00,1002.98 1238.44,1002.98" fill="none" stroke="#111111" stroke-width="2.29" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="1211.00,1012.12 1238.44,1012.12" fill="none" stroke="#111111" stroke-width="2.29" stroke-linejoin="round" stroke-linecap="round"/>
+<line x1="1224.72" y1="961.83" x2="1224.72" y2="1002.98" stroke="#111111" stroke-width="2.29"/>
+<line x1="1224.72" y1="1053.27" x2="1224.72" y2="1012.12" stroke="#111111" stroke-width="2.29"/>
+<text x="1247.58" y="1041.84" fill="#111111" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 1247.58 1041.84)">C11</text>
+<text x="1247.58" y="973.26" fill="#111111" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 1247.58 973.26)">47n</text>
+<rect x="1787.08" y="973.26" width="18.29" height="68.58" fill="none" stroke="#111111" stroke-width="2.29"/>
+<line x1="1796.22" y1="950.40" x2="1796.22" y2="973.26" stroke="#111111" stroke-width="2.29"/>
+<line x1="1796.22" y1="1064.70" x2="1796.22" y2="1041.84" stroke="#111111" stroke-width="2.29"/>
+<text x="1819.08" y="1041.84" fill="#111111" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 1819.08 1041.84)">R14</text>
+<text x="1819.08" y="973.26" fill="#111111" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 1819.08 973.26)">22k</text>
+<rect x="72.58" y="516.06" width="18.29" height="68.58" fill="none" stroke="#111111" stroke-width="2.29"/>
+<line x1="81.72" y1="493.20" x2="81.72" y2="516.06" stroke="#111111" stroke-width="2.29"/>
+<line x1="81.72" y1="607.50" x2="81.72" y2="584.64" stroke="#111111" stroke-width="2.29"/>
+<text x="104.58" y="584.64" fill="#111111" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 104.58 584.64)">R15</text>
+<text x="104.58" y="516.06" fill="#111111" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 104.58 516.06)">33k</text>
+<rect x="630.36" y="527.49" width="45.72" height="45.72" fill="none" stroke="#111111" stroke-width="2.29"/>
+<line x1="653.22" y1="516.06" x2="653.22" y2="527.49" stroke="#111111" stroke-width="2.29"/>
+<line x1="653.22" y1="584.64" x2="653.22" y2="573.21" stroke="#111111" stroke-width="2.29"/>
+<line x1="607.50" y1="538.92" x2="630.36" y2="538.92" stroke="#111111" stroke-width="2.29"/>
+<line x1="607.50" y1="561.78" x2="630.36" y2="561.78" stroke="#111111" stroke-width="2.29"/>
+<text x="676.08" y="584.64" fill="#111111" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 676.08 584.64)">SW1</text>
+<text x="676.08" y="516.06" fill="#111111" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 676.08 516.06)">SW1MODEL</text>
+<circle cx="1224.72" cy="550.35" r="22.86" fill="none" stroke="#111111" stroke-width="2.29"/>
+<polyline points="1219.00,550.35 1230.43,550.35" fill="none" stroke="#111111" stroke-width="2.29" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="1224.72,556.06 1224.72,544.63" fill="none" stroke="#111111" stroke-width="2.29" stroke-linejoin="round" stroke-linecap="round"/>
+<line x1="1224.72" y1="516.06" x2="1224.72" y2="527.49" stroke="#111111" stroke-width="2.29"/>
+<line x1="1224.72" y1="584.64" x2="1224.72" y2="573.21" stroke="#111111" stroke-width="2.29"/>
+<text x="1247.58" y="584.64" fill="#111111" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 1247.58 584.64)">V_HP</text>
+<text x="1247.58" y="516.06" fill="#111111" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 1247.58 516.06)">5 V</text>
+<rect x="1787.08" y="516.06" width="18.29" height="68.58" fill="none" stroke="#111111" stroke-width="2.29"/>
+<line x1="1796.22" y1="493.20" x2="1796.22" y2="516.06" stroke="#111111" stroke-width="2.29"/>
+<line x1="1796.22" y1="607.50" x2="1796.22" y2="584.64" stroke="#111111" stroke-width="2.29"/>
+<text x="1819.08" y="584.64" fill="#111111" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 1819.08 584.64)">R_VOL5A</text>
+<text x="1819.08" y="516.06" fill="#111111" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 1819.08 516.06)">50k</text>
+<rect x="72.58" y="58.86" width="18.29" height="68.58" fill="none" stroke="#111111" stroke-width="2.29"/>
+<line x1="81.72" y1="36.00" x2="81.72" y2="58.86" stroke="#111111" stroke-width="2.29"/>
+<line x1="81.72" y1="150.30" x2="81.72" y2="127.44" stroke="#111111" stroke-width="2.29"/>
+<text x="104.58" y="127.44" fill="#111111" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 104.58 127.44)">R_VOL5B</text>
+<text x="104.58" y="58.86" fill="#111111" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 104.58 58.86)">50k</text>
+<rect x="644.08" y="58.86" width="18.29" height="68.58" fill="none" stroke="#111111" stroke-width="2.29"/>
+<line x1="653.22" y1="36.00" x2="653.22" y2="58.86" stroke="#111111" stroke-width="2.29"/>
+<line x1="653.22" y1="150.30" x2="653.22" y2="127.44" stroke="#111111" stroke-width="2.29"/>
+<text x="676.08" y="127.44" fill="#111111" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 676.08 127.44)">R_LOAD</text>
+<text x="676.08" y="58.86" fill="#111111" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 676.08 58.86)">100k</text>
+<rect x="1215.58" y="58.86" width="18.29" height="68.58" fill="none" stroke="#111111" stroke-width="2.29"/>
+<line x1="1224.72" y1="36.00" x2="1224.72" y2="58.86" stroke="#111111" stroke-width="2.29"/>
+<line x1="1224.72" y1="150.30" x2="1224.72" y2="127.44" stroke="#111111" stroke-width="2.29"/>
+<text x="1247.58" y="127.44" fill="#111111" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 1247.58 127.44)">R_LED</text>
+<text x="1247.58" y="58.86" fill="#111111" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 1247.58 58.86)">4.7k</text>
+<polyline points="1784.79,81.72 1807.65,81.72 1796.22,104.58 1784.79,81.72" fill="none" stroke="#111111" stroke-width="2.29" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="1784.79,104.58 1807.65,104.58" fill="none" stroke="#111111" stroke-width="2.29" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="1807.65,81.72 1819.08,70.29" fill="none" stroke="#111111" stroke-width="2.29" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="1819.08,70.29 1813.37,70.29" fill="none" stroke="#111111" stroke-width="2.29" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="1819.08,70.29 1819.08,76.01" fill="none" stroke="#111111" stroke-width="2.29" stroke-linejoin="round" stroke-linecap="round"/>
+<line x1="1796.22" y1="58.86" x2="1796.22" y2="81.72" stroke="#111111" stroke-width="2.29"/>
+<line x1="1796.22" y1="127.44" x2="1796.22" y2="104.58" stroke="#111111" stroke-width="2.29"/>
+<text x="1819.08" y="127.44" fill="#111111" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 1819.08 127.44)">D_LED</text>
+<text x="1819.08" y="58.86" fill="#111111" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 1819.08 58.86)">LED_RED</text>
+<text x="81.72" y="4699.44" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(-90.0 81.72 4699.44)">VCC_JACK</text>
+<line x1="81.72" y1="4699.44" x2="81.72" y2="4699.44" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="81.72" y="4630.86" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(-90.0 81.72 4630.86)">GND</text>
+<line x1="81.72" y1="4630.86" x2="81.72" y2="4630.86" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="653.22" y="4699.44" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(-90.0 653.22 4699.44)">IN</text>
+<line x1="653.22" y1="4699.44" x2="653.22" y2="4699.44" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="653.22" y="4630.86" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(-90.0 653.22 4630.86)">IN_SRC</text>
+<line x1="653.22" y1="4630.86" x2="653.22" y2="4630.86" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="1224.72" y="4699.44" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(-90.0 1224.72 4699.44)">IN_SRC</text>
+<line x1="1224.72" y1="4699.44" x2="1224.72" y2="4699.44" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="1224.72" y="4630.86" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(-90.0 1224.72 4630.86)">GND</text>
+<line x1="1224.72" y1="4630.86" x2="1224.72" y2="4630.86" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="1796.22" y="4699.44" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(-90.0 1796.22 4699.44)">VCC_JACK</text>
+<line x1="1796.22" y1="4699.44" x2="1796.22" y2="4699.44" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="1796.22" y="4630.86" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(-90.0 1796.22 4630.86)">VCC</text>
+<line x1="1796.22" y1="4630.86" x2="1796.22" y2="4630.86" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="81.72" y="4265.10" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(-90.0 81.72 4265.10)">VCC</text>
+<line x1="81.72" y1="4265.10" x2="81.72" y2="4265.10" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="81.72" y="4150.80" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(-90.0 81.72 4150.80)">VCC_F</text>
+<line x1="81.72" y1="4150.80" x2="81.72" y2="4150.80" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="653.22" y="4253.67" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(-90.0 653.22 4253.67)">VCC_F</text>
+<line x1="653.22" y1="4253.67" x2="653.22" y2="4253.67" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="653.22" y="4162.23" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(-90.0 653.22 4162.23)">GND</text>
+<line x1="653.22" y1="4162.23" x2="653.22" y2="4162.23" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="1224.72" y="4253.67" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(-90.0 1224.72 4253.67)">VCC_F</text>
+<line x1="1224.72" y1="4253.67" x2="1224.72" y2="4253.67" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="1224.72" y="4162.23" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(-90.0 1224.72 4162.23)">GND</text>
+<line x1="1224.72" y1="4162.23" x2="1224.72" y2="4162.23" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="1796.22" y="4265.10" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(-90.0 1796.22 4265.10)">VCC_F</text>
+<line x1="1796.22" y1="4265.10" x2="1796.22" y2="4265.10" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="1796.22" y="4150.80" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(-90.0 1796.22 4150.80)">VREF</text>
+<line x1="1796.22" y1="4150.80" x2="1796.22" y2="4150.80" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="81.72" y="3807.90" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(-90.0 81.72 3807.90)">VREF</text>
+<line x1="81.72" y1="3807.90" x2="81.72" y2="3807.90" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="81.72" y="3693.60" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(-90.0 81.72 3693.60)">GND</text>
+<line x1="81.72" y1="3693.60" x2="81.72" y2="3693.60" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="653.22" y="3796.47" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(-90.0 653.22 3796.47)">VREF</text>
+<line x1="653.22" y1="3796.47" x2="653.22" y2="3796.47" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="653.22" y="3705.03" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(-90.0 653.22 3705.03)">GND</text>
+<line x1="653.22" y1="3705.03" x2="653.22" y2="3705.03" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="1224.72" y="3796.47" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(-90.0 1224.72 3796.47)">IN</text>
+<line x1="1224.72" y1="3796.47" x2="1224.72" y2="3796.47" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="1224.72" y="3705.03" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(-90.0 1224.72 3705.03)">IN_B</text>
+<line x1="1224.72" y1="3705.03" x2="1224.72" y2="3705.03" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="1796.22" y="3807.90" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(-90.0 1796.22 3807.90)">IN_B</text>
+<line x1="1796.22" y1="3807.90" x2="1796.22" y2="3807.90" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="1796.22" y="3693.60" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(-90.0 1796.22 3693.60)">GND</text>
+<line x1="1796.22" y1="3693.60" x2="1796.22" y2="3693.60" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="81.72" y="3350.70" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(-90.0 81.72 3350.70)">IN_B</text>
+<line x1="81.72" y1="3350.70" x2="81.72" y2="3350.70" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="81.72" y="3236.40" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(-90.0 81.72 3236.40)">VREF</text>
+<line x1="81.72" y1="3236.40" x2="81.72" y2="3236.40" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="653.22" y="3350.70" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(-90.0 653.22 3350.70)">IN_B</text>
+<line x1="653.22" y1="3350.70" x2="653.22" y2="3350.70" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="653.22" y="3236.40" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(-90.0 653.22 3236.40)">X1_P</text>
+<line x1="653.22" y1="3236.40" x2="653.22" y2="3236.40" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="1156.14" y="3316.41" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="end" transform="rotate(0 1156.14 3316.41)">X1_P</text>
+<line x1="1156.14" y1="3316.41" x2="1156.14" y2="3316.41" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="1156.14" y="3270.69" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="end" transform="rotate(0 1156.14 3270.69)">X1_FB</text>
+<line x1="1156.14" y1="3270.69" x2="1156.14" y2="3270.69" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="1224.72" y="3362.13" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(-90.0 1224.72 3362.13)">VCC_F</text>
+<line x1="1224.72" y1="3362.13" x2="1224.72" y2="3362.13" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="1224.72" y="3224.97" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(-90.0 1224.72 3224.97)">GND</text>
+<line x1="1224.72" y1="3224.97" x2="1224.72" y2="3224.97" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="1293.30" y="3293.55" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 1293.30 3293.55)">X1_OUT</text>
+<line x1="1293.30" y1="3293.55" x2="1293.30" y2="3293.55" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="1796.22" y="3350.70" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(-90.0 1796.22 3350.70)">X1_FB</text>
+<line x1="1796.22" y1="3350.70" x2="1796.22" y2="3350.70" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="1796.22" y="3236.40" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(-90.0 1796.22 3236.40)">X1_RG</text>
+<line x1="1796.22" y1="3236.40" x2="1796.22" y2="3236.40" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="81.72" y="2893.50" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(-90.0 81.72 2893.50)">X1_FB</text>
+<line x1="81.72" y1="2893.50" x2="81.72" y2="2893.50" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="81.72" y="2779.20" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(-90.0 81.72 2779.20)">X2_W</text>
+<line x1="81.72" y1="2779.20" x2="81.72" y2="2779.20" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="653.22" y="2893.50" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(-90.0 653.22 2893.50)">X2_W</text>
+<line x1="653.22" y1="2893.50" x2="653.22" y2="2893.50" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="653.22" y="2779.20" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(-90.0 653.22 2779.20)">X1_OUT</text>
+<line x1="653.22" y1="2779.20" x2="653.22" y2="2779.20" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="1224.72" y="2882.07" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(-90.0 1224.72 2882.07)">X1_RG</text>
+<line x1="1224.72" y1="2882.07" x2="1224.72" y2="2882.07" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="1224.72" y="2790.63" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(-90.0 1224.72 2790.63)">VREF</text>
+<line x1="1224.72" y1="2790.63" x2="1224.72" y2="2790.63" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="1796.22" y="2882.07" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(-90.0 1796.22 2882.07)">X1_OUT</text>
+<line x1="1796.22" y1="2882.07" x2="1796.22" y2="2882.07" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="1796.22" y="2790.63" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(-90.0 1796.22 2790.63)">X1_FB</text>
+<line x1="1796.22" y1="2790.63" x2="1796.22" y2="2790.63" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="81.72" y="2436.30" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(-90.0 81.72 2436.30)">X1_OUT</text>
+<line x1="81.72" y1="2436.30" x2="81.72" y2="2436.30" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="81.72" y="2322.00" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(-90.0 81.72 2322.00)">CLIP_A</text>
+<line x1="81.72" y1="2322.00" x2="81.72" y2="2322.00" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="653.22" y="2424.87" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(-90.0 653.22 2424.87)">VREF</text>
+<line x1="653.22" y1="2424.87" x2="653.22" y2="2424.87" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="653.22" y="2333.43" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(-90.0 653.22 2333.43)">CLIP_A</text>
+<line x1="653.22" y1="2333.43" x2="653.22" y2="2333.43" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="1224.72" y="2436.30" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(-90.0 1224.72 2436.30)">CLIP_A</text>
+<line x1="1224.72" y1="2436.30" x2="1224.72" y2="2436.30" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="1224.72" y="2322.00" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(-90.0 1224.72 2322.00)">CLIP_B</text>
+<line x1="1224.72" y1="2322.00" x2="1224.72" y2="2322.00" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="1796.22" y="2436.30" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(-90.0 1796.22 2436.30)">VREF</text>
+<line x1="1796.22" y1="2436.30" x2="1796.22" y2="2436.30" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="1796.22" y="2322.00" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(-90.0 1796.22 2322.00)">CLIP_B</text>
+<line x1="1796.22" y1="2322.00" x2="1796.22" y2="2322.00" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="81.72" y="1967.67" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(-90.0 81.72 1967.67)">VREF</text>
+<line x1="81.72" y1="1967.67" x2="81.72" y2="1967.67" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="36.00" y="1921.95" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="end" transform="rotate(0 36.00 1921.95)">VREF</text>
+<line x1="36.00" y1="1921.95" x2="36.00" y2="1921.95" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="81.72" y="1876.23" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(-90.0 81.72 1876.23)">CLIP_A</text>
+<line x1="81.72" y1="1876.23" x2="81.72" y2="1876.23" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="653.22" y="1967.67" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(-90.0 653.22 1967.67)">VREF</text>
+<line x1="653.22" y1="1967.67" x2="653.22" y2="1967.67" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="607.50" y="1921.95" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="end" transform="rotate(0 607.50 1921.95)">M2_D1_NODE</text>
+<line x1="607.50" y1="1921.95" x2="607.50" y2="1921.95" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="653.22" y="1876.23" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(-90.0 653.22 1876.23)">M2_D1_NODE</text>
+<line x1="653.22" y1="1876.23" x2="653.22" y2="1876.23" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="1224.72" y="1956.24" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(-90.0 1224.72 1956.24)">CLIP_A</text>
+<line x1="1224.72" y1="1956.24" x2="1224.72" y2="1956.24" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="1224.72" y="1887.66" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(-90.0 1224.72 1887.66)">M2_D1_NODE</text>
+<line x1="1224.72" y1="1887.66" x2="1224.72" y2="1887.66" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="1727.64" y="1944.81" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="end" transform="rotate(0 1727.64 1944.81)">CLIP_B</text>
+<line x1="1727.64" y1="1944.81" x2="1727.64" y2="1944.81" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="1727.64" y="1899.09" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="end" transform="rotate(0 1727.64 1899.09)">X3_FB</text>
+<line x1="1727.64" y1="1899.09" x2="1727.64" y2="1899.09" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="1796.22" y="1990.53" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(-90.0 1796.22 1990.53)">VCC_F</text>
+<line x1="1796.22" y1="1990.53" x2="1796.22" y2="1990.53" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="1796.22" y="1853.37" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(-90.0 1796.22 1853.37)">GND</text>
+<line x1="1796.22" y1="1853.37" x2="1796.22" y2="1853.37" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="1864.80" y="1921.95" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(0 1864.80 1921.95)">X3_OUT</text>
+<line x1="1864.80" y1="1921.95" x2="1864.80" y2="1921.95" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="81.72" y="1521.90" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(-90.0 81.72 1521.90)">X3_FB</text>
+<line x1="81.72" y1="1521.90" x2="81.72" y2="1521.90" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="81.72" y="1407.60" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(-90.0 81.72 1407.60)">X3_RG</text>
+<line x1="81.72" y1="1407.60" x2="81.72" y2="1407.60" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="653.22" y="1521.90" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(-90.0 653.22 1521.90)">X3_FB</text>
+<line x1="653.22" y1="1521.90" x2="653.22" y2="1521.90" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="653.22" y="1407.60" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(-90.0 653.22 1407.60)">X3_OUT</text>
+<line x1="653.22" y1="1407.60" x2="653.22" y2="1407.60" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="1224.72" y="1510.47" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(-90.0 1224.72 1510.47)">X3_RG</text>
+<line x1="1224.72" y1="1510.47" x2="1224.72" y2="1510.47" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="1224.72" y="1419.03" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(-90.0 1224.72 1419.03)">VREF</text>
+<line x1="1224.72" y1="1419.03" x2="1224.72" y2="1419.03" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="1796.22" y="1510.47" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(-90.0 1796.22 1510.47)">X3_OUT</text>
+<line x1="1796.22" y1="1510.47" x2="1796.22" y2="1510.47" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="1796.22" y="1419.03" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(-90.0 1796.22 1419.03)">X3_FB</text>
+<line x1="1796.22" y1="1419.03" x2="1796.22" y2="1419.03" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="81.72" y="1053.27" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(-90.0 81.72 1053.27)">X3_OUT</text>
+<line x1="81.72" y1="1053.27" x2="81.72" y2="1053.27" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="81.72" y="961.83" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(-90.0 81.72 961.83)">TONE_TOP</text>
+<line x1="81.72" y1="961.83" x2="81.72" y2="961.83" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="653.22" y="1064.70" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(-90.0 653.22 1064.70)">TONE_TOP</text>
+<line x1="653.22" y1="1064.70" x2="653.22" y2="1064.70" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="653.22" y="950.40" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(-90.0 653.22 950.40)">TONE_W</text>
+<line x1="653.22" y1="950.40" x2="653.22" y2="950.40" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="1224.72" y="1053.27" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(-90.0 1224.72 1053.27)">TONE_W</text>
+<line x1="1224.72" y1="1053.27" x2="1224.72" y2="1053.27" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="1224.72" y="961.83" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(-90.0 1224.72 961.83)">GND</text>
+<line x1="1224.72" y1="961.83" x2="1224.72" y2="961.83" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="1796.22" y="1064.70" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(-90.0 1796.22 1064.70)">TONE_TOP</text>
+<line x1="1796.22" y1="1064.70" x2="1796.22" y2="1064.70" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="1796.22" y="950.40" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(-90.0 1796.22 950.40)">VOL_TOP</text>
+<line x1="1796.22" y1="950.40" x2="1796.22" y2="950.40" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="81.72" y="607.50" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(-90.0 81.72 607.50)">TONE_TOP</text>
+<line x1="81.72" y1="607.50" x2="81.72" y2="607.50" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="81.72" y="493.20" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(-90.0 81.72 493.20)">SW1_1</text>
+<line x1="81.72" y1="493.20" x2="81.72" y2="493.20" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="653.22" y="584.64" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(-90.0 653.22 584.64)">SW1_1</text>
+<line x1="653.22" y1="584.64" x2="653.22" y2="584.64" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="653.22" y="516.06" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(-90.0 653.22 516.06)">VOL_TOP</text>
+<line x1="653.22" y1="516.06" x2="653.22" y2="516.06" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="607.50" y="561.78" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="end" transform="rotate(0 607.50 561.78)">HP_CTRL</text>
+<line x1="607.50" y1="561.78" x2="607.50" y2="561.78" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="607.50" y="538.92" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="end" transform="rotate(0 607.50 538.92)">GND</text>
+<line x1="607.50" y1="538.92" x2="607.50" y2="538.92" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="1224.72" y="584.64" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(-90.0 1224.72 584.64)">HP_CTRL</text>
+<line x1="1224.72" y1="584.64" x2="1224.72" y2="584.64" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="1224.72" y="516.06" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(-90.0 1224.72 516.06)">GND</text>
+<line x1="1224.72" y1="516.06" x2="1224.72" y2="516.06" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="1796.22" y="607.50" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(-90.0 1796.22 607.50)">VOL_TOP</text>
+<line x1="1796.22" y1="607.50" x2="1796.22" y2="607.50" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="1796.22" y="493.20" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(-90.0 1796.22 493.20)">OUT</text>
+<line x1="1796.22" y1="493.20" x2="1796.22" y2="493.20" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="81.72" y="150.30" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(-90.0 81.72 150.30)">OUT</text>
+<line x1="81.72" y1="150.30" x2="81.72" y2="150.30" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="81.72" y="36.00" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(-90.0 81.72 36.00)">GND</text>
+<line x1="81.72" y1="36.00" x2="81.72" y2="36.00" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="653.22" y="150.30" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(-90.0 653.22 150.30)">OUT</text>
+<line x1="653.22" y1="150.30" x2="653.22" y2="150.30" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="653.22" y="36.00" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(-90.0 653.22 36.00)">GND</text>
+<line x1="653.22" y1="36.00" x2="653.22" y2="36.00" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="1224.72" y="150.30" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(-90.0 1224.72 150.30)">VCC_F</text>
+<line x1="1224.72" y1="150.30" x2="1224.72" y2="150.30" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="1224.72" y="36.00" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(-90.0 1224.72 36.00)">LED_A</text>
+<line x1="1224.72" y1="36.00" x2="1224.72" y2="36.00" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="1796.22" y="127.44" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(-90.0 1796.22 127.44)">LED_A</text>
+<line x1="1796.22" y1="127.44" x2="1796.22" y2="127.44" stroke="#0B4F8A" stroke-width="1.80"/>
+<text x="1796.22" y="58.86" fill="#0B4F8A" font-family="monospace" font-size="11.43" text-anchor="start" transform="rotate(-90.0 1796.22 58.86)">GND</text>
+<line x1="1796.22" y1="58.86" x2="1796.22" y2="58.86" stroke="#0B4F8A" stroke-width="1.80"/>
+</svg>

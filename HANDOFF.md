@@ -175,6 +175,10 @@ Start responses with a **bold summary**. Separate **Changes / Verification / Not
 - **Fabrication package produced** (`pcb/board/fab/`: Gerbers, drill, position,
   STEP, IPC-D-356, `fabrication.zip`). It is a routed prototype, not a
   panel-verified assembly; mechanical fit and bench verification remain open.
+- **Preview images:** `pcb/preview/` (board top/bottom PNG+SVG) and
+  `circuit/preview/` (v0.4 schematic PNG+SVG), generated from the tracked
+  `.kicad_pcb` / `.kicad_sch` for quick visual inspection. Preview only; not a
+  substitute for Gerbers, DRC or ERC.
 - **Next agent should start by** reading this file + `pcb/README.md` +
   `circuit/design-plan.md` + `circuit/research-log.md`, then close the Phase C
   mechanical fit and D002/A1 bench items.

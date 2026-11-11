@@ -190,6 +190,17 @@ The CI path used here stages the same files under
 `specs/ocd-v0p4/` on the `davlug3/pcb-design-skill` branch `ocd-v0p4` and
 dispatches the `Design pipeline` workflow.
 
+## Previews
+
+- `pcb/preview/ocd_v0p4_8v18v_top.png` / `.svg` and `..._bottom.png` / `.svg`:
+  quick top/bottom views of the routed board (copper, pads, silkscreen,
+  outline). Generated locally from the `.kicad_pcb`; see `pcb/preview/README.md`.
+- `circuit/preview/ocd_v0p4_8v18v.svg` / `.png`: v0.4 schematic preview from
+  the generated `.kicad_sch` (symbol grid + global labels, no wires). See
+  `circuit/preview/README.md`.
+- `pcb/board/fab/ocd_v0p4_8v18v.step`: 3D STEP model for a mechanical viewer.
+- Gerbers in `pcb/board/fab/gerbers/` open in any Gerber viewer.
+
 ## Evidence
 
 - `pcb/board/`: tracked release copy — `ocd_v0p4_8v18v.kicad_pcb`,
