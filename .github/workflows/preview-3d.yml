@@ -29,6 +29,26 @@ jobs:
                 --out-dir pcb/preview
             '
 
+      - name: Debug 3D export
+        if: always()
+        run: |
+          set -euo pipefail
+          docker run --rm --user root \
+            -v "${PWD}:/work" -w /work -e HOME=/tmp \
+            kicad/kicad:9.0 bash -lc '
+              set -x
+              ls -l pcb/preview/models/Connector_Audio.3dshapes/ || true
+              ls -l pcb/preview/*.kicad_pcb || true
+              kicad-cli pcb export glb -o /work/pcb/preview/test-orig.glb -f --subst-models \
+                -D KICAD9_3DMODEL_DIR=/work/pcb/preview/models \
+                /work/pcb/board/ocd_v0p4_8v18v.kicad_pcb 2>&1 | tail -40 || true
+              echo "orig rc=${PIPESTATUS[0]}"
+              kicad-cli pcb export glb -o /work/pcb/preview/test-preview.glb -f --subst-models \
+                -D KICAD9_3DMODEL_DIR=/work/pcb/preview/models \
+                /work/pcb/preview/ocd_v0p4_8v18v-preview.kicad_pcb 2>&1 | tail -40 || true
+              echo "preview rc=${PIPESTATUS[0]}"
+            '
+
       - name: Upload 3D preview
         if: always()
         uses: actions/upload-artifact@v4
