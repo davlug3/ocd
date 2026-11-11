@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated": "2026-11-09",
+  "updated": "2026-11-11",
   "policy": "Project-local registry for v0.1. Only status=verified may be cited as settled evidence per audio-engineering-skill policy; unverified entries are tracked explicitly.",
   "sources": [
     {
@@ -283,6 +283,51 @@
         "pcb-mania"
       ],
       "note": "Third-party multi-version PCB/build doc provided by user (local copy sha256 4f2291f030b35c06...). Includes buffers (Q3/Q4/SW2/SW3) not in v0.1 default. Schematic page is image; pin-level netlist not fully extracted. Used as authorized reference for merge."
+    },
+    {
+      "id": "S014",
+      "tier": 1,
+      "title": "1N5817, 1N5818, 1N5819 Schottky Barrier Rectifiers datasheet (Vishay document 88525)",
+      "authors": [
+        "Vishay Intertechnology"
+      ],
+      "year": 2026,
+      "venue": "Vishay Semiconductors",
+      "doi": null,
+      "url": "https://www.vishay.com/docs/88525/1n5817.pdf",
+      "accessed": "2026-11-11",
+      "status": "verified",
+      "access": "open",
+      "topics": [
+        "schottky",
+        "protection",
+        "reverse-voltage",
+        "1n5819",
+        "forward-voltage"
+      ],
+      "note": "HTTP 200, application/pdf, 70784 bytes, Last-Modified 2026-04-03, sha256 4465c825da3be36cc8a180c252d5d80e7651d9dc237cd3d09822a759f39c970b. Vr: 1N5817=20V, 1N5818=30V, 1N5819=40V. Forward-voltage/derating tables still to be read before the final D_PROT bench decision."
+    },
+    {
+      "id": "S015",
+      "tier": 3,
+      "title": "Project simulation and verification artifacts, OCD v0.4 (ngspice outputs)",
+      "authors": [
+        "project"
+      ],
+      "year": 2026,
+      "venue": "local project artifacts",
+      "doi": null,
+      "url": "local:circuit/spec/out_ocd_v0p4_8v18v",
+      "accessed": "2026-11-11",
+      "status": "verified",
+      "access": "open",
+      "topics": [
+        "simulation",
+        "ngspice",
+        "verification",
+        "bom"
+      ],
+      "note": "Reproducible local artifacts: generated .cir, verification JSON, supply-corner and VTO probes, BOM. Simulation-only, NOT bench evidence; claims citing this stay exploratory unless independently bench-verified."
     }
   ]
 }

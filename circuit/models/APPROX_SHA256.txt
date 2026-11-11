@@ -1,3 +1,6 @@
-db949f2074c80243651fc2ab6c003f27fecc0fba127df704fcdba44427450aaa  /home/dave/fulltone-ocd/circuit/models/APPROX_1N34A.lib
-081054dff4a75cb511fef93cd2e8c4310a685018b570eb92f2f241bc9b992a55  /home/dave/fulltone-ocd/circuit/models/APPROX_2N7000.lib
-7b617c80cc7481ad33ce728db7e09b1860f1bb6143f9c8701b954c6616e295b3  /home/dave/fulltone-ocd/circuit/models/APPROX_BAT46.lib
+# SHA256 of approximation/declared model files (v0.4)
+# Paths are repo-relative; regenerate with: sha256sum circuit/models/*
+081054dff4a75cb511fef93cd2e8c4310a685018b570eb92f2f241bc9b992a55  circuit/models/APPROX_2N7000.lib
+db949f2074c80243651fc2ab6c003f27fecc0fba127df704fcdba44427450aaa  circuit/models/APPROX_1N34A.lib
+bfa7e99c8627cad9b8f3d58bc8479b9e075bded3914e9da9fdd52fee30596daa  circuit/models/APPROX_1N4148.lib
+7b617c80cc7481ad33ce728db7e09b1860f1bb6143f9c8701b954c6616e295b3  circuit/models/APPROX_BAT46.lib

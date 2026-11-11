@@ -41,7 +41,7 @@ Check `catalog/sources.json` for the full registry (S001–S013 referenced in pr
 - **S007** — TI TL082 (SLOS081O/product), accessed 2026-11-11.
 - **S009** — User intake/reconciliation (local:conversation/2026-11-09).
 - **S013** — PCB Guitar Mania TOC (OCD) v2.1 (cataloged).
-- **S014** — Vishay 1N5817/18/19 datasheet (accessed 2026-11-11; used for 1N5819 Vr=40V limit).
+- **S014** — Vishay 1N5817/18/19 datasheet, https://www.vishay.com/docs/88525/1n5817.pdf (accessed 2026-11-11; HTTP 200, Last-Modified 2026-04-03, sha256 `4465c825...`; registered in `catalog/sources.json`; used for 1N5819 Vr=40V limit).
 
 ## Main artifacts
 
@@ -50,6 +50,7 @@ Check `catalog/sources.json` for the full registry (S001–S013 referenced in pr
 - **Spec (merged):** `circuit/spec/ocd_v0p4_8v18v_merged.json` — audio handoff merged; 5 metrics, 14 requirements (E1–E8 + A1–A6).
 - **Metric map:** `circuit/spec/ocd_v0p4_metrics-map.json` — gain_db (A5), bandwidth_width_hz (A5), thd_percent (A3), noise_uv, output_vrms (A5); all exploratory.
 - **Outputs:** `circuit/spec/out_ocd_v0p4_8v18v/` — `.cir`, `.asc`, `.net`, `.kicad_sch`, `-bom.csv`, `-report.md`, `-report.json`, `-verification.json`, `-test-plan.md`.
+- **Master BOM:** `circuit/bom-v0.4.csv` — 44 orderable line items; every non-simulation ref reconciled; sim-only refs (V1, V_IN, V_AC, V_HP, R_LOAD) excluded. Pot values/tapers for X2/X4/X5 flagged TBD/unverified.
 - **Superseded:** `circuit/spec/ocd_textsch_s002_9v_v0p1_draft.json` (old v0p1/v0p2 draft) and `circuit/spec/out_textsch_s002_9v/`.
 
 ### Verification (latest)
@@ -70,7 +71,7 @@ Check `catalog/sources.json` for the full registry (S001–S013 referenced in pr
 3. **TL082 SLOS081O limits extraction** + bench at 8/9/18V to close D002/A1 (K1/K4/K5).
 4. **Pot tapers/values** (X2 1M, X5 100k placeholder) — unverified (K7).
 5. **Local environment:** `kiutils`/`kicad-cli` missing; KiCad schematic geometry and PCB DRC/fab deferred. Disk space constrained (~700M avail) — clean `ocd_matrix_*`/`ocd_lean_*` temp dirs after matrix runs.
-6. **18V midband gain reduction** is an exploratory model artifact (K5) — bench-verify, do not claim.
+6. **18V clip-bias/threshold (C042):** the 18V gain drop is a clip-network threshold effect (M1 `Vgs = VREF - CLIP_A` crosses the 2N7000 `Vgs(th)`), not an op-amp artifact. VTO=2.1 gives 22.2 dB at 18V; VTO>=2.5 gives 44.6 dB. Bench-verify with the selected 2N7000 (K2), do not claim 18V performance.
 
 ## How to regenerate / verify
 ```bash
@@ -105,6 +106,6 @@ python3 /home/dave/.agents/skills/audio-engineering-skill/scripts/source_check.p
 Start responses with a **bold summary**. Separate **Changes / Verification / Notes**. Use backticks for paths/commands/IDs. State what was checked and what was intentionally not changed or remains unverified.
 
 ## Session-end state (2026-11-11)
-- **Last completed:** Phase A+B electrical design (v0.4): C4/C8 series feedback fix, V_IN/V_AC AC-source split, 1N5819 protection, LED, 9V battery/DC-jack, HP/LP SW1, tone-stack rheostat + HP/LP correction, models cleaned (vendor removed from APPROX), verify.py clean (13 passed, 5 skipped, 0 failed), supply-corner matrix done.
+- **Last completed:** Phase A+B electrical design (v0.4): C4/C8 series feedback fix, V_IN/V_AC AC-source split, 1N5819 protection, LED, 9V battery/DC-jack, HP/LP SW1, tone-stack rheostat + HP/LP correction, models cleaned (vendor removed from APPROX), verify.py clean (13 passed, 5 skipped, 0 failed), supply-corner matrix done. Follow-up (same day): S014 added/verified, master BOM `circuit/bom-v0.4.csv` built and reconciled, `PROVENANCE.md` updated, 18V anomaly root-caused (C042: clip-bias/threshold, not op-amp).
 - **No fabrication-ready output produced.** PCB deferred to Phase C.
 - **Next agent should start by** reading this file + `circuit/design-plan.md` + `circuit/research-log.md`, then close D002/A1 (TL082 bench at 8/9/18V) and resolve semiconductor footprints/pin maps for Phase C.

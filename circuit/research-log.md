@@ -149,3 +149,10 @@ Scope: fix evidence/contracts and finish electrical design; PCB deferred to Phas
 - TL082 SLOS081O limits extraction + bench at 8/9/18V to close D002/A1 (K1/K4/K5).
 - X2/X5 pot tapers/wiring (K7); X5 value not in S002 text.
 - Human visual confirmation of S002 images (tone-stack rheostat, clip wiring already image-confirmed per C031/C032).
+
+### 18V gain anomaly — root cause (2026-11-11)
+- Observed: AC gain at 1kHz is 44.57 dB at 8/9V but 22.24 dB at 18V.
+- Localized by node probe at 1kHz: X1_OUT is essentially unchanged (143 vs 152), but CLIP_A/X1_OUT falls from 0.820 (9V) to 0.059 (18V); X3 and the tone/volume path scale accordingly. The drop is in the clip network, not the op-amps.
+- Cause: M1 is diode-connected from VREF (D&G) to CLIP_A (S), so Vgs = VREF - CLIP_A. That bias is ratiometric with supply (~0.3 x VREF). At 9V Vgs ~1.18V < VTO; at 18V Vgs ~2.13V, which crosses the APPROX_2N7000 VTO=2.1V, turning M1 on and shunting CLIP_A through its incremental resistance (~645 ohm against R9=10k).
+- VTO sensitivity at 18V: VTO=1.5 -> 17.6 dB, 2.1 -> 22.2 dB, >=2.5 -> 44.6 dB. At 9V every tested VTO gives 44.6 dB (M1 off).
+- Conclusion: not a TL082 model artifact. It is a genuine clip-bias/threshold sensitivity of the topology; the magnitude is set by the 2N7000 Vgs(th) (datasheet range 0.8-3.0V, S008) and the exact DC bias. Simulation cannot settle real 18V behavior. Bench-verify with the selected 2N7000 (K2); do not claim 18V performance.

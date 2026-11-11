@@ -1,0 +1,45 @@
+Item,References,Qty,Category,Value,Suggested part,Package,Status,Reconciles (sim refs),Notes,Source
+1,R1,1,Resistor,100R,1/4W 1% metal film,axial (THT),value from S002,R1,supply feed/filter after D_PWR,S002
+2,R2,1,Resistor,1M,1/4W 1% metal film,axial (THT),value from S002,R2,input reference to ground,S002
+3,R3,1,Resistor,10k,1/4W 1% metal film,axial (THT),value from S002,R3,op-amp input current limit,S002
+4,R4,1,Resistor,10k,1/4W 1% metal film,axial (THT),value from S002,R4,Vref divider upper,S002
+5,R5,1,Resistor,2.2k,1/4W 1% metal film,axial (THT),value from S002,R5,X1 gain-leg; in series with C4 (D_FB_FIX),S002
+6,R6,1,Resistor,470k,1/4W 1% metal film,axial (THT),value from S002,R6,X1 non-inv bias to VREF,S002
+7,R7,1,Resistor,10k,1/4W 1% metal film,axial (THT),value from S002,R7,Vref divider lower,S002
+8,R8,1,Resistor,18k,1/4W 1% metal film,axial (THT),value from S002,R8,X1 feedback with Drive pot,S002
+9,R9,1,Resistor,10k,1/4W 1% metal film,axial (THT),value from S002,R9,series into clipping,S002
+10,R10,1,Resistor,10k,1/4W 1% metal film,axial (THT),value from S002,R10,clip network,S002
+11,R11,1,Resistor,39k,1/4W 1% metal film,axial (THT),value from S002,R11,X3 gain-leg; in series with C8 (D_FB_FIX),S002
+12,R12,1,Resistor,220k,1/4W 1% metal film,axial (THT),value from S002,R12,CLIP_B bias to VREF,S002
+13,R13,1,Resistor,150k,1/4W 1% metal film,axial (THT),value from S002,R13,X3 feedback,S002
+14,R14,1,Resistor,22k,1/4W 1% metal film,axial (THT),value from S002,R14,tone/volume main path from TONE_TOP,S002
+15,R15,1,Resistor,33k,1/4W 1% metal film,axial (THT),value from S002,R15,switched parallel with R14 (HP),S002
+16,R_LED,1,Resistor,4.7k,1/4W 1% metal film,axial (THT),value from S002,R_LED,status LED series resistor,S002
+17,C1,1,Capacitor,22nF,film box 63V+,radial 5mm,value from S002,C1,input coupling,S002
+18,C2,1,Capacitor,10uF,electrolytic 25V,radial 2.5mm,value from S002,C2,power bulk filter,S002
+19,C3,1,Capacitor,100nF,film/ceramic 50V+,radial 5mm,value from S002,C3,power HF decoupling,S002
+20,C4,1,Capacitor,100nF,film box 63V+,radial 5mm,value from S002,C4,X1 bass-limit; series with R5 (D_FB_FIX),S002
+21,C5,1,Capacitor,10uF,electrolytic 25V,radial 2.5mm,value from S002,C5,Vref filter,S002
+22,C6,1,Capacitor,220pF,ceramic C0G 50V,radial 5mm,value from S002,C6,X1 HF stability,S002
+23,C7,1,Capacitor,10nF,film box 63V+,radial 5mm,value from S002,C7,VREF-CLIP_A,S002
+24,C8,1,Capacitor,100nF,film box 63V+,radial 5mm,value from S002,C8,X3 bass-limit; series with R11 (D_FB_FIX),S002
+25,C9,1,Capacitor,220pF,ceramic C0G 50V,radial 5mm,value from S002,C9,X3 HF stability,S002
+26,C10,1,Capacitor,10uF,electrolytic 25V (or film if space),radial 2.5mm,value from S002,C10,output coupling,S002
+27,C11,1,Capacitor,47nF,film box 63V+,radial 5mm,value from S002,C11,tone cap; X4+C11 shunt to ground,S002
+28,"X1A, X3A",1,IC,TL082,TL082CP / TL082ACP (DIP-8),DIP-8 (THT),proposed,"X1A, X3A",Dual JFET-input op-amp; one package covers both stages. Verify 8-18V operation (D002/A1).,S007
+29,"M1, M2",2,Transistor,2N7000,2N7000 (TO-92),TO-92,proposed,"M1, M2",N-MOSFET used via body diode / conduction. Lot variation affects clipping (K2).,S008
+30,D1,1,Diode,1N34A (Ge),1N34A germanium (selected),DO-35/DO-41,proposed,D1,Ge Vf/leakage varies widely; may need selection (K2).,S010/S011
+31,D_PWR,1,Diode,1N5819 (Schottky),1N5819 (Vishay),DO-41,proposed,D_PWR,Series reverse-polarity protection; Vr=40V. 8V-jack margin is a bench gate (D_PROT/K4).,S014
+32,D_LED,1,LED,Red 5mm,red LED 5mm (2V class),5mm THT,proposed,D_LED,"Status LED; always-on in sim, physically switched by the 3PDT.",design
+33,X2,1,Potentiometer,1M (Drive),"16mm/9mm PCB-mount pot, taper TBD",THT,value TBD / taper unverified,R_X2POT,S002 states gain pot 1M; wiring and taper assumed (K7).,S002
+34,X4,1,Potentiometer,10k (Tone),"16mm/9mm PCB-mount pot, taper TBD",THT,value from S002 / taper unverified,R_X4,Wired as rheostat in series with C11 to ground; 10k per S002.,S002
+35,X5,1,Potentiometer,100k (Volume),"16mm/9mm PCB-mount pot, taper TBD",THT,value TBD (placeholder) / taper unverified,"R_VOL5A, R_VOL5B",X5 value not found in retrieved S002 text; 100k placeholder (K7).,design
+36,SW1,1,Switch,SPDT toggle,mini SPDT toggle (HP/LP),THT,proposed,SW1,"HP = closed/parallel (brighter), LP = open (darker) per S003.",S003
+37,FS1,1,Switch,3PDT latching,3PDT latching footswitch,panel/THT,proposed,"(bypass, not in SPICE)",True-bypass + LED switching; mechanical fit in 1590B (K6).,design
+38,J1,1,Jack,1/4in TS input,1/4in TS switched jack (battery disconnect),panel/PCB,proposed,(input),Switched contact breaks battery when input unplugged (D_BAT).,design
+39,J2,1,Jack,1/4in TS output,1/4in TS jack,panel/PCB,proposed,(output),,design
+40,J3,1,Jack,2.1mm DC,2.1mm center-negative switching DC jack,PCB,proposed,(power),Switching contact isolates battery when DC inserted.,design
+41,BT1,1,Battery,9V,9V battery + snap,9V,proposed,(power),Battery option; do not install with 18V supply.,design
+42,ENC1,1,Enclosure,1590B,1590B die-cast enclosure,-,mechanical,-,Board target 108 x 58 mm (spec pcb block).,design
+43,KN1-KN3,3,Hardware,Knob,6.35mm shaft knob,-,mechanical,-,One per pot (X2/X4/X5).,design
+44,PCB1,1,PCB,108 x 58 mm,"2-layer, 1.6mm, THT",-,Phase C,-,Not yet generated; footprints/pin maps pending (K6/K8).,design
