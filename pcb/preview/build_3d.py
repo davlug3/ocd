@@ -40,25 +40,31 @@ MODEL_RE = re.compile(r'\(model "\$\{KICAD9_3DMODEL_DIR\}/([^"]+)"')
 def _mesh(points: list[tuple[float, float, float]],
           triangles: list[tuple[int, int, int]],
           color: str = "0.10 0.10 0.11") -> str:
-    """Minimal VRML2 IndexedFaceSet mesh (no Transform/Box/Cylinder nodes)."""
+    """Minimal VRML2 IndexedFaceSet mesh in the structure KiCad emits."""
     pts = ",\n".join(f"{x:.4f} {y:.4f} {z:.4f}" for x, y, z in points)
     idx = ",\n".join(f"{a}, {b}, {c}, -1" for a, b, c in triangles)
     return f"""#VRML V2.0 utf8
 Shape {{
-  appearance Appearance {{ material Material {{
+  appearance Appearance {{ material DEF MAT Material {{
+    ambientIntensity 0.2
     diffuseColor {color}
     specularColor 0.25 0.25 0.25
+    emissiveColor 0.0 0.0 0.0
+    transparency 0.0
     shininess 0.35
   }} }}
+}}
+Shape {{
   geometry IndexedFaceSet {{
-    solid FALSE
-    coord Coordinate {{ point [
-      {pts}
-    ] }}
+    creaseAngle 0.50
     coordIndex [
       {idx}
     ]
+    coord Coordinate {{ point [
+      {pts}
+    ] }}
   }}
+  appearance Appearance {{ material USE MAT }}
 }}
 """
 
