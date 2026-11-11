@@ -195,10 +195,12 @@ dispatches the `Design pipeline` workflow.
 - `pcb/preview/ocd_v0p4_8v18v_top.png` / `.svg` and `..._bottom.png` / `.svg`:
   quick top/bottom views of the routed board (copper, pads, silkscreen,
   outline). Generated locally from the `.kicad_pcb`; see `pcb/preview/README.md`.
+- `pcb/preview/viewer.html`: interactive 3D preview of the full assembly
+  (GLB embedded); also `...-3d-top.png` / `-3d-bottom.png` raytraced stills,
+  `ocd_v0p4_8v18v.glb` and `ocd_v0p4_8v18v-components.step`.
 - `circuit/preview/ocd_v0p4_8v18v.svg` / `.png`: v0.4 schematic preview from
   the generated `.kicad_sch` (symbol grid + global labels, no wires). See
   `circuit/preview/README.md`.
-- `pcb/board/fab/ocd_v0p4_8v18v.step`: 3D STEP model for a mechanical viewer.
 - Gerbers in `pcb/board/fab/gerbers/` open in any Gerber viewer.
 
 ## Evidence

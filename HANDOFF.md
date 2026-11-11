@@ -175,7 +175,8 @@ Start responses with a **bold summary**. Separate **Changes / Verification / Not
 - **Fabrication package produced** (`pcb/board/fab/`: Gerbers, drill, position,
   STEP, IPC-D-356, `fabrication.zip`). It is a routed prototype, not a
   panel-verified assembly; mechanical fit and bench verification remain open.
-- **Preview images:** `pcb/preview/` (board top/bottom PNG+SVG) and
+- **Preview images:** `pcb/preview/` (board top/bottom PNG+SVG, raytraced 3D
+  stills, GLB, component STEP, self-contained `viewer.html`) and
   `circuit/preview/` (v0.4 schematic PNG+SVG), generated from the tracked
   `.kicad_pcb` / `.kicad_sch` for quick visual inspection. Preview only; not a
   substitute for Gerbers, DRC or ERC.
