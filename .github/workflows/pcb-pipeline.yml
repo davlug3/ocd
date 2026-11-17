@@ -55,12 +55,15 @@ jobs:
               fi
               if ! command -v java >/dev/null 2>&1; then
                 apt-get update -qq
-                apt-get install -y -qq openjdk-21-jre-headless
-                export JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
-                export PATH=$JAVA_HOME/bin:$PATH
+                apt-get install -y -qq openjdk-17-jre-headless 2>/dev/null || apt-get install -y -qq default-jre 2>/dev/null || apt-get install -y -qq openjdk-11-jre-headless 2>/dev/null || true
+                JVM_DIR=$(ls -d /usr/lib/jvm/* 2>/dev/null | head -1)
+                if [ -n "$JVM_DIR" ]; then
+                  export JAVA_HOME="$JVM_DIR"
+                  export PATH=$JAVA_HOME/bin:$PATH
+                fi
               fi
               echo "Java version:"
-              java -version 2>&1 || true
+              java -version 2>&1 || echo "Java not found"
               python3 /work/tools/pcb-design-skill/scripts/design_pipeline.py all \
                 "'"$SPEC"'" \
                 --no-ask
