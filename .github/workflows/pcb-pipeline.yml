@@ -1,0 +1,71 @@
+name: PCB Design Pipeline
+
+on:
+  workflow_dispatch:
+    inputs:
+      board:
+        description: 'Board variant (1590b or 1590g)'
+        required: true
+        default: '1590g'
+        type: choice
+        options:
+          - 1590b
+          - 1590g
+
+permissions:
+  contents: read
+
+jobs:
+  pcb:
+    name: Run PCB pipeline
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run PCB pipeline in KiCad container
+        run: |
+          set -euo pipefail
+          docker run --rm --user root \
+            -v "${PWD}:/work" -w /work -e HOME=/tmp \
+            kicad/kicad:9.0 bash -lc '
+              set -euo pipefail
+              if ! command -v python3 >/dev/null 2>&1; then
+                apt-get update -qq
+                apt-get install -y -qq python3 >/dev/null
+              fi
+              if ! command -v java >/dev/null 2>&1; then
+                apt-get install -y -qq default-jre >/dev/null
+              fi
+              BOARD="${{ github.event.inputs.board }}"
+              if [ "$BOARD" = "1590g" ]; then
+                SPEC="pcb/board_1590g/ocd_v0p4_8v18v_1590g.spec.json"
+                OUTDIR="pcb/board_1590g"
+              else
+                SPEC="pcb/board/ocd_v0p4_8v18v.spec.json"
+                OUTDIR="pcb/board"
+              fi
+              echo "Running pipeline for $BOARD..."
+              python3 /home/dave/.agents/skills/pcb-design-skill/scripts/design_pipeline.py all \
+                "$SPEC" \
+                --no-ask
+            '
+
+      - name: Upload PCB artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pcb-design-${{ github.event.inputs.board }}
+          path: |
+            pcb/board*/**/*.kicad_pcb
+            pcb/board*/**/*.kicad_pro
+            pcb/board*/**/fab/
+            pcb/board*/**/*.step
+            pcb/board*/**/design-report.md
+            pcb/board*/**/design-report.json
+          if-no-files-found: warn
