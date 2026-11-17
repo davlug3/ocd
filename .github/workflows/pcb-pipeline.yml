@@ -28,13 +28,27 @@ jobs:
         with:
           python-version: '3.11'
 
+      - name: Download Freerouting
+        run: |
+          if [ ! -f /tmp/freerouting.jar ]; then
+            python3 -c "import urllib.request; urllib.request.urlretrieve('https://github.com/freerouting/freerouting/releases/download/v2.5.0/freerouting-2.5.0.jar', '/tmp/freerouting.jar')"
+          fi
+
       - name: Run PCB pipeline in KiCad container
         run: |
-          set -euo pipefail
+          set -e
+          BOARD="${{ github.event.inputs.board }}"
+          if [ "$BOARD" = "1590g" ]; then
+            SPEC="pcb/board_1590g/ocd_v0p4_8v18v_1590g.spec.json"
+          else
+            SPEC="pcb/board/ocd_v0p4_8v18v.spec.json"
+          fi
+          echo "Running pipeline for $BOARD..."
           docker run --rm --user root \
-            -v "${PWD}:/work" -w /work -e HOME=/tmp \
+            -v "${PWD}:/work" -v "/tmp/freerouting.jar:/tmp/freerouting.jar:ro" \
+            -w /work -e HOME=/tmp -e FREEROUTING_JAR=/tmp/freerouting.jar \
             kicad/kicad:9.0 bash -lc '
-              set -euo pipefail
+              set -e
               if ! command -v python3 >/dev/null 2>&1; then
                 apt-get update -qq
                 apt-get install -y -qq python3 >/dev/null
@@ -43,23 +57,8 @@ jobs:
                 apt-get update -qq
                 apt-get install -y -qq openjdk-17-jre-headless >/dev/null
               fi
-              # Download Freerouting jar if not present
-              FREEROUTING_JAR=/tmp/freerouting.jar
-              if [ ! -f "$FREEROUTING_JAR" ]; then
-                python3 -c "import urllib.request; urllib.request.urlretrieve('https://github.com/freerouting/freerouting/releases/download/v2.5.0/freerouting-2.5.0.jar', '$FREEROUTING_JAR')"
-              fi
-              export FREEROUTING_JAR="$FREEROUTING_JAR"
-              BOARD="${{ github.event.inputs.board }}"
-              if [ "$BOARD" = "1590g" ]; then
-                SPEC="pcb/board_1590g/ocd_v0p4_8v18v_1590g.spec.json"
-                OUTDIR="pcb/board_1590g"
-              else
-                SPEC="pcb/board/ocd_v0p4_8v18v.spec.json"
-                OUTDIR="pcb/board"
-              fi
-              echo "Running pipeline for $BOARD..."
-              python3 /home/dave/.agents/skills/pcb-design-skill/scripts/design_pipeline.py all \
-                "$SPEC" \
+              python3 /work/tools/pcb-design-skill/scripts/design_pipeline.py all \
+                "'"$SPEC"'" \
                 --no-ask
             '
 
