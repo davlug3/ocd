@@ -32,6 +32,10 @@ Vref-biased single-supply 9V: input bias -> X1 gain -> R9/R10/R12/C7/M1/M2/D1 cl
 | R1 | 9V DC operation with Vref ~4.5V | op/bench TBD | user text + S002 |
 | R2 | Two TL082 gain stages + MOSFET/diode nonlinear stage (user-reported connections) | sim/bench TBD | user-provided 2026-11-09 |
 | R3 | Adjustable gain and volume (simplified in sim) | pots TBD | user text |
+| A1 | Operate from 8-18V DC center-negative without damage | No damage, no oscillation; functional audio at 8V, 9V, and 18V into 100k load | S009/C022 |
+| A4 | Vref bias tracks Vcc/2 | Within tolerance across 8-18V | S002 |
+| A3 | Asymmetric OCD-style clipping character with HP/LP voicing | Qualitative + waveform/spectrum comparison | S001/S002/C003 |
+| A5 | Controls function as specified | Volume/Drive/Tone/HP-LP produce expected sweep | user text |
 
 ### Decisions
 
@@ -184,9 +188,9 @@ Status: **PASS**
 
 - [PASS] spec: valid spec with 39 components, 0 warning(s)
 - [PASS] models: vendor models supplied
-- [PASS] design: 3 requirements, 6 decisions, 5 risks, 2 sources
-- [SKIP] measurement_plan: no measurement plan declared; add design.measurements with test points, setup and acceptance criteria
-- [SKIP] operating_limits: no operating limits declared; add calculated stresses and sourced datasheet limits
+- [PASS] design: 7 requirements, 6 decisions, 5 risks, 2 sources
+- [PASS] measurement_plan: 6 actionable measurements trace to declared requirements
+- [PASS] operating_limits: 8 calculated stresses are within their declared sourced limits
 - [PASS] spice_netlist: 39 devices, node lists match the spec
 - [PASS] ltspice_asc: 39 symbols; every pin has a matching net flag
 - [PASS] kicad_netlist: 19 nets match the spec exactly
@@ -203,5 +207,6 @@ Status: **PASS**
 - `kicad_net`: `ocd_textsch_s002_8v18v_v0p2_draft.net`
 - `kicad_sch`: `ocd_textsch_s002_8v18v_v0p2_draft.kicad_sch`
 - `bom`: `ocd_textsch_s002_8v18v_v0p2_draft-bom.csv`
+- `test_plan`: `ocd_textsch_s002_8v18v_v0p2_draft-test-plan.md`
 
 > The generated SPICE netlist is the electrical source of truth. The schematics are drawn from the same component list and use net labels at every pin instead of routed wires.

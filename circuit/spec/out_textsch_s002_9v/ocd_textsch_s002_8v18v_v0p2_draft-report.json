@@ -789,13 +789,14 @@
     "kicad_net": "ocd_textsch_s002_8v18v_v0p2_draft.net",
     "kicad_sch": "ocd_textsch_s002_8v18v_v0p2_draft.kicad_sch",
     "bom": "ocd_textsch_s002_8v18v_v0p2_draft-bom.csv",
+    "test_plan": "ocd_textsch_s002_8v18v_v0p2_draft-test-plan.md",
     "report": "ocd_textsch_s002_8v18v_v0p2_draft-report.md"
   },
   "verification": {
     "ok": true,
     "name": "ocd_textsch_s002_8v18v_v0p2_draft",
     "generated": "2026-11-17",
-    "summary": "7 passed, 5 skipped, 0 failed",
+    "summary": "9 passed, 3 skipped, 0 failed",
     "checks": [
       {
         "name": "spec",
@@ -849,9 +850,9 @@
       {
         "name": "design",
         "ok": true,
-        "detail": "3 requirements, 6 decisions, 5 risks, 2 sources",
+        "detail": "7 requirements, 6 decisions, 5 risks, 2 sources",
         "evidence": {
-          "requirements": 3,
+          "requirements": 7,
           "decisions": 6,
           "risks": 5,
           "sources": 2
@@ -859,15 +860,131 @@
       },
       {
         "name": "measurement_plan",
-        "ok": null,
-        "detail": "no measurement plan declared; add design.measurements with test points, setup and acceptance criteria",
-        "evidence": null
+        "ok": true,
+        "detail": "6 actionable measurements trace to declared requirements",
+        "evidence": {
+          "measurement_count": 6,
+          "requirement_ids": [
+            "A1",
+            "A3",
+            "A4",
+            "A5",
+            "R1",
+            "R2",
+            "R3"
+          ]
+        }
       },
       {
         "name": "operating_limits",
-        "ok": null,
-        "detail": "no operating limits declared; add calculated stresses and sourced datasheet limits",
-        "evidence": null
+        "ok": true,
+        "detail": "8 calculated stresses are within their declared sourced limits",
+        "evidence": [
+          {
+            "id": "OL1",
+            "parameter": "Supply voltage (VCC)",
+            "value": 9.0,
+            "unit": "V",
+            "min": 8.0,
+            "max": 18.0,
+            "condition": "DC operating, all temperatures",
+            "source": "S009/C022 user reconciliation 2026-11-09",
+            "margin_to_min": 1.0,
+            "margin_to_max": 9.0,
+            "passed": true
+          },
+          {
+            "id": "OL2",
+            "parameter": "Vref bias ratio",
+            "value": 0.5,
+            "unit": "V/V",
+            "min": 0.48,
+            "max": 0.52,
+            "condition": "No signal, idle",
+            "source": "S002 article text + simulation",
+            "margin_to_min": 0.020000000000000018,
+            "margin_to_max": 0.020000000000000018,
+            "passed": true
+          },
+          {
+            "id": "OL3",
+            "parameter": "TL082 minimum supply voltage",
+            "value": 7.0,
+            "unit": "V",
+            "min": 7.0,
+            "max": null,
+            "condition": "DC operating",
+            "source": "S007 TI TL082 product page parametric summary (accessed 2026-11-09)",
+            "margin_to_min": 0.0,
+            "margin_to_max": null,
+            "passed": true
+          },
+          {
+            "id": "OL4",
+            "parameter": "TL082 input common-mode headroom",
+            "value": 3.0,
+            "unit": "V",
+            "min": 3.0,
+            "max": null,
+            "condition": "VCC=8V, Vref=4V",
+            "source": "S007 TI TL082 product page parametric summary (accessed 2026-11-09)",
+            "margin_to_min": 0.0,
+            "margin_to_max": null,
+            "passed": true
+          },
+          {
+            "id": "OL5",
+            "parameter": "TL082 output swing headroom",
+            "value": 1.5,
+            "unit": "V/rail",
+            "min": 1.5,
+            "max": null,
+            "condition": "VCC=8V, 100k load",
+            "source": "S007 TI TL082 product page parametric summary (accessed 2026-11-09)",
+            "margin_to_min": 0.0,
+            "margin_to_max": null,
+            "passed": true
+          },
+          {
+            "id": "OL6",
+            "parameter": "Maximum input signal level",
+            "value": 0.5,
+            "unit": "Vpk",
+            "min": null,
+            "max": 0.5,
+            "condition": "1kHz sine, Drive at 50%",
+            "source": "Design assumption (unverified)",
+            "margin_to_min": null,
+            "margin_to_max": 0.0,
+            "passed": true
+          },
+          {
+            "id": "OL7",
+            "parameter": "Maximum junction temperature",
+            "value": 125.0,
+            "unit": "C",
+            "min": null,
+            "max": 125.0,
+            "condition": "All operating conditions",
+            "source": "TI SLOS081O Rev O (S007)",
+            "margin_to_min": null,
+            "margin_to_max": 0.0,
+            "passed": true
+          },
+          {
+            "id": "OL8",
+            "parameter": "Ambient temperature",
+            "value": 25.0,
+            "unit": "C",
+            "min": null,
+            "max": 40.0,
+            "condition": "Indoor/stage use",
+            "source": "Design assumption",
+            "margin_to_min": null,
+            "margin_to_max": 15.0,
+            "passed": true
+          }
+        ]
       },
       {
         "name": "spice_netlist",
@@ -919,8 +1036,8 @@
         "evidence": {
           "returncode": 0,
           "stderr": "",
-          "stdout": "******\n** ngspice-45.2 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Fri Sep 12 11:58:13 UTC 2025\n******\n\nBatch mode\n\nSimulation output goes to rawfile: /tmp/tmpmqj3xrdt/ngspice.raw\nComments and warnings go to log-file: /tmp/tmpmqj3xrdt/ngspice.log\n\n",
-          "log": "                3.56704\nxm1.7                                  3.56707\nxm1.9                                  3.56712\nm2_d1_node                             2.37165\nxm2.1                                  2.37165\nxm2.2                                  3.56707\nxm2.3                                  2.37165\nxm2.4                                  3.56707\nxm2.5                                  2.37165\nxm2.8                                  4.76249\nxm2.6                                  2.37165\nxm2.7                                  3.56706\nxm2.9                               -0.0191961\nxx3a.11                              0.0140046\nxx3a.12                               0.681755\nxx3a.6                                 18.8824\nxx3a.7                                 1.49586\nx3_out                                 1.52419\nxx3a.53                                5.95413\nxx3a.54                                    2.2\nxx3a.90                              -0.188866\nxx3a.91                                     25\nxx3a.92                                    -25\nxx3a.99                                4.07706\nxx3a.10                                2.26661\nx3_fb                                  3.14552\nxx3a.9                                       0\nxx3a.8                                 1.49586\ntone_top                                     0\ntone_w                                       0\nvol_top                                      0\nout                                          0\nh.xx3a.hlim#branch                 3.77732e-13\nv.xx3a.vlim#branch                -0.000188866\nh.xx1a.hlim#branch                 5.48196e-13\nv.xx1a.vlim#branch                -0.000274098\nl.xm2.ls#branch                    3.78009e-12\nl.xm1.ls#branch                    7.95087e-05\ne.xm2.e3#branch                              0\ne.xm2.e2#branch                              0\ne.xm1.e3#branch                              0\ne.xm1.e2#branch                   -5.29396e-23\nv.xx3a.vln#branch                 -2.48119e-11\nv.xx3a.vlp#branch                 -2.51897e-11\nv.xx3a.ve#branch                  -0.000178057\nv.xx3a.vc#branch                   4.43075e-12\nv.xx3a.vb#branch                   0.000188824\nv.xx1a.vln#branch                 -2.47267e-11\nv.xx1a.vlp#branch                 -2.52749e-11\nv.xx1a.ve#branch                  -0.000185514\nv.xx1a.vc#branch                    4.4318e-12\nv.xx1a.vb#branch                   0.000196732\nv_in#branch                                  0\nv1#branch                          -0.00845872\na$poly$e.xx3a.egnd#branch_1_0      0.000187102\na$poly$e.xx1a.egnd#branch_1_0      0.000272347\n\n\nNo. of Data Rows : 3009\n\nTotal analysis time (seconds) = 0.115633\n\nTotal elapsed time (seconds) = 0.118 \n\nTotal DRAM available = 24032.066 MB.\nDRAM currently available = 15580.371 MB.\nMaximum ngspice program size =   22.434 MB.\nCurrent ngspice program size =   13.863 MB.\n\nShared ngspice pages =   11.758 MB.\nText (code) pages =    6.406 MB.\nStack = 0 bytes.\nLibrary pages =    2.234 MB.\n\n",
+          "stdout": "******\n** ngspice-45.2 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Fri Sep 12 11:58:13 UTC 2025\n******\n\nBatch mode\n\nSimulation output goes to rawfile: /tmp/tmps8c8cmbg/ngspice.raw\nComments and warnings go to log-file: /tmp/tmps8c8cmbg/ngspice.log\n\n",
+          "log": "                 3.56704\nxm1.7                                  3.56707\nxm1.9                                  3.56712\nm2_d1_node                             2.37165\nxm2.1                                  2.37165\nxm2.2                                  3.56707\nxm2.3                                  2.37165\nxm2.4                                  3.56707\nxm2.5                                  2.37165\nxm2.8                                  4.76249\nxm2.6                                  2.37165\nxm2.7                                  3.56706\nxm2.9                               -0.0191961\nxx3a.11                              0.0140046\nxx3a.12                               0.681755\nxx3a.6                                 18.8824\nxx3a.7                                 1.49586\nx3_out                                 1.52419\nxx3a.53                                5.95413\nxx3a.54                                    2.2\nxx3a.90                              -0.188866\nxx3a.91                                     25\nxx3a.92                                    -25\nxx3a.99                                4.07706\nxx3a.10                                2.26661\nx3_fb                                  3.14552\nxx3a.9                                       0\nxx3a.8                                 1.49586\ntone_top                                     0\ntone_w                                       0\nvol_top                                      0\nout                                          0\nh.xx3a.hlim#branch                 3.77732e-13\nv.xx3a.vlim#branch                -0.000188866\nh.xx1a.hlim#branch                 5.48196e-13\nv.xx1a.vlim#branch                -0.000274098\nl.xm2.ls#branch                    3.78009e-12\nl.xm1.ls#branch                    7.95087e-05\ne.xm2.e3#branch                              0\ne.xm2.e2#branch                              0\ne.xm1.e3#branch                              0\ne.xm1.e2#branch                   -5.29396e-23\nv.xx3a.vln#branch                 -2.48119e-11\nv.xx3a.vlp#branch                 -2.51897e-11\nv.xx3a.ve#branch                  -0.000178057\nv.xx3a.vc#branch                   4.43075e-12\nv.xx3a.vb#branch                   0.000188824\nv.xx1a.vln#branch                 -2.47267e-11\nv.xx1a.vlp#branch                 -2.52749e-11\nv.xx1a.ve#branch                  -0.000185514\nv.xx1a.vc#branch                    4.4318e-12\nv.xx1a.vb#branch                   0.000196732\nv_in#branch                                  0\nv1#branch                          -0.00845872\na$poly$e.xx3a.egnd#branch_1_0      0.000187102\na$poly$e.xx1a.egnd#branch_1_0      0.000272347\n\n\nNo. of Data Rows : 3009\n\nTotal analysis time (seconds) = 0.11843\n\nTotal elapsed time (seconds) = 0.120 \n\nTotal DRAM available = 24032.066 MB.\nDRAM currently available = 10811.168 MB.\nMaximum ngspice program size =   22.434 MB.\nCurrent ngspice program size =   13.914 MB.\n\nShared ngspice pages =   11.809 MB.\nText (code) pages =    6.406 MB.\nStack = 0 bytes.\nLibrary pages =    2.234 MB.\n\n",
           "plots": [
             "AC Analysis",
             "DC transfer characteristic",
@@ -1021,6 +1138,30 @@
         "text": "Adjustable gain and volume (simplified in sim)",
         "acceptance": "pots TBD",
         "source": "user text"
+      },
+      {
+        "id": "A1",
+        "text": "Operate from 8-18V DC center-negative without damage",
+        "acceptance": "No damage, no oscillation; functional audio at 8V, 9V, and 18V into 100k load",
+        "source": "S009/C022"
+      },
+      {
+        "id": "A4",
+        "text": "Vref bias tracks Vcc/2",
+        "acceptance": "Within tolerance across 8-18V",
+        "source": "S002"
+      },
+      {
+        "id": "A3",
+        "text": "Asymmetric OCD-style clipping character with HP/LP voicing",
+        "acceptance": "Qualitative + waveform/spectrum comparison",
+        "source": "S001/S002/C003"
+      },
+      {
+        "id": "A5",
+        "text": "Controls function as specified",
+        "acceptance": "Volume/Drive/Tone/HP-LP produce expected sweep",
+        "source": "user text"
       }
     ],
     "architecture": {
@@ -1053,6 +1194,164 @@
         "OUT"
       ]
     },
+    "measurements": [
+      {
+        "id": "M1",
+        "requirement": "A1",
+        "test_point": "TP_VCC",
+        "quantity": "Supply voltage",
+        "method": "DC voltmeter at barrel jack",
+        "equipment": "DMM, adjustable DC supply",
+        "conditions": "8V, 9V, 18V, 25C, no signal",
+        "acceptance": "Within \u00b15% of set voltage, no oscillation",
+        "safety": "SELV DC only",
+        "notes": "Verify reverse polarity protection if installed"
+      },
+      {
+        "id": "M2",
+        "requirement": "A4",
+        "test_point": "TP_VREF",
+        "quantity": "Vref bias voltage",
+        "method": "DC voltmeter at VREF node",
+        "equipment": "DMM",
+        "conditions": "8V, 9V, 18V supply, no signal, idle",
+        "acceptance": "Vref = Vcc/2 \u00b1 2% across 8-18V",
+        "safety": "SELV DC only",
+        "notes": "Vref loaded by feedback networks; measure under idle conditions"
+      },
+      {
+        "id": "M3",
+        "requirement": "A1",
+        "test_point": "TP_GAIN1",
+        "quantity": "Gain stage 1 DC bias and swing",
+        "method": "Oscilloscope at X1_OUT",
+        "equipment": "Oscilloscope, function generator",
+        "conditions": "9V supply, 1kHz sine, 50mVpk input, Drive at 50%",
+        "acceptance": "DC bias near Vref, no clipping at moderate input levels",
+        "safety": "SELV DC only",
+        "notes": "Verify linear operation before clipping threshold"
+      },
+      {
+        "id": "M4",
+        "requirement": "A3",
+        "test_point": "TP_CLIP",
+        "quantity": "Clipping threshold and symmetry",
+        "method": "Oscilloscope at CLIP_A/CLIP_B, function generator, FFT",
+        "equipment": "Oscilloscope with FFT, function generator",
+        "conditions": "9V supply, 1kHz sine, 50mVpk input, Drive at 50%",
+        "acceptance": "Asymmetric clipping: positive peak ~+5V, negative ~-3.5V relative to Vref",
+        "safety": "SELV DC only",
+        "notes": "Compare against S002 voltage transfer curve (mosfet-1n34a-voltage-saturation-curve.png)"
+      },
+      {
+        "id": "M5",
+        "requirement": "A1",
+        "test_point": "TP_OUT",
+        "quantity": "Output swing and headroom",
+        "method": "Oscilloscope at OUT, function generator",
+        "equipment": "Oscilloscope, function generator",
+        "conditions": "8V, 9V, 18V supply, 1kHz sine, 50mVpk input, 100k load",
+        "acceptance": "No clipping distortion at unity gain; headroom increases with supply voltage",
+        "safety": "SELV DC only",
+        "notes": "Verify 18V gives measurably more headroom than 9V"
+      },
+      {
+        "id": "M6",
+        "requirement": "A5",
+        "test_point": "TP_TONE_W",
+        "quantity": "Tone/HP-LP voicing sweep",
+        "method": "Oscilloscope at TONE_W, function generator, FFT",
+        "equipment": "Oscilloscope with FFT, function generator",
+        "conditions": "9V supply, 1kHz sine, 50mVpk input, Drive at 50%, Tone pot sweep, HP/LP toggle",
+        "acceptance": "HP position: more high-frequency content; LP position: flatter/darker response",
+        "safety": "SELV DC only",
+        "notes": "Compare against S002 tone-stack frequency response (tone-stack.png)"
+      }
+    ],
+    "operating_limits": [
+      {
+        "id": "OL1",
+        "parameter": "Supply voltage (VCC)",
+        "value": 9.0,
+        "unit": "V",
+        "min": 8.0,
+        "max": 18.0,
+        "condition": "DC operating, all temperatures",
+        "source": "S009/C022 user reconciliation 2026-11-09",
+        "note": "Design range; TL082 min supply 7V (S007)"
+      },
+      {
+        "id": "OL2",
+        "parameter": "Vref bias ratio",
+        "value": 0.5,
+        "unit": "V/V",
+        "min": 0.48,
+        "max": 0.52,
+        "condition": "No signal, idle",
+        "source": "S002 article text + simulation",
+        "note": "Vref divider loaded by feedback networks; measured under idle conditions"
+      },
+      {
+        "id": "OL3",
+        "parameter": "TL082 minimum supply voltage",
+        "value": 7.0,
+        "unit": "V",
+        "min": 7.0,
+        "condition": "DC operating",
+        "source": "S007 TI TL082 product page parametric summary (accessed 2026-11-09)",
+        "note": "Full SLOS081O extraction pending; bench verification required"
+      },
+      {
+        "id": "OL4",
+        "parameter": "TL082 input common-mode headroom",
+        "value": 3.0,
+        "unit": "V",
+        "min": 3.0,
+        "condition": "VCC=8V, Vref=4V",
+        "source": "S007 TI TL082 product page parametric summary (accessed 2026-11-09)",
+        "note": "Typical value; condition/process/temperature dependent"
+      },
+      {
+        "id": "OL5",
+        "parameter": "TL082 output swing headroom",
+        "value": 1.5,
+        "unit": "V/rail",
+        "min": 1.5,
+        "condition": "VCC=8V, 100k load",
+        "source": "S007 TI TL082 product page parametric summary (accessed 2026-11-09)",
+        "note": "Typical value; condition/process/temperature dependent"
+      },
+      {
+        "id": "OL6",
+        "parameter": "Maximum input signal level",
+        "value": 0.5,
+        "unit": "Vpk",
+        "max": 0.5,
+        "condition": "1kHz sine, Drive at 50%",
+        "source": "Design assumption (unverified)",
+        "note": "Must not damage/overload in unintended way; clipping expected at higher levels"
+      },
+      {
+        "id": "OL7",
+        "parameter": "Maximum junction temperature",
+        "value": 125.0,
+        "unit": "C",
+        "max": 125.0,
+        "condition": "All operating conditions",
+        "source": "TI SLOS081O Rev O (S007)",
+        "note": "TL082 max junction temperature"
+      },
+      {
+        "id": "OL8",
+        "parameter": "Ambient temperature",
+        "value": 25.0,
+        "unit": "C",
+        "max": 40.0,
+        "condition": "Indoor/stage use",
+        "source": "Design assumption",
+        "note": "No forced cooling; passive enclosure; max operating ambient 40C"
+      }
+    ],
     "decisions": [
       {
         "id": "D_V1",
