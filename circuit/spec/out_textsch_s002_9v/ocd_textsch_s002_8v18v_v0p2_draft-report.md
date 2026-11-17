@@ -202,8 +202,6 @@ Status: **PASS**
 - `ltspice_asc`: `ocd_textsch_s002_8v18v_v0p2_draft.asc`
 - `kicad_net`: `ocd_textsch_s002_8v18v_v0p2_draft.net`
 - `kicad_sch`: `ocd_textsch_s002_8v18v_v0p2_draft.kicad_sch`
-- `image_svg`: `ocd_textsch_s002_8v18v_v0p2_draft.svg`
-- `image_png`: `ocd_textsch_s002_8v18v_v0p2_draft.png`
 - `bom`: `ocd_textsch_s002_8v18v_v0p2_draft-bom.csv`
 
 > The generated SPICE netlist is the electrical source of truth. The schematics are drawn from the same component list and use net labels at every pin instead of routed wires.
