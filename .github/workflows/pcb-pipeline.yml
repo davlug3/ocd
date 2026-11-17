@@ -40,8 +40,15 @@ jobs:
                 apt-get install -y -qq python3 >/dev/null
               fi
               if ! command -v java >/dev/null 2>&1; then
-                apt-get install -y -qq default-jre >/dev/null
+                apt-get update -qq
+                apt-get install -y -qq openjdk-17-jre-headless >/dev/null
               fi
+              # Download Freerouting jar if not present
+              FREEROUTING_JAR=/tmp/freerouting.jar
+              if [ ! -f "$FREEROUTING_JAR" ]; then
+                curl -fL -o "$FREEROUTING_JAR" https://github.com/freerouting/freerouting/releases/download/v2.5.0/freerouting-2.5.0.jar
+              fi
+              export FREEROUTING_JAR
               BOARD="${{ github.event.inputs.board }}"
               if [ "$BOARD" = "1590g" ]; then
                 SPEC="pcb/board_1590g/ocd_v0p4_8v18v_1590g.spec.json"
