@@ -904,9 +904,9 @@
   ],
   "placement": {
     "mode": "auto",
-    "margin_mm": 1.0,
+    "margin_mm": 0.5,
     "grid_mm": 1.27,
-    "clearance_mm": 0.5,
+    "clearance_mm": 0.3,
     "fixed_refs": [
       "H1",
       "H2",
