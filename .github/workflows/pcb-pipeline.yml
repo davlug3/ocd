@@ -30,8 +30,8 @@ jobs:
 
       - name: Download Freerouting
         run: |
-          if [ ! -f /tmp/freerouting.jar ]; then
-            python3 -c "import urllib.request; urllib.request.urlretrieve('https://github.com/freerouting/freerouting/releases/download/v2.5.0/freerouting-2.5.0.jar', '/tmp/freerouting.jar')"
+          if [ ! -f /tmp/freerouting-jar.jar ]; then
+            python3 -c "import urllib.request; urllib.request.urlretrieve('https://github.com/freerouting/freerouting/releases/download/v2.5.0/freerouting-2.5.0.jar', '/tmp/freerouting-jar.jar')"
           fi
 
       - name: Run PCB pipeline in KiCad container
@@ -45,8 +45,8 @@ jobs:
           fi
           echo "Running pipeline for $BOARD..."
           docker run --rm --user root \
-            -v "${PWD}:/work" -v "/tmp/freerouting.jar:/tmp/freerouting.jar:ro" \
-            -w /work -e HOME=/tmp -e FREEROUTING_JAR=/tmp/freerouting.jar \
+            -v "${PWD}:/work" -v "/tmp/freerouting-jar.jar:/tmp/freerouting-jar.jar:ro" \
+            -w /work -e HOME=/tmp -e FREEROUTING_JAR=/tmp/freerouting-jar.jar \
             kicad/kicad:9.0 bash -lc '
               set -e
               if ! command -v python3 >/dev/null 2>&1; then
