@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+*.kicad_prl
+*-backups/
+_autosave-*
+*.lck
+drc/
+gerbers/
+build/
+*.jar
+*.dsn
+*.ses
+freerouting*.jar
