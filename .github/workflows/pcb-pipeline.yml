@@ -48,7 +48,7 @@ jobs:
               if [ ! -f "$FREEROUTING_JAR" ]; then
                 python3 -c "import urllib.request; urllib.request.urlretrieve('https://github.com/freerouting/freerouting/releases/download/v2.5.0/freerouting-2.5.0.jar', '$FREEROUTING_JAR')"
               fi
-              export FREEROUTING_JAR
+              export FREEROUTING_JAR="$FREEROUTING_JAR"
               BOARD="${{ github.event.inputs.board }}"
               if [ "$BOARD" = "1590g" ]; then
                 SPEC="pcb/board_1590g/ocd_v0p4_8v18v_1590g.spec.json"
