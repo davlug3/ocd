@@ -858,7 +858,7 @@
       "board_only": true,
       "pads": {},
       "at": {
-        "x_mm": 101.0,
+        "x_mm": 93.0,
         "y_mm": 7.0,
         "rotation_deg": 0.0,
         "side": "front"
@@ -876,7 +876,7 @@
       "pads": {},
       "at": {
         "x_mm": 7.0,
-        "y_mm": 51.0,
+        "y_mm": 43.0,
         "rotation_deg": 0.0,
         "side": "front"
       },
@@ -892,8 +892,8 @@
       "board_only": true,
       "pads": {},
       "at": {
-        "x_mm": 101.0,
-        "y_mm": 51.0,
+        "x_mm": 93.0,
+        "y_mm": 43.0,
         "rotation_deg": 0.0,
         "side": "front"
       },
