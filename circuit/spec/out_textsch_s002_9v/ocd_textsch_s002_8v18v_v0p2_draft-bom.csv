@@ -10,9 +10,9 @@ C6,1,Capacitor,220p,,S002-schematic-image-confirmed: HF stability cap (C6=220pF)
 C7,1,Capacitor,10n,,S002-schematic-image-confirmed: VREF-CLIP_A cap (C7=10nF).
 C8,1,Capacitor,100n,,S002-schematic-image-confirmed: LF response (C8=100nF).
 C9,1,Capacitor,220p,,S002-schematic-image-confirmed: HF stability (C9=220pF).
-D1,1,Diode,APPROX_1N34A,,"S002-schematic-image-confirmed: D1 [A=CLIP_A, K=M2_D1_NODE], 1N34A Ge per article text (C027). APPROX sim-only model, Ge variability applies."
-M1,1,N-MOSFET,APPROX_2N7000,,"S002-schematic-image-confirmed: M1 [D&G=VREF, S=CLIP_A]. Exact part unknown; APPROX sim-only. Commenter-reported alternate wiring (M1[S=VREF,D&G=R9/R10]) does NOT match S002 image."
-M2,1,N-MOSFET,APPROX_2N7000,,"S002-schematic-image-confirmed: M2 [D=VREF, G&S=M2_D1_NODE]. Exact part unknown; APPROX sim-only. Commenter-reported alternate wiring (M2[D&G=VREF,S=D1]) does NOT match S002 image."
+D1,1,Diode,APPROX_1N34A,,"S002-schematic-image-confirmed: D1 [A=CLIP_A, K=M2_D1_NODE], 1N34A Ge per article text (C027). APPROX_1N34A simulation-only model (no manufacturer SPICE model available for Ge diode; sourced from DAFx26-style params). Ge variability applies — select/measure actual diodes."
+M1,1,N-MOSFET,2N7002,,"S002-schematic-image-confirmed: M1 [D&G=VREF, S=CLIP_A]. Model: 2N7002 (Fairchild, Bordodynov library, KiCad Spice Library mirror) — substitute for 2N7000 (same die, different package TO-92 vs SOT-23). Subcircuit node order D,G,S. Commenter-reported alternate wiring (M1[S=VREF,D&G=R9/R10]) does NOT match S002 image."
+M2,1,N-MOSFET,2N7002,,"S002-schematic-image-confirmed: M2 [D=VREF, G&S=M2_D1_NODE]. Model: 2N7002 (Fairchild, Bordodynov library, KiCad Spice Library mirror) — substitute for 2N7000 (same die, different package TO-92 vs SOT-23). Subcircuit node order D,G,S."
 R1,1,Resistor,100,,S002-schematic-image-confirmed: supply feed/filter node (R1=100Ω).
 R10,1,Resistor,10k,,S002-schematic-image-confirmed: clip network resistor (R10=10k).
 R11,1,Resistor,39k,,S002-schematic-image-confirmed: gain ref to Vref (R11=39k).

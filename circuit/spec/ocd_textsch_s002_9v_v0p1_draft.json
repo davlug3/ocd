@@ -8,7 +8,10 @@
     {
       "name": "VCC",
       "voltage": 9.0,
-      "range_v": [8.0, 18.0],
+      "range_v": [
+        8.0,
+        18.0
+      ],
       "source": "8-18V DC center-negative per C022; 9V nominal test condition"
     }
   ],
@@ -118,15 +121,16 @@
       },
       {
         "id": "D_DEV",
-        "decision": "TL082.301 sim-only; M1/M2 APPROX_2N7000, D1 APPROX_BAT46 placeholders (user: D1 any of those)",
+        "decision": "M1/M2 upgraded to sourced 2N7002 model (Fairchild/Bordodynov, KiCad Spice Library mirror). D1 remains APPROX_1N34A (no manufacturer SPICE model for Ge). TL082.301 (TI, ±15V characterized, extrapolative at 8-18V single supply). 2N7002 is SOT-23 package; 2N7000 is TO-92 — same die, different package/pinout. Pinout must be verified for chosen package.",
         "alternatives": [
-          "APPROX_1N34A",
-          "sourced models"
+          "2N7000 TO-92 (original, no sourced model available)",
+          "BSS138 (sourced NMOS model in catalog, different Vgs threshold)"
         ],
-        "rationale": "exact parts unknown; simulation-only",
+        "rationale": "2N7002 sourced model available from KiCad Spice Library; 2N7000 has no catalog entry. Electrical characteristics are nearly identical (same die). Package/pinout differs and must be verified.",
         "sources": [
-          "TI SLOJ070 TL082.301",
-          "local APPROX models"
+          "TI SLOJ070 TL082.301 (S007)",
+          "Fairchild 2N7002 model (Bordodynov library, KiCad Spice Library mirror)",
+          "S002 schematic image (M1/M2 confirmed as 2N7000)"
         ]
       },
       {
@@ -159,7 +163,7 @@
     "risks": [
       {
         "id": "K1",
-        "risk": "Op-amp feedback and input pin wiring assumed (text functional, not pin-net explicit). R2→GND confirmed from S002 image; X1/X3 feedback placement still assumed.",
+        "risk": "Op-amp feedback and input pin wiring assumed (text functional, not pin-net explicit). R2\u2192GND confirmed from S002 image; X1/X3 feedback placement still assumed.",
         "severity": "high",
         "mitigation": "verify against actual S002 schematic",
         "verification": "schematic compare + sim"
@@ -249,7 +253,7 @@
         "1": "VCC",
         "2": "VCC_F"
       },
-      "notes": "S002-schematic-image-confirmed: supply feed/filter node (R1=100Ω)."
+      "notes": "S002-schematic-image-confirmed: supply feed/filter node (R1=100\u03a9)."
     },
     {
       "ref": "C2",
@@ -259,7 +263,7 @@
         "1": "VCC_F",
         "2": "GND"
       },
-      "notes": "S002-schematic-image-confirmed: power bulk filter (C2=10µF)."
+      "notes": "S002-schematic-image-confirmed: power bulk filter (C2=10\u00b5F)."
     },
     {
       "ref": "C3",
@@ -299,7 +303,7 @@
         "1": "VREF",
         "2": "GND"
       },
-      "notes": "S002-schematic-image-confirmed: Vref filter cap (C5=10µF)."
+      "notes": "S002-schematic-image-confirmed: Vref filter cap (C5=10\u00b5F)."
     },
     {
       "ref": "C1",
@@ -447,24 +451,24 @@
     {
       "ref": "M1",
       "type": "NMOS",
-      "model": "APPROX_2N7000",
+      "model": "2N7002",
       "pins": {
         "D": "VREF",
         "G": "VREF",
         "S": "CLIP_A"
       },
-      "notes": "S002-schematic-image-confirmed: M1 [D&G=VREF, S=CLIP_A]. Exact part unknown; APPROX sim-only. Commenter-reported alternate wiring (M1[S=VREF,D&G=R9/R10]) does NOT match S002 image."
+      "notes": "S002-schematic-image-confirmed: M1 [D&G=VREF, S=CLIP_A]. Model: 2N7002 (Fairchild, Bordodynov library, KiCad Spice Library mirror) — substitute for 2N7000 (same die, different package TO-92 vs SOT-23). Subcircuit node order D,G,S. Commenter-reported alternate wiring (M1[S=VREF,D&G=R9/R10]) does NOT match S002 image."
     },
     {
       "ref": "M2",
       "type": "NMOS",
-      "model": "APPROX_2N7000",
+      "model": "2N7002",
       "pins": {
         "D": "VREF",
         "G": "M2_D1_NODE",
         "S": "M2_D1_NODE"
       },
-      "notes": "S002-schematic-image-confirmed: M2 [D=VREF, G&S=M2_D1_NODE]. Exact part unknown; APPROX sim-only. Commenter-reported alternate wiring (M2[D&G=VREF,S=D1]) does NOT match S002 image."
+      "notes": "S002-schematic-image-confirmed: M2 [D=VREF, G&S=M2_D1_NODE]. Model: 2N7002 (Fairchild, Bordodynov library, KiCad Spice Library mirror) — substitute for 2N7000 (same die, different package TO-92 vs SOT-23). Subcircuit node order D,G,S."
     },
     {
       "ref": "D1",
@@ -474,7 +478,7 @@
         "A": "CLIP_A",
         "K": "M2_D1_NODE"
       },
-      "notes": "S002-schematic-image-confirmed: D1 [A=CLIP_A, K=M2_D1_NODE], 1N34A Ge per article text (C027). APPROX sim-only model, Ge variability applies."
+      "notes": "S002-schematic-image-confirmed: D1 [A=CLIP_A, K=M2_D1_NODE], 1N34A Ge per article text (C027). APPROX_1N34A simulation-only model (no manufacturer SPICE model available for Ge diode; sourced from DAFx26-style params). Ge variability applies — select/measure actual diodes."
     },
     {
       "ref": "X3A",
@@ -537,7 +541,7 @@
         "1": "X3_OUT",
         "2": "TONE_TOP"
       },
-      "notes": "S002-schematic-image-confirmed: output coupling cap (C10=10µF)."
+      "notes": "S002-schematic-image-confirmed: output coupling cap (C10=10\u00b5F)."
     },
     {
       "ref": "R_X4A",
@@ -547,7 +551,7 @@
         "1": "TONE_TOP",
         "2": "TONE_W"
       },
-      "notes": "Tone pot X4 (10k) modeled at 50%: upper leg TONE_TOP→TONE_W. S002-confirmed 10k pot. Wiring assumed."
+      "notes": "Tone pot X4 (10k) modeled at 50%: upper leg TONE_TOP\u2192TONE_W. S002-confirmed 10k pot. Wiring assumed."
     },
     {
       "ref": "R_X4B",
@@ -557,7 +561,7 @@
         "1": "TONE_W",
         "2": "GND"
       },
-      "notes": "Tone pot X4 (10k) modeled at 50%: lower leg TONE_W→GND. S002-confirmed 10k pot. Wiring assumed."
+      "notes": "Tone pot X4 (10k) modeled at 50%: lower leg TONE_W\u2192GND. S002-confirmed 10k pot. Wiring assumed."
     },
     {
       "ref": "C11",
@@ -653,9 +657,9 @@
   "assumptions": [
     "9V nominal test; design range 8-18V DC center-negative per C022.",
     "Op-amp feedback networks (X1/X3) are standard Vref-biased assumptions from component values; not pin-verified against S002 schematic.",
-    "R2 to GND per S002-confirmed text and schematic image (C026) — not VREF. R6 biases op-amp non-inverting input to VREF.",
-    "X2 modeled as 500k (50% of 1M). S002 states 'gain pot (1M)' — mapping/wiring to X2 assumed.",
-    "X5 modeled as 50% of 100k placeholder — volume value NOT found in retrieved S002 text; unverified.",
+    "R2 to GND per S002-confirmed text and schematic image (C026) \u2014 not VREF. R6 biases op-amp non-inverting input to VREF.",
+    "X2 modeled as 500k (50% of 1M). S002 states 'gain pot (1M)' \u2014 mapping/wiring to X2 assumed.",
+    "X5 modeled as 50% of 100k placeholder \u2014 volume value NOT found in retrieved S002 text; unverified.",
     "M1/M2 exact part numbers unknown; APPROX_2N7000 simulation-only, unverified. D1=APPROX_1N34A per S002-confirmed 1N34A Ge clipping diode (C027). APPROX sim-only, Ge variability applies.",
     "Clip wiring CONFIRMED from S002 schematic image: M1[D&G=VREF,S=CLIP_A], M2[D=VREF,G&S=M2_D1_NODE], D1[A=CLIP_A,K=M2_D1_NODE]. Commenter-reported alternate wiring does NOT match S002 image.",
     "Tone/HP-LP values CONFIRMED from S002 schematic image: X4=10k pot (article text), C11=47nF, R14=22k, R15=33k. Switch1 wiring assumed.",
@@ -693,6 +697,20 @@
       "part": "1N34A Ge APPROX sim-only (S002-confirmed D1 type)",
       "source": "local APPROX; not manufacturer model; D1 per S002 C027",
       "sha256": "db949f2074c80243651fc2ab6c003f27fecc0fba127df704fcdba44427450aaa"
+    },
+    "2N7002": {
+      "file": "../models/2N7002.lib",
+      "name": "2N7002",
+      "vendor": "Fairchild (Bordodynov library, KiCad Spice Library mirror)",
+      "part": "2N7002",
+      "source": "https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/master/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/2N7002.mod",
+      "sha256": "d12975b019cda3b531c210920ed227637db470817c25402ed130ba1b94588104",
+      "subckt_pins": [
+        "D",
+        "G",
+        "S"
+      ],
+      "notes": "Subcircuit node order 20 10 30 is drain, gate, source. Uses LEVEL=3. Temperature-dependent VTO and BV expressions converted to constants at 27C (VTO=1.176, BV=71.88) for ngspice compatibility (original used LTspice/PSpice TEMP brace syntax)."
     }
   },
   "notes": [

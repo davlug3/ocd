@@ -4,7 +4,7 @@ OCD-style overdrive draft from S002-verified topology + user node connections. S
 
 - Topology: `ocd_textsch_s002_9v`
 - Ground: `GND`
-- Generated: 2026-11-10
+- Generated: 2026-11-17
 - Simulation status: **vendor models supplied**
 
 ## Supplies
@@ -40,7 +40,7 @@ Vref-biased single-supply 9V: input bias -> X1 gain -> R9/R10/R12/C7/M1/M2/D1 cl
 | D_V1 | 8-18V DC center-negative per C022; 9V nominal test condition | 9V only, 5-18V (prior, dropped) | Project requires 8-18V range (C022); S002 confirms circuit works 9V to 18V; 9V used as nominal test point | S009/C022 user reconciliation 2026-11-09, S002 https://www.analogisnotdead.com/article34/circuit-analysis-fulltone-s-ocd accessed 2026-11-10 via webfetch |
 | D_CLIP_V1 | Implement user-reported M1/M2/D1/R9/R10/R12/C7 connections from schematic image (S002-based) | prior provisional draft wiring | user provided explicit node table 2026-11-09 | user-reported from schematic image, 2026-11-09, S002 https://www.analogisnotdead.com/article34/circuit-analysis-fulltone-s-ocd accessed 2026-11-09 |
 | D_POTS | X2 gain pot 1M per S002 retrieved text (mapping to X2 assumed); X5 volume 100k placeholder (not found in retrieved S002 text); X4/Switch1 omitted for sim | ask user for exact pot values/wiring | user asked to find likely values from academic/available sources; S002 states 'gain pot (1M)' and '10k pot X4'; volume not explicit in retrieval | S002 accessed 2026-11-09 (curl extract), placeholder for X5 |
-| D_DEV | TL082.301 sim-only; M1/M2 APPROX_2N7000, D1 APPROX_BAT46 placeholders (user: D1 any of those) | APPROX_1N34A, sourced models | exact parts unknown; simulation-only | TI SLOJ070 TL082.301, local APPROX models |
+| D_DEV | M1/M2 upgraded to sourced 2N7002 model (Fairchild/Bordodynov, KiCad Spice Library mirror). D1 remains APPROX_1N34A (no manufacturer SPICE model for Ge). TL082.301 (TI, ±15V characterized, extrapolative at 8-18V single supply). 2N7002 is SOT-23 package; 2N7000 is TO-92 — same die, different package/pinout. Pinout must be verified for chosen package. | 2N7000 TO-92 (original, no sourced model available), BSS138 (sourced NMOS model in catalog, different Vgs threshold) | 2N7002 sourced model available from KiCad Spice Library; 2N7000 has no catalog entry. Electrical characteristics are nearly identical (same die). Package/pinout differs and must be verified. | TI SLOJ070 TL082.301 (S007), Fairchild 2N7002 model (Bordodynov library, KiCad Spice Library mirror), S002 schematic image (M1/M2 confirmed as 2N7000) |
 | D_BIAS_FIX | Reverted: R2 to GND per S002-confirmed text (1M input reference to ground). R6 biases op-amp non-inverting input to VREF. D1=APPROX_1N34A per S002-confirmed 1N34A Ge clipping diode. | keep R2 to VREF (provisional sim fix, conflicts with S002), verify S002 image for pin-level confirmation | S002 text explicitly states R2 connects input cap C1 to GROUND as voltage reference (C026). Previous VREF move was a provisional sim bias fix and is now removed. | S002 https://www.analogisnotdead.com/article34/circuit-analysis-fulltone-s-ocd accessed 2026-11-10 via webfetch (C026), ngspice OP debug 2026-11-09 (superseded) |
 | D_TONE | Implement S002-confirmed tone/HP-LP network: X4=10k tone pot, C11 tone cap to ground, Switch1 (HP/LP) parallels R14/R15. R14=22k/R15=33k image-read from S002 schematic (verify); C11=47n placeholder. | keep tone/volume simplified (prior draft), ask user for exact tone/HP-LP values/wiring | S002 text confirms X4=10k pot, C11 cap to ground, HP/LP parallels R14/R15 (C028). Clip wiring confirmed from S002 schematic image matches user-reported wiring; commenter-reported alternate wiring does not match image. | S002 https://www.analogisnotdead.com/article34/circuit-analysis-fulltone-s-ocd accessed 2026-11-10 via webfetch (C028), S002 schematic images in circuit/sources/s002-images/ (clipping.png, fulltone-ocd.png) |
 
@@ -87,9 +87,9 @@ Vref-biased single-supply 9V: input bias -> X1 gain -> R9/R10/R12/C7/M1/M2/D1 cl
 | C7 | C | 10n | — | 1=VREF, 2=CLIP_A | S002-schematic-image-confirmed: VREF-CLIP_A cap (C7=10nF). |
 | R10 | R | 10k | — | 1=CLIP_A, 2=CLIP_B | S002-schematic-image-confirmed: clip network resistor (R10=10k). |
 | R12 | R | 220k | — | 1=VREF, 2=CLIP_B | S002-schematic-image-confirmed: bias to CLIP_B (R12=220k). |
-| M1 | NMOS | APPROX_2N7000 | — | 1=VREF, 2=VREF, 3=CLIP_A | S002-schematic-image-confirmed: M1 [D&G=VREF, S=CLIP_A]. Exact part unknown; APPROX sim-only. Commenter-reported alternate wiring (M1[S=VREF,D&G=R9/R10]) does NOT match S002 image. |
-| M2 | NMOS | APPROX_2N7000 | — | 1=VREF, 2=M2_D1_NODE, 3=M2_D1_NODE | S002-schematic-image-confirmed: M2 [D=VREF, G&S=M2_D1_NODE]. Exact part unknown; APPROX sim-only. Commenter-reported alternate wiring (M2[D&G=VREF,S=D1]) does NOT match S002 image. |
-| D1 | D | APPROX_1N34A | — | 1=CLIP_A, 2=M2_D1_NODE | S002-schematic-image-confirmed: D1 [A=CLIP_A, K=M2_D1_NODE], 1N34A Ge per article text (C027). APPROX sim-only model, Ge variability applies. |
+| M1 | NMOS | 2N7002 | — | 1=VREF, 2=VREF, 3=CLIP_A | S002-schematic-image-confirmed: M1 [D&G=VREF, S=CLIP_A]. Model: 2N7002 (Fairchild, Bordodynov library, KiCad Spice Library mirror) — substitute for 2N7000 (same die, different package TO-92 vs SOT-23). Subcircuit node order D,G,S. Commenter-reported alternate wiring (M1[S=VREF,D&G=R9/R10]) does NOT match S002 image. |
+| M2 | NMOS | 2N7002 | — | 1=VREF, 2=M2_D1_NODE, 3=M2_D1_NODE | S002-schematic-image-confirmed: M2 [D=VREF, G&S=M2_D1_NODE]. Model: 2N7002 (Fairchild, Bordodynov library, KiCad Spice Library mirror) — substitute for 2N7000 (same die, different package TO-92 vs SOT-23). Subcircuit node order D,G,S. |
+| D1 | D | APPROX_1N34A | — | 1=CLIP_A, 2=M2_D1_NODE | S002-schematic-image-confirmed: D1 [A=CLIP_A, K=M2_D1_NODE], 1N34A Ge per article text (C027). APPROX_1N34A simulation-only model (no manufacturer SPICE model available for Ge diode; sourced from DAFx26-style params). Ge variability applies — select/measure actual diodes. |
 | X3A | OPAMP | TL082 | — | 1=CLIP_B, 2=X3_FB, 3=VCC_F, 4=GND, 5=X3_OUT | S002-schematic-image-confirmed: TL082 section 2; non-inv input CLIP_B; wiring assumed. |
 | R11 | R | 39k | — | 1=X3_FB, 2=VREF | S002-schematic-image-confirmed: gain ref to Vref (R11=39k). |
 | R13 | R | 150k | — | 1=X3_FB, 2=X3_OUT | S002-schematic-image-confirmed: feedback (R13=150k). |
@@ -121,8 +121,8 @@ Vref-biased single-supply 9V: input bias -> X1 gain -> R9/R10/R12/C7/M1/M2/D1 cl
 | C8 | 1 | Capacitor | 100n |  |
 | C9 | 1 | Capacitor | 220p |  |
 | D1 | 1 | Diode | APPROX_1N34A |  |
-| M1 | 1 | N-MOSFET | APPROX_2N7000 |  |
-| M2 | 1 | N-MOSFET | APPROX_2N7000 |  |
+| M1 | 1 | N-MOSFET | 2N7002 |  |
+| M2 | 1 | N-MOSFET | 2N7002 |  |
 | R1 | 1 | Resistor | 100 |  |
 | R10 | 1 | Resistor | 10k |  |
 | R11 | 1 | Resistor | 39k |  |
@@ -154,8 +154,8 @@ Vref-biased single-supply 9V: input bias -> X1 gain -> R9/R10/R12/C7/M1/M2/D1 cl
 | Ref | Type | Model | Kind | Vendor | Part | SHA256 |
 | --- | --- | --- | --- | --- | --- | --- |
 | X1A | OPAMP | `TL082` | vendor | Texas Instruments | TL082 (macromodel) | `adad2e131f728610` |
-| M1 | NMOS | `APPROX_2N7000` | vendor | project approximation | 2N7000 APPROX sim-only | `081054dff4a75cb5` |
-| M2 | NMOS | `APPROX_2N7000` | vendor | project approximation | 2N7000 APPROX sim-only | `081054dff4a75cb5` |
+| M1 | NMOS | `2N7002` | vendor | Fairchild (Bordodynov library, KiCad Spice Library mirror) | 2N7002 | `d12975b019cda3b5` |
+| M2 | NMOS | `2N7002` | vendor | Fairchild (Bordodynov library, KiCad Spice Library mirror) | 2N7002 | `d12975b019cda3b5` |
 | D1 | D | `APPROX_1N34A` | vendor | project approximation | 1N34A Ge APPROX sim-only (S002-confirmed D1 type) | `db949f2074c80243` |
 | X3A | OPAMP | `TL082` | vendor | Texas Instruments | TL082 (macromodel) | `adad2e131f728610` |
 
@@ -193,7 +193,7 @@ Status: **PASS**
 - [SKIP] kicad_schematic: kiutils is not installed; schematic geometry not parsed (set PYTHONPATH to a kiutils checkout)
 - [SKIP] pcb_handoff: not generated (add "pcb" to deliverables)
 - [SKIP] mna_linear: circuit contains nonlinear element(s) M1, M2, D1; MNA only solves linear circuits
-- [PASS] ngspice: ngspice ran 4 analysis plot(s): AC Analysis, DC transfer characteristic, Operating Point, Transient Analysis; V(vcc)=9, V(in)=0, V(vcc_f)=8.15686, V(vref)=3.86898, V(in_b)=2.63195, V(x1_p)=2.63195, V(xx1a.11)=6.66856e-08, V(xx1a.12)=0.695012, V(xx1a.6)=19.6535, V(xx1a.7)=1.49133, V(x1_out)=1.52315, V(xx1a.53)=5.95686, V(xx1a.54)=2.2, V(xx1a.90)=-0.212178, V(xx1a.91)=25, V(xx1a.92)=-25, V(xx1a.99)=4.07843, V(xx1a.10)=2.48501, V(x1_fb)=3.85906, V(xx1a.9)=0, V(xx1a.8)=1.49133, V(x2_w)=3.77789, V(clip_a)=1.74654, V(clip_b)=1.83882, V(m2_d1_node)=1.74656, V(xx3a.11)=6.5009e-08, V(xx3a.12)=0.697739, V(xx3a.6)=19.7299, V(xx3a.7)=1.49328, V(x3_out)=1.52305, V(xx3a.53)=5.95686, V(xx3a.54)=2.2, V(xx3a.90)=-0.198462, V(xx3a.91)=25, V(xx3a.92)=-25, V(xx3a.99)=4.07843, V(xx3a.10)=1.69355, V(x3_fb)=3.3849, V(xx3a.9)=0, V(xx3a.8)=1.49328, V(tone_top)=0, V(tone_w)=0, V(vol_top)=0, V(out)=0
+- [PASS] ngspice: ngspice ran 4 analysis plot(s): AC Analysis, DC transfer characteristic, Operating Point, Transient Analysis; V(vcc)=9, V(in)=0, V(vcc_f)=8.15413, V(vref)=3.56707, V(in_b)=2.42657, V(x1_p)=2.42657, V(xx1a.11)=6.56226e-08, V(xx1a.12)=0.695713, V(xx1a.6)=19.6732, V(xx1a.7)=1.48201, V(x1_out)=1.52313, V(xx1a.53)=5.95413, V(xx1a.54)=2.2, V(xx1a.90)=-0.274098, V(xx1a.91)=25, V(xx1a.92)=-25, V(xx1a.99)=4.07706, V(xx1a.10)=2.28005, V(x1_fb)=3.55842, V(xx1a.9)=0, V(xx1a.8)=1.48201, V(x2_w)=3.4877, V(clip_a)=2.36967, V(clip_b)=2.42173, V(xm1.1)=3.56707, V(xm1.2)=3.56701, V(xm1.3)=2.36967, V(xm1.4)=3.56704, V(xm1.5)=2.36967, V(xm1.8)=3.567, V(xm1.6)=3.56704, V(xm1.7)=3.56707, V(xm1.9)=3.56712, V(m2_d1_node)=2.37165, V(xm2.1)=2.37165, V(xm2.2)=3.56707, V(xm2.3)=2.37165, V(xm2.4)=3.56707, V(xm2.5)=2.37165, V(xm2.8)=4.76249, V(xm2.6)=2.37165, V(xm2.7)=3.56706, V(xm2.9)=-0.0191961, V(xx3a.11)=0.0140046, V(xx3a.12)=0.681755, V(xx3a.6)=18.8824, V(xx3a.7)=1.49586, V(x3_out)=1.52419, V(xx3a.53)=5.95413, V(xx3a.54)=2.2, V(xx3a.90)=-0.188866, V(xx3a.91)=25, V(xx3a.92)=-25, V(xx3a.99)=4.07706, V(xx3a.10)=2.26661, V(x3_fb)=3.14552, V(xx3a.9)=0, V(xx3a.8)=1.49586, V(tone_top)=0, V(tone_w)=0, V(vol_top)=0, V(out)=0
 
 ## Files
 
@@ -202,6 +202,8 @@ Status: **PASS**
 - `ltspice_asc`: `ocd_textsch_s002_8v18v_v0p2_draft.asc`
 - `kicad_net`: `ocd_textsch_s002_8v18v_v0p2_draft.net`
 - `kicad_sch`: `ocd_textsch_s002_8v18v_v0p2_draft.kicad_sch`
+- `image_svg`: `ocd_textsch_s002_8v18v_v0p2_draft.svg`
+- `image_png`: `ocd_textsch_s002_8v18v_v0p2_draft.png`
 - `bom`: `ocd_textsch_s002_8v18v_v0p2_draft-bom.csv`
 
 > The generated SPICE netlist is the electrical source of truth. The schematics are drawn from the same component list and use net labels at every pin instead of routed wires.

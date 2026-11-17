@@ -2,7 +2,7 @@
   "name": "ocd_textsch_s002_8v18v_v0p2_draft",
   "description": "OCD-style overdrive draft from S002-verified topology + user node connections. Supply 8-18V DC center-negative, 9V nominal test. Clip wiring confirmed from S002 image. Op-amp feedback wiring assumed. Not a verified Fulltone netlist. Do not fabricate.",
   "topology": "ocd_textsch_s002_9v",
-  "generated": "2026-11-10",
+  "generated": "2026-11-17",
   "ground": "GND",
   "supplies": [
     {
@@ -298,8 +298,8 @@
         "2": "VREF",
         "3": "CLIP_A"
       },
-      "model": "APPROX_2N7000",
-      "notes": "S002-schematic-image-confirmed: M1 [D&G=VREF, S=CLIP_A]. Exact part unknown; APPROX sim-only. Commenter-reported alternate wiring (M1[S=VREF,D&G=R9/R10]) does NOT match S002 image."
+      "model": "2N7002",
+      "notes": "S002-schematic-image-confirmed: M1 [D&G=VREF, S=CLIP_A]. Model: 2N7002 (Fairchild, Bordodynov library, KiCad Spice Library mirror) \u2014 substitute for 2N7000 (same die, different package TO-92 vs SOT-23). Subcircuit node order D,G,S. Commenter-reported alternate wiring (M1[S=VREF,D&G=R9/R10]) does NOT match S002 image."
     },
     {
       "ref": "M2",
@@ -310,8 +310,8 @@
         "2": "M2_D1_NODE",
         "3": "M2_D1_NODE"
       },
-      "model": "APPROX_2N7000",
-      "notes": "S002-schematic-image-confirmed: M2 [D=VREF, G&S=M2_D1_NODE]. Exact part unknown; APPROX sim-only. Commenter-reported alternate wiring (M2[D&G=VREF,S=D1]) does NOT match S002 image."
+      "model": "2N7002",
+      "notes": "S002-schematic-image-confirmed: M2 [D=VREF, G&S=M2_D1_NODE]. Model: 2N7002 (Fairchild, Bordodynov library, KiCad Spice Library mirror) \u2014 substitute for 2N7000 (same die, different package TO-92 vs SOT-23). Subcircuit node order D,G,S."
     },
     {
       "ref": "D1",
@@ -322,7 +322,7 @@
         "2": "M2_D1_NODE"
       },
       "model": "APPROX_1N34A",
-      "notes": "S002-schematic-image-confirmed: D1 [A=CLIP_A, K=M2_D1_NODE], 1N34A Ge per article text (C027). APPROX sim-only model, Ge variability applies."
+      "notes": "S002-schematic-image-confirmed: D1 [A=CLIP_A, K=M2_D1_NODE], 1N34A Ge per article text (C027). APPROX_1N34A simulation-only model (no manufacturer SPICE model available for Ge diode; sourced from DAFx26-style params). Ge variability applies \u2014 select/measure actual diodes."
     },
     {
       "ref": "X3A",
@@ -563,23 +563,23 @@
       "Type": "Diode",
       "Value": "APPROX_1N34A",
       "Footprint": "",
-      "Notes": "S002-schematic-image-confirmed: D1 [A=CLIP_A, K=M2_D1_NODE], 1N34A Ge per article text (C027). APPROX sim-only model, Ge variability applies."
+      "Notes": "S002-schematic-image-confirmed: D1 [A=CLIP_A, K=M2_D1_NODE], 1N34A Ge per article text (C027). APPROX_1N34A simulation-only model (no manufacturer SPICE model available for Ge diode; sourced from DAFx26-style params). Ge variability applies \u2014 select/measure actual diodes."
     },
     {
       "References": "M1",
       "Qty": "1",
       "Type": "N-MOSFET",
-      "Value": "APPROX_2N7000",
+      "Value": "2N7002",
       "Footprint": "",
-      "Notes": "S002-schematic-image-confirmed: M1 [D&G=VREF, S=CLIP_A]. Exact part unknown; APPROX sim-only. Commenter-reported alternate wiring (M1[S=VREF,D&G=R9/R10]) does NOT match S002 image."
+      "Notes": "S002-schematic-image-confirmed: M1 [D&G=VREF, S=CLIP_A]. Model: 2N7002 (Fairchild, Bordodynov library, KiCad Spice Library mirror) \u2014 substitute for 2N7000 (same die, different package TO-92 vs SOT-23). Subcircuit node order D,G,S. Commenter-reported alternate wiring (M1[S=VREF,D&G=R9/R10]) does NOT match S002 image."
     },
     {
       "References": "M2",
       "Qty": "1",
       "Type": "N-MOSFET",
-      "Value": "APPROX_2N7000",
+      "Value": "2N7002",
       "Footprint": "",
-      "Notes": "S002-schematic-image-confirmed: M2 [D=VREF, G&S=M2_D1_NODE]. Exact part unknown; APPROX sim-only. Commenter-reported alternate wiring (M2[D&G=VREF,S=D1]) does NOT match S002 image."
+      "Notes": "S002-schematic-image-confirmed: M2 [D=VREF, G&S=M2_D1_NODE]. Model: 2N7002 (Fairchild, Bordodynov library, KiCad Spice Library mirror) \u2014 substitute for 2N7000 (same die, different package TO-92 vs SOT-23). Subcircuit node order D,G,S."
     },
     {
       "References": "R1",
@@ -788,13 +788,15 @@
     "ltspice_asc": "ocd_textsch_s002_8v18v_v0p2_draft.asc",
     "kicad_net": "ocd_textsch_s002_8v18v_v0p2_draft.net",
     "kicad_sch": "ocd_textsch_s002_8v18v_v0p2_draft.kicad_sch",
+    "image_svg": "ocd_textsch_s002_8v18v_v0p2_draft.svg",
+    "image_png": "ocd_textsch_s002_8v18v_v0p2_draft.png",
     "bom": "ocd_textsch_s002_8v18v_v0p2_draft-bom.csv",
     "report": "ocd_textsch_s002_8v18v_v0p2_draft-report.md"
   },
   "verification": {
     "ok": true,
     "name": "ocd_textsch_s002_8v18v_v0p2_draft",
-    "generated": "2026-11-10",
+    "generated": "2026-11-17",
     "summary": "7 passed, 5 skipped, 0 failed",
     "checks": [
       {
@@ -825,12 +827,12 @@
             },
             {
               "ref": "M1",
-              "model": "APPROX_2N7000",
+              "model": "2N7002",
               "kind": "vendor"
             },
             {
               "ref": "M2",
-              "model": "APPROX_2N7000",
+              "model": "2N7002",
               "kind": "vendor"
             },
             {
@@ -915,12 +917,12 @@
       {
         "name": "ngspice",
         "ok": true,
-        "detail": "ngspice ran 4 analysis plot(s): AC Analysis, DC transfer characteristic, Operating Point, Transient Analysis; V(vcc)=9, V(in)=0, V(vcc_f)=8.15686, V(vref)=3.86898, V(in_b)=2.63195, V(x1_p)=2.63195, V(xx1a.11)=6.66856e-08, V(xx1a.12)=0.695012, V(xx1a.6)=19.6535, V(xx1a.7)=1.49133, V(x1_out)=1.52315, V(xx1a.53)=5.95686, V(xx1a.54)=2.2, V(xx1a.90)=-0.212178, V(xx1a.91)=25, V(xx1a.92)=-25, V(xx1a.99)=4.07843, V(xx1a.10)=2.48501, V(x1_fb)=3.85906, V(xx1a.9)=0, V(xx1a.8)=1.49133, V(x2_w)=3.77789, V(clip_a)=1.74654, V(clip_b)=1.83882, V(m2_d1_node)=1.74656, V(xx3a.11)=6.5009e-08, V(xx3a.12)=0.697739, V(xx3a.6)=19.7299, V(xx3a.7)=1.49328, V(x3_out)=1.52305, V(xx3a.53)=5.95686, V(xx3a.54)=2.2, V(xx3a.90)=-0.198462, V(xx3a.91)=25, V(xx3a.92)=-25, V(xx3a.99)=4.07843, V(xx3a.10)=1.69355, V(x3_fb)=3.3849, V(xx3a.9)=0, V(xx3a.8)=1.49328, V(tone_top)=0, V(tone_w)=0, V(vol_top)=0, V(out)=0",
+        "detail": "ngspice ran 4 analysis plot(s): AC Analysis, DC transfer characteristic, Operating Point, Transient Analysis; V(vcc)=9, V(in)=0, V(vcc_f)=8.15413, V(vref)=3.56707, V(in_b)=2.42657, V(x1_p)=2.42657, V(xx1a.11)=6.56226e-08, V(xx1a.12)=0.695713, V(xx1a.6)=19.6732, V(xx1a.7)=1.48201, V(x1_out)=1.52313, V(xx1a.53)=5.95413, V(xx1a.54)=2.2, V(xx1a.90)=-0.274098, V(xx1a.91)=25, V(xx1a.92)=-25, V(xx1a.99)=4.07706, V(xx1a.10)=2.28005, V(x1_fb)=3.55842, V(xx1a.9)=0, V(xx1a.8)=1.48201, V(x2_w)=3.4877, V(clip_a)=2.36967, V(clip_b)=2.42173, V(xm1.1)=3.56707, V(xm1.2)=3.56701, V(xm1.3)=2.36967, V(xm1.4)=3.56704, V(xm1.5)=2.36967, V(xm1.8)=3.567, V(xm1.6)=3.56704, V(xm1.7)=3.56707, V(xm1.9)=3.56712, V(m2_d1_node)=2.37165, V(xm2.1)=2.37165, V(xm2.2)=3.56707, V(xm2.3)=2.37165, V(xm2.4)=3.56707, V(xm2.5)=2.37165, V(xm2.8)=4.76249, V(xm2.6)=2.37165, V(xm2.7)=3.56706, V(xm2.9)=-0.0191961, V(xx3a.11)=0.0140046, V(xx3a.12)=0.681755, V(xx3a.6)=18.8824, V(xx3a.7)=1.49586, V(x3_out)=1.52419, V(xx3a.53)=5.95413, V(xx3a.54)=2.2, V(xx3a.90)=-0.188866, V(xx3a.91)=25, V(xx3a.92)=-25, V(xx3a.99)=4.07706, V(xx3a.10)=2.26661, V(x3_fb)=3.14552, V(xx3a.9)=0, V(xx3a.8)=1.49586, V(tone_top)=0, V(tone_w)=0, V(vol_top)=0, V(out)=0",
         "evidence": {
           "returncode": 0,
           "stderr": "",
-          "stdout": "******\n** ngspice-45.2 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Fri Sep 12 11:58:13 UTC 2025\n******\n\nBatch mode\n\nSimulation output goes to rawfile: /tmp/tmpx837m30c/ngspice.raw\nComments and warnings go to log-file: /tmp/tmpx837m30c/ngspice.log\n\n",
-          "log": "           6.66856e-08\nxx1a.12                               0.695012\nxx1a.6                                 19.6535\nxx1a.7                                 1.49133\nx1_out                                 1.52315\nxx1a.53                                5.95686\nxx1a.54                                    2.2\nxx1a.90                              -0.212178\nxx1a.91                                     25\nxx1a.92                                    -25\nxx1a.99                                4.07843\nxx1a.10                                2.48501\nx1_fb                                  3.85906\nxx1a.9                                       0\nxx1a.8                                 1.49133\nx2_w                                   3.77789\nclip_a                                 1.74654\nclip_b                                 1.83882\nm2_d1_node                             1.74656\nxx3a.11                             6.5009e-08\nxx3a.12                               0.697739\nxx3a.6                                 19.7299\nxx3a.7                                 1.49328\nx3_out                                 1.52305\nxx3a.53                                5.95686\nxx3a.54                                    2.2\nxx3a.90                              -0.198462\nxx3a.91                                     25\nxx3a.92                                    -25\nxx3a.99                                4.07843\nxx3a.10                                1.69355\nx3_fb                                   3.3849\nxx3a.9                                       0\nxx3a.8                                 1.49328\ntone_top                                     0\ntone_w                                       0\nvol_top                                      0\nout                                          0\nh.xx3a.hlim#branch                 3.96924e-13\nv.xx3a.vlim#branch                -0.000198462\nh.xx1a.hlim#branch                 4.24355e-13\nv.xx1a.vlim#branch                -0.000212178\nv.xx3a.vln#branch                 -2.48023e-11\nv.xx3a.vlp#branch                 -2.51993e-11\nv.xx3a.ve#branch                   -0.00018605\nv.xx3a.vc#branch                   4.43463e-12\nv.xx3a.vb#branch                   0.000197299\nv.xx1a.vln#branch                 -2.47886e-11\nv.xx1a.vlp#branch                  -2.5213e-11\nv.xx1a.ve#branch                  -0.000185329\nv.xx1a.vc#branch                   4.43451e-12\nv.xx1a.vb#branch                   0.000196535\nv_in#branch                                  0\nv1#branch                          -0.00843135\na$poly$e.xx3a.egnd#branch_1_0      0.000196138\na$poly$e.xx1a.egnd#branch_1_0      0.000210625\n\n\nNo. of Data Rows : 3008\n\nTotal analysis time (seconds) = 0.0871642\n\nTotal elapsed time (seconds) = 0.089 \n\nTotal DRAM available = 24032.070 MB.\nDRAM currently available = 18584.734 MB.\nMaximum ngspice program size =   22.301 MB.\nCurrent ngspice program size =   13.727 MB.\n\nShared ngspice pages =   11.676 MB.\nText (code) pages =    6.406 MB.\nStack = 0 bytes.\nLibrary pages =    2.102 MB.\n\n",
+          "stdout": "******\n** ngspice-45.2 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Fri Sep 12 11:58:13 UTC 2025\n******\n\nBatch mode\n\nSimulation output goes to rawfile: /tmp/tmpk9sxbjjp/ngspice.raw\nComments and warnings go to log-file: /tmp/tmpk9sxbjjp/ngspice.log\n\n",
+          "log": "                 3.56704\nxm1.7                                  3.56707\nxm1.9                                  3.56712\nm2_d1_node                             2.37165\nxm2.1                                  2.37165\nxm2.2                                  3.56707\nxm2.3                                  2.37165\nxm2.4                                  3.56707\nxm2.5                                  2.37165\nxm2.8                                  4.76249\nxm2.6                                  2.37165\nxm2.7                                  3.56706\nxm2.9                               -0.0191961\nxx3a.11                              0.0140046\nxx3a.12                               0.681755\nxx3a.6                                 18.8824\nxx3a.7                                 1.49586\nx3_out                                 1.52419\nxx3a.53                                5.95413\nxx3a.54                                    2.2\nxx3a.90                              -0.188866\nxx3a.91                                     25\nxx3a.92                                    -25\nxx3a.99                                4.07706\nxx3a.10                                2.26661\nx3_fb                                  3.14552\nxx3a.9                                       0\nxx3a.8                                 1.49586\ntone_top                                     0\ntone_w                                       0\nvol_top                                      0\nout                                          0\nh.xx3a.hlim#branch                 3.77732e-13\nv.xx3a.vlim#branch                -0.000188866\nh.xx1a.hlim#branch                 5.48196e-13\nv.xx1a.vlim#branch                -0.000274098\nl.xm2.ls#branch                    3.78009e-12\nl.xm1.ls#branch                    7.95087e-05\ne.xm2.e3#branch                              0\ne.xm2.e2#branch                              0\ne.xm1.e3#branch                              0\ne.xm1.e2#branch                   -5.29396e-23\nv.xx3a.vln#branch                 -2.48119e-11\nv.xx3a.vlp#branch                 -2.51897e-11\nv.xx3a.ve#branch                  -0.000178057\nv.xx3a.vc#branch                   4.43075e-12\nv.xx3a.vb#branch                   0.000188824\nv.xx1a.vln#branch                 -2.47267e-11\nv.xx1a.vlp#branch                 -2.52749e-11\nv.xx1a.ve#branch                  -0.000185514\nv.xx1a.vc#branch                    4.4318e-12\nv.xx1a.vb#branch                   0.000196732\nv_in#branch                                  0\nv1#branch                          -0.00845872\na$poly$e.xx3a.egnd#branch_1_0      0.000187102\na$poly$e.xx1a.egnd#branch_1_0      0.000272347\n\n\nNo. of Data Rows : 3009\n\nTotal analysis time (seconds) = 0.11704\n\nTotal elapsed time (seconds) = 0.119 \n\nTotal DRAM available = 24032.066 MB.\nDRAM currently available = 15637.543 MB.\nMaximum ngspice program size =   22.430 MB.\nCurrent ngspice program size =   13.629 MB.\n\nShared ngspice pages =   11.527 MB.\nText (code) pages =    6.406 MB.\nStack = 0 bytes.\nLibrary pages =    2.230 MB.\n\n",
           "plots": [
             "AC Analysis",
             "DC transfer characteristic",
@@ -930,44 +932,62 @@
           "node_voltages_V": {
             "vcc": 9.0,
             "in": 0.0,
-            "vcc_f": 8.156864560117782,
-            "vref": 3.868981674116162,
-            "in_b": 2.631950099590067,
-            "x1_p": 2.631949779851369,
-            "xx1a.11": 6.668561711666327e-08,
-            "xx1a.12": 0.6950117454916924,
-            "xx1a.6": 19.65350543481941,
-            "xx1a.7": 1.491326192310741,
-            "x1_out": 1.523152824443688,
-            "xx1a.53": 5.956864560117782,
+            "vcc_f": 8.15412817468778,
+            "vref": 3.567068850745788,
+            "in_b": 2.426567292894557,
+            "x1_p": 2.426566975230922,
+            "xx1a.11": 6.56225619591059e-08,
+            "xx1a.12": 0.695713375496346,
+            "xx1a.6": 19.67316551648485,
+            "xx1a.7": 1.482012263591024,
+            "x1_out": 1.523126966558451,
+            "xx1a.53": 5.954128174687781,
             "xx1a.54": 2.2,
-            "xx1a.90": -0.212177547552983,
+            "xx1a.90": -0.2740980197828437,
             "xx1a.91": 25.0,
             "xx1a.92": -25.0,
-            "xx1a.99": 4.078432280058891,
-            "xx1a.10": 2.485005958851656,
-            "x1_fb": 3.859060752123125,
+            "xx1a.99": 4.07706408734389,
+            "xx1a.10": 2.28005363580665,
+            "x1_fb": 3.558424652658465,
             "xx1a.9": 0.0,
-            "xx1a.8": 1.491326192310741,
-            "x2_w": 3.777890206373646,
-            "clip_a": 1.746542912926418,
-            "clip_b": 1.838822560895141,
-            "m2_d1_node": 1.746558537339518,
-            "xx3a.11": 6.500897418527003e-08,
-            "xx3a.12": 0.6977394089811622,
-            "xx3a.6": 19.72993608675296,
-            "xx3a.7": 1.493283111536467,
-            "x3_out": 1.52305243062218,
-            "xx3a.53": 5.956864560117781,
+            "xx1a.8": 1.482012263591024,
+            "x2_w": 3.487700022639546,
+            "clip_a": 2.369671350688156,
+            "clip_b": 2.421731807371486,
+            "xm1.1": 3.567068850743403,
+            "xm1.2": 3.567013194642587,
+            "xm1.3": 2.369672145775374,
+            "xm1.4": 3.567044998130331,
+            "xm1.5": 2.369671350688156,
+            "xm1.8": 3.566997293234881,
+            "xm1.6": 3.567044998461025,
+            "xm1.7": 3.567068845744712,
+            "xm1.9": 3.567116555969545,
+            "m2_d1_node": 2.371647057519872,
+            "xm2.1": 2.371647177064448,
+            "xm2.2": 3.56706881488121,
+            "xm2.3": 2.37164705751991,
+            "xm2.4": 3.567068814881692,
+            "xm2.5": 2.371647057519872,
+            "xm2.8": 4.762490457698986,
+            "xm2.6": 2.371647182064499,
+            "xm2.7": 3.567056760785854,
+            "xm2.9": -0.01919609857003834,
+            "xx3a.11": 0.01400462841684369,
+            "xx3a.12": 0.6817551307834879,
+            "xx3a.6": 18.88236530178515,
+            "xx3a.7": 1.495858228292336,
+            "x3_out": 1.524188144889266,
+            "xx3a.53": 5.95412817468778,
             "xx3a.54": 2.2,
-            "xx3a.90": -0.1984621272380828,
+            "xx3a.90": -0.1888661106462036,
             "xx3a.91": 25.0,
             "xx3a.92": -25.0,
-            "xx3a.99": 4.078432280058891,
-            "xx3a.10": 1.693551067211584,
-            "x3_fb": 3.384899950878881,
+            "xx3a.99": 4.07706408734389,
+            "xx3a.10": 2.266613244635891,
+            "x3_fb": 3.145520985738843,
             "xx3a.9": 0.0,
-            "xx3a.8": 1.493283111536467,
+            "xx3a.8": 1.495858228292336,
             "tone_top": 0.0,
             "tone_w": 0.0,
             "vol_top": 0.0,
@@ -1075,15 +1095,16 @@
       },
       {
         "id": "D_DEV",
-        "decision": "TL082.301 sim-only; M1/M2 APPROX_2N7000, D1 APPROX_BAT46 placeholders (user: D1 any of those)",
+        "decision": "M1/M2 upgraded to sourced 2N7002 model (Fairchild/Bordodynov, KiCad Spice Library mirror). D1 remains APPROX_1N34A (no manufacturer SPICE model for Ge). TL082.301 (TI, \u00b115V characterized, extrapolative at 8-18V single supply). 2N7002 is SOT-23 package; 2N7000 is TO-92 \u2014 same die, different package/pinout. Pinout must be verified for chosen package.",
         "alternatives": [
-          "APPROX_1N34A",
-          "sourced models"
+          "2N7000 TO-92 (original, no sourced model available)",
+          "BSS138 (sourced NMOS model in catalog, different Vgs threshold)"
         ],
-        "rationale": "exact parts unknown; simulation-only",
+        "rationale": "2N7002 sourced model available from KiCad Spice Library; 2N7000 has no catalog entry. Electrical characteristics are nearly identical (same die). Package/pinout differs and must be verified.",
         "sources": [
-          "TI SLOJ070 TL082.301",
-          "local APPROX models"
+          "TI SLOJ070 TL082.301 (S007)",
+          "Fairchild 2N7002 model (Bordodynov library, KiCad Spice Library mirror)",
+          "S002 schematic image (M1/M2 confirmed as 2N7000)"
         ]
       },
       {
@@ -1184,22 +1205,22 @@
     {
       "Ref": "M1",
       "Type": "NMOS",
-      "Model": "APPROX_2N7000",
+      "Model": "2N7002",
       "Kind": "vendor",
-      "Vendor": "project approximation",
-      "Part": "2N7000 APPROX sim-only",
-      "Source": "local APPROX; not manufacturer model",
-      "SHA256": "081054dff4a75cb5"
+      "Vendor": "Fairchild (Bordodynov library, KiCad Spice Library mirror)",
+      "Part": "2N7002",
+      "Source": "https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/master/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/2N7002.mod",
+      "SHA256": "d12975b019cda3b5"
     },
     {
       "Ref": "M2",
       "Type": "NMOS",
-      "Model": "APPROX_2N7000",
+      "Model": "2N7002",
       "Kind": "vendor",
-      "Vendor": "project approximation",
-      "Part": "2N7000 APPROX sim-only",
-      "Source": "local APPROX; not manufacturer model",
-      "SHA256": "081054dff4a75cb5"
+      "Vendor": "Fairchild (Bordodynov library, KiCad Spice Library mirror)",
+      "Part": "2N7002",
+      "Source": "https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/master/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/2N7002.mod",
+      "SHA256": "d12975b019cda3b5"
     },
     {
       "Ref": "D1",

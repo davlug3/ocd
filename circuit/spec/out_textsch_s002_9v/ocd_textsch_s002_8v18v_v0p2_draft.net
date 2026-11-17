@@ -1,7 +1,7 @@
 (export (version "E")
 	(design
 		(source "ocd_textsch_s002_8v18v_v0p2_draft.kicad_sch")
-		(date "2026-11-10")
+		(date "2026-11-17")
 		(tool "circuit-design-skill")
 	)
 	(components
@@ -27,9 +27,9 @@
 		(comp (ref "C7") (value "10n") (footprint "") (description "S002-schematic-image-confirmed: VREF-CLIP_A cap (C7=10nF)."))
 		(comp (ref "R10") (value "10k") (footprint "") (description "S002-schematic-image-confirmed: clip network resistor (R10=10k)."))
 		(comp (ref "R12") (value "220k") (footprint "") (description "S002-schematic-image-confirmed: bias to CLIP_B (R12=220k)."))
-		(comp (ref "M1") (value "APPROX_2N7000") (footprint "") (description "S002-schematic-image-confirmed: M1 [D&G=VREF, S=CLIP_A]. Exact part unknown; APPROX sim-only. Commenter-reported alternate wiring (M1[S=VREF,D&G=R9/R10]) does NOT match S002 image."))
-		(comp (ref "M2") (value "APPROX_2N7000") (footprint "") (description "S002-schematic-image-confirmed: M2 [D=VREF, G&S=M2_D1_NODE]. Exact part unknown; APPROX sim-only. Commenter-reported alternate wiring (M2[D&G=VREF,S=D1]) does NOT match S002 image."))
-		(comp (ref "D1") (value "APPROX_1N34A") (footprint "") (description "S002-schematic-image-confirmed: D1 [A=CLIP_A, K=M2_D1_NODE], 1N34A Ge per article text (C027). APPROX sim-only model, Ge variability applies."))
+		(comp (ref "M1") (value "2N7002") (footprint "") (description "S002-schematic-image-confirmed: M1 [D&G=VREF, S=CLIP_A]. Model: 2N7002 (Fairchild, Bordodynov library, KiCad Spice Library mirror) — substitute for 2N7000 (same die, different package TO-92 vs SOT-23). Subcircuit node order D,G,S. Commenter-reported alternate wiring (M1[S=VREF,D&G=R9/R10]) does NOT match S002 image."))
+		(comp (ref "M2") (value "2N7002") (footprint "") (description "S002-schematic-image-confirmed: M2 [D=VREF, G&S=M2_D1_NODE]. Model: 2N7002 (Fairchild, Bordodynov library, KiCad Spice Library mirror) — substitute for 2N7000 (same die, different package TO-92 vs SOT-23). Subcircuit node order D,G,S."))
+		(comp (ref "D1") (value "APPROX_1N34A") (footprint "") (description "S002-schematic-image-confirmed: D1 [A=CLIP_A, K=M2_D1_NODE], 1N34A Ge per article text (C027). APPROX_1N34A simulation-only model (no manufacturer SPICE model available for Ge diode; sourced from DAFx26-style params). Ge variability applies — select/measure actual diodes."))
 		(comp (ref "X3A") (value "TL082") (footprint "") (description "S002-schematic-image-confirmed: TL082 section 2; non-inv input CLIP_B; wiring assumed."))
 		(comp (ref "R11") (value "39k") (footprint "") (description "S002-schematic-image-confirmed: gain ref to Vref (R11=39k)."))
 		(comp (ref "R13") (value "150k") (footprint "") (description "S002-schematic-image-confirmed: feedback (R13=150k)."))
