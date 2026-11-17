@@ -46,7 +46,7 @@ jobs:
               # Download Freerouting jar if not present
               FREEROUTING_JAR=/tmp/freerouting.jar
               if [ ! -f "$FREEROUTING_JAR" ]; then
-                curl -fL -o "$FREEROUTING_JAR" https://github.com/freerouting/freerouting/releases/download/v2.5.0/freerouting-2.5.0.jar
+                python3 -c "import urllib.request; urllib.request.urlretrieve('https://github.com/freerouting/freerouting/releases/download/v2.5.0/freerouting-2.5.0.jar', '$FREEROUTING_JAR')"
               fi
               export FREEROUTING_JAR
               BOARD="${{ github.event.inputs.board }}"
