@@ -55,18 +55,17 @@ jobs:
               fi
               # Install Eclipse Temurin 25 JRE for Freerouting (requires Java 25+)
               if ! command -v java >/dev/null 2>&1 || ! java -version 2>&1 | grep -q "25\."; then
-                echo "Installing Eclipse Temurin 25 JRE..."
-                apt-get update -qq
-                # Add Temurin apt repo
-                apt-get install -y -qq wget apt-transport-https ca-certificates 2>/dev/null || true
-                wget -qO - https://packages.adoptium.net/artifactory/api/gpg/key/public | apt-key add - 2>/dev/null || true
-                echo "deb https://packages.adoptium.net/artifactory/deb $(awk -F= '/^VERSION_CODENAME/{print\$2}' /etc/os-release) main" > /etc/apt/sources.list.d/adoptium.list 2>/dev/null || true
-                apt-get update -qq
-                apt-get install -y -qq temurin-25-jre 2>/dev/null || true
-                JVM_DIR=$(ls -d /usr/lib/jvm/* 2>/dev/null | head -1)
-                if [ -n "$JVM_DIR" ]; then
-                  export JAVA_HOME="$JVM_DIR"
-                  export PATH=$JAVA_HOME/bin:$PATH
+                echo "Downloading Eclipse Temurin 25 JRE tarball..."
+                cd /tmp
+                wget -q https://github.com/adoptium/temurin25-binaries/releases/download/jdk-25.0.1%2B8/OpenJDK25U-jre_x64_linux_hotspot_25.0.1_8.tar.gz -O temurin25.tar.gz || \
+                wget -q https://github.com/adoptium/temurin25-binaries/releases/download/jdk-25.0.2%2B10/OpenJDK25U-jre_x64_linux_hotspot_25.0.2_10.tar.gz -O temurin25.tar.gz || true
+                if [ -f temurin25.tar.gz ]; then
+                  tar -xzf temurin25.tar.gz -C /opt 2>/dev/null || true
+                  JVM_DIR=$(ls -d /opt/jdk* 2>/dev/null | head -1)
+                  if [ -n "$JVM_DIR" ]; then
+                    export JAVA_HOME="$JVM_DIR"
+                    export PATH=$JAVA_HOME/bin:$PATH
+                  fi
                 fi
               fi
               echo "Java version:"
